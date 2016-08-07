@@ -18,8 +18,9 @@ Bundle 'matrix.vim--Yang'
 "sudo apt-get install exuberant-ctags
 "ctags -R --c++-kinds=+p --field=+iaS .
 "set tags+=./
+if has("win16") || has("win32") || has("win64") || has("win95") || has("win32unix")
 
-if has("win32")
+else
 	Bundle 'taglist.vim'
 	let g:Tlist_Auto_Update=1
 	let g:Tlist_Process_File_Always=1
@@ -28,7 +29,6 @@ if has("win32")
 	let g:Tlist_WinWidth=45
 	let g:Tlist_Enable_Fold_Column=0
 	let g:Tlist_Auto_Highlight_Tag=1
-else
 
 endif
 "Bundle 'majutsushi/tagbar'
@@ -100,16 +100,14 @@ Bundle 'a.vim'
 
 "sudo apt-get install cscope"{{{
 "sudo cscope -Rbq
-if !has("win32")
-	if has("cscope")
-		set csto=1
-		set cst
-		set nocsverb
-		if filereadable("cscope.out")
-			cs add cscope.out
-		endif
-		set csverb
+if has("cscope")
+	set csto=1
+	set cst
+	set nocsverb
+	if filereadable("cscope.out")
+		cs add cscope.out
 	endif
+	set csverb
 endif
 "}}}
 
