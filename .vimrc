@@ -18,14 +18,17 @@ Bundle 'matrix.vim--Yang'
 "sudo apt-get install exuberant-ctags
 "ctags -R --c++-kinds=+p --field=+iaS .
 "set tags+=./
-"Bundle 'taglist.vim'
-"let g:Tlist_Auto_Update=1
-"let g:Tlist_Process_File_Always=1
-"let g:Tlist_Exit_OnlyWindow=1
-"let g:Tlist_Show_One_File=1
-"let g:Tlist_WinWidth=45
-"let g:Tlist_Enable_Fold_Column=0
-"let g:Tlist_Auto_Highlight_Tag=1
+
+if !has("win32")
+	Bundle 'taglist.vim'
+	let g:Tlist_Auto_Update=1
+	let g:Tlist_Process_File_Always=1
+	let g:Tlist_Exit_OnlyWindow=1
+	let g:Tlist_Show_One_File=1
+	let g:Tlist_WinWidth=45
+	let g:Tlist_Enable_Fold_Column=0
+	let g:Tlist_Auto_Highlight_Tag=1
+endif
 "Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline.git'
 set t_Co=256
@@ -95,15 +98,17 @@ Bundle 'a.vim'
 
 "sudo apt-get install cscope"{{{
 "sudo cscope -Rbq
-"if has("cscope")
-"    set csto=1
-"    set cst
-"    set nocsverb
-"    if filereadable("cscope.out")
-"        cs add cscope.out
-"    endif
-"    set csverb
-"endif
+if !has("win32")
+	if has("cscope")
+		set csto=1
+		set cst
+		set nocsverb
+		if filereadable("cscope.out")
+			cs add cscope.out
+		endif
+		set csverb
+	endif
+endif
 "}}}
 
 filetype on
@@ -215,6 +220,8 @@ nnoremap -- :call ChangeOperationMode()<CR>"}}}
 
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
+nnoremap j gj
+nnoremap k gk
 let mapleader=";"
 "nnoremap <Leader>b <Leader>be
 
@@ -231,8 +238,8 @@ function! RunShell(Msg, Shell)
 	echon 'done'
 endfunction
 
-"nnoremap <F2> :TlistToggle<CR>
-nnoremap <F2> :TagbarToggle<CR>
+nnoremap <F2> :TlistToggle<CR>
+"nnoremap <F2> :TagbarToggle<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 nnoremap <F4> :MRU<CR>
 nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.vim<cr><C-o>:cw<cr>

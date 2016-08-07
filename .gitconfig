@@ -13,3 +13,4 @@
 	i = commit
 	o = checkout
 	d = diff
+	a = add
