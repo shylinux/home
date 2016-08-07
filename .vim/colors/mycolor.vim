@@ -10,41 +10,41 @@ if exists("syntax_on")
   syntax reset
 endif
 let g:colors_name = "mycolor"
-hi Normal		guifg=cyan			guibg=black
-hi Comment	term=bold		ctermfg=DarkCyan		guifg=#80a0ff
-hi Constant	term=underline	ctermfg=Magenta		guifg=Magenta
-hi Special	term=bold		ctermfg=DarkMagenta	guifg=Red
-hi Identifier term=underline	cterm=bold			ctermfg=Cyan guifg=#40ffff
-hi Statement term=bold		ctermfg=Yellow gui=bold	guifg=#aa4444
-hi PreProc	term=underline	ctermfg=LightBlue	guifg=#ff80ff
-hi Type	term=underline		ctermfg=LightGreen	guifg=#60ff60 gui=bold
-hi Function	term=bold		ctermfg=White guifg=White
-hi Repeat	term=underline	ctermfg=Yellow		guifg=Yellow
-hi Operator				ctermfg=Red			guifg=Red
-hi Ignore				ctermfg=black		guifg=bg
-hi Error	term=reverse ctermbg=Red ctermfg=White guibg=Red guifg=White
-hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
+hi Normal													guifg=cyan		guibg=black
+hi Comment		ctermfg=DarkCyan	term=bold				guifg=#80a0ff
+hi Constant		ctermfg=Magenta		term=underline			guifg=Magenta
+hi Special		ctermfg=DarkMagenta	term=bold				guifg=Red
+hi Identifier	ctermfg=Cyan		term=underline			guifg=#40ffff
+hi Statement	ctermfg=Yellow		term=bold				guifg=#aa4444	gui=bold
+hi PreProc		ctermfg=LightBlue	term=underline			guifg=#ff80ff
+hi Type			ctermfg=LightGreen	term=underline			guifg=#60ff60	gui=bold
+hi Function		ctermfg=White		term=bold				guifg=White
+hi Repeat		ctermfg=Yellow		term=underline			guifg=Yellow
+hi Operator		ctermfg=Red									guifg=Red
+hi Ignore		ctermfg=black								guifg=bg
+hi Error		ctermfg=White ctermbg=Red term=reverse		guifg=White 	guibg=Red
+hi Todo			ctermfg=Black ctermbg=Yellow term=standout	guifg=Blue		guibg=Yellow
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
-hi link String	Constant
-hi link Character	Constant
-hi link Number	Constant
-hi link Boolean	Constant
-hi link Float		Number
-hi link Conditional	Repeat
-hi link Label		Statement
-hi link Keyword	Statement
-hi link Exception	Statement
-hi link Include	PreProc
-hi link Define	PreProc
-hi link Macro		PreProc
-hi link PreCondit	PreProc
+hi link String			Constant
+hi link Character		Constant
+hi link Number			Constant
+hi link Boolean			Constant
+hi link Float			Number
+hi link Conditional		Repeat
+hi link Label			Statement
+hi link Keyword			Statement
+hi link Exception		Statement
+hi link Include			PreProc
+hi link Define			PreProc
+hi link Macro			PreProc
+hi link PreCondit		PreProc
 hi link StorageClass	Type
-hi link Structure	Type
-hi link Typedef	Type
-hi link Tag		Special
-hi link SpecialChar	Special
-hi link Delimiter	Special
-hi link SpecialComment Special
-hi link Debug		Special
+hi link Structure		Type
+hi link Typedef			Type
+hi link Tag				Special
+hi link SpecialChar		Special
+hi link Delimiter		Special
+hi link SpecialComment	Special
+hi link Debug			Special
