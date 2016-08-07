@@ -19,7 +19,7 @@ Bundle 'matrix.vim--Yang'
 "ctags -R --c++-kinds=+p --field=+iaS .
 "set tags+=./
 
-if !has("win32")
+if has("win32")
 	Bundle 'taglist.vim'
 	let g:Tlist_Auto_Update=1
 	let g:Tlist_Process_File_Always=1
@@ -28,6 +28,8 @@ if !has("win32")
 	let g:Tlist_WinWidth=45
 	let g:Tlist_Enable_Fold_Column=0
 	let g:Tlist_Auto_Highlight_Tag=1
+else
+
 endif
 "Bundle 'majutsushi/tagbar'
 Bundle 'Lokaltog/vim-powerline.git'
