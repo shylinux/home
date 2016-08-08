@@ -14,3 +14,5 @@
 	o = checkout
 	d = diff
 	a = add
+[receive]
+	denyCurrentBranch = ignore
