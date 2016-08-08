@@ -225,6 +225,7 @@ nnoremap k gk
 let mapleader=";"
 "nnoremap <Leader>b <Leader>be
 
+cnoremap w!! w !sudo tee %<CR>
 
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
@@ -238,6 +239,14 @@ function! RunShell(Msg, Shell)
 	echon 'done'
 endfunction
 
+function! GenarateTags()
+	call RunShell("Generate cscope", "cscope -Rbq")
+	cs add cscope.out
+	call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")
+	call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")
+	call HLUDSync()
+endfunction
+
 nnoremap <F2> :TlistToggle<CR>
 "nnoremap <F2> :TagbarToggle<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
@@ -245,10 +254,11 @@ nnoremap <F4> :MRU<CR>
 nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.vim<cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <F9> :call RunShell("Generate cscope", "cscope -Rbq")<cr>:cs add cscope.out<cr>
-nnoremap <F10> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
-nnoremap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
-nnoremap <F12> :call HLUDSync()<cr>
+"nnoremap <F9> :call RunShell("Generate cscope", "cscope -Rbq")<cr>:cs add cscope.out<cr>
+"nnoremap <F10> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
+"nnoremap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
+"nnoremap <F12> :call HLUDSync()<cr>
+nnoremap <F12> :call GenarateTags()<cr>
 
 autocmd BufNewFile,BufReadPost  *.go nnoremap <F2> :TagbarToggle<CR>
 "}}}
