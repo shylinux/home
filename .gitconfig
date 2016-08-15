@@ -5,7 +5,7 @@
 	ui = always
 [alias]
 	s = status
-	l = log --pretty=format:\"%C(4)%h %C(6)%t %C(2)%cn %C(3)%d %C(7)%s\" --graph
+	l = log --pretty=format:\"%C(4)%h %C(6)%an %C(2)%ar %C(3)%d %C(7)%s\" --graph
 	b = branch
 	r = remote
 	m = merge
