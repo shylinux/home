@@ -1,14 +1,14 @@
-/* */ // node npm
-Infinity NaN//{{{
-"" '' true false
-[,] {:,} function(){} / /gi
-undefined null
+/* */ // node npm \x \u
+undefined null //{{{
 Number String Boolean
-Array String Function
-Date RegExp Math JSON//}}}
-//{{{
-[] . ()
-++ --
+Array Object Function
+RegExp Date Math JSON
+Infinity NaN "" '' true false
+[,] {:,} function(){}
+/ /gi
+//}}}
+[] . () //{{{
+++ -- 
 - ~ !
 * / %
 + -
@@ -17,19 +17,20 @@ Date RegExp Math JSON//}}}
 < <= > >=
 in instanceof
 != == !== ===
-&
-^
-|
-&&
-||
+& ^ |
+&& ||
 ?:
 =
 ,
 label:
 delete typeof new instanceof
 eval()
-isFinite() isNaN() parseFloat() parseInt()
-decodeURI() encodeURI()//}}}
+isFinite() isNaN()
+parseFloat() parseInt()
+encodeURI() decodeURI()
+encodeURIComponent() decodeURIComponent()
+
+//}}}
 ; {}//{{{
 for (in) {}
 for (;;) {}
@@ -40,23 +41,28 @@ switch () {case: default: }
 break continue return with
 this arguments var let
 debugger
-try {throw} catch(e) {}//}}}
+try {throw} catch(e) {}
+//}}}
 
 number//{{{
-	toPrecision() toFixed() toExponential()//}}}
+	toPrecision() toFixed() toExponential()
+//}}}
 string//{{{
 	length
 	match() replace() toLowerCase() toUpperCase()
 	trim() trimLeft() trimRight() concat() repeat()
 	search() indexOf() lastIndexOf() endsWith() startsWith()
-	charAt() substr() subString() slice() split()//}}}
+	charAt() substr() subString() slice() split()
+//}}}
 Array//{{{
-	isArray()//}}}
+	isArray()
+//}}}
 array//{{{
 	length indexOf() keys() entries()
 	join() sort() fill() reverse()
-	push() pop() unshift() shift() slice() splice() concat()
-	map() forEach() filter() find() reduce() every() some()//}}}
+	push() pop() unshift() shift() splice() slice() concat()
+	map() forEach() filter() find() reduce() every() some()
+//}}}
 Object//{{{
 	create() prototype getPropertyOf() setPropertyOf()
 	keys() getOwnPropertyNames() getOwnPropertyDescriptor() defineProperty()
@@ -64,20 +70,24 @@ Object//{{{
 //}}}
 object//{{{
 	hasOwnProperty() propertyIsEnumerable()
-	toString() valueOf() constructor isPrototypeOf()//}}}
+	toString() valueOf() constructor isPrototypeOf()
+//}}}
 function//{{{
 	name arguments length
 	call() apply() bind()
 	arguments[]
 		caller callee length
-	prototype//}}}
+	prototype
+//}}}
 date//{{{
 	getFullYear() getMonth()+1 getDate()
 	getHours() getMinutes() getSeconds()
-	getDay() getTime() getMilliseconds()//}}}
+	getDay() getTime() getMilliseconds()
+//}}}
 regexp//{{{
 	compile() source global ignoreCase multiline
-	lastIndex test() exec()//}}}
+	lastIndex test() exec()
+//}}}
 Math//{{{
 	E PI LN2 LN10 LOG10E LOG2E SQRT2 SQRT1_2
 	exp() log() log2() log10() log1p() expm1()
@@ -85,41 +95,101 @@ Math//{{{
 	sinh() cosh() tanh() asinh() acosh() atanh()
 	abs() sign() trunc() round() floor() ceil()
 	random() max() min() pow() sqrt() cbrt()
-	fround() imul() clz32() hypot()//}}}
+	fround() imul() clz32() hypot()
+//}}}
 JSON//{{{
-	stringify() parse()//}}}
+	stringify() parse()
+//}}}
 
-screen
+screen//{{{
 	width height colorDepth
-	availWidth availHeight
-	
-navigator
+	availWidth availHeight availTop availLeft
+//}}}
+navigator//{{{
 	platform
 	userAgent
-window
-	alert() confirm() prompt()
-	setTimeout() setInterval()
-	onload()
-history
-	go() back() forwar()
-location
+//}}}
+window//{{{
+	alert() confirm() prompt() showModalDialog()
+	open() close() opener
+	setTimeout() setInterval() clearTimeout() clearInterval()
+	pageXOffset pageYOffset
+	innerWidth innerHeight
+	scrollTo() scrollBy()
+	onload
+	localStorage
+//}}}
+history//{{{
+	go() back() forward()
+//}}}
+location//{{{
 	href protocol host port hostname pathname search hash
 	reload() assign() replace()
-document
-	open() close() opener
-	write()
-	createElement()
-	getElementById()
-	getElementByClassName()
-	createTextNode()
+//}}}
+document//{{{
+	scrollTop scrollLeft
+
+	referrer title domain
+
+	createElement() createTextNode() createDocumentFragment() cloneNode()
+	getElementById() getElementByTagName() getElementByClassName()
+	querySelector() querySelectorAll()
+	head body
 	element
-		style
-		className
+		parentNode childNodes firstChild lastChild nextSibling previousSibling
+		children firstElementChild lastElementChild nextElementSibling previousElementSibling
+		nodeType nodeValue nodeName
+
+		getBoundingClientRect()
+		offsetWidth offsetHeight offsetLeft offsetTop offsetParent
+		clientWidth clientHeight clientLeft clientTop
+		scrollWidth scrollHeight scrollLeft scrollTop
 		onclick
-		addEventListener()
-		attachEvent()
-		innerHTML
-		appendChild()
+
+		id
+		src style className
+		attibutes getAttribute() setAttribute() hasAttribute() removeAttribute()
+		addEventListener()/attachEvent()
+
+		innerHTML appendChild() removeChild() replaceChild() insertBefore()
+
+		onclick
+		action
+		method
+
+
+	nodeType nodeValue nodeName
+	style className getAttribute() setAttribute() hasAttribute() removeAttribute()
+	innerHTML outerHTML innerText/textContent
+	appendChild() insertBefore() removeChild() replaceChild()
+//}}}
+event//{{{
+	target
+//}}}
+style//{{{
+	display visibility
+//}}}
+XMLHttpRequest//{{{
+	open()
+	send()
+	onreadystatechange
+	readyState
+	status
+	responseText
+	responseXML
+//}}}
+canvas//{{{
+	getContext("2d")
+		beginPath() moveTo() lineTo() closePath()
+		fillStyle fill() fillText()
+		font
+//}}}
+
+jQuery//{{{
+	appendTo()
+	append()
+	text()//}}}
+
 global//{{{
 	__dirname __filename
 	Promise Map Set Symbol
@@ -139,24 +209,27 @@ global//{{{
 		stderr
 		cwd() chdir()
 		exit()
-		on@SIGKILL//}}}
-
+		on@uncaughtException
+		on@SIGKILL
+		on@exit
+//}}}
 os child_process cluster
 fs tty readline path
 net tls dgram http https
 crypto zlib dns url querystring
 v8 vm assert events util
-
-events
+events//{{{
 	on() once() emit()
 	addListener() removeListener() removeAllListeners()
 	listenerCount listeners() setMaxListeners() getMaxListeners()
-fs
+//}}}
+fs//{{{
 	stat()
 	readFile()
 	watchFile()
 	createReadStream()
-net
+//}}}
+net//{{{
 	createServer() Server()
 		on@connection on@error
 		listen() address() on@listen()
@@ -169,7 +242,8 @@ net
 		write() on@drain end() bufferSize bytesRead bytesWritten
 		setNoDelay() setKeepAlive() setTimeout() on@timeout
 		destroy() on@close unref() ref()
-http
+//}}}
+http//{{{
 	createServer() Server()
 		on@request on@connection on@clientError
 		on@upgrade on@connect on@checkContinue
@@ -191,9 +265,6 @@ http
 			setEncoding() on@data on@end
 
 	request({host,port,method,url}) ClientRequest()
-		write() end()
-querystring
-	stringify() parse()
-
-chrome
-	
+		write() end()//}}}
+querystring//{{{
+	stringify() parse()//}}}

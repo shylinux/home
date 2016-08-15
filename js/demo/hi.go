@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"flag"
 	"fmt"
-	"log"
 )
 
 var (
@@ -19,6 +18,7 @@ func main() {
 	})
 
 	http.Handle("/", http.FileServer(http.Dir(*path)))
-	log.Fatalln(http.ListenAndServe(*addr, nil))
+	http.ListenAndServe(*addr, nil)
+	println("listen error")
 }
 

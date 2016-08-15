@@ -1,25 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width">
 	<title>hi</title>
 	<style>
-		
+		/*comment*/
+		#outer {
+			border:thick groove red;
+		}
+		#inner {
+			width:auto; height:auto;
+			position:static; z-index:0;
+			top:0; left:0; bottom:0; right:0;
+
+			margin:4px; padding:4px;
+			border:thick ridge green;
+			border-radius:8px;
+
+			display:block;
+			visibility:visible;
+			overflow:auto;
+			clip:auto;
+
+			background-color:magenta;
+			color:blue;
+
+			font-weight:bold;
+			font-style:italic;
+			font-size:2em;
+			text-decoration:line-through;
+			text-indent:2em;
+		}
 	</style>
 	<script>
+		/*comment*/ //
+		document.writeln("hello js")
+		onload = function() {
+			document.getElementById("modal").onclick = function() {
+				open("http://www.baidu.com")
+			}
+		}
 	</script>
-	<script src=""></script>
+	
 </head>
 <body>
-	<!--hi-->
-	<h2>hel</h2>
-	<h3>heh</h3>
-	<p>helll</p>
-	<ul>
-		<li><a href="/">nice</a></li>
-	</ul>
-	<table border="0">
-		<tr><th>hi</th><td>hi</td></tr>
-		<tr><th>hi</th><td>hi</td></tr>
+	<!--comment-->
+	<h1 id="hi">hi</h1>
+	<p>hello html world!</p>
+	<div id="outer">
+		<div id="inner">
+			hello
+		</div>
+	</div>
+	<button id="modal">modal</button>
+	
+	<table border="2px">
+		<tr><th>11</th><th>12</th></tr>
+		<tr><th>21</th><td>22</td></tr>
 	</table>
+	<hr>
+	<form action="/" method="get" encoding=""accept-charset="utf-8">
+		<fieldset><legend>legend</legend>
+			<input type="TEXT"/><br>
+			<input type="PASSWORD"/><br>
+			<textarea>textarea</textarea><br>
+
+			<input type="RADIO">radio</input><br>
+			<input type="CHECKBOX"/>checkbox<br>
+			<select><option>one</option></select><br>
+
+			<button>button</button><br>
+			<input type="file"/><br>
+			<p><input type="submit" value="Continue &rarr;"></p>
+		</fieldset>
+	</form>
 </body>
 </html>

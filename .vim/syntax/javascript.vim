@@ -69,11 +69,15 @@ syn keyword javaScriptNodeIdentifier	setTimeout setInterval clearTimeout clearIn
 syn keyword javaScriptNodeIdentifier	__dirname __filename
 syn keyword javaScriptNodeConstant	Infinity NaN
 
+syn keyword javaScriptNodeIdentifier	getElementById
+syn keyword javaScriptNodeIdentifier	createElement createTextNode
+syn keyword javaScriptNodeIdentifier	appendChild
+
 syn keyword javaScriptLabel		case default
 syn keyword javaScriptException		try catch finally throw
 syn keyword javaScriptMessage		alert confirm prompt status
 syn keyword javaScriptGlobal		self window top parent
-syn keyword javaScriptMember		document event location 
+syn keyword javaScriptMember		document event location screen navigator history
 syn keyword javaScriptDeprecated	escape unescape
 syn keyword javaScriptReserved		abstract boolean byte char class const debugger double enum export extends final float goto implements import int interface long native package private protected public short static super synchronized throws transient volatile 
 
