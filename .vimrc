@@ -170,9 +170,8 @@ autocmd BufReadPost *
 
 "}}}
 
-let s:Operation_Close=1"{{{
-function ChangeOperationMode()
-	if s:Operation_Close
+fun SetOperationMode() "{{{
+	if exists("w:OperationMode") && w:OperationMode == 1
 		nnoremap <Space> <C-F>
 		nnoremap f <C-F>
 		nnoremap b <C-B>
@@ -192,31 +191,40 @@ function ChangeOperationMode()
 		nnoremap c :cs find c <C-R>=expand("<cword>")<CR><CR>
 		nnoremap s :cs find s <C-R>=expand("<cword>")<CR><CR>
 		nnoremap x :cs find e <C-R>=expand("<cword>")<CR><CR>
-		let s:Operation_Close=0
 	else
 		nnoremap <Space> :
-		nunmap f
-		nunmap b
-		nunmap u
-		nunmap d
-		nunmap e
-		nunmap y
-		nunmap w
-		nunmap q
-		nunmap p
-		nunmap v
-		nunmap r
-		nunmap t
-		nunmap i
-		nunmap o
-		nunmap a
-		nunmap c
-		nunmap s
-		nunmap x
-		let s:Operation_Close=1
+		nnoremap f f
+		nnoremap b b
+		nnoremap u u
+		nnoremap d d
+		nnoremap e e
+		nnoremap y y
+		nnoremap w w
+		nnoremap q q
+		nnoremap p p
+		nnoremap v v
+		nnoremap r r
+		nnoremap t t
+		nnoremap i i
+		nnoremap o o
+		nnoremap a a
+		nnoremap c c
+		nnoremap s s
+		nnoremap x x
 	endif
-endf
-nnoremap -- :call ChangeOperationMode()<CR>"}}}
+endfun
+
+fun ChangeOperationMode()
+	if !exists("w:OperationMode") || w:OperationMode == 0
+		let w:OperationMode = 1
+	else
+		let w:OperationMode = 0
+	endif
+	call SetOperationMode()
+endfun
+nnoremap -- :call ChangeOperationMode()<CR>
+autocmd WinEnter * call SetOperationMode()
+"}}}
 
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
