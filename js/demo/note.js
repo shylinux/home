@@ -185,13 +185,12 @@ style//{{{
 	display visibility
 //}}}
 XMLHttpRequest//{{{
-	open()
-	send()
+	open() setRequestHeader() send()
+
 	onreadystatechange
-	readyState
-	status
-	responseText
-	responseXML
+	readyState status statusText
+	getResponseHeader()
+	responseText responseXML
 //}}}
 canvas//{{{
 	getContext("2d")
@@ -201,9 +200,46 @@ canvas//{{{
 //}}}
 
 jQuery//{{{
-	appendTo()
-	append()
-	text()//}}}
+	selector context jquery
+	length [] size() get() toArray()
+	map()
+
+	attr() removeAttr()
+	data() removeData()
+	css() addClass() removeClass() toggleClass() hasClass()
+	val()
+
+	html() text()
+
+	offset()
+	offsetParent() position()
+	width() height() innerWidth() innerHeight() outerWidth() outerHeight()
+	scrollTop() scrollLeft()
+
+	replaceWith() before() after() append() prepend()
+	replaceAll() insertBefore() insertAfter() appendTo() prependTo()
+	unwrap() wrap() wrapInner() wrapAll()
+	clone() empty() remove() detach()
+
+	bind() unbind() one() trigger()
+	load() unload()
+	click() dbclick()
+	focus() blur()
+	change() select()
+	keydown() keypress() keyup()
+	mouseover() mousemove() mousedown() mouseup() mouseout()
+	resize() scroll()
+	submit()
+	hover() mouseenter() mouseleave()
+
+	show() hide() toggle()
+	fadeIn() fadeOut() fadeTo()
+	slideDown() slideUp() slideToggle()
+	animate() delay() stop()
+
+	load() post() get() getScript() getJSON()
+	ajax() ajaxSetup() param()
+//}}}
 
 global//{{{
 	__dirname __filename

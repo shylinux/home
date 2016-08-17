@@ -31,8 +31,27 @@
 			text-indent:2em;
 		}
 	</style>
+	<script src="jquery-1.11.0.js"></script>
 	<script>
+		$(function() {
+			$('#ajax').click(function() {
+				$.get("/hr", function(data) {
+					data = JSON.parse(data)
+					alert(data.Name)
+				})
+			})
+		})
+
+
+		
+	</script>
+	<script><!--{{{-->
 		/*comment*/ //
+		function append(event) {
+			event = event || window.event
+			document.getElementById("inner1").innerHTML += event.type+"<br>"
+
+		}
 		function show(event) {
 			event = event || window.event
 			var str = ""
@@ -42,14 +61,8 @@
 			document.getElementById("inner2").innerHTML = str
 			append(event)
 		}
-		function append(event) {
-			event = event || window.event
-			document.getElementById("inner1").innerHTML += event.type+"<br>"
-
-		}
 		window.onload = function() {
 			var element = document.getElementById("text")
-
 			//element.onkeydown = show
 			//element.onkeypress = show
 			//element.onkeyup = show
@@ -74,9 +87,20 @@
 			//window.ongesturestart = show
 			//window.ongesturechange = show
 			//window.ongestureend = show
-
+			var button = document.getElementById("button")
+			button.onclick = function() {
+				var hr = new XMLHttpRequest()
+				hr.open("GET", "/hr")
+				hr.send()
+				hr.onreadystatechange = function() {
+					if (hr.readyState == 4 && hr.status == 200) {
+						alert(hr.getResponseHeader("Date"))
+					}
+				}
+				
+			}
 		}
-	</script>
+	</script><!--}}}-->
 	
 </head>
 <body>
@@ -85,7 +109,12 @@
 	<p>hello html world!</p>
 	<div id="outer">
 		<input type="radio" id="radio"/>
-		<input type="text" id="text"/><br>
+		<input type="text" id="text"/>
+		<button id="button">get</button>
+		<button id="hide">hide</button>
+		<button id="show">show</button>
+		<button id="ajax">ajax</button>
+		<hr>
 		<div id="inner1">hello</div>
 		<div id="inner2">hello</div>
 	</div>

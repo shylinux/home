@@ -12,15 +12,27 @@ var (
 	index = flag.String("index", "hi.html", "http default page")
 )
 
-func main() {
+func conf() {
 	flag.Parse()
 	flag.VisitAll(func(f *flag.Flag) {
 		fmt.Printf("%s: %v\n", f.Name, f.Value)
 	})
+}
+
+type echo struct {
+	Name string
+}
+
+func main() {
+	conf()
 
 	http.HandleFunc("/", log(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/" {
+		switch r.URL.Path {
+		case "/":
 			http.ServeFile(w, r, *index)
+		case "/hr":
+			w.Write([]byte("{\"Name\":1123}"))
+			return
 		}
 
 		http.ServeFile(w, r, *path+r.URL.Path)
@@ -42,6 +54,5 @@ func log(h http.HandlerFunc) http.HandlerFunc {
 				println(e)
 			}
 		}()
-
 	}
 }
