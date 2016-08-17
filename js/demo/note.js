@@ -116,8 +116,9 @@ window//{{{
 	pageXOffset pageYOffset
 	innerWidth innerHeight
 	scrollTo() scrollBy()
-	onload
 	localStorage
+
+	on@load
 //}}}
 history//{{{
 	go() back() forward()
@@ -135,27 +136,6 @@ document//{{{
 	getElementById() getElementByTagName() getElementByClassName()
 	querySelector() querySelectorAll()
 	head body
-	element
-		parentNode childNodes firstChild lastChild nextSibling previousSibling
-		children firstElementChild lastElementChild nextElementSibling previousElementSibling
-		nodeType nodeValue nodeName
-
-		getBoundingClientRect()
-		offsetWidth offsetHeight offsetLeft offsetTop offsetParent
-		clientWidth clientHeight clientLeft clientTop
-		scrollWidth scrollHeight scrollLeft scrollTop
-		onclick
-
-		id
-		src style className
-		attibutes getAttribute() setAttribute() hasAttribute() removeAttribute()
-		addEventListener()/attachEvent()
-
-		innerHTML appendChild() removeChild() replaceChild() insertBefore()
-
-		onclick
-		action
-		method
 
 
 	nodeType nodeValue nodeName
@@ -163,7 +143,42 @@ document//{{{
 	innerHTML outerHTML innerText/textContent
 	appendChild() insertBefore() removeChild() replaceChild()
 //}}}
+element//{{{
+	on@keydown on@keypress on@keyup
+	on@mouseover on@mousemove on@mousedown on@mouseup on@mouseout
+	on@click on@dblclick
+	on@focus on@change on@select on@blur
+	on@touchstart on@touchmove on@touchend
+	on@gesturestart on@gesturechange on@gestureend
+	on@submit on@reset
+	on@resize on@scroll
+	addEventListener()
+	removeEventListener()
+
+	parentNode childNodes firstChild lastChild nextSibling previousSibling
+	children firstElementChild lastElementChild nextElementSibling previousElementSibling
+	nodeType nodeValue nodeName
+
+	getBoundingClientRect()
+	offsetWidth offsetHeight offsetLeft offsetTop offsetParent
+	clientWidth clientHeight clientLeft clientTop
+	scrollWidth scrollHeight scrollLeft scrollTop
+	onclick
+
+	id
+	src style className
+	attibutes getAttribute() setAttribute() hasAttribute() removeAttribute()
+	addEventListener()/attachEvent()
+
+	innerHTML appendChild() removeChild() replaceChild() insertBefore()
+
+	onclick
+	action
+	method
+//}}}
 event//{{{
+	defaultPrevented preventDefault()
+	stopPropagation() stopImmediatePropagation()
 	target
 //}}}
 style//{{{
