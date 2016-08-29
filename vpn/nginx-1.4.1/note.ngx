@@ -1,0 +1,59 @@
+core
+	ngx_file.c/ngx_file.h
+	ngx_open_file_cache.c/ngx_open_file_cache.h
+	ngx_connection.c/ngx_connection.h
+	ngx_inet.c/ngx_inet.h
+	ngx_resolver.c/ngx_resolver.h
+
+	ngx_palloc.c/ngx_palloc.h
+		ngx_pool_s
+
+	ngx_buf.c/ngx_buf.h
+	ngx_hash.c/ngx_hash.h
+	ngx_array.c/ngx_array.h
+	ngx_list.c/ngx_list.h
+	ngx_queue.c/ngx_queue.h
+	ngx_rbtree.c/ngx_rbtree.h
+	ngx_radix_tree.c/ngx_radix_tree.h
+	ngx_slab.c/ngx_slab.h
+
+	ngx_string.c/ngx_string.h
+	ngx_crypt.c/ngx_crypt.h
+	ngx_crc32.c/ngx_crc32.h
+	ngx_regex.c/ngx_regex.h
+	ngx_parse.c/ngx_parse.h
+	ngx_murmurhash.c/ngx_murmurhash.h
+	ngx_md5.c/ngx_md5.h
+	ngx_crc.h
+	ngx_sha1.h
+
+	nginx.c/nginx.h
+	ngx_cycle.c/ngx_cycle.h
+	ngx_shmtx.c/ngx_shm.h
+	ngx_log.c/ngx_log.h
+	ngx_conf_file.c/ngx_conf_file.h
+		ngx_module_s
+		NGX_MODULE_V1
+		NGX_MODULE_V1_PADDING
+		ngx_command_s
+		ngx_null_command
+
+	ngx_times.c/ngx_times.h
+	ngx_spinlock.c
+	ngx_config.h
+	ngx_core.h
+	ngx_cupinfo.c
+	ngx_ouput_chain.c
+event
+	ngx_event.c/ngx_event.h
+	ngx_epoll_module.c
+http
+	ngx_http.c/ngx_http.h
+	ngx_http_core_module.c/ngx_http_core_module.h
+	ngx_http_request.c/ngx_http_request.h
+	ngx_http_script.c/ngx_http_script.h
+	ngx_http_upstream.c/ngx_http_upstream.h
+	ngx_http_variables.c/ngx_http_variables.h
+	ngx_http_config.h
+		NGX_HTTP_MODULE
+		ngx_http_module_t
