@@ -44,7 +44,7 @@ events {
 }/*}}}*/
 
 main()/*{{{*/
-	ngx_init_cycle()
+	ngx_init_cycle()/*{{{*/
 		ngx_modules[i]->create_conf()
 		conf:ngx_conf_t
 		ngx_conf_param(conf)
@@ -74,16 +74,27 @@ main()/*{{{*/
 						ngx_http_merge_locations()
 					ngx_modules[i]->ctx->postconfiguration()
 		ngx_modules[i]->init_conf()
-	ngx_master_process_cycle()
+/*}}}*/
+	ngx_master_process_cycle()/*{{{*/
 		ngx_start_worker_processes()
 			ngx_worker_process_cycle()
 				ngx_worker_process_init()
+					ngx_modules[i]->init_process()
+					ngx_event_process_init()
+						ngx_modules[i]->ctx->actions.init()
+						ngx_epoll_init()
+							epoll_create()
+					ngx_get_connection()
+					@ngx_event_accept
+					ngx_add_event()
 				ngx_process_events_and_timers()
 					ngx_process_events()
 					ngx_event_process_posted()
 					ngx_event_expire_timers()
 					ngx_event_process_posted()
 /*}}}*/
+/*}}}*/
+@ngx_event_accept()
 ngx_cycle:ngx_cycle_t*/*{{{*/
 	shared_memory:ngx_list_t/ngx_shm_zone_t
 	conf_ctx:void****
@@ -91,13 +102,60 @@ ngx_cycle:ngx_cycle_t*/*{{{*/
 			main_conf:void**
 				[0]:ngx_http_core_main_conf_t*
 					servers:ngx_array_t/ngx_http_core_srv_conf_t*
+					ports:ngx_array_t* /ngx_http_conf_port_t
+						addrs:ngx_array_t/ngx_http_conf_addr_t
+							default_server:ngx_http_core_srv_conf_t*
+							servers:ngx_array_t/ngx_http_core_srv_conf_t
+
+					phases:ngx_http_phase_t[]
+						handlers:ngx_array_t/ngx_http_handler_pt
+					phase_engine:ngx_http_phase_engine_t
+						handlers:ngx_http_phase_handler_t*
+							handler:ngx_http_handler_pt
 			srv_conf:void**
 				[0]:ngx_http_core_srv_conf_t*
 					ctx:ngx_http_conf_ctx_t*
 			loc_conf:void**
 				locations:ngx_queue_t* /ngx_http_core_loc_conf_t*
 				loc_conf:void**
+	listening:ngx_array_t/ngx_listening_t
+		handler:ngx_connection_handler_pt
+		servers:void* /ngx_http_in_addr_t*
+			conf:ngx_http_addr_conf_t
+				default_server:ngx_http_core_srv_conf_t*
+				virtual_names:ngx_http_virtual_names_t*
+	read_events:ngx_event_t*
+	write_events:ngx_event_t*
+		data:void* /ngx_connection_t
+	connections:ngx_connection_t*
+		data:void* /ngx_http_request_t
+			phase_handler:ngx_int_t
+			content_handler:ngx_http_handler_pt
+			upstream:ngx_http_upstream_t*
+				create_request:
+				process_header:
+				finalize_request:
+			variables_keys:ngx_hash_keys_arrays_t*
+			header_in:ngx_buf_t*
+			headers_in:ngx_http_headers_in_t
+				headers:ngx_list_t
 /*}}}*/
+ngx_http_top_header_filter:ngx_http_output_header_filter_pt
+ngx_http_top_body_filter:ngx_http_output_body_filter_pt
+ngx_modules:ngx_module_t[]*
+	[5]->ctx:ngx_event_module_t*
+		actions:ngx_event_actions_t
+ngx_event_actions:ngx_event_actions_t/*{{{*/
+	add:ngx_epoll_add_event
+	del:ngx_epoll_del_event
+	add_conn:ngx_epoll_add_connection
+	del_conn:ngx_epoll_del_connection
+	process_events:ngx_epoll_process_events
+	init:ngx_epoll_init
+	done:ngx_epoll_done
+/*}}}*/
+ngx_event_timer_rbtree:ngx_rbtree_t
+
 
 ngx_process_t
 ngx_shm_zone_t
