@@ -9,6 +9,7 @@ import (
 
 var (
 	addr = flag.String("l", ":9090", "listen address")
+	text = flag.String("t", "hello http world!\n", "send message")
 )
 
 func main() {
@@ -19,7 +20,12 @@ func main() {
 	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("%s  %s  %s\n", r.RemoteAddr, r.Method, r.URL.Path)
-		w.Write([]byte("hello go world \n" + time.Now().String() + "\n"))
+		t := r.FormValue("echo")
+		if t == "" {
+			w.Write([]byte(*text + time.Now().String() + "\n"))
+		} else {
+			w.Write([]byte(t + "\n"+time.Now().String() + "\n"))
+		}
 	})
 
 	http.ListenAndServe(*addr, nil)

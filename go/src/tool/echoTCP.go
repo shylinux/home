@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"net"
+	"time"
 )
 
 var (
@@ -15,21 +16,22 @@ func main() {
 	flag.VisitAll(func(f *flag.Flag) {
 		fmt.Printf("%s %v\n", f.Name, f.Value)
 	})
+	println()
 
 	l, _ := net.Listen("tcp4", *addr)
 	b := make([]byte, 1024)
 	for {
 		c, _ := l.Accept()
-		go func(c net.Conn) {
+		go func() {
 			for {
-				_, e := c.Read(b)
+				n, e := c.Read(b)
 				if e != nil {
 					break
 				}
-				fmt.Printf(string(b))
-				c.Write(b)
+				fmt.Printf(c.RemoteAddr().String()+" "+string(b)+"\n")
+				c.Write([]byte(string(b[:n])+"\n"+time.Now().String()))
 			}
 			c.Close()
-		}(c)
+		}()
 	}
 }

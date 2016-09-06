@@ -12,25 +12,21 @@ snippet t
 	type ${1} struct {
 		${2}
 	}
-
 	${3}
 snippet ti
 	type ${1} interface {
 		${2}
 	}
-
 	${3}
 snippet c
 	const (
 		${1}
 	)
-
 	${2}
 snippet v
 	var (
 		${1}
 	)
-
 	${2}
 snippet m
 	func main() {
@@ -40,7 +36,7 @@ snippet m
 snippet h
 	func(w http.ResponseWriter, r *http.Request) {
 		${1}
-	}
+	})
 snippet f
 	func${1}(${2}) ${3}{
 		${4}
@@ -58,7 +54,8 @@ snippet {
 snippet if
 	if ${1} {
 		${2}
-	}${3}
+	}
+	${3}
 snippet for
 	for ${1}{
 		${2}
