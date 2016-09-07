@@ -19,12 +19,12 @@ func main() {
 
 	})
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Printf("%s  %s  %s\n", r.RemoteAddr, r.Method, r.URL.Path)
+		fmt.Printf("[%02d:%02d:%02d] %s %s %s\n", time.Now().Hour(), time.Now().Minute(), time.Now().Second(), r.RemoteAddr, r.Method, r.URL.Path)
 		t := r.FormValue("echo")
 		if t == "" {
 			w.Write([]byte(*text + time.Now().String() + "\n"))
 		} else {
-			w.Write([]byte(t + "\n"+time.Now().String() + "\n"))
+			w.Write([]byte(t + "\n" + time.Now().String() + "\n"))
 		}
 	})
 

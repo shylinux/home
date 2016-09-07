@@ -1,13 +1,13 @@
 package main
 
 import (
-	"net"
 	"flag"
 	"fmt"
+	"net"
 )
 
 var (
-	addr = flag.String("l", "1.0.0.254:9292", "send address")
+	addr = flag.String("l", "1.0.1.254:9292", "send address")
 	text = flag.String("t", "hello udp world!", "send message")
 )
 
@@ -27,4 +27,3 @@ func main() {
 	fmt.Printf(string(b))
 	l.Close()
 }
-

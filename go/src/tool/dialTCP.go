@@ -1,13 +1,13 @@
 package main
 
 import (
-	"net"
 	"flag"
 	"fmt"
+	"net"
 )
 
 var (
-	addr = flag.String("l", "1.0.0.254:9191", "connect address")
+	addr = flag.String("l", "1.0.1.254:9191", "connect address")
 	text = flag.String("t", "hello tcp world!", "send message")
 )
 
@@ -23,7 +23,6 @@ func main() {
 
 	b := make([]byte, 1024)
 	c.Read(b)
-	fmt.Printf(string(b)+"\n")
+	fmt.Printf(string(b) + "\n")
 	c.Close()
 }
-

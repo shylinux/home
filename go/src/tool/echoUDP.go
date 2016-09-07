@@ -22,9 +22,11 @@ func main() {
 	l, _ := net.ListenUDP("udp4", a)
 	b := make([]byte, 1024)
 	for {
-		_, aa, _ := l.ReadFromUDP(b)
-		fmt.Printf(aa.String()+" "+string(b)+"\n")
-		bb := []byte(string(b)+"\n"+time.Now().String()+"\n")
+		b = b[:1024]
+		n, aa, _ := l.ReadFromUDP(b)
+		b = b[:n]
+		fmt.Printf("[%02d:%02d:%02d] %s (size:%d) %s\n", time.Now().Hour(), time.Now().Minute(), time.Now().Second(), aa, n, b)
+		bb := []byte(string(b) + "\n" + time.Now().String() + "\n")
 		l.WriteToUDP(bb, aa)
 	}
 }
