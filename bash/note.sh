@@ -1,46 +1,110 @@
 man info
 
-# \ "" ''
-; && ||
-! ^ % &
+# \ "" '' `` . :
+! ^ & % ; && ||
 # | > >> << <
 ./ .. ~ * ? [^]
 $ = 
 
 fc history alias script
-jobs bg fg kill wait nohup
+jobs bg fg kill wait nohup times ulimit
 which whereis whatis appropos
-$EDITOR
 
 boot etc proc dev
 root mnt home var
 sbin lib bin usr
 
-file
-od
 
-ls cd pwd mkdir rmdir 
+ls cd pwd mkdir rmdir mknod
 cat head tail more less
 cp rm mv ln
-basename
-diff patch
+chmod touch umask sync
+file od
+diff patch basename
 find grep sort
 
 iao
 hjkl web gftn
 cdy rsx zvm qup
-ernp
-wq
-mtd
+ernp wq mtd
+
+bash
+source
+sleep
+
+true false
+
+$0 $$
+$1 $* $@ $#
+$? $_
+$SECONDS $RANDOM $OPTIND $OPTARG $PWD $PPID
+$COLUMNS $LINES $PS1 $PS2
+$PATH $SHELL
+
+read echo
+printf
+
+return
+
+exit
+trap
+=
+typeset 
+type
+.
+:
+
+alias
+exec
+set 
+getopts
+shift
+break continue
+declare -a
+declare -f 
+declare -i
+declare -r
+declare -x
+enable
+eval
+hash
+let
+test
+expr
+logout
+readonly
 
 
-mknod
-sync
-chmod
-touch
-umask
+unset 
+${} ${!} ${#}
+${var:-val} ${var:=val} ${var:?val} ${var:+val}
+${var#pat}
+${var##pat}
+${var%pat}
+${var%%pat}
+$()
+[ -e -s -b -c -d -f -p -L -S file ]
+[ -r -w -x -u -g -k file ]
+[ f1 -nt f2 ]
+[ f1 -ot f2 ]
+[ f1 -ef f2 ]
+[ -z -n str ]
+[ s1 = s2 ]
+[ s1 != s2 ]
+[ s1 \< s2 ]
+[ s1 \> s2 ]
+[ n1 -eq n2 ]
+[ n1 -ne n2 ]
+[ n1 -gt n2 ]
+[ n1 -ge n2 ]
+[ n1 -lt n2 ]
+[ n1 -le n2 ]
 
-echo
+
+if cmd; then cmd; else cmd; fi
+until cmd; do cmd; done
+for var in list; do cmd; done
+export 
 
 
 
