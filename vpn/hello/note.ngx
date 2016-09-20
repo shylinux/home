@@ -1,0 +1,29 @@
+wget http://nginx.org/download/nginx-1.10.1.tar.gz
+tar xvf nginx-1.10.1.tar.gz
+
+sudo apt-get install build-essential
+sudo apt-get install libpcre3 libpcre3-dev
+sudo apt-get install openssl libssl-dev
+sudo apt-get install zlib1g zlib1g-dev
+sudo apt-get install lynx wget curl
+
+groupadd -r www && useradd -r nginx -g www
+
+./configure && make && sudo make install
+
+--user=nginx
+--group=wwww
+--with-http_ssl_module
+--add-module=../hello
+--with-debug
+--with-cc-opt='-ggdb3 -O0'
+
+sudo chmod +x /etc/init.d/nginx
+sudo update-rc.d nginx defaults
+service nginx start
+
+lynx http://localhost
+
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+
+
