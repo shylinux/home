@@ -8,7 +8,6 @@ sudo apt-get install zlib1g zlib1g-dev
 sudo apt-get install lynx wget curl
 
 groupadd -r www && useradd -r nginx -g www
-
 ./configure && make && sudo make install
 
 --user=nginx
@@ -23,7 +22,74 @@ sudo update-rc.d nginx defaults
 service nginx start
 
 lynx http://localhost
-
 sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
+sudo nginx -p /usr/local/nginx
+sudo nginx -t -q -c /usr/local/nginx/conf/nginx.conf
+sudo nginx -h -v -V
+sudo nginx -s [stop|quit|reload|reopen|USR2|QUIT]
 
+src/core
+ngx_core.h
+nginx.h/nginx.c
+ngx_cycle.h/ngx_cycle.c
+ngx_module.h/ngx_module.c
+ngx_conf_file.h/ngx_conf_file.c
+ngx_thread_pool.h/ngx_thread_pool.c
+ngx_rwlock.h/ngx_rwlock.c
+ngx_shmtx.h/ngx_shmtx.c
+ngx_times.h/ngx_times.c
+ngx_spinlock.c
+ngx_cpuinfo.c
+ngx_config.h
+	ngx_int_t/ngx_uint_t
+
+ngx_inet.h/ngx_inet.c
+ngx_resolver.h/ngx_resolver.c
+ngx_connection.h/ngx_connection.c
+ngx_proxy_protocol.h/ngx_proxy_protocol.c
+ngx_open_file_cache.h/ngx_open_file_cache.c
+ngx_syslog.h/ngx_syslog.c
+ngx_file.h/ngx_file.c
+ngx_log.h/ngx_log.c
+
+ngx_string.h/ngx_string.c/*{{{*/
+	ngx_str_t
+	ngx_string() ngx_null_string()
+	ngx_str_set() ngx_str_null()
+	ngx_tolower() ngx_toupper()
+	ngx_strncmp() ngx_strlen()
+	ngx_strchr() ngx_strstr()
+	ngx_memzero() ngx_memset()
+	ngx_sprintf() ngx_snprintf()
+	ngx_atoi() ngx_hex_dump()
+/*}}}*/
+ngx_buf.h/ngx_buf.c/*{{{*/
+	ngx_buf_t ngx_chain_t ngx_bufs_t
+	ngx_buf_size()
+	ngx_create_temp_buf() ngx_create_chain_of_bufs()
+	ngx_alloc_buf() ngx_calloc_buf() ngx_alloc_chain_link()
+/*}}}*/
+ngx_array.h/ngx_array.c
+ngx_list.h/ngx_list.c/*{{{*/
+	ngx_list_t ngx_list_push()
+	ngx_list_create() ngx_list_init()
+/*}}}*/
+ngx_hash.h/ngx_hash.c
+	ngx_table_elt_t
+ngx_radix_tree.h/ngx_radix_tree.c
+ngx_rbtree.h/ngx_rbtree.c
+ngx_queue.h/ngx_queue.c
+ngx_palloc.h/ngx_palloc.c
+ngx_slab.h/ngx_slab.c
+ngx_output_chain.c
+
+ngx_crc.h
+ngx_sha1.h
+ngx_md5.h/ngx_md5.c
+ngx_crc32.h/ngx_crc32.c
+ngx_crypt.h/ngx_crypt.c
+ngx_murmurhash.h/ngx_murmurhash.c
+ngx_parse_time.h/ngx_parse_time.c
+ngx_parse.h/ngx_parse.c
+ngx_regex.h/ngx_regex.c

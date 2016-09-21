@@ -4,6 +4,10 @@
 
 static ngx_int_t ngx_http_hello_handler(ngx_http_request_t *r)
 {
+	u_char buf[128];
+	ngx_hex_dump(buf, (u_char*)"abcdedf", 8);
+	ngx_log_debug(NGX_LOG_DEBUG_HTTP, r->connection->log, 0, "forbidden");
+	ngx_log_debug(NGX_LOG_DEBUG_HTTP, r->connection->log, 0, (char*)buf);
 	return NGX_HTTP_FORBIDDEN;
 }
 
