@@ -15,11 +15,16 @@ static ngx_int_t ngx_http_hello_handler(ngx_http_request_t *r)
 		return rc;
 	}
 
-	/*
+	ngx_uint_t u = 10;
+	ngx_int_t i = -10;
 	ngx_buf_t *b = ngx_create_temp_buf(r->pool, 1024);
-	b->last = ngx_snprintf(b->pos, 1024, "hello nginx world!\n");
-	*/
+	b->last = ngx_snprintf(b->last, 1024, "hello nginx world!\n");
+	b->last = ngx_snprintf(b->last, 1024, "%xi\n", u);
+	b->last = ngx_snprintf(b->last, 1024, "%ui\n", u);
+	b->last = ngx_snprintf(b->last, 1024, "%i\n", i);
+	b->last_buf = 1;
 
+	/*
 	char *fn = "html/index.html";
 
 	ngx_buf_t *b = ngx_pcalloc(r->pool, sizeof(ngx_buf_t));
@@ -40,6 +45,7 @@ static ngx_int_t ngx_http_hello_handler(ngx_http_request_t *r)
 	clnf->name = (u_char*)fn;
 	clnf->log = r->pool->log;
 
+	*/
 
 	ngx_chain_t c = {.buf = b, .next = NULL};
 	return ngx_http_output_filter(r, &c);
