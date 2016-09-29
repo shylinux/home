@@ -1,10 +1,58 @@
 man info
+$TERM $COLUMS $LINES $PS1 $PS2
+$USER $HOME $SHELL $PATH $PWD
 
-# \ "" '' `` . :
-! ^ & % ; && ||
+cd pwd
+ls mv rm mkdir rmdir touch stat file
+cp cat more less head tail grep sort 
+ps top  fg bg kill killall wait 
+mount umount df du tar bzip2 gzip zip
+printenv alias 
+
+/etc/passwd /etc/shadow /etc/skel /etc/group
+useradd userdel usermod passwd chsh chfn chage chpasswd
+groupadd groupdel groupmod 
+umask chmod chown chgrp
+
+vi
+iao
+hjkl web gftn
+cdy rsx zvm qup
+rwqes
+
+emacs
+aebfnpor
+hwukyt
+sqczlg
+xvkjim
+
+# \ '' "" `` . :
 # | > >> << <
 ./ .. ~ * ? [^]
-$ = 
+! ^ ; & % && ||
+
+
+var=val $var var=(one two) ${var[0]}
+set; unset; export; readonly declare 
+$$ $0 $1 $# $* $@ $OPTARG $OPTIND
+echo; read bash exit source return
+$? $_
+
+bc expr let test
+
+test [ ] [[ ]] (( ))
+[ = != \< \> -n -z ]
+[ -eq -ne -gt -ge -lt -le ]
+[ -e -s -d -f -r -w -x -O -G -nt -ot ]
+
+
+if cmd; then cmd; elif cmd; then cmd; else cmd; fi
+case exp in pat1|pat2) cmd;; *) cmd esac
+for var in exp; do cmd; done
+
+
+
+
 
 fc history alias script
 jobs bg fg kill wait nohup times ulimit
@@ -15,11 +63,11 @@ root mnt home var
 sbin lib bin usr
 
 
-ls cd pwd mkdir rmdir mknod
-cat head tail more less
-cp rm mv ln
-chmod touch umask sync
-file od
+mknod
+
+ln
+chmod sync
+od
 diff patch basename
 find grep sort
 
@@ -38,8 +86,7 @@ $0 $$
 $1 $* $@ $#
 $? $_
 $SECONDS $RANDOM $OPTIND $OPTARG $PWD $PPID
-$COLUMNS $LINES $PS1 $PS2
-$PATH $SHELL
+$PATH
 
 read echo
 printf
