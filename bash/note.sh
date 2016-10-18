@@ -15,6 +15,7 @@ bin usr
 /etc/rc.local
 
 /etc/issue
+/sbin/getty
 /bin/login /usr/sbin/sshd
 /etc/shadow
 /etc/passwd
@@ -24,7 +25,6 @@ bin usr
 /etc/profile
 ~/.bashrc
 
-bash source
 #}}}
 AEBF#{{{
 MIJV
@@ -38,12 +38,11 @@ cdy xsr zvm qup
 
 h
 #}}}
-\ "" '' ``#{{{
+\ "" '' `` . : #{{{
 # > >> << <
 ~ ./ ../ * ? [^-]
-& | ; && ||
+% ; & | && ||
 !
-%
 () {}
 = $
 -
@@ -51,7 +50,7 @@ h
 :
 #}}}
 -h --help man info
-pwd cd
+pwd cd dirs pushd popd
 ls mv rm mkdir rmdir ln
 cat tee more less head tail
 cp grep sort uniq diff tr
@@ -70,17 +69,27 @@ chsh passwd
 
 /dev/null
 
-set 
-unset 
-echo
+$HISTSIZE $HISTFILE $HISTFILESIZE $FCEDIT
+history fc !
 alias 
+unalias
+function 
+
+
+set; unset 
+exec
+exit
+echo
+bash source
+() (()) [] [[]]
 
 
  jobs bg fg ps top kill
-more less
 
-$TERM $COLUMS $LINES $PS1 $PS2
-$USER $HOME $SHELL $PATH $PWD
+$TERM $COLUMS $LINES $PS1 $PS2 $IFS
+$USER $HOME $SHELL $PATH $PWD $CDPATH
+declare -a -f -i -r -x
+readonly export 
 
 
 touch stat file

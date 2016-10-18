@@ -20,7 +20,7 @@ static ngx_int_t ngx_http_hello_handler(ngx_http_request_t *r)
 	b->last = ngx_snprintf(b->pos, 1024, "hello nginx world!\n");
 	*/
 
-	char *fn = "html/index.html";
+	char *fn = "/usr/local/nginx/html/index.html";
 
 	ngx_buf_t *b = ngx_pcalloc(r->pool, sizeof(ngx_buf_t));
 	b->file = ngx_pcalloc(r->pool, sizeof(ngx_file_t));

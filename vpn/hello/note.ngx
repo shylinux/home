@@ -1878,7 +1878,7 @@ ngx_event_t>ngx_connection_t>ngx_http_connection_t/*{{{*/
 										ngx_http_upstream_init_request()
 											*ngx_http_proxy_create_request()
 											ngx_http_upstream_connect()
-							ngx_http_finalize_request()
+												ngx_http_upstream_send_request()
 /*}}}*/
 ngx_event_t>ngx_connection_t>ngx_http_request_t>ngx_http_upstream_t/*{{{*/
 @ngx_http_upstream_handler(ev)
@@ -1891,4 +1891,5 @@ ngx_event_t>ngx_connection_t>ngx_http_request_t>ngx_http_upstream_t/*{{{*/
 				ngx_http_upstream_process_request()
 					ngx_http_upstream_finalize_request()
 						ngx_http_proxy_finalize_request()
-						ngx_http_finalize_request()/*}}}*/
+						ngx_http_finalize_request()
+/*}}}*/

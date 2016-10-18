@@ -1,11 +1,17 @@
-wget http://nginx.org/download/nginx-1.4.1.tar.gz/*{{{*/
+wget http://nginx.org/download/nginx-1.4.1.tar.gz /*{{{*/
+sudo apt-get install libpcre3 libpcre3-dev
+sudo apt-get install zlib1g zlib1g-dev
+sudo apt-get install libssl-dev
 ./configure && make && make install
 vim ctag taglist cscope
-gcc gdb ctrace curl wget /*}}}*/
-./configure/*{{{*/
+
+gcc gdb ctrace curl wget 
+/*}}}*/
+./configure /*{{{*/
 	--with-cc-opt='-ggdb3 -O0'
-	--with-debug/*}}}*/
-strace -p 2960/*{{{*/
+	--with-debug
+/*}}}*/
+strace -p 2960 /*{{{*/
 gdb -p 3960
 gdb --args ./nginx -c ./conf/nginx.conf
 >at 3960
@@ -21,8 +27,9 @@ gdb --args ./nginx -c ./conf/nginx.conf
 >bt
 >up
 >list
->info macro NGX_OK/*}}}*/
-nginx.conf/*{{{*/
+>info macro NGX_OK
+/*}}}*/
+nginx.conf /*{{{*/
 debug_points stop;
 debug_points abort;
 error_log logs/error.log debug_imap;
@@ -41,7 +48,8 @@ error_log logs/error.log alert;
 error_log logs/error.log emerg;
 events {
 	debug_connection 192.168.88.0/24;
-}/*}}}*/
+}
+/*}}}*/
 
 main()/*{{{*/
 	ngx_init_cycle()/*{{{*/
