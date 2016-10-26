@@ -1,2 +1,6 @@
 
 .*
+go/bin
+go/pkg
+trunk
+7988
