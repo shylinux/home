@@ -53,10 +53,16 @@ syn keyword htmlTagName contained big blockquote br caption center
 syn keyword htmlTagName contained cite code dd dfn dir div dl dt font
 syn keyword htmlTagName contained form hr html img
 syn keyword htmlTagName contained input isindex kbd li link map menu
-syn keyword htmlTagName contained meta ol option param pre p samp span
+syn keyword htmlTagName contained meta ol option param pre p samp
 syn keyword htmlTagName contained select small strike sub sup
 syn keyword htmlTagName contained table td textarea th tr tt ul var xmp
 syn match htmlTagName contained "\<\(b\|i\|u\|h[1-6]\|em\|strong\|head\|body\|title\)\>"
+
+" shy add
+syn keyword htmlTagName contained blockquote figure figcaption
+syn keyword htmlTagName contained article header footer section nav aside
+syn keyword htmlTagName contained span mark
+syn keyword htmlArg contained placeholder autofocus required
 
 " new html 4.0 tags
 syn keyword htmlTagName contained abbr acronym bdo button col label

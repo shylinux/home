@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	addr = flag.String("addr", ":9090", "listen address")
-	path = flag.String("path", "./", "server file path")
+	addr = flag.String("l", ":9090", "listen address")
+	path = flag.String("p", "./", "server file path")
 )
 
 func conf() {

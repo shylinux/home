@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--document comment-->
+	<meta name="viewport" content="width=device-width">
+	<!--
+	<base href="http://localhost:9898">
+	-->
+
+
+	<title>note</title>
+
+	<style media="(max-width:500px)">
+		.pfont {
+			color:red;
+		}
+	</style>
+	<style media="(min-width:600px)">
+		.pfont {
+			color:green;
+		}
+	</style>
+	<style>
+		td, th {
+			border: thin solid black;
+			padding: 5px;
+		}
+		#table12 {
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<hr/>
+	<a href="/" title="/">a</a>
+	<b>b</b> <i>i</i> <s>s</s> <u>u</u>
+	<strong>strong</strong> <em>em</em> <del>del</del> <ins>ins</ins>
+	<big>big</big> <small>small</small> <sup>sup</sup> <sub>sub</sub>
+	<var>var</var> <code>code</code> <samp>samp</samp> <kdb>kdb</kdb>
+	<abbr>abbr</abbr> <dfn>dfn</dfn> <q>q</q> <cite>cite</cite>
+	<bdo dir="rtl">bdo</bdo> <ruby>ruby<rp>(</rp><rt>rt</rt><rp>)</rp></ruby>
+
+	<hr/>
+	<mark>mark</mark> <span>span</span> <div>div</div>
+
+	<hr/> <br/>
+	<h1>h1</h1> <h2>h2</h2> <h3>h3</h3>
+	<article>aricle</article>
+	<header>header</header>
+	<nav>nav</nav>
+	<aside>aside</aside>
+	<section>section</section>
+	<footer>footer</footer>
+	<address>address</address>
+	<details>
+	<summary>summary</summary>
+	details</details>
+
+	<hr/>
+	<p class="pfont" dir="ltr">pa</p>
+	<p class="pfont" dir="rtl">pa</p>
+	<pre>	pre  pre
+	pre  pre</pre>
+	<blockquote>blockquote</blockquote>
+
+	<hr/>
+	<ol>
+		<li>li</li>
+		<li>li</li>
+		<li>li</li>
+	</ol>
+	<ul>
+		<li>li</li>
+		<li>li</li>
+		<li>li</li>
+	</ul>
+	<dl>
+		<dt>dt</dt> <dd>dd</dd>
+		<dt>dt</dt> <dd>dd</dd>
+		<dt>dt</dt> <dd>dd</dd>
+	</dl>
+
+	<hr/>
+	<table style="border-collapse:collapse" >
+		<caption style="border:thin solid black">caption</caption>
+		<colgroup id="table12" span="2">
+		<colgroup>
+			<col span="2" />
+			<col span="1"/>
+		</colgroup>
+
+		<thead>
+			<tr><th>td11</th><th>td12</th><th>td13</th><th>td14</th><th>td15</th></tr>
+		</thead>
+		<tfoot>
+			<tr><th>td51</th><td>td52</td><td>td53</td><td>td54</td><td>td55</td></tr>
+		</tfoot>
+		<tbody>
+			<tr><th>td21</th><td>td22</td><td>td23</td><td>td24</td><td>td25</td></tr>
+			<tr><th>td31</th><td>td32</td><td>td33</td><td>td34</td><td>td35</td></tr>
+			<tr><th>td41</th><td>td42</td><td>td43</td><td>td44</td><td>td45</td></tr>
+		</tbody>
+	</table>
+
+	<hr/>
+	<figure>
+	<figcaption>figcaption</figcaption>
+	<img alt="img"/>
+	<figcaption>figcaption</figcaption>
+	</figure>
+
+	<hr/>
+	<form method="POST" action="/" target="_self">
+		<fieldset>
+			<legend>legend</legend>
+			<label for="user">user</label> <input id="user" name="user" type="text" placeholder="user" autofocus required size=10 maxlength=10/>
+			<label for="pass">pass</label> <input id="pass" name="pass" type="password" placeholder="pass" autofocus size=10 maxlength=10/>
+		</fieldset>
+		<fieldset>
+			<legend>legend</legend>
+			<br>range<input type="range" name="age" />
+			<br>checkbox<input type="checkbox" name="age" />
+			<br>male<input type="radio" name="sex" value="male"/>
+			<br>female<input type="radio" name="sex" value="female"/>
+			<br>date<input type="date" name="date"/>
+			<br>month<input type="month" name="month"/>
+			<br>time<input type="time" name="time"/>
+			<br>hidden<input type="hidden" name="hidden"/>
+			<br>file<input type="file" name="file"/>
+		</fieldset>
+		<select name="number">
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+			<option value="4">four</option>
+			<option value="5">five</option>
+		</select>
+		<button type="reset">reset</button>
+		<button type="submit">submit</button>
+		<br>image<input type="image" src="web.gif" name="image"/>
+	</form>
+	<script>
+
+	</script>
+</body>
+</html>
+<script>
+	console.log("end")
+</script>
