@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git go tmux)
+plugins=(tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,10 +85,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 PROMPT='%![%T]%c$ '
+
 alias t='tmux'
+alias f='firefox'
+
+alias k='kvm.sh -s start'
 alias vm='virt-manager'
-alias f='firefox &'
-alias vpn1='zssh root@1.0.0.1'
-alias vpn2='zssh root@1.0.0.2'
-alias vpn3='zssh root@1.0.0.3'
-alias grep="grep  -rn --exclude='*.svn*' --exclude='*tags*'  --exclude='*.out' --color"
+alias v1='zssh root@1.0.0.1'
+alias v2='zssh root@1.0.0.2'
+alias v3='zssh root@1.0.0.3'
+
+alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
