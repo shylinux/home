@@ -4,3 +4,15 @@ go/bin
 go/pkg
 trunk
 7988
+.vim/bundle/*
+go/src/github.com/
+go/src/golang.org/
+
+!.vim/bundle/bundle.tar.gz
+!.vimrc
+!.vim
+!.gitignore
+!.zshrc
+
+
+
