@@ -118,7 +118,10 @@ filetype indent on
 syntax on
 colorscheme mycolor
 
+set keywordprg=man\ -a
 set path+=/usr/local/go/src
+set path+=/usr/local/include
+set path+=/usr/include/x86_64-linux-gnu
 
 set number"{{{
 set nowrap
@@ -248,6 +251,7 @@ function! RunShell(Msg, Shell)
 endfunction
 
 function! GenarateTags()
+	call RunShell("Delete old tags&cscope file", "rm cscope.* tags*")
 	call RunShell("Generate cscope", "cscope -Rbq")
 	cs add cscope.out
 	call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")
@@ -256,10 +260,10 @@ function! GenarateTags()
 endfunction
 
 nnoremap <F2> :TlistToggle<CR>
-"nnoremap <F2> :TagbarToggle<CR>
-nnoremap <F3> :NERDTreeToggle<CR>
-nnoremap <F4> :MRU<CR>
-nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.vim<cr><C-o>:cw<cr>
+nnoremap <F3> :MRU<CR>
+nnoremap <F4> :NERDTreeToggle<CR>
+
+nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.vim **/*.php <cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
 "nnoremap <F9> :call RunShell("Generate cscope", "cscope -Rbq")<cr>:cs add cscope.out<cr>

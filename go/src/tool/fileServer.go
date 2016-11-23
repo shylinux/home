@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 )
 
 var (
@@ -21,6 +23,15 @@ func conf() {
 func main() {
 	conf()
 
-	http.Handle("/", http.FileServer(http.Dir(*path)))
+	info, _ := os.Stat(*path)
+	if info.IsDir() {
+		http.Handle("/", http.FileServer(http.Dir(*path)))
+	} else {
+		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+			f, _ := os.Open(*path)
+			io.Copy(w, f)
+		})
+	}
+
 	http.ListenAndServe(*addr, nil)
 }

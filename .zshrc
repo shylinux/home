@@ -96,3 +96,5 @@ alias v2='zssh root@1.0.0.2'
 alias v3='zssh root@1.0.0.3'
 
 alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
+
+export GOBIN=~/go/bin

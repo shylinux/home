@@ -25,16 +25,15 @@ local break return
 --}}}
 --
 _G _VERSION --{{{
-require() collectgarbage()
+require() module()
 assert() error() print()
 type() tonumber() tostring()
-select() unpack() next()
+select() unpack() next() collectgarbage()
 getmetatable() setmetatable()
 rawget() rawset() rawequal()
 dofile() loadfile() loadstring() load()
 pcall() xpcall() getfenv() setfenv()
 
-module()
 --}}}
 io.stdin --{{{
 io.stdout
@@ -51,12 +50,12 @@ io.flush()
 io.close()
 io.type()
 --}}}
-os.clock() --{{{
+os.date() --{{{
+os.time()
+os.clock()
 os.difftime()
-os.date()
 os.setlocale()
 
-os.time()
 os.getenv()
 os.execute()
 os.exit()
@@ -134,8 +133,9 @@ package.loaders[]
 package.preload[]
 package.path
 package.cpath
-package.seeall()
 package.loadlib()
+
+package.seeall
 --}}}
 debug.debug()--{{{
 debug.traceback()
@@ -153,6 +153,122 @@ debug.setmetatable()
 debug.getregistry()
 --}}}
 
+#include <lua.h>--{{{
+LUA_REGISTRYINDEX
+LUA_ENVIRONINDEX
+LUA_GLOBALSINDEX
+
+lua_State
+lua_CFunction
+lua_Reader
+lua_Writer
+lua_Alloc
+
+lua_Number
+lua_Integer
+
+lua_newstate()
+lua_newthread()
+lua_getallocf()
+lua_setallocf()
+lua_atpanic()
+lua_resume()
+lua_status()
+lua_yield()
+lua_error()
+lua_close()
+lua_gc()
+
+lua_dump()
+lua_load()
+lua_call()
+lua_pcall()
+lua_cpcall()
+lua_getfenv()
+lua_setfenv()
+
+lua_pop()
+lua_gettop()
+lua_settop()
+lua_remove()
+lua_insert()
+lua_replace()
+lua_pushvalue()
+lua_checkstack()
+lua_concat()
+lua_xmove()
+
+lua_next()
+lua_rawget()
+lua_rawset()
+lua_rawgeti()
+lua_rawseti()
+lua_gettable()
+lua_settable()
+lua_getfield()
+lua_setfield()
+lua_getglobal()
+lua_setglobal()
+lua_register()
+lua_getregistry()
+lua_newtable()
+lua_createtable()
+lua_newuserdata()
+lua_getmetatable()
+lua_setmetatable()
+
+lua_isnil()
+lua_isnone()
+lua_isnoneornil()
+lua_isnumber()
+lua_isstring()
+lua_isboolean()
+lua_istable()
+lua_isfunction()
+lua_iscfunction()
+lua_isthread()
+lua_isuserdata()
+lua_islightuserdata()
+
+lua_type()
+lua_typename()
+lua_strlen()
+lua_objlen()
+lua_equal()
+lua_rawequal()
+lua_lessthan()
+
+lua_tonumber()
+lua_tointeger()
+lua_tostring()
+lua_tolstring()
+lua_toboolean()
+lua_tocfunction()
+lua_tothread()
+lua_touserdata()
+lua_topointer()
+
+lua_pushnil()
+lua_pushnumber()
+lua_pushinteger()
+lua_pushstring()
+lua_pushlstring()
+lua_pushliteral()
+lua_pushfstring()
+lua_pushvfstring()
+lua_pushboolean()
+lua_pushcclosure()
+lua_pushcfunction()
+lua_pushthread()
+lua_pushlightuserdata()
+--}}}
+
+git clone https://github.com/chaoslawful/lua-nginx-module
+
+
+
+
+
 
 #include <lauxlib.h>--{{{
 luaL_newstate()
@@ -160,6 +276,9 @@ luaL_loadstring()
 luaL_loadbuffer()
 luaL_loadfile()
 luaL_dofile()
+
+luaL_ref()
+luaL_unref()
 --}}}
 #include <lualib.h>--{{{
 luaopen_base()
@@ -193,7 +312,9 @@ lua_pushcfunction()
 lua_pushlightuserdata()
 lua_pushthread()
 
+LUA_REGISTRYINDEX
 LUA_GLOBALSINDEX
+LUA_ENVIRONINDEX
 lua_getglobal()
 lua_setglobal()
 lua_getfield()
@@ -216,6 +337,11 @@ lua_load()
 lua_dump()
 lua_call()
 lua_pcall()
+lua_error()
+lua_dump()
+lua_call()
+lua_pcall()
+lua_error()
 lua_cpcall()
 lua_getfenv()
 lua_setfenv()
@@ -259,8 +385,7 @@ lua_newthread()
 lua_status()
 lua_resume()
 lua_yield()
-lua_error()
-lus_close()
+lua_close()
 lua_xmove()
 lua_atpanic()
 lua_getallocf()
@@ -467,10 +592,6 @@ ngx_http_lua_directive.c/ngx_http_lua_directive.h/*{{{*/
 	ngx_http_lua_body_filter_by_lua()
 	ngx_http_lua_init_by_lua()
 	ngx_http_lua_code_cache()
-	ngx_http_lua_set_by_lua()
-	ngx_http_lua_set_by_lua_file()
-	ngx_http_lua_filter_set_by_lua_inline()
-	ngx_http_lua_filter_set_by_lua_file()
 	ngx_http_lua_rewrite_no_postpone()
 /*}}}*/
 ngx_http_lua_shdict.c/ngx_http_lua_shdict.h/*{{{*/
