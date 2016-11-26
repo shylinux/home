@@ -94,7 +94,10 @@ alias vm='virt-manager'
 alias v1='zssh root@1.0.0.1'
 alias v2='zssh root@1.0.0.2'
 alias v3='zssh root@1.0.0.3'
+alias vps='ssh shy@shylinux.com'
 
 alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
 
 export GOBIN=~/go/bin
+export LUAJIT_LIB=/usr/local/lib
+export LUAJIT_INC=/usr/local/include/luajit-2.0
