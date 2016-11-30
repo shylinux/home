@@ -1,0 +1,226 @@
+openssl dgst enc genrsa rsa req ca
+
+n=pq
+ne
+nd
+
+include/openssl/
+bn.h
+bio.h
+dso.h
+err.h
+ui.h
+ui_compat.h
+rand.h
+buffer.h
+stack.h
+lhash.h
+pqueue.h
+safestack.h
+txt_db.h
+conf_api.h
+conf.h
+e_os2.h
+
+opensslv.h/*{{{*/
+	OPENSSL_VERSION_NUMBER
+	OPENSSL_VERSION_TEXT
+/*}}}*/
+opensslconf.h/*{{{*/
+/*}}}*/
+ossl_typ.h/*{{{*/
+	BIGNUM
+	BN_CTX
+	EVP_CIPHER_CTX EVP_CIPHER
+	EVP_MD_CTX EVP_MD
+	EVP_PKEY_CTX EVP_PKEY EVP_PKEY_METHOD
+	DH DH_METHOD
+	DSA DSA_METHOD
+	RSA RSA_METHOD
+	RAND_METHOD
+	ECDH_METHOD
+	ECDSA_METHOD
+	X509
+	X509_ALGOR
+	X509_CRL
+	X509_CRL_METHOD
+	X509_REVOKED
+	CONF
+	STORE STORE_METHOD
+	UI UI_METHOD
+	SSL_CTX SSL
+/*}}}*/
+obj_mac.h/*{{{*/
+/*}}}*/
+objects.h/*{{{*/
+	SN_md5
+	LN_md5
+	NID_md5
+	OBJ_md5
+
+	SN_rsa
+	LN_rsa
+	NID_rsa
+	OBJ_rsa
+	OBJ_nid2obj()
+	OBJ_nid2ln()
+	OBJ_nid2sn()
+	OBJ_obj2nid()
+	OBJ_ln2nid()
+	OBJ_sn2nid()
+	OBJ_NAME_do_all()
+/*}}}*/
+crypto.h/*{{{*/
+/*}}}*/
+engine.h/*{{{*/
+/*}}}*/
+evp.h
+	EVP_MAX_MD_SIZE
+	EVP_MAX_KEY_LENGTH
+	EVP_MAX_IV_LENGTH
+	EVP_MAX_BLOCK_LENGTH
+	PKCS5_SALT_LEN
+
+	EVP_PKEY_RSA
+
+	EVP_PK_RSA
+	EVP_PKEY
+
+	EVP_ENCODE_CTX
+	EVP_ENCODE_LENGTH
+	EVP_DECODE_LENGTH
+
+	EVP_EncodeInit()
+	EVP_EncodeUpdate()
+	EVP_EncodeFinal()
+	EVP_EncodeBlock()
+
+	EVP_DecodeInit()
+	EVP_DecodeUpdate()
+	EVP_DecodeFinal()
+	EVP_DecodeBlock()
+
+
+sha.h/*{{{*/
+	SHA_CTX
+	SHA_DIGEST_LENGTH
+	SHA_Init()
+	SHA_Update()
+	SHA_Final()
+	SHA()
+/*}}}*/
+md5.h
+md4.h
+mdc2.h
+hmac.h
+cmac.h
+ripemd.h
+rsa.h/*{{{*/
+	rsa_st rsa_meth_st
+	RSA_3 RSA_F4
+	RSA_generate_key()
+	RSA_print_fp()
+	RSA_print()
+	RSA_size()
+
+	RSA_PKCS1_PADDING
+	RSA_SSLV23_PADDING
+	RSA_public_encrypt()
+	RSA_private_decrypt()
+	RSA_private_encrypt()
+	RSA_public_decrypt()
+
+	NID_rsa
+	RSA_sign()
+	RSA_verify()
+
+	RSA_new()
+	RSA_new_method()
+	RSA_up_ref()
+	RSA_free()
+	
+	RSA_generate_key_ex()
+	RSA_check_key()
+	RSA_set_default_method()
+	RSA_get_default_method()
+	RSA_set_method()
+	RSA_get_method()
+	RSA_null_method()
+	RSA_flags()
+	RSA_memory_lock()
+	RSA_PKCS1_SSLeay()
+/*}}}*/
+dsa.h
+dh.h
+ec.h
+ecdsa.h
+ecdh.h
+
+aes.h/*{{{*/
+	AES_KEY
+	AES_ENCRYPT
+	AES_DECRYPT
+	AES_set_encrypt_key()
+	AES_set_decrypt_key()
+	AES_encrypt()
+	AES_decrypt()
+	AES_ecb_encrypt()
+	AES_cbc_encrypt()
+/*}}}*/
+des.h
+modes.h
+rc2.h
+rc4.h
+des_old.h
+cast.h
+seed.h
+idea.h
+camellia.h
+blowfish.h
+whrlpool.h
+
+	
+pkcs12.h
+pkcs7.h
+x509.h
+x509v3.h
+x509_vfy.h
+asn1.h
+asn1t.h
+asn1_mac.h
+krb5_asn.h
+symhacks.h
+pem2.h
+pem.h/*{{{*/
+	PEM_CTX
+	PEM_read()
+	PEM_write()
+	PEM_ASN1_read()
+	PEM_ASN1_write()
+	PEM_SealInit()
+	PEM_SealUpdate()
+	PEM_SealFinal()
+	PEM_SignInit()
+	PEM_SignUpdate()
+	PEM_SignFinal()
+
+	PEM_read_RSAPrivateKey()
+	PEM_write_RSAPrivateKey()
+	PEM_read_bio_RSAPrivateKey()
+	PEM_write_bio_RSAPrivateKey()
+/*}}}*/
+cms.h
+comp.h
+ocsp.h
+ebcdic.h
+
+ssl.h
+ssl2.h
+ssl23.h
+ssl3.h
+kssl.h
+tls1.h
+dtls1.h
+srp.h
+srtp.h
+ts.h
