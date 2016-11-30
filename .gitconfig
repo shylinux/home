@@ -16,3 +16,5 @@
 	a = add
 [receive]
 	denyCurrentBranch = ignore
+[core]
+	editor = vim
