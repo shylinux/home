@@ -1,4 +1,4 @@
-openssl dgst enc genrsa rsa req ca
+openssl dgst enc genrsa rsa req ca rsautl
 
 n=pq
 ne
@@ -74,17 +74,124 @@ crypto.h/*{{{*/
 /*}}}*/
 engine.h/*{{{*/
 /*}}}*/
-evp.h
+evp.h/*{{{*/
 	EVP_MAX_MD_SIZE
 	EVP_MAX_KEY_LENGTH
 	EVP_MAX_IV_LENGTH
 	EVP_MAX_BLOCK_LENGTH
 	PKCS5_SALT_LEN
 
-	EVP_PKEY_RSA
+	EVP_read_pw_string()
+	EVP_read_pw_string_min()
+	EVP_set_pw_prompt()
+	EVP_get_pw_prompt()
 
 	EVP_PK_RSA
+	EVP_PKEY_RSA
 	EVP_PKEY
+	EVP_PKEY_assign()
+	EVP_PKEY_assign_RSA()
+
+	EVP_get_digestbyname()
+	EVP_MD
+	EVP_MD_type()
+	EVP_MD_name()
+	EVP_MD_size()
+
+	EVP_MD_CTX_md()
+	EVP_MD_CTX
+	EVP_MD_CTX_init()
+	EVP_MD_CTX_cleanup()
+	EVP_MD_CTX_create()
+	EVP_MD_CTX_destroy()
+	EVP_MD_CTX_copy_ex()
+	EVP_MD_CTX_copy()
+	EVP_MD_CTX_set_flags()
+	EVP_MD_CTX_clear_flags()
+	EVP_MD_CTX_test_flags()
+
+	EVP_DigestInit()
+	EVP_DigestInit_ex()
+	EVP_DigestUpdate()
+	EVP_DigestFinal()
+	EVP_DigestFinal_ex()
+	EVP_Digest()
+
+	EVP_SignInit()
+	EVP_SignInit_ex()
+	EVP_SignUpdate()
+	EVP_SignFinal()
+	EVP_VerifyInit()
+	EVP_VerifyInit_ex()
+	EVP_VerifyUpdate()
+	EVP_VerifyFinal()
+
+	EVP_DigestSignInit()
+	EVP_DigestSignUpdate()
+	EVP_DigestSignFinal()
+	EVP_DigestVerifyInit()
+	EVP_DigestVerifyUpdate()
+	EVP_DigestVerifyFinal()
+
+	EVP_OpenInit()
+	EVP_OpenUpdate()
+	EVP_OpenFinal()
+	EVP_SealInit()
+	EVP_SealUpdate()
+	EVP_SealFinal()
+
+	EVP_BytesToKey()
+	EVP_CIPHER
+	EVP_get_cipherbyname()
+	EVP_CIPHER_nid()
+	EVP_CIPHER_name()
+	EVP_CIPHER_mode()
+	EVP_CIPHER_flags()
+	EVP_CIPHER_block_size()
+	EVP_CIPHER_key_length()
+	EVP_CIPHER_iv_length()
+
+	EVP_CIPHER_CTX_cipher()
+	EVP_CIPHER_CTX
+	EVP_CIPHER_CTX_nid()
+	EVP_CIPHER_CTX_type()
+	EVP_CIPHER_CTX_mode()
+	EVP_CIPHER_CTX_flags()
+	EVP_CIPHER_CTX_block_size()
+	EVP_CIPHER_CTX_key_length()
+	EVP_CIPHER_CTX_iv_length()
+	EVP_CIPHER_CTX_get_app_data()
+	EVP_CIPHER_CTX_set_app_data()
+	EVP_CIPHER_CTX_set_flags()
+	EVP_CIPHER_CTX_clear_flags()
+	EVP_CIPHER_CTX_test_flags()
+
+	EVP_CIPHER_CTX_init()
+	EVP_CIPHER_CTX_cleanup()
+	EVP_CIPHER_CTX_new()
+	EVP_CIPHER_CTX_free()
+	EVP_CIPHER_CTX_set_key_length()
+	EVP_CIPHER_CTX_set_padding()
+	EVP_CIPHER_CTX_ctrl()
+	EVP_CIPHER_CTX_rand_key()
+
+	EVP_EncryptInit()
+	EVP_EncryptInit_ex()
+	EVP_EncryptUpdate()
+	EVP_EncryptFinal_ex()
+	EVP_EncryptFinal()
+
+	EVP_DecryptInit()
+	EVP_DecryptInit_ex()
+	EVP_DecryptUpdate()
+	EVP_DecryptFinal_ex()
+	EVP_DecryptFinal()
+
+	EVP_CipherInit()
+	EVP_CipherInit_ex()
+	EVP_CipherUpdate()
+	EVP_CipherFinal_ex()
+	EVP_CipherFinal()
 
 	EVP_ENCODE_CTX
 	EVP_ENCODE_LENGTH
@@ -99,6 +206,27 @@ evp.h
 	EVP_DecodeUpdate()
 	EVP_DecodeFinal()
 	EVP_DecodeBlock()
+
+	BIO_f_md()
+	BIO_f_base64()
+	BIO_f_cipher()
+	BIO_f_reliable()
+	BIO_set_md()
+	BIO_get_md()
+	BIO_get_md_ctx()
+	BIO_set_md_ctx()
+	BIO_get_cipher_status()
+	BIO_get_cipher_ctx()
+	BIO_set_cipher()
+
+	EVP_md_null()
+	EVP_md5()
+	EVP_sha()
+	EVP_enc_null()
+	EVP_des_ecb()
+	EVP_aes_128_ecb()
+	EVP_aes_128_cbc()
+/*}}}*/
 
 
 sha.h/*{{{*/

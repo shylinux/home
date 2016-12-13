@@ -1,13 +1,20 @@
-
 .*
+7988
+trunk
 go/bin
 go/pkg
-trunk
-7988
-.vim/bundle/*
 go/src/github.com/
 go/src/golang.org/
 
+Documents
+Downloads
+Library
+Movies
+Music
+Pictures
+
+
+.vim/bundle/*
 !.vim/bundle/bundle.tar.gz
 !.vimrc
 !.vim
