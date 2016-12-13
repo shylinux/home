@@ -23,12 +23,24 @@ func conf() {
 func main() {
 	conf()
 
-	info, _ := os.Stat(*path)
+	var file string
+	if len(flag.Args()) > 0 {
+		file = flag.Arg(0)
+	} else {
+		file = *path
+	}
+
+	info, _ := os.Stat(file)
+	if info == nil {
+		print(file, " is not file or path")
+		os.Exit(1)
+	}
+
 	if info.IsDir() {
-		http.Handle("/", http.FileServer(http.Dir(*path)))
+		http.Handle("/", http.FileServer(http.Dir(file)))
 	} else {
 		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			f, _ := os.Open(*path)
+			f, _ := os.Open(file)
 			io.Copy(w, f)
 		})
 	}

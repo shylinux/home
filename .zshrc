@@ -100,6 +100,10 @@ alias u='ssh shy@172.16.133.128'
 
 alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
 
+
+export GOPATH=~/go
 export GOBIN=~/go/bin
+export PATH=$PATH:$GOBIN
+
 export LUAJIT_LIB=/usr/local/lib
 export LUAJIT_INC=/usr/local/include/luajit-2.0
