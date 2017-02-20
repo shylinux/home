@@ -114,9 +114,9 @@ endif
 filetype on
 filetype plugin on 
 filetype indent on
-
 syntax on
 colorscheme mycolor
+
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src
@@ -124,12 +124,17 @@ set path+=/usr/local/include
 set path+=/usr/include/x86_64-linux-gnu
 set path+=~/vpn/nginx-1.4.1/src/core
 set path+=~/vpn/nginx-1.4.1/src/event
+
 set path+=~/vpn/nginx-1.4.1/src/http
 set path+=~/vpn/nginx-1.4.1/src/mail
 set path+=~/vpn/nginx-1.4.1/src/misc
 set path+=~/vpn/nginx-1.4.1/src/os
 set path+=~/vpn/nginx-1.4.1/src/os/unix
 set path+=~/vpn/nginx-1.4.1/objs
+
+set path+=~/vpn/nginx-1.4.1/src/http/modules
+set path+=~/vpn/nginx-1.4.1/src/event/modules
+
 
 set number"{{{
 set nowrap
@@ -240,6 +245,7 @@ autocmd WinEnter * call SetOperationMode()
 
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
+inoremap uu _
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-M> <C-W>\|<C-W>_
@@ -275,7 +281,7 @@ nnoremap <F2> :TlistToggle<CR>
 nnoremap <F3> :MRU<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
 
-nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.vim **/*.php <cr><C-o>:cw<cr>
+nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.js **/*.html **/*.go **/*.h **/*.sh **/*.vim **/*.php <cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F10> :call GenarateTags()<cr>
