@@ -99,11 +99,13 @@ alias u='ssh shy@172.16.133.128'
 #alias u='ssh shy@192.168.1.21'
 
 alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
+alias push='umount /media/SHY && echo "push /media/SHY success"'
 
 
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
+export EDITOR=vim
 
 export LUAJIT_LIB=/usr/local/lib
 export LUAJIT_INC=/usr/local/include/luajit-2.0

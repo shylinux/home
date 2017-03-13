@@ -129,6 +129,9 @@ set path+=~/vpn/nginx-1.4.1/src/http
 set path+=~/vpn/nginx-1.4.1/src/http/modules
 set path+=~/vpn/nginx-1.4.1/src/os/unix
 
+set path+=~/work/trunk/compile/usr/include
+set path+=~/work/trunk/compile/usr/local/include
+
 set number"{{{
 set nowrap
 set cursorline
@@ -240,6 +243,9 @@ cnoremap jk <CR>
 inoremap uu _
 nnoremap j gj
 nnoremap k gk
+"nnoremap <C-M> <C-W>\|<C-W>_
+"nnoremap <C-N> <C-W>=
+"nnoremap <C-P> <C-W>p
 let mapleader=";"
 "nnoremap <Leader>b <Leader>be
 
