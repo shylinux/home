@@ -1,7 +1,14 @@
+hub mac win
+vps shy vpn
+
+add mod pro
+del fix opt
+
 ARM UNIX HTTP
     c
   sh  go
 vi  py  js
+
 
 make gcc gdb
 库文件 头文件 源文件
@@ -317,74 +324,83 @@ POSIX std 26/*{{{*/
 	mkdir() mknod() mkfifo()
 /*}}}*/
 
+#include <sys/wait.h>/*{{{*/
+	WTERMSIG() WIFSIGNALED()
+	WIFSTOPPED() WSTOPSIG()
+	WEXITSTATUS() WIFEXITED()
+
+	wait() waitpid()
+/*}}}*/
+
 #include <unistd.h>/*{{{*/
 	STDIN_FILENO
 	STDOUT_FILENO
 	STDERR_FILENO
 
-	_exit()
+	R_OK W_OK X_OK F_OK
 	access()
-	alarm()
-	chdir()
-	chown()
-	chdir()
-	close()
-	dup()
-	dup2()
-	execl() execle() execlp()
-	execv() execve() execvp()
-	fork()
-	fpathconf()
-	getcwd()
-	getegid()
-	geteuid()
-	getgid()
-	getgroups()
-	getlogin()
-	getgprp()
-	getpid()
-	getppid()
-	getuid()
-	isatty()
-	link()
-	lseek()
-	pathconf()
-	pause()
+
+	SEEK_SET SEEK_CUR SEEK_END
+	lseek() close()
+	read() write()
 	pipe()
-	read()
-	rmdir()
-	setgid()
-	setpgid()
-	setsid()
-	setuid()
-	sleep()
-	sysconf()
-	tcgetpgrp()
-	tcsetgrp()
-	ttyname()
-	unlink()
-	write()
-	confstr()
-	getopt()
 
+	alarm() ualarm()
+	sleep() usleep()
+	pause()
 
+	chown() fchown() lchown()
+	chdir() fchdir() getcwd()
+	dup() dup2() dup3()
+	environ
 
-	getcwd()
-	chdir()
+	execve() execv() execvp()
+	execle() execl() execlp()
+	nice() _exit()
 
-	rmdir()
-	unlink()
+	pathconf() fpathconf()
+	sysconf() confstr()
 
-	lseek()
-	read()
-	write()
-	close()
+	getpid() getppid()
+	getpgrp() setpgrp()
+	getpgid() setpgid()
+	getsid() setsid()
 
-	fork()
-	exec()
-	exit()
-	wait()
-	sleep()
+	getuid() geteuid()
+	getgid() getegid() getgroups()
+	setuid() setreuid() seteuid()
+	getgid() getregid() setegid()
+	getresuid() getresgid()
+	setresuid() setresgid()
+
+	fork() vfork()
+	ttyname() isatty()
+
+	symlink() realink()
+	link() unlink() rmdir()
+
+	tcgetpgrp() tcsetpgrp()
+
+	getlogin() setlogin()
+
+	gethostname()
+	sethostname()
+
+	vhangup() revoke()
+	profil() acct()
+	daemon() chroot() getpass()
+	sync() fsync() syncfs()
+	gethostid()
+
+	getpagesize() getdtablesize()
+	truncate() ftruncate()
+	brk() sbrk()
+	syscall()
+
+	F_ULOCK F_LOCK F_TLOCK F_TEST
+	lockf()
+	crypt() encrypt()
+	swab() ctermid()
 /*}}}*/
 
 #include <fnmatch.h>
@@ -408,7 +424,6 @@ POSIX std 26/*{{{*/
 #include <sys/types.h>
 #include <sys/un.h>
 #include <sys/utsname.h>
-#include <sys/wait.h>
 /*}}}*/
 POSIX XSI 26/*{{{*/
 #include <cpio.h>
