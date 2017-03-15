@@ -1,401 +1,407 @@
-/usr/local/bin:/usr/bin:/bin#{{{
-/usr/local/lib:/usr/lib:/lib
-/usr/local/include:/usr/include
+ARM UNIX HTTP
+    c
+  sh  go
+vi  py  js
 
-gcc -D -U -E -S -c -o -O -g -W -f -I -L -l
-ar crv
-nm ldd file
-ldconfig /etc/ld.so.conf
-man info which whereis
-time
-mount
-/dev/console
-/dev/tty
-/dev/zero
-/dev/null
-
-find grep sed awk
-
-# '' "" \
-# << < | > >>
-# * ./ ? [^-]
-# {} ; & && ||
+make gcc gdb
+库文件 头文件 源文件
+类型 变量 函数
+语句 表达式
+常量 变量 运算符 函数
 
 
-local
-export 
-readonly
-unset 
 
-var=exp var=() var[exp]=exp
-${:+} ${:-} ${:=} ${:?}
-${#} ${%}
+标识符 常量 变量
+分隔符 空白 注释
+运算符
 
-$()
-$[]
-$(())
-$LOGNAME $USER $PATH $HOME $PWD
-$LANG $TERM $SHELL $PS1 $PS2 $IFS
-$$ $0 $?
-$1 $# $@ $*
 
-[ = != -n -z ]
-[ -e -s -O -G ]
-[ -r -w -x -u -g -k ]
-[ -f -d -L -b -c -p -S -t ]
-[ -eq -ne -gt -ge -lt -le ]
 
-if exp; then cmd; else cmd; fi
-while exp; do cmd; done
-until exp; do cmd; done
-for var in exp; do cmd; done
-case var in pat) cmd ;; *) cmd; esac
-break continue true false
+char int float double void
+signed unsigned short long
+auto register volatile const
 
-function fun() {return}
-set;shift
-test eval
-read echo
-exec exit
-trap source bash
-env
+typedef
+struct union enum
+static extern
+[] * & {.=,}
 
-#}}}
+sizeof
 
-float.h
-stdarg.h
-stddef.h
+if else
+for do while
+switch case default
+break continue
+goto return
 
-assert.h
-ctype.h
-locale.h
-math.h
-setjmp.h
-signal.h
-string.h
-time.h
-#include<errno.h>
-#include<stdio.h>
-	fopen()
-	fclose()
-	fread()
-	fwrite()
-	fflush()
-	fseek()
-	fgetc()
-	getc()
-	getchar()
-	fputc()
-	putc()
-	putchar()
-	fgets()
-	gets()
-	printf()
-	fprintf()
-	sprintf()
-	scanf()
-	fscanf()
-	sscanf()
-#include<limits.h>
-	errno:int
-#include<stdlib.h>
-	exit()
+//
+/**/
 
-#include<unistd.h>
-	dup()
-	dup2()
+'a' "a"
+#include<>
+#define
+#undef
+#if
+#elif
+#else
+#endif
+#ifdef
+#ifndef
+#error
+#line 123 "file"
+__LINE__ __FILE__
+__DATE__ __TIME__
+#pragma message()
+#pragma warning(once:4385)
+
+
+[] () . ->
+! ~ ++ -- + - * & sizeof
+* / %
++ -
+<< >>
+< <= > >= 
+== !=
+& ^ |
+&& ||
+?:
+=
+,
+
+C89 15/*{{{*/
+#include <stdio.h>/*{{{*/
+	EOF
+	va_list
+	off_t ssize_t fpos_t
+	FILE stdin stdout stderr
+	SEEK_SET SEEK_CUR SEEK_END
+	remove() rename() tmpfile() tmpnam() tempnam()
+
+	fopen() fclose() freopen() fdopen() fcloseall() fmemopen()
+	fflush() setbuf() setvbuf() setbuffer() setlinebuf()
+
+	snprintf()
+	sprintf() sscanf()
+	printf() scanf()
+	fprintf() fscanf()
+	vsnprintf()
+	vsprintf() vscanf()
+	vprintf() vsscanf()
+	vfprintf() vfscanf()
+
+	ungetc()
+	getw() putw()
+	getc() putc()
+	fgetc() fputc()
+	getchar() putchar()
+	gets() puts()
+	fgets() fputs()
+
+	fread() fwrite()
+	fseek() ftell()
+	feof() ferror()
+	rewind() clearerr()
+	fgetpos() fsetpos()
+	perror() fileno()
+	popen() pclose()
+
+	scanf("%d %o %x %f %e %c %s")
+	printf("%u %d %o %x %f %e %g %c %s")
+/*}}}*/
+#include <stdlib.h>/*{{{*/
+	EXIT_SUCCESS
+	EXIT_FAILURE
+
+	atof() atoi() atol() atoll() l64a() a64l()
+	strtof() strtod() strtold() strtol() strtoul()
+	strtoll() strtoull() strtoq() strtouq()
+	random srandom() initstate() setstate()
+	malloc() calloc() realloc() free()
+	abort() atexit() exit()
+	getenv() putenv() setenv() unsetenv() clearenv()
+	system() realpath() mktemp() mkstemp()
+	bsearch() qsort() abs() div() ldiv()
+/*}}}*/
+#include <math.h>/*{{{*/
+	signbit()
+	isfinite()
+	isnan()
+	isinf()
+	M_E M_LOG2E M_LOG10E M_LN2 M_LN10 M_PI M_PI_2
+	M_PI_4 M_1_PI M_2_PI M_2_SQRTPI M_SQRT2 M_SQRT1_2
+/*}}}*/
+#include <ctype.h>/*{{{*/
+	isctype()
+	isascii() toascii()
+
+	iscntrl()
+	isprint()
+		isspace()
+		isgraph()
+			ispunct()
+			isalnum()
+				isdigit()
+				isxdigit()
+				isalpha()
+					islower() toupper()
+					isupper() tolower()
+	/*}}}*/
+#include <string.h>/*{{{*/
+	memmem()
+	mempcpy()
+
+	memset()
+	memchr()
+	memcmp()
+	memcpy() memmove()
+	strcpy() strncpy()
+	strcat() strncat()
+	strlen() strnlen()
+	strcmp() strncmp()
+	strchr() strrchr()
+	strspn() strcspn()
+	strtok() strpbrk()
+	strstr()
+	stpcpy()
+
+	strcasecmp()
+	strncasecmp()
+	strerror()
+	strsignal()
+
+	strcoll()
+	strcfrm()
+	strdup()
+	strndup()
+
+	bcopy()
+	bzero()
+	bcmp()
+	index()
+	basename()
+/*}}}*/
+
+#include <signal.h>/*{{{*/
+	sigset_t
+	pid_t
+	uid_t
+	signal()
+	kill()
+	raise()
+	sigblock()
+	sigsetmask()
+	siggetmask()
+	sigemptyset()
+	sigfillset()
+	sigaddset()
+	sigdelset()
+	sigismember()
+	sigisemptyset()
+	sigandset()
+	sigorset()
+	sigprocmask()
+	sigsuspend()
+	sigaction()
+	sigpending()
+	sigwait()
+/*}}}*/
+#include <errno.h>/*{{{*/
+	errno
+/*}}}*/
+#include <assert.h>/*{{{*/
+	assert()
+/*}}}*/
+#include <setjmp.h>/*{{{*/
+	jmp_buf setjmp() longjmp()
+/*}}}*/
+#include <limits.h>/*{{{*/
+/*}}}*/
+#include <locale.h>/*{{{*/
+	struct lconv
+	localeconv()
+/*}}}*/
+#include <time.h>/*{{{*/
+	clock_t
+	clock()
+
+	nanosleep()
+	timer_create()
+	timer_delete()
+	timer_settime()
+	timer_gettime()
+
+	tzname
+	daylight
+
+	asctime()
+	ctime()
+
+	stime()
+	time()
+	time_t difftime()
+	mktime()
+	gmtime() localtime() timezone
+	struct tm
+	strptime()
+	strftime()
+/*}}}*/
+ #include <stdarg.h>/*{{{*/
+	va_list
+	va_start()
+	va_arg()
+	va_end()
+/*}}}*/
+/*}}}*/
+C99 24/*{{{*/
+#include <complex.h>
+#include <fenv.h>
+#include <inttypes.h>
+#include <stdint.h>
+#include <wchar.h>
+#include <wctype.h>
+#include <tgmath.h>
+ #include <iso646.h>
+ #include <stdbool.h>
+/*}}}*/
+POSIX std 26/*{{{*/
+#include <fcntl.h>/*{{{*/
+	#include <bits/fcntl.h>
+		O_RDONLY O_WRONLY O_RDWR
+		O_CREAT O_EXCL O_NOCTTY
+		O_TRUNC O_APPEND
+		O_NONBLOCK O_SYNC O_ASYNC
+	
+	S_IFMT S_IFLNK
+	S_IFREG S_IFDIR
+	S_IFCHR S_IFBLK
+	S_IFIFO S_IFSOCK
+
+	S_IRUSR S_IWUSR S_IXUSR
+	S_IRGRP S_IWGRP S_IXGRP
+	S_IROTH S_IWOTH S_IXOTH
+
+	open() fcntl() creat()
+
+	R_OK W_OK X_OK F_OK
+	SEEK_SET SEEK_CUR SEEK_END
+	F_ULOCK F_LOCK F_TLOCK F_TEST
+	lockf()
+/*}}}*/
+#include <dirent.h>/*{{{*/
+	#include <bits/dirent.h>
+		struct dirent
+	DIR
+	opendir() closedir()
+	readdir() rewinddir()
+	seekdir() telldir()
+	fdopendir() dirfd()
+	scandir() alphasort()
+/*}}}*/
+#include <sys/stat.h>/*{{{*/
+	#include <bits/stat.h>
+		struct stat
+
+	S_IFMT S_IFLNK
+	S_IFREG S_IFDIR
+	S_IFCHR S_IFBLK
+	S_IFIFO S_IFSOCK
+
+	S_ISUID S_ISGID S_ISVTX
+	S_IRUSR S_IWUSR S_IXUSR
+	S_IRGRP S_IWGRP S_IXGRP
+	S_IROTH S_IWOTH S_IXOTH
+
+	umask() getumask()
+	stat() fstat() lstat()
+	chmod() lchmod() fchmod()
+	mkdir() mknod() mkfifo()
+/*}}}*/
+
+#include <unistd.h>/*{{{*/
+	getcwd()
+	chdir()
+
+	rmdir()
+	unlink()
+
+	lseek()
 	read()
 	write()
 	close()
-	SEEK_SET
-	SEEK_CUR
-	SEEK_END
-	lseek()
-#include<fcntl.h>
-	#include<bits/fcntl.h>/*{{{*/
-		O_RDONLY
-		O_WRONLY
-		O_RDWR
 
-		O_CREAT
-		O_EXCL
-		O_NOCTTY
-
-		O_TRUNC
-		O_APPEND
-		O_NONBLOCK
+	fork()
+	exec()
+	exit()
+	wait()
+	sleep()
 /*}}}*/
-	S_IRUSR
-	S_IWUSR
-	S_IXUSR
-	S_IRGRP
-	S_IWGRP
-	S_IXGRP
-	S_IROTH
-	S_IWOTH
-	S_IXOTH
-	open()
 
-#include<dirent.h>
-
-
-#include<sys/types.h>
-#include<sys/stat.h>
-	#include<bits/stat.h>/*{{{*/
-		stat:struct
-			st_mode:mode_t
-			st_ino:ino_t
-			st_nlink:nlink_t
-			st_dev:dev_t
-			st_uid:uid_t
-			st_gid:git_t
-			st_size:off_t
-			st_blksize:blksize_t
-			st_blksize:blkcnt_t
-			st_atime:time_t
-			st_mtime:time_t
-			st_ctime:time_t
+#include <fnmatch.h>
+#include <glob.h>
+#include <grp.h>
+#include <netdb.h>
+#include <pwd.h>
+#include <regex.h>
+#include <tar.h>
+#include <termios.h>
+#include <utime.h>
+#include <wordexp.h>
+#include <arpa/inet.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <sys/mman.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/times.h>
+#include <sys/types.h>
+#include <sys/un.h>
+#include <sys/utsname.h>
+#include <sys/wait.h>
 /*}}}*/
-	stat()
-	fstat()
-	lstat()
-	S_IFBLK
-	S_IFCHR
-	S_IFDIR
-	S_IFREG
-	S_IFLNK
-	S_IFIFO
-	S_ISUID
-	S_ISGID
-	S_ISBLK()
-	S_ISCHR()
-	S_ISDIR()
-	S_ISREG()
-	S_ISLNK()
-	S_ISFIFO()
-#include<sys/ioctl.h>
-	ioctl()
+POSIX XSI 26/*{{{*/
+#include <cpio.h>
+#include <dlfcn.h>
+#include <fmtmsg.h>
+#include <ftw.h>
+#include <iconv.h>
+#include <langinfo.h>
+#include <libgen.h>
+#include <monetary.h>
+#include <nl_types.h>
+#include <poll.h>
+#include <search.h>
+#include <strings.h>
+#include <syslog.h>
+#include <ucontext.h>
+#include <ulimit.h>
+#include <utmpx.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <sys/resource.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <sys/statvfs.h>
+#include <sys/time.h>
+#include <sys/timeb.h>
+#include <sys/uio.h>
+ #include <ndbm.h>
+/*}}}*/
+POSIX opt 6/*{{{*/
+#include <aio.h>
+#include <mqueue.h>
+#include <pthread.h>
+#include <sched.h>
+#include <semaphore.h>
+#include <spawn.h>
+#include <stropts.h>
+ #include <trace.h>
+/*}}}*/
 
-sys/acct.h
-sys/bitypes.h
-sys/cdefs.h
-sys/debugreg.h
-sys/dir.h
-sys/epoll.h
-sys/errno.h
-sys/eventfd.h
-sys/fanotify.h
-sys/fcntl.h
-sys/file.h
-sys/fsuid.h
-sys/gmon.h
-sys/gmon_out.h
-sys/inotify.h
-sys/io.h
-sys/ipc.h
-sys/kdaemon.h
-sys/kd.h
-sys/klog.h
-sys/mman.h
-sys/mount.h
-sys/msg.h
-sys/mtio.h
-sys/param.h
-sys/pci.h
-sys/perm.h
-sys/personality.h
-sys/poll.h
-sys/prctl.h
-sys/procfs.h
-sys/profil.h
-sys/ptrace.h
-sys/queue.h
-sys/quota.h
-sys/raw.h
-sys/reboot.h
-sys/reg.h
-sys/resource.h
-sys/select.h
-sys/sem.h
-sys/sendfile.h
-sys/shm.h
-sys/signalfd.h
-sys/signal.h
-sys/socket.h
-sys/socketvar.h
-sys/soundcard.h
-sys/statfs.h
-sys/statvfs.h
-sys/stropts.h
-sys/swap.h
-sys/syscall.h
-sys/sysctl.h
-sys/sysinfo.h
-sys/syslog.h
-sys/sysmacros.h
-sys/termios.h
-sys/timeb.h
-sys/time.h
-sys/timerfd.h
-sys/times.h
-sys/timex.h
-sys/ttychars.h
-sys/ttydefaults.h
-sys/ucontext.h
-sys/uio.h
-sys/ultrasound.h
-sys/un.h
-sys/unistd.h
-sys/user.h
-sys/ustat.h
-sys/utsname.h
-sys/vfs.h
-sys/vlimit.h
-sys/vt.h
-sys/vtimes.h
-sys/wait.h
-sys/xattr.h
 
-complex.h
-error.h
-grp.h
-linux
-malloc.h
-mm
-net
-netdb.h
-neteconet
-netinet
-openssl
-pthread.h
-pwd.h
-readline
-syslog.h
-ulimit.h
-arpa
+gcc -c -o
 
-aio.h
-aliases.h
-alloca.h
-a.out.h
-argp.h
-argz.h
-ar.h
-asm-generic
-byteswap.h
-c++
-cpio.h
-crypt.h
-dbus-1.0
-dlfcn.h
-drm
-elf.h
-endian.h
-envz.h
-err.h
-execinfo.h
-features.h
-fenv.h
-fmtmsg.h
-fnmatch.h
-fstab.h
-fts.h
-ftw.h
-_G_config.h
-gconv.h
-getopt.h
-glob.h
-gnu-versions.h
-gshadow.h
-gstreamer-0.10
-iconv.h
-ieee754.h
-ifaddrs.h
-inttypes.h
-langinfo.h
-lastlog.h
-libgen.h
-libintl.h
-libio.h
-libltdl
-link.h
-ltdl.h
-mcheck.h
-memory.h
-mntent.h
-monetary.h
-mqueue.h
-mtd
-nautilus-sendto
-netash
-netatalk
-netax25
-netipx
-netiucv
-netpacket
-netrom
-netrose
-nfs
-nl_types.h
-nss.h
-obstack.h
-paths.h
-pcrecpparg.h
-pcrecpp.h
-pcre.h
-pcreposix.h
-pcre_scanner.h
-pcre_stringpiece.h
-poll.h
-printf.h
-protocols
-pty.h
-python2.7
-rdma
-re_comp.h
-regex.h
-regexp.h
-resolv.h
-rpc
-rpcsvc
-sched.h
-scsi
-search.h
-semaphore.h
-sgtty.h
-shadow.h
-sound
-spawn.h
-stab.h
-stdint.h
-stdio_ext.h
-strings.h
-stropts.h
-sudo_plugin.h
-syscall.h
-sysexits.h
-tar.h
-termio.h
-termios.h
-tgmath.h
-thread_db.h
-ttyent.h
-ucontext.h
-ustat.h
-utime.h
-utmp.h
-utmpx.h
-values.h
-video
-wait.h
-wchar.h
-wctype.h
-wordexp.h
-X11
-x86_64-linux-gnu
-xen
-xlocale.h
-xorg
-zconf.h
-zlibdefs.h
-zlib.h
+/etc/ld.so.conf
+ldconfig
+
+
