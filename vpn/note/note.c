@@ -318,6 +318,57 @@ POSIX std 26/*{{{*/
 /*}}}*/
 
 #include <unistd.h>/*{{{*/
+	STDIN_FILENO
+	STDOUT_FILENO
+	STDERR_FILENO
+
+	_exit()
+	access()
+	alarm()
+	chdir()
+	chown()
+	chdir()
+	close()
+	dup()
+	dup2()
+	execl() execle() execlp()
+	execv() execve() execvp()
+	fork()
+	fpathconf()
+	getcwd()
+	getegid()
+	geteuid()
+	getgid()
+	getgroups()
+	getlogin()
+	getgprp()
+	getpid()
+	getppid()
+	getuid()
+	isatty()
+	link()
+	lseek()
+	pathconf()
+	pause()
+	pipe()
+	read()
+	rmdir()
+	setgid()
+	setpgid()
+	setsid()
+	setuid()
+	sleep()
+	sysconf()
+	tcgetpgrp()
+	tcsetgrp()
+	ttyname()
+	unlink()
+	write()
+	confstr()
+	getopt()
+
+
+
 	getcwd()
 	chdir()
 

@@ -87,25 +87,19 @@ source $ZSH/oh-my-zsh.sh
 PROMPT='%![%T]%c$ '
 
 alias t='tmux'
-alias f='firefox'
-
-alias k='kvm.sh -s start'
-alias vm='virt-manager'
-alias v1='zssh root@1.0.0.1'
-alias v2='zssh root@1.0.0.2'
-alias v3='zssh root@1.0.0.3'
 alias vps='ssh shy@shylinux.com'
-alias u='ssh shy@172.16.133.128'
-#alias u='ssh shy@192.168.1.21'
-
-alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
-alias push='umount /media/SHY && echo "push /media/SHY success"'
-
 
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
 export EDITOR=vim
 
-export LUAJIT_LIB=/usr/local/lib
-export LUAJIT_INC=/usr/local/include/luajit-2.0
+source .zsh_local
+
+#alias f='firefox'
+#alias k='kvm.sh -s start'
+#alias vm='virt-manager'
+
+#alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
+#alias push='umount /media/SHY && echo "push /media/SHY success"'
+
