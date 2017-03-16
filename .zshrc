@@ -94,5 +94,5 @@ export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
 export EDITOR=vim
 
-source .zsh_local
+source ~/.zsh_local
 

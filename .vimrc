@@ -141,7 +141,7 @@ set path+=~/work/trunk/compile/usr/local/include
 
 set number"{{{
 set nowrap
-set relativenumber
+"set relativenumber
 set cursorline
 set cursorcolumn
 set cc=80
