@@ -96,10 +96,3 @@ export EDITOR=vim
 
 source .zsh_local
 
-#alias f='firefox'
-#alias k='kvm.sh -s start'
-#alias vm='virt-manager'
-
-#alias grep="grep  -rn --exclude-dir='.svn' --exclude='*tags*'  --exclude='*.out' --color"
-#alias push='umount /media/SHY && echo "push /media/SHY success"'
-

@@ -18,5 +18,3 @@
 	denyCurrentBranch = ignore
 [core]
 	editor = vim
-[push]
-	default = simple
