@@ -120,21 +120,20 @@ colorscheme mycolor
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src
+
 set path+=/usr/local/include
 set path+=/usr/include/x86_64-linux-gnu
+
+set path+=~/vpn/nginx-1.4.1/objs
 set path+=~/vpn/nginx-1.4.1/src/core
 set path+=~/vpn/nginx-1.4.1/src/event
-
 set path+=~/vpn/nginx-1.4.1/src/http
 set path+=~/vpn/nginx-1.4.1/src/mail
 set path+=~/vpn/nginx-1.4.1/src/misc
 set path+=~/vpn/nginx-1.4.1/src/os
 set path+=~/vpn/nginx-1.4.1/src/os/unix
-set path+=~/vpn/nginx-1.4.1/objs
-
 set path+=~/vpn/nginx-1.4.1/src/http/modules
 set path+=~/vpn/nginx-1.4.1/src/event/modules
-
 
 set path+=~/work/trunk/compile/usr/include
 set path+=~/work/trunk/compile/usr/local/include
@@ -248,9 +247,27 @@ autocmd WinEnter * call SetOperationMode()
 
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
-inoremap uu _
+inoremap df <CR>
+inoremap ;; :
+inoremap - _
+inoremap _ -
+inoremap 7 &
+inoremap & 7
+inoremap 8 *
+inoremap * 8
+inoremap 9 (
+inoremap ( 9
+inoremap 0 )
+inoremap ) 0
+inoremap [ {
+inoremap { [
+inoremap ] }
+inoremap } ]
+inoremap " '
+inoremap ' "
 nnoremap j gj
 nnoremap k gk
+
 "nnoremap <C-M> <C-W>\|<C-W>_
 "nnoremap <C-N> <C-W>=
 "nnoremap <C-P> <C-W>p

@@ -1,5 +1,5 @@
 hub mac win
-vps shy vpn
+vps vpm vpn
 
 add mod pro
 del fix opt
@@ -40,20 +40,6 @@ __DATE__ __TIME__
 #pragma message()
 #pragma warning(once:4385)
 /*}}}*/
-
-char int float double void
-signed unsigned short long
-auto register volatile const
-
-struct union enum
-typedef sizeof
-static extern
-
-if else
-for do while
-switch case default
-break continue
-goto return
 // /**/ /*{{{*/
 'a' "a"
 01 0x1
@@ -71,6 +57,20 @@ goto return
 =
 ,
 /*}}}*/
+
+char int float double void
+signed unsigned short long
+auto register volatile const
+
+struct union enum
+typedef sizeof
+static extern
+
+if else
+for do while
+switch case default
+break continue
+goto return
 
 C89 15/*{{{*/
 #include <math.h>/*{{{*/
@@ -635,7 +635,7 @@ gcc -lsqlite3
 
 
 /*}}}*/
-sudo apt-get install mysql-server mysql-client mysql-client-dev
+sudo apt-get install mysql-server mysql-client mysql-client-dev/*{{{*/
 gcc -lmysqlclient
 
 show databases;
@@ -653,4 +653,475 @@ show databases;
 
 	mysql_free_result()
 	mysql_close()
+/*}}}*/
+
+
+ngx_config.h/*{{{*/
+	ngx_int_t
+	ngx_uint_t
+	ngx_flag_t
+/*}}}*/
+ngx_core.h/*{{{*/
+	ngx_module_t
+	ngx_conf_t
+	ngx_cycle_t
+	ngx_pool_t
+	ngx_chain_t
+	ngx_log_t
+	ngx_open_file_t
+	ngx_command_t
+	ngx_file_t
+	ngx_event_t
+	ngx_event_aio_t
+	ngx_connection_t
+	ngx_event_handler_pt
+	ngx_connection_handler_pt
+
+	NGX_OK
+	NGX_ERROR
+	NGX_AGAIN
+	NGX_BUSY
+	NGX_DONE
+	NGX_DECLINED
+	NGX_ABORT
+/*}}}*/
+
+ngx_palloc.h ngx_palloc.c/*{{{*/
+	ngx_pool_t
+		d:ngx_pool_data_t
+			last:u_char*
+			end:u_char*
+			next:ngx_pool_t*
+			failed:ngx_uint_t
+		max:size_t
+		current:ngx_pool_t*
+		chain:ngx_pool_large_t*
+			next:ngx_pool_large_t*
+			alloc:void*
+		cleanup:ngx_pool_cleanup_t*
+			handler:ngx_pool_cleanup_pt
+			data:void* /ngx_pool_cleanup_file_t
+				fd:ngx_fd_t
+				name:u_char*
+				log:ngx_log_t*
+			next:ngx_pool_cleanup_t*
+		log:ngx_log_t*
+	ngx_alloc() ngx_calloc()
+
+	ngx_create_pool()
+	ngx_destroy_pool()
+	ngx_reset_pool()
+
+	ngx_palloc()
+	ngx_pnalloc()
+	ngx_pcalloc()
+	ngx_pmemalign()
+	ngx_pfree()
+
+	ngx_pool_cleanup_add()
+	ngx_pool_run_cleanup_file()
+	ngx_pool_cleanup_file()
+	ngx_pool_delete_file()
+/*}}}*/
+ngx_buf.h ngx_buf.c ngx_output_chain.c/*{{{*/
+	ngx_buf_t
+		pos:u_char*
+		last:u_char*
+		file_pos:off_t
+		file_last:off_t
+
+		start:u_char*
+		end:u_char*
+		tag:ngx_buf_tag_t
+		file:ngx_file_t*
+		shadow:ngx_buf_t*
+
+		temporary:unsigned
+		memory:unsigned
+		mmap:unsigned
+		recycled:unsigned
+		in_file:unsigned
+		flush:unsigned
+		syc:unsigned
+		last_buf:unsigned
+		last_in_chain:unsigned
+		last_shadow:unsigned
+		temp_file:unsigned
+	ngx_chain_t
+		buf:ngx_buf_t*
+		next:ngx_chain_t
+	ngx_bufs_t
+		num:ngx_int_t
+		size:size_t
+	ngx_output_chain_ctx_t
+		buf:ngx_buf_t*
+		in:ngx_chain_t*
+		free:ngx_chain_t*
+		busy:ngx_chain_t*
+
+		sendfile:unsigned
+		directio:unsigned
+		need_in_memory:unsigned
+		need_in_temp:unsigned
+		aio:unsigned
+		aio_handler:ngx_output_chain_aio_pt
+		alignment:off_t
+		pool:ngx_pool_t*
+		allocated:ngx_int_t
+		bufs:ngx_bufs_t
+		tag:ngx_buf_tag_t
+		output_filter:ngx_output_chain_filter_pt
+		filter_ctx:void*
+	ngx_chain_writer_ctx_t
+		out:ngx_chain_t*
+		last:ngx_chain_t**
+		connection:ngx_connection_t*
+		pool:ngx_pool_t*
+		limit:off_t
+	ngx_create_temp_buf() ngx_create_chain_of_bufs()
+	ngx_alloc_buf() ngx_calloc_buf()
+	ngx_alloc_chain_link()
+	ngx_free_chain()
+	ngx_output_chain()
+	ngx_chain_writer()
+	ngx_chain_add_copy()
+	ngx_chain_get_free_buf()
+	ngx_chain_update_chains()
+/*}}}*/
+ngx_slab.h ngx_slab.c
+ngx_shmtx.h ngx_shmtx.c
+ngx_open_file_cache.h ngx_open_file_cache.c
+
+ngx_string.h ngx_string.c/*{{{*/
+	ngx_str_t
+		len:size_t
+		data:void*
+	ngx_keyval_t
+		key:ngx_str_t
+		value:ngx_str_t
+	ngx_variable_value_t
+		len:unsigned
+		valid:unsigned
+		no_cacheable:unsigned
+		not_found:unsigned
+		escape:unsigned
+		data:void*
+	ngx_string() ngx_null_string
+	ngx_str_set() ngx_str_null()
+	ngx_tolower() ngx_toupper()
+	ngx_strlow()
+	ngx_strncmp() ngx_strcmp()
+	ngx_strchr() ngx_strstr()
+	ngx_strlen() ngx_strlstr()
+	ngx_memzero() ngx_memset()
+	ngx_memmove() ngx_memcmp()
+	ngx_cpystrn() ngx_strstrn()
+	ngx_pstrdup() ngx_sprintf()
+	ngx_snprintf() ngx_slprintf()
+	ngx_vsnprintf() ngx_vslprintf()
+	ngx_strcasecmp() ngx_strncasecmp()
+	ngx_strcasestrn() ngx_strlcasestrn()
+	ngx_atoi() ngx_atofp()
+	ngx_atosz() ngx_atotm()
+	ngx_hextoi() ngx_hex_dump()
+	ngx_base64_encoded_length()
+	ngx_base64_decoded_length()
+	ngx_encode_base64()
+	ngx_decode_base64()
+	ngx_decode_base64url()
+	ngx_utf8_decode()
+	ngx_utf8_length()
+	ngx_utf8_cpystrn()
+
+	ngx_escape_uri()
+	ngx_unescape_uri()
+	ngx_escape_html()
+
+	ngx_str_node_t
+	ngx_str_rbtree_insert_value()
+	ngx_str_rbtree_lookup()
+	ngx_sort()
+/*}}}*/
+ngx_array.h ngx_array.c/*{{{*/
+	ngx_array_t ngx_array_init()
+		elts:void*
+		nelts:ngx_uint_t
+		size:size_t
+		nalloc:ngx_uint_t
+		pool:ngx_pool_t
+	ngx_array_create() ngx_array_destroy()
+	ngx_array_push() ngx_array_push_n()
+/*}}}*/
+ngx_list.h ngx_list.c/*{{{*/
+	ngx_list_t
+		last:ngx_list_part_t*
+		part:ngx_list_part_t
+			elts:void*
+			nelts:ngx_uint_t
+			next:ngx_list_part_t*
+		size:size_t
+		nalloc:ngx_uint_t
+		pool:ngx_pool_t*
+	ngx_list_create()
+	ngx_list_init()
+	ngx_list_push()
+/*}}}*/
+ngx_hash.h ngx_hash.c/*{{{*/
+	ngx_hash_elt_t
+		value:void*
+		len:u_short
+		name:u_char[]
+	ngx_hash_t
+		buckets:ngx_hash_elt_t
+		size:ngx_uint_t
+	ngx_hash_wildcard_t
+		hash:ngx_hash_t
+		value:void*
+	ngx_hash_key_t
+		key:ngx_str_t
+		key_hash:ngx_uint_t
+		value:void*
+	ngx_hash_combined_t
+		hash:ngx_hash_t
+		wc_head:ngx_hash_wildcard_t*
+		wc_tail:ngx_hash_wildcard_t*
+	ngx_hash_init_t
+		hash:ngx_hash_t*
+		key:ngx_hash_key_pt
+		max_size:ngx_uint_t
+		bucket_size:ngx_uint_t
+		name:char*
+		pool:ngx_pool_t*
+		temp_pool:ngx_pool_t*
+	ngx_hash_keys_arrays_t
+		hsize:ngx_uint_t
+		pool:ngx_pool_t*
+		temp_pool:ngx_pool_t*
+		keys:ngx_array_t
+		keys_hash:ngx_array_t*
+		dns_wc_head:ngx_array_t
+		dns_wc_head_hash:ngx_array_t*
+		dns_wc_tail:ngx_array_t
+		dns_wc_tail_hash:ngx_array_t*
+	ngx_table_elt_t
+		hash:ngx_uint_t
+		key:ngx_str_t
+		value:ngx_str_t
+		lowcase_key:u_char*
+	ngx_hash_find()
+	ngx_hash_find_wc_head()
+	ngx_hash_find_wc_tail()
+	ngx_hash_find_combined()
+	ngx_hash_init()
+	ngx_hash_wildcard_init()
+	ngx_hash_key()
+	ngx_hash_key_lc()
+	ngx_hash_strlow()
+	ngx_hash_keys_array_init()
+	ngx_hash_add_key()
+/*}}}*/
+ngx_queue.h ngx_queue.c
+ngx_rbtree.h ngx_rbtree.c
+ngx_radix_tree.h ngx_radix_tree.c
+
+ngx_regex.h ngx_regex.c/*{{{*/
+	ngx_regex_compile_t
+		pattern:ngx_str_t
+		pool:ngx_pool_t*
+		options:ngx_int_t
+
+		ngx_regex_t
+			code:pcre*
+			extra:pcre_extra*
+		captures:int
+		named_captures:int
+		name_size:int
+		names:u_char*
+		err:ngx_str_t
+	ngx_regex_init()
+	ngx_regex_compile()
+	ngx_regex_exec()
+	ngx_regex_exec_array()
+/*}}}*/
+ngx_crc.h
+ngx_sha1.h
+ngx_cpuinfo.c
+ngx_md5.h ngx_md5.c
+ngx_crypt.h ngx_crypt.c
+ngx_crc32.h ngx_crc32.c
+ngx_murmurhash.h ngx_murmurhash.c
+
+ngx_file.h ngx_file.c/*{{{*/
+	ngx_file_t
+		fd:ngx_fd_t
+		name:ngx_str_t
+		info:ngx_file_info_t
+
+		offset:off_t
+		sys_offset:off_t
+		log:ngx_log_t*
+
+		aio:ngx_event_aio_t
+		valid_info:unsigned
+		directio:unsigned
+	ngx_path_t
+		name:ngx_str_t
+		len:size_t
+		level:size_t
+
+		manager:ngx_path_manager_pt
+		loader:ngx_path_loader_pt
+		data:void*
+		conf_file:u_char*
+		line:ngx_uint_t
+	ngx_path_init_t
+		name:ngx_str_t
+		level:size_t
+	ngx_temp_file_t
+		file:ngx_file_t
+		offset:off_t
+		path:ngx_path_t*
+		pool:ngx_pool_t*
+		warn:char*
+		access:ngx_uint_t
+		log_level:unsigned
+		persistent:unsigned
+		clean:unsigned
+	ngx_ext_rename_file_t
+		access:ngx_uint_t
+		path_access:ngx_uint_t
+		time:time_t
+		fd:ngx_fd_t
+		create_path:unsigned
+		delete_file:unsigned
+		log:ngx_log_t*
+	ngx_copy_file_t
+		size:off_t
+		buf_size:size_t
+		access:ngx_uint_t
+		time:time_t
+		log:ngx_log_t*
+	ngx_write_chain_to_temp_file()
+	ngx_create_temp_file()
+	ngx_create_hashed_filename()
+	ngx_create_path()
+	ngx_create_full_path()
+	ngx_add_path()
+	ngx_create_paths()
+	ngx_ext_rename_file()
+	ngx_copy_file()
+	ngx_walk_tree()
+	ngx_next_temp_number()
+	ngx_conf_set_path_slot()
+	ngx_conf_merge_path_value()
+	ngx_conf_set_access_slot()
+	ngx_temp_number:ngx_atomic_t*
+	ngx_random_number:ngx_atomic_int_t
+	/*}}}*/
+ngx_inet.h ngx_inet.c/*{{{*/
+	ngx_cidr_t
+		family:ngx_uint_t
+		u:union
+			in:ngx_in_cidr_t
+				addr:in_addr_t
+				mask:in_addr_t
+	ngx_addr_t
+		sockaddr:struct sockaddr*
+		socklen:socklen_t
+		name:ngx_str_t
+	ngx_url_t
+		url:ngx_str_t
+		host:ngx_str_t
+		port_text:ngx_str_t
+		uri:ngx_str_t
+
+		port:in_port_t
+		default_port:in_port_t
+		family:int
+
+		listen:unsigned
+		uri_part:unsigned
+		no_resolve:unsigned
+		one_addr:unsigned
+		no_port:unsigned
+		wildcard:unsigned
+
+		socklen:socklen_t
+		sockaddr:u_char
+		addrs:ngx_addr_t*
+		naddrs:ngx_uint_t
+		err:char*
+	ngx_inet_addr()
+	ngx_sock_ntop()
+	ngx_inet_ntop()
+	ngx_ptocidr()
+	ngx_parse_addr()
+	ngx_parse_url()
+	ngx_inet_resolve_host()
+/*}}}*/
+ngx_resolver.h ngx_resolver.c/*{{{*/
+	ngx_resolver_t
+		event:ngx_event_t*
+		dummy:void
+		log:ngx_log_t*
+		indent:ngx_int_t
+		udp_connections:ngx_array_t
+		last_connection:ngx_uint_t
+		name_rbtree:ngx_rbtree_t
+		name_sentinel:ngx_rbtree_node_t
+		addr_rbtree:ngx_rbtree_t
+		addr_sentinel:ngx_rbtree_node_t
+		name_resend_queue:ngx_queue_t
+		addr_resend_queue:ngx_queue_t
+		name_expire_queue:ngx_queue_t
+		addr_expire_queue:ngx_queue_t
+		resend_timeout:time_t
+		expire:time_t
+		valid:time_t
+		log_level:ngx_uint_t
+
+	ngx_resolver_ctx_t
+		next:ngx_resolver_t*
+		resolver:ngx_resolver_t*
+		udp_connection:ngx_udp_connection_t*
+
+		indent:ngx_int_t
+		state:ngx_int_t
+		type:ngx_int_t
+		name:ngx_str_t
+		naddrs:ngx_uint_t
+		addrs:in_addr_t*
+		add:in_addr_t
+		
+		handler:ngx_resolver_handler_pt
+		data:void*
+		time:ngx_msec_t
+		
+		quick:ngx_uint_t
+		recursion:ngx_uint_t
+		event:ngx_event_t*
+
+	ngx_resolver_create() ngx_resolve_start()
+	ngx_resolve_name() ngx_resolve_name_done()
+	ngx_resolve_addr() ngx_resolve_addr_done()
+	ngx_resolver_strerror()
+/*}}}*/
+ngx_connection.h ngx_connection.c
+	ngx_listening_t
+		fd:ngx_socket_t
+		sockaddr:struct sockaddr*
+		socklen:socklen_t
+		addr_text_max_len:size_t
+		addr_text:ngx_str_t
+		type:int
+
+
+
+nginx.h nginx.c
+ngx_spinlock.c
+ngx_cycle.h ngx_cycle.c
+ngx_times.h ngx_times.c
+ngx_parse.h ngx_parse.c
+ngx_conf_file.h ngx_conf_file.c
+ngx_log.h ngx_log.c
 
