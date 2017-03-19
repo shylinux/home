@@ -140,7 +140,7 @@ set path+=~/work/trunk/compile/usr/local/include
 
 set number"{{{
 set nowrap
-"set relativenumber
+set relativenumber
 set cursorline
 set cursorcolumn
 set cc=80
@@ -249,6 +249,7 @@ inoremap jk <Esc>"{{{
 cnoremap jk <CR>
 inoremap df <CR>
 inoremap ;; :
+inoremap -- ->
 inoremap - _
 inoremap _ -
 inoremap 7 &
@@ -259,10 +260,10 @@ inoremap 9 (
 inoremap ( 9
 inoremap 0 )
 inoremap ) 0
-inoremap [ {
-inoremap { [
-inoremap ] }
-inoremap } ]
+"inoremap [ {
+"inoremap { [
+"inoremap ] }
+"inoremap } ]
 inoremap " '
 inoremap ' "
 nnoremap j gj
