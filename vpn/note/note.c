@@ -1766,13 +1766,15 @@ ngx_regex.h/*{{{*/
 	ngx_regex_exec()
 	ngx_regex_exec_array()
 /*}}}*/
-ngx_regex.c
+ngx_regex.c/*{{{*/
 	ngx_regex_module:ngx_module_t
 		ngx_regex_module_ctx:ngx_core_module_t*
 			ngx_regex_create_conf()
+				ngx_list_create()
+				ngx_pcre_studies:ngx_list_t* /ngx_regex_elt_t
 			ngx_regex_init_conf()
 		ngx_regex_commands:ngx_command_t[]
-			ngx_string("pcre_jit")
+			ngx_string("pcre_jit") ngx_regex_pcre_jit()
 		ngx_regex_module_init():
 	ngx_pcre_pool:ngx_pool_t*
 	ngx_pcre_studies:ngx_list_t*
@@ -1799,14 +1801,10 @@ ngx_regex.c
 	ngx_pcre_free_studies()
 	ngx_regex_module_init()
 		ngx_pool_cleanup_add()
-
-	
-
-
-
-		
-
-
+		ngx_regex_malloc_init()
+		pcre_study()
+		ngx_regex_malloc_done()
+/*}}}*/
 ngx_crc.h/*{{{*/
 	ngx_crc()
 /*}}}*/
@@ -2893,20 +2891,342 @@ ngx_core.h/*{{{*/
 /*}}}*/
 /*}}}*/
 src/event/*{{{*/
-ngx_event.h ngx_event.c
-ngx_event_mutex.c
-ngx_event_accept.c
-ngx_event_busy_lock.h ngx_event_busy_lock.c
-ngx_event_connect.h ngx_event_connect.c
-ngx_event_openssl.h ngx_event_openssl.c
+ngx_event.h/*{{{*/
+	ngx_event_mutex_t
+		lock:ngx_uint_t
+		events:ngx_event_t*
+		last:ngx_event_t*
+	ngx_event_t
+		data:void*
+		write:unsigned
+		accept:unsigned
+		instance:unsigned
+		active:unsigned
+		disable:unsigned
+		ready:unsigned
+		oneshot:unsigned
+		complete:unsigned
+		eof:unsigned
+		error:unsigned
+		timedout:unsigned
+		timer_set:unsigned
+		delayed:unsigned
+		handler:ngx_event_handler_pt
+		timer:ngx_rbtree_node_t
+		next:ngx_event_t*
+		prev:ngx_event_t**
+	ngx_event_actions_t
+		add:
+		del:
+		enable:
+		disable:
+		add_conn:
+		del_conn:
+		process_changes:
+		process_events:
+		init:
+		done:
+	ngx_process_changes ngx_event_actions.process_changes
+	ngx_process_events ngx_event_actions.process_events
+	ngx_done_events ngx_event_actions.done
+	ngx_add_event ngx_event_actions.add
+	ngx_del_event ngx_event_actions.del
+	ngx_add_conn ngx_event_actions.add_conn
+	ngx_del_conn ngx_event_actions.del_conn
+	ngx_add_timer ngx_event_add_timer
+	ngx_del_timer ngx_event_del_timer
+	ngx_io:ngx_os_io_t
+	ngx_recv ngx_io.recv
+	ngx_send ngx_io.send
+	ngx_udp_recv ngx_io.udp_recv
+	ngx_recv_chain ngx_io.recv_chain
+	ngx_send_chain ngx_io.send_chain
+
+	NGX_EVENT_MODULE
+	NGX_EVENT_CONF
+
+	ngx_event_conf_t
+		connections:ngx_uint_t
+		use:ngx_uint_t
+		multi_accept:ngx_flag_t
+		accept_mutex:ngx_flag_t
+		accept_mutex_delay:ngx_msec_t
+		name:u_char*
+	ngx_event_module_t
+		name:ngx_str_t*
+		create_conf:
+		init_conf:
+		actions:ngx_event_actions_t
+	ngx_connection_counter:ngx_atomic_t*
+	ngx_accept_mutex_ptr:ngx_atomic_t*
+	ngx_accept_mutex:ngx_shmtx_t
+	ngx_use_accept_mutex:ngx_uint_t
+	ngx_accept_events:ngx_uint_t
+	ngx_accept_mutex_delay:ngx_msec_t
+	ngx_accept_disabled:ngx_int_t
+
+	ngx_event_timer_alarm:sig_atomic_t
+	ngx_event_flags:ngx_uint_t
+	ngx_events_module:ngx_module_t
+	ngx_event_core_module:ngx_module_t
+	ngx_event_get_conf
+	ngx_event_accept()
+	ngx_trylock_accept_mutex()
+	ngx_accept_log_error()
+	ngx_process_events_and_timers()
+	ngx_handle_read_event()
+	ngx_handle_write_event()
+	ngx_send_lowat()
+/*}}}*/
+ngx_event.c/*{{{*/
+	ngx_epoll_module:ngx_module_t
+	ngx_kqueue_module:ngx_module_t
+	ngx_timer_resolution:ngx_uint_t
+	ngx_event_timer_alarm:sig_atomic_t
+	ngx_event_max_module:ngx_uint_t
+	ngx_event_flags:ngx_uint_t
+	ngx_event_actions:ngx_event_actions_t
+	connection_counter:ngx_atomic_t
+	ngx_accept_mutex_ptr:ngx_atomic_t*
+	ngx_accept_mutex:ngx_shmtx_t
+	ngx_use_accept_mutex:ngx_uint_t
+	ngx_accept_events:ngx_uint_t
+	ngx_accept_mutex_held:ngx_uint_t
+	ngx_accpet_mutex_delay:ngx_msec_t
+	ngx_accept_disabled:ngx_int_t
+	ngx_accpet_mutex_lock_file:ngx_file_t
+
+	ngx_events_module:ngx_module_t
+		ngx_events_module_ctx:ngx_core_module_t*
+			ngx_string("events")
+			ngx_event_init_conf()
+		ngx_events_commands:ngx_command_t[]
+			ngx_string("events")
+			ngx_events_block()
+				ngx_modules[i]->ctx->create_conf()
+				cf->ctx=ctx
+				cf->module_type=NGX_EVENT_MODULE
+				cf->cmd_type=NGX_EVENT_CONF
+				ngx_conf_parse()
+				ngx_modules[i]->ctx->init_conf()
+	ngx_events_core_module:ngx_module_t
+		ngx_event_core_module_ctx:ngx_event_module_t
+			ngx_event_core_create_conf()
+			ngx_event_core_init_conf()
+				epoll_create()
+		ngx_event_core_commands:ngx_command_t[]
+			ngx_string("connections") ngx_event_connections()
+			ngx_string("worker_connections") ngx_event_connections()
+					NGX_CONF_UNSET_UINT
+					ecf->connections=ngx_atoi()
+					cf->cycle->connection_n=
+			ngx_string("use") ngx_event_use()
+				ecf->use=
+				ecf->name=
+			ngx_string("multi_accept")
+				ecf->multi_accept=ngx_flag_t
+			ngx_string("accept_mutex")
+				ecf->accept_mutex=ngx_flag_t
+			ngx_string("accept_mutex_delay")
+				ecf->accept_mutex_delay=ngx_msec_t
+			ngx_string("debug_connection") ngx_event_debug_connection()
+				ngx_array_push(ecf->debug_connection)
+				ngx_inet_resolve_host()
+		ngx_event_module_init()
+			ngx_shm_alloc()
+		ngx_event_process_init()
+			ngx_event_timer_init()
+			ngx_modules[i]->ctx->actions.init()
+			sigaction()
+			setitimer()
+			cycle->connections=ngx_connection_t[]
+			cycle->read_events=ngx_event_t[]
+			cycle->write_events=ngx_event_t[]
+			cycle->free_connections=
+			cycle->free_connection_n=
+			ngx_get_connection(cycle->listening[i].fd)
+			c->read->handler=ngx_event_accept
+			ngx_add_event()
+	ngx_process_events_and_timers()
+		ngx_event_find_timer()
+		ngx_trylock_accept_mutex()
+		ngx_process_events()
+		ngx_event_process_posted()
+		ngx_shmtx_unlock()
+		ngx_event_expire_timers()
+		ngx_event_process_posted()
+	ngx_handle_read_event()
+		ngx_add_event()
+		ngx_del_event()
+	ngx_handle_write_event()
+		ngx_add_event()
+		ngx_del_event()
+	ngx_send_lowat()
+		setsockopt()
+/*}}}*/
+ngx_event_timer.h/*{{{*/
+	ngx_event_timer_rbtree:ngx_rbtree_t
+	ngx_event_del_timer()
+		ngx_rbtree_delete()
+	ngx_event_add_timer()
+		ngx_rbtree_insert()
+/*}}}*/
+ngx_event_timer.c/*{{{*/
+	ngx_event_timer_rbtree:ngx_rbtree_t
+	ngx_event_timer_sentinel:ngx_rbtree_node_t
+	ngx_event_timer_init()
+		ngx_rbtree_init()
+	ngx_event_find_timer()
+		ngx_rbtree_min()
+	ngx_event_expire_timers()
+		ngx_rbtree_min()
+		ngx_rbtree_delete()
+		ev->handler()
+/*}}}*/
+ngx_event_mutex.c/*{{{*/
+	ngx_event_mutex_timedlock()
+		ngx_add_timer()
+	ngx_event_mutex_unlock()
+/*}}}*/
+ngx_event_accept.c/*{{{*/
+	ngx_event_accept()
+		ngx_enable_accept_events()
+		accept()
+		ngx_disable_accept_events()
+		ngx_get_connection()
+		c->pool=ngx_create_pool()
+		c->sockaddr=
+		ngx_nonblocking()
+		c->recv=ngx_recv
+		c->send==ngx_send
+		c->recv_chain=ngx_recv_chain
+		c->send_chain=ngx_send_chain
+		c->log=ngx_palloc()
+		c->pool->log=
+		c->listening=ls
+		c->sockaddr=
+		c->local_sockaddr=
+		c->number=ngx_connection_counter
+		c->add_text
+		ngx_add_conn()
+		ls->handler()
+	ngx_trylock_accept_mutex()
+		ngx_shmtx_trylock(&ngx_accept_mutex)
+		ngx_enable_accept_events()
+		ngx_accept_mutex_held=1
+	ngx_enable_accept_events()
+		ngx_add_event(cycle->listening[i]->read)
+	ngx_disable_accept_events()
+		ngx_del_event(cycle->listening[i]->read)
+	ngx_close_accepted_connection()
+		ngx_free_connection()
+		ngx_close_socket()
+		ngx_destroy_pool()
+	ngx_accept_log_error()
+		/*}}}*/
+ngx_event_posted.h/*{{{*/
+	ngx_locked_post_event()
+	ngx_post_event()
+	ngx_delete_posted_event()
+	ngx_event_process_posted()
+	ngx_wakeup_worker_thread()
+	ngx_posted_accept_events:ngx_event_t*
+	ngx_posted_events:ngx_event_t*
+/*}}}*/
+ngx_event_posted.c/*{{{*/
+	ngx_posted_accept_events:ngx_event_t*
+	ngx_posted_events:ngx_event_t*
+	ngx_event_process_posted()
+		ngx_delete_posted_event()
+		ev->handler()
+	ngx_wakeup_worker_thread()
+		ngx_cond_signal()
+	ngx_event_thread_process_posted()
+		ngx_delete_posted_event()
+		ev->handler()
+/*}}}*/
+ngx_event_connect.h/*{{{*/
+	ngx_peer_connection_t
+		connection:ngx_connection_t*
+		sockaddr:struct sockaddr*
+		socklen:socklen_t
+		name:ngx_str_t*
+		tries:ngx_uint_t
+		get:ngx_event_get_peer_pt
+		free:ngx_event_free_peer_pt
+		data:void*
+		set_session:ngx_event_set_peer_session_pt
+		save_session:ngx_event_save_peer_session_pt
+		local:ngx_addr_t*
+		rcvbuf:int
+		log:ngx_log_t*
+		cached:unsigned
+		log_error:unsigned
+	ngx_event_connect_peer()
+	ngx_event_get_peer()
+/*}}}*/
+ngx_event_connect.c/*{{{*/
+	ngx_event_connect_peer()
+		ngx_socket()
+		ngx_get_connection()
+		setsockopt()
+		ngx_nonblocking()
+		bind()
+		c->recv=ngx_recv
+		c->send==ngx_send
+		c->recv_chain=ngx_recv_chain
+		c->send_chain=ngx_send_chain
+		ngx_add_conn()
+		connect()
+		ngx_add_event()
+	ngx_event_get_peer()
+/*}}}*/
+ngx_event_pipe.h
+ngx_event_pipe.c
+ngx_event_openssl.h
+ngx_event_openssl.c
+ngx_event_busy_lock.h
+ngx_event_busy_lock.c
 ngx_event_openssl_stapling.c
-ngx_event_pipe.h ngx_event_pipe.c
-ngx_event_posted.h ngx_event_posted.c
-ngx_event_timer.h ngx_event_timer.c
 src/event/modules/*{{{*/
+ngx_epoll_module.c/*{{{*/
+	ngx_epoll_module:ngx_module_t
+		ngx_epoll_module_ctx:ngx_event_module_t*
+			ngx_epoll_create_conf()
+			ngx_epoll_init_conf()
+				ngx_epoll_add_event()
+					epoll_ctl()
+				ngx_epoll_del_event()
+					epoll_ctl()
+				ngx_epoll_add_event()
+					epoll_ctl()
+				ngx_epoll_del_event()
+					epoll_ctl()
+				ngx_epoll_add_connection()
+					epoll_ctl()
+				ngx_epoll_del_connection()
+					epoll_ctl()
+				NULL
+				ngx_epoll_process_events()
+					epoll_wait()
+					ngx_time_update()
+					rev->handler()
+					wev->handler()
+				ngx_epoll_init()
+					epoll_create()
+					ngx_epoll_aio_init()
+					ngx_event_actions=ngx_epoll_module_ctx.actions
+				ngx_epoll_done()
+					close()
+					ngx_free()
+		ngx_epoll_commands:ngx_command_t[]
+			ngx_string("epoll_events")
+				epcf->events=ngx_int_t
+			ngx_string("worker_aio_requests")
+				epcf->aio_requests=ngx_int_t
+/*}}}*/
 ngx_aio_module.c
 ngx_devpoll_module.c
-ngx_epoll_module.c
 ngx_eventport_module.c
 ngx_kqueue_module.c
 ngx_poll_module.c
@@ -2916,28 +3236,301 @@ ngx_win32_select_module.c
 /*}}}*/
 /*}}}*/
 src/http/*{{{*/
-ngx_http.h ngx_http.c
+ngx_http.h
+ngx_http.c
+ngx_http_core_module.h
+ngx_http_core_module.c
+ngx_http_request.h/*{{{*/
+	NGX_HTTP_GET NGX_HTTP_HEAD NGX_HTTP_POST NGX_HTTP_PUT NGX_HTTP_DELETE
+	NGX_HTTP_OK
+
+	NGX_HTTP_SPECIAL_RESPONSE
+	NGX_HTTP_MOVED_PERMANENTLY
+	NGX_HTTP_MOVED_TEMPORARILY
+	NGX_HTTP_NOT_MODIFIED
+	
+	NGX_HTTP_BAD_REQUEST
+	NGX_HTTP_UNAUTHORIZED
+	NGX_HTTP_FORBIDDEN
+	NGX_HTTP_NOT_FOUND
+	NGX_HTTP_NOT_ALLOWED
+
+	NGX_HTTP_INTERNAL_SERVER_ERROR
+	NGX_HTTP_NOT_IMPLEMENTED
+	NGX_HTTP_BAD_GATEWAY
+	NGX_HTTP_SERVICE_UNAVAILABLE
+
+	ngx_http_header_t
+		name:ngx_str_t
+		offset:ngx_uint_t
+		handler:ngx_http_header_handler_pt
+	ngx_http_header_out_t
+	ngx_http_headers_in_t
+		headers:ngx_list_t
+		host:ngx_table_elt_t*
+		connection:ngx_table_elt_t*
+		if_modified_since:ngx_table_elt_t*
+		if_unmodified_since:ngx_table_elt_t*
+		if_match:ngx_table_elt_t*
+		if_none_match:ngx_table_elt_t*
+		user_agent:ngx_table_elt_t*
+		referer:ngx_table_elt_t*
+		content_length:ngx_table_elt_t*
+		content_type:ngx_table_elt_t*
+		range:ngx_table_elt_t*
+		if_range:ngx_table_elt_t*
+		transfer_encoding:ngx_table_elt_t*
+		expect:ngx_table_elt_t*
+		upgrade:ngx_table_elt_t*
+		accept_encoding:ngx_table_elt_t*
+		via:ngx_table_elt_t*
+		authoirzation:ngx_table_elt_t*
+		keep_alive:ngx_table_elt_t*
+		x_forwarded_for:ngx_table_elt_t*
+		x_real_ip:ngx_table_elt_t*
+		accept:ngx_table_elt_t*
+		accept_language:ngx_table_elt_t*
+		user:ngx_str_t
+		passwd:ngx_str_t
+		cookies:ngx_array_t
+		server:ngx_str_t
+		content_length_n:off_t
+		keep_alive_n:time_t
+		connection_type:unsigned
+		chunked:unsigned
+		msie:unsigned
+		opera:unsigned
+		gecko:unsigned
+		chrome:unsigned
+		safari:unsigned
+		konqueror:unsigned
+	ngx_http_headers_out_t
+		headers:ngx_list_t
+		status:ngx_uint_t
+		status_line:ngx_str_t
+		server:ngx_table_elt_t*
+		data:ngx_table_elt_t*
+		content_length:ngx_table_elt_t*
+		content_encoding:ngx_table_elt_t*
+		location:ngx_table_elt_t*
+		refresh:ngx_table_elt_t*
+		last_modified:ngx_table_elt_t*
+		content_range:ngx_table_elt_t*
+		accept_ranges:ngx_table_elt_t*
+		www_authericate:ngx_table_elt_t*
+		expires:ngx_table_elt_t*
+		etag:ngx_table_elt_t*
+		overrid_charset:ngx_str_t
+		content_type_len:size_t
+		content_type:ngx_str_t
+		charset:ngx_str_t
+		content_type_lowcase:u_char*
+		content_type_hash:ngx_uint_t
+		cache_control:ngx_array_t
+		content_length_n:off_t
+		date_time:time_t
+		last_modified_time:time_t
+	ngx_http_request_body_t
+		temp_file:ngx_temp_file_t*
+		bufs:ngx_chain_t*
+		buf:ngx_buf_t*
+		rest:off_t
+		free:ngx_chain_t*
+		busy:ngx_chain_t*
+		chunked:ngx_http_chunked_t*
+		post_handler:ngx_http_client_body_handler_pt
+	ngx_http_connection_t
+		addr_conf:ngx_http_addr_conf_t
+		conf_ctx:ngx_http_conf_ctx_t
+		ssl_servername:ngx_str_t
+		ssl_servername_regex:ngx_http_regex_t
+		busy:ngx_buf_t**
+		nbusy:ngx_int_t
+		free:ngx_buf_t**
+		nfree:ngx_int_t
+		ssl:ngx_uint_t
+	ngx_http_cleanup_t
+		handler:ngx_http_cleanup_pt
+		data:void*
+		next:ngx_http_cleanup_t
+	ngx_http_post_subrequest_t
+		handler:ngx_http_post_subrequest_pt
+		data:void*
+	ngx_http_postponed_request_t
+		request:ngx_http_request_t*
+		out:ngx_chain_t*
+		next:ngx_http_postponed_request_t*
+	ngx_http_posted_request_t
+		request:ngx_http_request_t*
+		next:ngx_http_posted_request_t*
+	ngx_http_request_t
+		signature:uint32_t
+		connection:ngx_connection_t*
+		
+		ctx:void**
+		main_conf:void**
+		srv_conf:void**
+		loc_conf:void**
+
+		read_event_handler:ngx_http_event_handler_pt
+		write_event_handler:ngx_http_event_handler_pt
+
+		cache:ngx_http_cache_t*
+		upstream:ngx_http_upstream_t*
+		upstream_states:ngx_array_t*
+		pool:ngx_pool_t*
+		header_in:ngx_buf_t*
+		headers_in:ngx_http_headers_in_t
+		headers_out:ngx_http_headers_out_t
+		request_body:ngx_http_request_body_t*
+
+		lingering_time:time_t
+		start_sec:time_t
+		start_msec:ngx_msec_t
+
+		method:ngx_uint_t
+		http_version:ngx_uint_t
+		request_line:ngx_str_t
+		uri:ngx_str_t
+		args:ngx_str_t
+		exten:ngx_str_t
+		unparsed_uri:ngx_str_t
+		method_name:ngx_str_t
+		http_protocol:ngx_str_t
+		
+		out:ngx_chain_t*
+		main:ngx_http_request_t*
+		parent:ngx_http_request_t*
+		postponed:ngx_http_postponed_request_t*
+		post_subrequest:ngx_http_post_subrequest_t*
+		posted_requests:ngx_http_posted_request_t*
+
+		phase_handler:ngx_int_t
+		content_handler:ngx_http_handler_pt
+		access_code:ngx_uint_t
+		variables:ngx_http_variable_value_t
+
+		ncaptures:ngx_uint_t
+		captures:int*
+		captures_data:u_char*
+
+		limit_rate:size_t
+		header_size:size_t
+		request_length:off_t
+		err_status:ngx_uint_t
+		http_connection:ngx_http_connection_t*
+		log_handler:ngx_http_log_handler_pt
+		cleanup:ngx_http_cleanup_t
+		subrequests:unsigned
+		count:unsigned
+		blocked:unsigned
+		aio:unsigned
+		http_state:unsigned
+	ngx_http_headers_in:ngx_http_header_t[]
+	ngx_http_headers_out:ngx_http_header_out_t[]
+/*}}}*/
+ngx_http_request.c
+	ngx_http_headers_in:ngx_http_header_t[]
+		ngx_string("Host") ngx_http_process_host()
+		ngx_string("Host")
+		ngx_string("Connection") ngx_http_process_connection()
+		ngx_string("If-Modifyied-Since")
+		ngx_string("If_Unmodified-Since")
+		ngx_string("If-Match")
+		ngx_string("If-None-Match")
+		ngx_string("User-Agent") ngx_http_process_user_agent()
+		ngx_string("Referer")
+		ngx_string("Content-Length")
+		ngx_string("Content-Type")
+		ngx_string("Range")
+		ngx_string("If-Range")
+		ngx_string("Transfer-Encoding")
+		ngx_string("Expect")
+		ngx_string("Upgrade")
+		ngx_string("Accept-Encoding")
+		ngx_string("Via")
+		ngx_string("Authorization")
+		ngx_string("Keep-Alive")
+		ngx_string("X-Forwarded-For")
+		ngx_string("X-Real-IP")
+		ngx_string("Accept")
+		ngx_string("Accept-Language")
+		ngx_string("Depth")
+		ngx_string("Destination")
+		ngx_string("Overwrite")
+		ngx_string("Date")
+		ngx_string("Cookie")
+	ngx_http_init_connection()
+		ngx_connection_local_sockaddr()
+		hc:ngx_http_connection_t*
+		hc->addr_conf=c->listening->servers->addrs[i].conf
+		hc->conf_ctx=hc->add_conf->default_server->ctx
+		c->log=
+		c->read->handler=ngx_http_wait_request_handler
+		c->write->handler=ngx_http_empty_handler
+		c->read->handler=ngx_http_ssl_handshake
+		ngx_post_event()
+		c->read->handler()
+		ngx_add_timer()
+		ngx_reusable_connection()
+		ngx_handle_read_event()
+	ngx_http_wait_request_handler()
+		c->buffer=ngx_create_temp_buf()
+		c->recv()
+		rev->handler=ngx_http_process_request_line
+		ngx_http_process_request_line()
+	ngx_http_create_request()
+		ngx_pcalloc()
+		r:ngx_http_request_t*
+		r->pool=ngx_create_pool()
+		r->http_connection=hc
+		r->signature=NGX_HTTP_MODULE
+		r->connection=c
+		r->main_conf=hc->conf_cx->main_conf
+		r->srv_conf=hc->conf_cx->srv_conf
+		r->loc_conf=hc->conf_cx->loc_conf
+		r->read_event_handler=ngx_http_block_reading
+		r->header_in=
+		r->headers_out=ngx_list_init()
+		r->ctx=ngx_pcalloc()
+		r->variables=ngx_pcalloc()
+		r->main=r
+		r->count=1
+		r->start_sec=ngx_timeofday()
+		r->start_msec=ngx_timeofday()
+		r->http_state=NGX_HTTP_READING_REQUEST_STATE
+		r->connection->log->data->request=r
+		r->connection->log->data->current_request=r
+		r->log_handler=ngx_http_log_error_handler
+
+ngx_http_request_body.c
+ngx_http_variables.h
+ngx_http_variables.c
+ngx_http_script.h
+ngx_http_script.c
+ngx_http_upstream.h
+ngx_http_upstream.c
+ngx_http_upstream_round_robin.h
+ngx_http_upstream_round_robin.c
 ngx_http_busy_lock.h ngx_http_busy_lock.c
-ngx_http_config.h
-ngx_http_cache.h
+
+ngx_http_special_response.c
+ngx_http_postpone_filter_module.c
 ngx_http_copy_filter_module.c
-ngx_http_core_module.h ngx_http_core_module.c
-ngx_http_file_cache.c
 ngx_http_header_filter_module.c
+ngx_http_write_filter_module.c
+
+ngx_http_config.h
+
+ngx_http_cache.h
+ngx_http_file_cache.c
 ngx_http_parse.c
 ngx_http_parse_time.c
-ngx_http_postpone_filter_module.c
-ngx_http_request.h ngx_http_request.c
-ngx_http_request_body.c
-ngx_http_script.h ngx_http_script.c
+
 ngx_http_spdy.h ngx_http_spdy.c
 ngx_http_spdy_filter_module.c
 ngx_http_spdy_module.h ngx_http_spdy_module.c
-ngx_http_special_response.c
-ngx_http_upstream.h ngx_http_upstream.c
-ngx_http_upstream_round_robin.h ngx_http_upstream_round_robin.c
-ngx_http_variables.h ngx_http_variables.c
-ngx_http_write_filter_module.c
+
 src/http/modules
 ngx_http_access_module.c
 ngx_http_addition_filter_module.c
@@ -2994,3 +3587,5 @@ src/mail
 src/misc
 src/os
 
+@main
+@ngx_event_accept

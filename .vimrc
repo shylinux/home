@@ -248,6 +248,8 @@ autocmd WinEnter * call SetOperationMode()
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
 inoremap df <CR>
+inoremap kl _
+inoremap sd ->
 inoremap ;; :
 inoremap -- ->
 inoremap - _
