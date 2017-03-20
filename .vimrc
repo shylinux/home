@@ -117,6 +117,7 @@ filetype indent on
 syntax on
 colorscheme mycolor
 
+source ~/.vim_local
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src
@@ -135,12 +136,9 @@ set path+=~/vpn/nginx-1.4.1/src/os/unix
 set path+=~/vpn/nginx-1.4.1/src/http/modules
 set path+=~/vpn/nginx-1.4.1/src/event/modules
 
-set path+=~/work/trunk/compile/usr/include
-set path+=~/work/trunk/compile/usr/local/include
-
 set number"{{{
 set nowrap
-set relativenumber
+"set relativenumber
 set cursorline
 set cursorcolumn
 set cc=80
