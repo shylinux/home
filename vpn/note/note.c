@@ -655,665 +655,6 @@ show databases;
 	mysql_close()
 /*}}}*/
 
-
-hub mac win
-vps vpm vpn
-
-add mod pro
-del fix opt
-
-ARM UNIX HTTP
-    c
-  sh  go
-vi  py  js
-
-make gcc gdb/*{{{*/
-库文件 头文件 源文件
-类型 变量 函数
-语句 表达式
-常量 变量 运算符 函数
-
-标识符 常量 变量
-分隔符 空白 注释
-运算符
-/*}}}*/
-gcc -c -o/*{{{*/
-
-/etc/ld.so.conf
-ldconfig
-/*}}}*/
-#include<>/*{{{*/
-#define
-#undef
-#if
-#elif
-#else
-#endif
-#ifdef
-#ifndef
-#error
-#line 123 "file"
-__LINE__ __FILE__
-__DATE__ __TIME__
-#pragma message()
-#pragma warning(once:4385)
-/*}}}*/
-// /**/ /*{{{*/
-'a' "a"
-01 0x1
-
-[] () . ->
-! ~ ++ -- + - * & sizeof
-* / %
-+ -
-<< >>
-< <= > >= 
-== !=
-& ^ |
-&& ||
-?:
-=
-,
-/*}}}*/
-
-char int float double void
-signed unsigned short long
-auto register volatile const
-
-struct union enum
-typedef sizeof
-static extern
-
-if else
-for do while
-switch case default
-break continue
-goto return
-
-C89 15/*{{{*/
-#include <math.h>/*{{{*/
-	signbit()
-	isfinite()
-	isnan()
-	isinf()
-	M_E M_LOG2E M_LOG10E M_LN2 M_LN10 M_PI M_PI_2
-	M_PI_4 M_1_PI M_2_PI M_2_SQRTPI M_SQRT2 M_SQRT1_2
-/*}}}*/
-#include <ctype.h>/*{{{*/
-	isctype()
-	isascii() toascii()
-
-	iscntrl()
-	isprint()
-		isspace()
-		isgraph()
-			ispunct()
-			isalnum()
-				isdigit()
-				isxdigit()
-				isalpha()
-					islower() toupper()
-					isupper() tolower()
-	/*}}}*/
-#include <string.h>/*{{{*/
-	memmem()
-	mempcpy()
-
-	memset()
-	memchr()
-	memcmp()
-	memcpy() memmove()
-	strcpy() strncpy()
-	strcat() strncat()
-	strlen() strnlen()
-	strcmp() strncmp()
-	strchr() strrchr()
-	strspn() strcspn()
-	strtok() strpbrk()
-	strstr()
-	stpcpy()
-
-	strcasecmp()
-	strncasecmp()
-	strerror()
-	strsignal()
-
-	strcoll()
-	strcfrm()
-	strdup()
-	strndup()
-
-	bcopy()
-	bzero()
-	bcmp()
-	index()
-	basename()
-/*}}}*/
-#include <stdlib.h>/*{{{*/
-	EXIT_SUCCESS
-	EXIT_FAILURE
-
-	atof() atoi() atol() atoll() l64a() a64l()
-	strtof() strtod() strtold() strtol() strtoul()
-	strtoll() strtoull() strtoq() strtouq()
-	random srandom() initstate() setstate()
-	malloc() calloc() realloc() free()
-	abort() atexit() exit()
-	getenv() putenv() setenv() unsetenv() clearenv()
-	system() realpath() mktemp() mkstemp()
-	bsearch() qsort() abs() div() ldiv()
-/*}}}*/
-#include <stdio.h>/*{{{*/
-	EOF
-	va_list
-	off_t ssize_t fpos_t
-	FILE stdin stdout stderr
-	SEEK_SET SEEK_CUR SEEK_END
-	remove() rename() tmpfile() tmpnam() tempnam()
-
-	fopen() fclose() freopen() fdopen() fcloseall() fmemopen()
-	fflush() setbuf() setvbuf() setbuffer() setlinebuf()
-
-	snprintf()
-	sprintf() sscanf()
-	printf() scanf()
-	fprintf() fscanf()
-	vsnprintf()
-	vsprintf() vscanf()
-	vprintf() vsscanf()
-	vfprintf() vfscanf()
-
-	ungetc()
-	getw() putw()
-	getc() putc()
-	fgetc() fputc()
-	getchar() putchar()
-	gets() puts()
-	fgets() fputs()
-
-	fread() fwrite()
-	fseek() ftell()
-	feof() ferror()
-	rewind() clearerr()
-	fgetpos() fsetpos()
-	perror() fileno()
-	popen() pclose()
-
-	scanf("%d %o %x %f %e %c %s")
-	printf("%u %d %o %x %f %e %g %c %s")
-/*}}}*/
-
-#include <errno.h>/*{{{*/
-	errno
-/*}}}*/
-#include <setjmp.h>/*{{{*/
-	jmp_buf setjmp() longjmp()
-/*}}}*/
-#include <assert.h>/*{{{*/
-	assert()
-/*}}}*/
-#include <signal.h>/*{{{*/
-	sigset_t
-	pid_t
-	uid_t
-	signal()
-	kill()
-	raise()
-	sigblock()
-	sigsetmask()
-	siggetmask()
-	sigemptyset()
-	sigfillset()
-	sigaddset()
-	sigdelset()
-	sigismember()
-	sigisemptyset()
-	sigandset()
-	sigorset()
-	sigprocmask()
-	sigsuspend()
-	sigaction()
-	sigpending()
-	sigwait()
-/*}}}*/
-
-#include <time.h>/*{{{*/
-	clock_t
-	clock()
-
-	nanosleep()
-	timer_create()
-	timer_delete()
-	timer_settime()
-	timer_gettime()
-
-	tzname
-	daylight
-
-	asctime()
-	ctime()
-
-	stime()
-	time()
-	time_t difftime()
-	mktime()
-	gmtime() localtime() timezone
-	struct tm
-	strptime()
-	strftime()
-/*}}}*/
-#include <locale.h>/*{{{*/
-	struct lconv
-	localeconv()
-/*}}}*/
-#include <limits.h>/*{{{*/
-/*}}}*/
- #include <stdarg.h>/*{{{*/
-	va_list
-	va_start()
-	va_arg()
-	va_end()
-/*}}}*/
-#include <stddef.h>/*{{{*/
-	NULL
-/*}}}*/
-#include <float.h>/*{{{*/
-/*}}}*/
-/*}}}*/
-C99 24/*{{{*/
-#include <fenv.h>
- #include <iso646.h>
-#include <wchar.h>
-#include <wctype.h>
-#include <complex.h>
-#include <tgmath.h>
-#include <inttypes.h>
-#include <stdint.h>
- #include <stdbool.h>
-
-/*}}}*/
-POSIX std 26/*{{{*/
-#include <sys/stat.h>/*{{{*/
-	#include <bits/stat.h>
-		struct stat
-
-	S_IFMT S_IFLNK
-	S_IFREG S_IFDIR
-	S_IFCHR S_IFBLK
-	S_IFIFO S_IFSOCK
-
-	S_ISUID S_ISGID S_ISVTX
-	S_IRUSR S_IWUSR S_IXUSR
-	S_IRGRP S_IWGRP S_IXGRP
-	S_IROTH S_IWOTH S_IXOTH
-
-	umask() getumask()
-	stat() fstat() lstat()
-	chmod() lchmod() fchmod()
-	mkdir() mknod() mkfifo()
-/*}}}*/
-#include <dirent.h>/*{{{*/
-	#include <bits/dirent.h>
-		struct dirent
-	DIR
-	opendir() closedir()
-	readdir() rewinddir()
-	seekdir() telldir()
-	fdopendir() dirfd()
-	scandir() alphasort()
-/*}}}*/
-#include <fcntl.h>/*{{{*/
-	#include <bits/fcntl.h>
-		O_RDONLY O_WRONLY O_RDWR
-		O_CREAT O_EXCL O_NOCTTY
-		O_TRUNC O_APPEND
-		O_NONBLOCK O_SYNC O_ASYNC
-	
-	S_IFMT S_IFLNK
-	S_IFREG S_IFDIR
-	S_IFCHR S_IFBLK
-	S_IFIFO S_IFSOCK
-
-	S_IRUSR S_IWUSR S_IXUSR
-	S_IRGRP S_IWGRP S_IXGRP
-	S_IROTH S_IWOTH S_IXOTH
-
-	open() fcntl() creat()
-
-	R_OK W_OK X_OK F_OK
-	SEEK_SET SEEK_CUR SEEK_END
-	F_ULOCK F_LOCK F_TLOCK F_TEST
-	lockf()
-/*}}}*/
-
-#include <linux/fs.h>/*{{{*/
-
-fd buf data
-files inode list
-fop cdev dev_t
-
-struct inode {
-	umode_t i_mode;
-	kuid_t i_uid;
-	kgid_t i_gid;
-	unsigned long i_ino;
-	unsigned int i_nlink;
-	dev_t i_rdev;
-	loff_t i_size;
-	struct timespec i_atime;
-	struct timespec i_mtime;
-	struct timespec i_ctime;
-	unsigned int i_blkbits;
-	blkcnt_t i_blocks;
-}
-struct file_operations {
-	llseek()
-	read()
-	write()
-	open()
-	release()
-	unlocked_iotcl()
-}
-/*}}}*/
-#include <linux/sched.h>/*{{{*/
-struct task_struct {
-	volatile long state;
-	pid_t pid;
-	pid_t tgid;
-	int exit_state;
-	int exit_code;
-	int exit_signal;
-	struct files_struct *files;
-	struct signal_struct *signal;
-}
-/*}}}*/
-
-#include <sys/wait.h>/*{{{*/
-	WTERMSIG() WIFSIGNALED()
-	WIFSTOPPED() WSTOPSIG()
-	WEXITSTATUS() WIFEXITED()
-
-	wait() waitpid()
-/*}}}*/
-#include <unistd.h>/*{{{*/
-	STDIN_FILENO
-	STDOUT_FILENO
-	STDERR_FILENO
-
-	R_OK W_OK X_OK F_OK
-	access()
-
-	SEEK_SET SEEK_CUR SEEK_END
-	lseek() close()
-	read() write()
-	pipe()
-
-	alarm() ualarm()
-	sleep() usleep()
-	pause()
-
-	chown() fchown() lchown()
-	chdir() fchdir() getcwd()
-	dup() dup2() dup3()
-	environ
-
-	execve() execv() execvp()
-	execle() execl() execlp()
-	nice() _exit()
-
-	pathconf() fpathconf()
-	sysconf() confstr()
-
-	getpid() getppid()
-	getpgrp() setpgrp()
-	getpgid() setpgid()
-	getsid() setsid()
-
-	getuid() geteuid()
-	getgid() getegid() getgroups()
-	setuid() setreuid() seteuid()
-	getgid() getregid() setegid()
-	getresuid() getresgid()
-	setresuid() setresgid()
-
-	fork() vfork()
-	ttyname() isatty()
-
-	symlink() realink()
-	link() unlink() rmdir()
-
-	tcgetpgrp() tcsetpgrp()
-
-	getlogin() setlogin()
-
-	gethostname()
-	sethostname()
-
-	vhangup() revoke()
-	profil() acct()
-	daemon() chroot() getpass()
-	sync() fsync() syncfs()
-	gethostid()
-
-	getpagesize() getdtablesize()
-	truncate() ftruncate()
-	brk() sbrk()
-	syscall()
-
-	F_ULOCK F_LOCK F_TLOCK F_TEST
-	lockf()
-	crypt() encrypt()
-	swab() ctermid()
-/*}}}*/
-
-#include <sys/socket.h>/*{{{*/
-	socket() socketpair() shutdown()
-	bind() listen() accept() connect()
-	getsockname() getpeername()
-	getsockopt() setsockopt()
-
-	send() recv()
-	sendto() recvfrom()
-	sendmsg() recvmsg()
-/*}}}*/
-#include <netinet/in.h>/*{{{*/
-	in_addr_t
-	struct in_addr
-	struct sockaddr_in
-		sin_family
-		sin_port
-		sin_addr
-			s_addr
-	INADDR_ANY
-	INADDR_LOOPBACK
-	ntohl()
-	ntohs()
-	htonl()
-	htons()
-/*}}}*/
-#include <arpa/inet.h>/*{{{*/
-	socklen_t
-	inet_addr()
-	inet_lnaof() inet_netof()
-	inet_network() inet_makeaddr()
-	inet_ntoa() inet_aton()
-	inet_pton() inet_ntop()
-/*}}}*/
-#include <netdb.h>/*{{{*/
-	struct hostent
-	sethostent() gethostent() endhostent()
-	gethostbyaddr() gethostbyname()
-/*}}}*/
-
-#include <fnmatch.h>
-#include <glob.h>
-#include <grp.h>
-#include <pwd.h>
-#include <regex.h>
-#include <tar.h>
-#include <termios.h>
-#include <utime.h>
-#include <wordexp.h>
-#include <net/if.h>
-#include <netinet/tcp.h>
-#include <sys/mman.h>
-#include <sys/select.h>
-#include <sys/times.h>
-#include <sys/types.h>
-#include <sys/un.h>
-#include <sys/utsname.h>
-/*}}}*/
-POSIX XSI 26/*{{{*/
-#include <cpio.h>
-#include <dlfcn.h>
-#include <fmtmsg.h>
-#include <ftw.h>
-#include <iconv.h>
-#include <langinfo.h>
-#include <libgen.h>
-#include <monetary.h>
-#include <nl_types.h>
-#include <poll.h>
-#include <search.h>
-#include <strings.h>
-#include <syslog.h>
-#include <ucontext.h>
-#include <ulimit.h>
-#include <utmpx.h>
-#include <sys/ipc.h>
-#include <sys/msg.h>
-#include <sys/resource.h>
-#include <sys/sem.h>
-#include <sys/shm.h>
-#include <sys/statvfs.h>
-#include <sys/time.h>
-#include <sys/timeb.h>
-#include <sys/uio.h>
- #include <ndbm.h>
-/*}}}*/
-POSIX opt 6/*{{{*/
-#include <pthread.h>/*{{{*/
-	pthread_create()
-	pthread_exit() pthread_yield()
-	pthread_join() pthread_detach()
-	pthread_self() pthread_equal()
-
-	pthread_once()
-	pthread_setcancelstate()
-	pthread_setcanceltype()
-	pthread_cancel()
-	pthread_testcancel()
-
-
-	pthread_attr_init()
-	pthread_attr_destroy()
-	pthread_attr_getdetachstate()
-	pthread_attr_setdetachstate()
-	pthread_attr_getguardsize()
-	pthread_attr_setguardsize()
-	pthread_attr_getschedparma()
-	pthread_attr_setschedparma()
-	pthread_attr_getschedpolicy()
-	pthread_attr_setschedpolicy()
-	pthread_attr_getstacksize()
-	pthread_attr_setstacksize()
-	pthread_attr_getstack()
-	pthread_attr_setstack()
-
-	pthread_mutex_init()
-	pthread_mutex_destroy()
-	pthread_mutex_trylock()
-	pthread_mutex_lock()
-	pthread_mutex_unlock()
-	pthread_mutex_timedlock()
-
-	pthread_rwlock_init()
-	pthread_rwlock_destroy()
-	pthread_rwlock_rdlock()
-	pthread_rwlock_tryrdlock()
-	pthread_rwlock_timedrdlock()
-	pthread_rwlock_wrlock()
-	pthread_rwlock_trywrlock()
-	pthread_rwlock_timedwrlock()
-	pthread_rwlock_unlock()
-
-	pthread_cond_init()
-	pthread_cond_destroy()
-	pthread_cond_signal()
-	pthread_cond_broadcast()
-	pthread_cond_wait()
-	pthread_cond_timewait()
-
-	pthread_spin_init()
-	pthread_spin_destroy()
-	pthread_spin_lock()
-	pthread_spin_trylock()
-	pthread_spin_unlock()
-/*}}}*/
-#include <semaphore.h>/*{{{*/
-	sem_init() sem_destroy()
-	sem_open() sem_close() sem_unlink()
-	sem_wait() sem_timewait() sem_trywait()
-	sem_post() sem_getvalue()
-/*}}}*/
-#include <aio.h>
-#include <mqueue.h>
-#include <sched.h>
-#include <spawn.h>
-#include <stropts.h>
- #include <trace.h>
-/*}}}*/
-
-sudo apt-get install libcurl4-openssl-dev/*{{{*/
-gcc -lcurl
-
-#include <curl/curl.h>
-	#include <curl/typecheck-gcc.h>
-		CURLOPT_URL
-		CURLOPT_WRITEDATA
-		CURLOPT_WRITEFUNCTION
-	CURL
-	curl_easy_init()
-	curl_easy_setopt()
-	curl_easy_perform()
-	curl_easy_cleanup()
-/*}}}*/
-sudo apt-get install libsqlite3-dev/*{{{*/
-gcc -lsqlite3
-#include <sqlite3.h>
-	sqlite3
-	sqlite3_stmt
-	sqlite3_open() sqlite3_exec() sqlite3_close()
-	sqlite3_get_table() sqlite3_free_table()
-	sqlite3_errcode() sqlite3_errmsg()
-	sqlite3_prepare() sqlite3_sql()
-	sqlite3_column_count()
-	sqlite3_column_name()
-	sqlite3_data_count()
-
-
-/*}}}*/
-sudo apt-get install mysql-server mysql-client mysql-client-dev/*{{{*/
-gcc -lmysqlclient
-
-show databases;
-#include <mysql/mysql.h>
-	MYSQL
-	mysql_init() mysql_real_connect()
-	mysql_query() mysql_real_query()
-	MYSQL_RES mysql_use_result() mysql_store_result()
-	MYSQL_ROW mysql_fetch_row() mysql_fetch_lengths()
-	mysql_num_fields()
-	mysql_data_seek()
-	mysql_row_seek()
-	mysql_num_rows()
-	mysql_affected_rows()
-
-	mysql_free_result()
-	mysql_close()
-/*}}}*/
-
-
 src/core/*{{{*/
 ngx_palloc.h/*{{{*/
 	ngx_pool_t
@@ -5092,18 +4433,78 @@ src/mail
 src/misc
 src/os
 
+
 ngx_modules:ngx_module_t[]*/*{{{*/
-	ngx_core_module
+	ngx_core_module:ngx_module_t/*{{{*/
+		ngx_core_module_ctx:ngx_core_module_t
+			ngx_string("core")
+			ngx_core_module_create_conf()
+				ccf:ngx_core_conf_t
+			ngx_core_module_init_conf()
+		ngx_core_commands:ngx_command_t[]
+			ngx_string("daemon")
+				ccf->daemon=ngx_flag_t
+			ngx_string("master_process")
+				ccf->master=ngx_flag_t
+			ngx_string("timer_resolution")
+				ccf->timer_resolution=ngx_msec_t
+			ngx_string("pid")
+				ccf->pid=ngx_str_t
+			ngx_string("lock_file")
+				ccf->lock_file=ngx_str_t
+			ngx_string("worker_processes") ngx_set_worker_processes()
+				ccf->worker_processes=ngx_int_t
+			ngx_string("debug_points")
+				ccf->debug_points=ngx_int_t
+			ngx_string("user") ngx_set_user()
+				ccf->user=ngx_uid_t
+				ccf->group=ngx_gid_t
+			ngx_string("worker_priority") ngx_set_priority()
+				ccf->priority=int
+			ngx_string("worker_cpu_affinity") ngx_set_cpu_affinity()
+				ccf->cpu_affinity=uint64_t*
+				ccf->cpu_affinity_n=ngx_uint_t
+			ngx_string("worker_rlimit_nofile")
+				ccf->rlimit_nofile=ngx_int_t
+			ngx_string("worker_rlimit_core")
+				ccf->rlimit_core=off_t
+			ngx_string("worker_rlimit_sigpending")
+				ccf->rlimit_sigpending=ngx_int_t
+			ngx_string("working_directory")
+				ccf->working_dirctory=ngx_str_t
+			ngx_string("env") ngx_set_env()
+				ccf->env=ngx_array_t/ngx_str_t
+/*}}}*/
 	ngx_errlog_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_conf_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_events_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_event_core_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_kqueue_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_regex_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_http_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_http_core_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_http_log_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 	ngx_http_upstream_module
+		ngx_core_module_ctx:ngx_core_module_t*
+		ngx_core_commands:ngx_command_t[]
 
 	ngx_http_static_module/*{{{*/
 		ngx_http_static_module:ngx_http_module_t
@@ -5266,7 +4667,7 @@ ngx_modules:ngx_module_t[]*/*{{{*/
 	ngx_strerror_init()
 		ngx_sys_errlist:ngx_str_t*
 		ngx_sys_errlist#malloc()
-		ngx_sys_errlist[i]=strerror()
+		ngx_sys_errlist[i]=strerror(i)
 	ngx_get_options()
 		ngx_show_version=1
 		ngx_show_help=1
@@ -5294,13 +4695,12 @@ ngx_modules:ngx_module_t[]*/*{{{*/
 	ngx_regex_init()
 		pcre_malloc=ngx_regex_malloc
 		pcre_free=ngx_regex_free
-		ngx_pid=ngx_getpid()
+	ngx_pid=ngx_getpid()
 	ngx_ssl_init()
 		OPENSSL_config()
 		SSL_libary_init()
 		SSL_load_error_strings()
 		OpenSSL_add_all_algorithms()
-
 	ngx_cycle=&init_cycle
 	init_cycle.log=ngx_log_init()
 		ngx_log.file=&ngx_log_file
@@ -5344,7 +4744,103 @@ ngx_modules:ngx_module_t[]*/*{{{*/
 			cycle->listening.elts[i].accept_filter=getsockopt()
 			cycle->listening.elts[i].deferred_accept=getsockopt()
 	ngx_max_module++
-	ngx_init_cycle()
+	cycle=ngx_init_cycle()/*{{{*/
+		ngx_timezone_update()
+		ngx_time_update()
+		cycle:ngx_cycle_t*
+		cycle=ngx_pcalloc()
+		cycle->pool=ngx_create_pool()
+		cycle->log=log
+		cycle->new_log.log_level=NGX_LOG_ERR
+		cycle->old_cycle=old_cycle
+		cycle->conf_prefix=old_cycle->conf_prefix
+		cycle->prefix=old_cycle->prefix
+		cycle->conf_file=old_cycle->conf_file
+		cycle->conf_param=old_cycle->conf_param
+		cycle->paths.elts=ngx_pcalloc(n*(ngx_path_t*))
+		cycle->open_files=ngx_list_init(n*ngx_open_file_t)
+		cycle->shared_memory=ngx_list_init(n*ngx_shm_zone_t)
+		cycle->listening.elts=ngx_list_init(n*ngx_listening_t)
+		cycle->resuable_connections_queue=ngx_queue_init()
+		cycle->conf_ctx=ngx_pcalloc(ngx_max_module*(void*))
+		cycle->hostname=gethostname()
+		cycle->conf_ctx[i]=ngx_modules[i]->ctx->create_conf()
+
+		conf:ngx_conf_t
+		conf.args=ngx_array_create(10*ngx_str_t)
+		conf.temp_pool=ngx_create_pool()
+		conf.ctx=cycle->conf_ctx
+		conf.cycle=cycle
+		conf.pool=pool
+		conf.log=log
+		conf.module_type=NGX_CORE_MODULE
+		conf.cmd_type=NGX_MAIN_CONF
+		ngx_conf_param()
+			cf->conf_file=ngx_memzero()
+			cf->conf_file->buffer=ngx_buf_t
+			cf->conf_file->buffer.pos=cycle->conf_param->data
+			ngx_conf_parse()
+		ngx_conf_parse()
+			cf->conf_file=ngx_conf_file_t
+			cf->conf_file->buffer=ngx_buf_t
+			cf->conf_file->buffer.start=ngx_alloc()
+			cf->conf_file->file.fd=ngx_open_file()
+			cf->conf_file->file.info=ngx_fd_info()
+			cf->conf_file->file.name=name
+			cf->conf_file->file.offset=0
+			cf->conf_file->file.line=1
+			ngx_conf_read_token()
+				ngx_memmove()
+				ngx_read_file()
+				ch=cf->conf_file->buffer.pos++
+				cf->conf_file->line++
+				cf->args.elts[i]=ngx_array_push()
+				cf->args.elts[i].data=ngx_pcalloc()
+			cf->handler()
+			ngx_conf_handler()
+				ngx_modules[i]->commands[j]->set()
+			ngx_free()
+			ngx_close_file()
+		ngx_modules[i]->ctx->init_conf()
+
+		ngx_create_pidfile()/*{{{*/
+			ngx_write_file(ngx_pid)
+/*}}}*/
+		ngx_test_lockfile()
+		ngx_create_paths()/*{{{*/
+			cycle->paths.elts[i]=ngx_create_dir()
+			chown() chmod()
+/*}}}*/
+		cycle->new_log.file=ngx_conf_open_file()
+		cycle->open_files.part->elts[i].fd=ngx_open_file()
+		cycle->shared_memory.part->elts[i].shm.log=log
+		ngx_shm_alloc(cycle->shared_memory.part->elts[i].shm)/*{{{*/
+			mmap()
+/*}}}*/
+		ngx_init_zone_pool(cycle->shared_memory.part->elts[i])/*{{{*/
+			ngx_shmtx_create()
+			ngx_slab_init()
+/*}}}*/
+		cycle->shared_memory.part->elts[i].init()
+		ngx_open_listening_sockets()/*{{{*/
+			cycle->listening.elts[i].fd=ngx_socket()
+			ngx_nonblocking() bind() listen()
+/*}}}*/
+		ngx_configure_listening_sockets()/*{{{*/
+			setsockopt(cycle->listening.elts[i].rcvbuf)
+			setsockopt(cycle->listening.elts[i].sndbuf)
+			setsockopt(cycle->listening.elts[i].keepalive)
+			setsockopt(cycle->listening.elts[i].keepidle)
+			setsockopt(cycle->listening.elts[i].keepintvl)
+			setsockopt(cycle->listening.elts[i].keepcnt)
+			setsockopt(cycle->listening.elts[i].baclog)
+			setsockopt(cycle->listening.elts[i].delete_deferred)
+			setsockopt(cycle->listening.elts[i].add_deferred)
+/*}}}*/
+		ngx_modules[i]->init_module()
+		ngx_temp_pool=ngx_create_pool()
+		ngx_array_push(ngx_old_cycle)
+/*}}}*/
 	ngx_signal_process()
 		ngx_os_signal_process()
 	ngx_os_status()
@@ -5353,14 +4849,11 @@ ngx_modules:ngx_module_t[]*/*{{{*/
 	ngx_init_signals()
 		sigaction(signals)
 	ngx_daemon()
-		fork()
-		setsid()
-		umask()
-		open("/dev/null")
+		fork() setsid() umask() open("/dev/null")
 	ngx_daemonized=1
 	ngx_create_pidfile()
 		ngx_write_file(ngx_pid)
-	ngx_master_process_cycle()
+	ngx_master_process_cycle()/*{{{*/
 		sigprocmask()
 		ngx_setproctitle()
 		ngx_start_worker_processes()
@@ -5374,25 +4867,126 @@ ngx_modules:ngx_module_t[]*/*{{{*/
 				ngx_write_channel()
 					sendmsg()
 		ngx_start_cache_manager_processes()
+			ngx_spawn_process()
+			ngx_pass_open_channel()
+			ngx_spawn_process()
+			ngx_pass_open_channel()
 		for(){
 			setitimer()
 			sigsuspend()
 			ngx_time_update()
+				ngx_current_msec=ngx_gettimeofday()
+				ngx_cached_err_log_time.data=
+				ngx_cached_http_time.data=
+				ngx_cached_http_log_time.data=
+				ngx_cached_http_log_iso8601.data=
+				ngx_cached_time=
 			ngx_reap_children()
+				ngx_spawn_process()
+				ngx_pass_open_channel()
 			ngx_master_process_exit()
+				ngx_delete_pidfile()
+				ngx_modules[i]->exit_master()
+				ngx_close_listening_sockets()
+				ngx_destroy_pool()
 			ngx_signal_worker_processes()
+				ngx_write_channel()
 			ngx_close_socket()
 			ngx_start_worker_processes()
 			ngx_start_cache_manager_processes()
 			ngx_init_cycle()
 			ngx_reopen_files()
+				cycle->open_files.part->elts[i].flush()
+				cycle->open_files.part->elts[i].fd=ngx_open_file()
+				ngx_file_info() chown() chmod() fcntl() ngx_close_file() dup2()
 			ngx_exec_new_binary()
+				ngx_set_environment()
+				ngx_rename_file()
+				ngx_execute()
+					ngx_spawn_process()
+						ngx_execute_proc()
+							execve()
 		}
-	ngx_single_process_cycle()
 /*}}}*/
-@ngx_signal_handler()
+	ngx_single_process_cycle()/*{{{*/
+		ngx_set_environment()
+		ngx_modules[i]->init_process()
+		for(){
+			ngx_process_events_and_timers()
+			ngx_master_process_exit()
+			ngx_init_cycle()
+			ngx_reopen_files()
+		}
+/*}}}*/
+/*}}}*/
+@ngx_signal_handler()/*{{{*/
+	ngx_time_sigsafe_update()
+		ngx_trylock(&ngx_time_lock)
+		ngx_gettimeofday() ngx_gmtime()
+		slot++
+		cached_err_log_time[slot]=ngx_sprintf()
+		ngx_unlock(&ngx_time_lock)
+	ngx_quit=1
+	ngx_terminate=1
+	ngx_noaccept=1
+	ngx_reconfigure=1
+	ngx_reopen=1
+	ngx_change_binary=1
+	ngx_sigalarm=1
+	ngx_sigio=1
+	ngx_reap=1
+	ngx_process_get_status()
+		waitpid()
+		ngx_processes[i].status=status
+		ngx_processes[i].exited=1
+		ngx_unlock_mutexes()
+		ngx_shmtx_force_unlock(&ngx_accept_mutex, pid)
+		ngx_shmtx_force_unlock(&shm_zone[i].shm.addr->mutex, pid)
+	ngx_set_errno()
+/*}}}*/
+fork() ngx_cache_manager_process_cycle()/*{{{*/
+	ngx_process=NGX_PROCESS_HELPER
+	ngx_close_listening_sockets()
+	ngx_worker_process_init()
+	ngx_setproctitle()
+	ngx_add_timer()
+	for(){
+		ngx_reopen_files()
+		ngx_process_events_and_timers()
+			ngx_process_events()
+			ngx_event_expire_timers()
+	}
+/*}}}*/
+@ngx_cache_manager_process_handler()/*{{{*/
+	ngx_cycle->paths.elts[i]->manager()
+	ngx_time_update()
+	ngx_add_timer()
+/*}}}*/
+@ngx_cache_loader_process_handler()/*{{{*/
+	ngx_cycle->paths.elts[i]->loader()
+	ngx_time_update()
+	exit(0)
+/*}}}*/
+@ngx_channel_handler()/*{{{*/
+	ngx_read_channel()
+	ngx_quit=1
+	ngx_terminate=1
+	ngx_reopen=1
+	ngx_processes[i].pid=ch.pid
+	ngx_processes[i].channel[0]=ch.fd
+/*}}}*/
 fork() ngx_worker_process_cycle()/*{{{*/
 	ngx_worker_process_init()
+		ngx_set_environment()
+		setpriority() setrlimit()
+		setgid() initgroups() setuid()
+		ngx_setaffinity()
+		prctl() chdir() sigprocmask()
+		ngx_modules[i]->init_process()
+		ngx_add_channel_event()
+			ngx_get_connection()
+			ngx_add_conn()
+			ev->handler=ngx_channel_handler
 	ngx_setproctitle()
 	for(){
 		ngx_worker_process_exit()
@@ -5414,13 +5008,12 @@ fork() ngx_worker_process_cycle()/*{{{*/
 			ngx_event_process_posted(ngx_posted_accept_events)
 				ngx_delete_posted_event()
 				ev->handler()
-			ngx_shmtx_unlock()
+			ngx_shmtx_unlock(ngx_accept_mutex)
 			ngx_event_expire_timers()
-				ngx_mutex_lock()
-				ngx_rbtree_min()
-				ngx_rbtree_delete()
-				ngx_mutex_unlock()
+				ngx_mutex_lock(ngx_event_timer_mutex)
+				ngx_rbtree_min() ngx_rbtree_delete()
 				ev->handler()
+				ngx_mutex_unlock(ngx_event_timer_mutex)
 			ngx_event_process_posted(ngx_posted_events)
 				ngx_delete_posted_event()
 				ev->handler()
@@ -5432,6 +5025,35 @@ fork() ngx_worker_process_cycle()/*{{{*/
 		ngx_reopen_files()
 			cycle->open_files.part->elts[i].flush()
 			cycle->open_files.part->elts[i].fd=ngx_open_file()
+			ngx_file_info() chown() chmod() fcntl() ngx_close_file() dup2()
 	}
 /*}}}*/
-@ngx_event_accept
+
+@ngx_event_accept()/*{{{*/
+	ngx_enable_accept_events()
+		ngx_add_event(cycle->listening.elts[i].connection->read)
+	accept()
+	ngx_stat_accepted++
+	ngx_stat_handled++
+	ngx_stat_active++
+	log=ngx_pcalloc()
+	c:ngx_connection_t*
+	c=ngx_get_connection()
+	c->pool=ngx_create_pool()
+	c->sockaddr=sa
+	c->recv=ngx_recv
+	c->send=ngx_send
+	c->recv_chain=ngx_recv_chain
+	c->send_chain=ngx_send_chain
+	c->log=log
+	c->pool->log=log
+	c->socklen=socklen
+	c->listening=ls
+	c->local_sockaddr=ls->sockaddr
+	c->read->log=log
+	c->write->log=log
+	c->number=ngx_connection_counter++
+	c->add_text=ngx_sock_ntop()
+	ngx_add_conn()
+	ls->handler()
+/*}}}*/
