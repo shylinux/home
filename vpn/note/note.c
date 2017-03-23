@@ -4475,27 +4475,192 @@ ngx_modules:ngx_module_t[]*/*{{{*/
 			ngx_string("env") ngx_set_env()
 				ccf->env=ngx_array_t/ngx_str_t
 /*}}}*/
-	ngx_errlog_module
-		ngx_core_module_ctx:ngx_core_module_t*
-		ngx_core_commands:ngx_command_t[]
-	ngx_conf_module
-		ngx_core_module_ctx:ngx_core_module_t*
-		ngx_core_commands:ngx_command_t[]
-	ngx_events_module
-		ngx_core_module_ctx:ngx_core_module_t*
-		ngx_core_commands:ngx_command_t[]
-	ngx_event_core_module
-		ngx_core_module_ctx:ngx_core_module_t*
-		ngx_core_commands:ngx_command_t[]
+	ngx_errlog_module:ngx_module_t/*{{{*/
+		ngx_errlog_module_ctx:ngx_core_module_t* 
+			ngx_string("errlog")
+		ngx_errlog_commands:ngx_command_t[]
+			ngx_string("error_log") ngx_error_log()
+				cycle->new_log.file=ngx_conf_open_file()
+				cycle->new_log.log_level=ngx_log_set_levels()
+/*}}}*/
+	ngx_conf_module:ngx_module_t/*{{{*/
+		ngx_conf_commands:ngx_command_t[]
+			ngx_string("include") ngx_conf_include()
+				ngx_conf_full_name()
+				ngx_open_glob()
+				ngx_read_glob()
+				ngx_conf_parse()
+				ngx_close_glob()
+/*}}}*/
+	ngx_events_module:ngx_module_t/*{{{*/
+		ngx_events_module_ctx:ngx_core_module_t*
+			ngx_string("events")
+			ngx_event_init_conf()
+		ngx_events_commands:ngx_command_t[]
+			ngx_string("events") ngx_events_block()
+				ngx_event_max_module++
+				*ctx=ngx_pcalloc(n*(void*))
+				ngx_modules[i]->ctx->create_conf()
+				cf->ctx=ctx
+				cf->module_type=NGX_EVENT_MODULE
+				cf->cmd_type=NGX_EVENT_CONF
+				ngx_conf_parse()
+				ngx_modules[i]->ctx->init_conf()
+/*}}}*/
+	ngx_event_core_module:ngx_module_t/*{{{*/
+		ngx_event_core_module_ctx:ngx_event_module_t*
+			ngx_string("event_core")
+			ngx_event_core_create_conf()
+				ecf:ngx_event_conf_t*
+			ngx_event_core_init_conf()
+		ngx_event_core_commands:ngx_command_t[]
+			ngx_string("worker_connections") ngx_event_connections()
+				ecf->connection=ngx_atoi()
+				cycle->connection_n=
+			ngx_string("connections") ngx_event_connections()
+			ngx_string("use") ngx_event_use()
+				ecf->use=ngx_module[m]->ctx_index
+				ecf->name=ngx_module[m]->ctx->name
+			ngx_string("multi_accept")
+				ecf->multi_accept=ngx_flag_t
+			ngx_string("accept_mutex")
+				ecf->accept_mutex=ngx_flag_t
+			ngx_string("accept_mutex_delay")
+				ecf->accept_mutex_delay=ngx_msec_t
+			ngx_string("debug_connection") ngx_event_debug_connection()
+		ngx_event_module_init()
+			ngx_timer_resolution=ccf->timer_resolution
+			shm:ngx_shm_t
+			shm:ngx_shm_alloc()
+			ngx_accept_mutex=ngx_shmtx_create()
+			ngx_connection_counter=
+		ngx_event_process_init()
+			ngx_user_accept_mutex=1
+			ngx_accept_mutex_held=0
+			ngx_accept_mutex_delay=ecf->accept_mutex_delay
+			ngx_event_timer_init()
+			ngx_module[i]->ctx->actions.init()
+			sa:struct sigaction
+			sa.sa_handler=ngx_timer_signal_handler
+			sigaction() setitimer()
+
+			cycle->files_n=getrlimit()
+			cycle->files=ngx_calloc(n*(ngx_connection_t*))
+			cycle->connections=ngx_calloc(n*(ngx_connection_t*))
+			cycle->read_events=ngx_calloc(n*(ngx_event_t*))
+			cycle->write_events=ngx_calloc(n*(ngx_event_t*))
+			cycle->free_connections=next
+			cycle->free_connection_n=n
+
+			c=ngx_get_connection()
+			c->log=cycle->listening.elts[i].log
+			c->listening=&cycle->listening.elts[i]
+			c->read->log=c->log
+			c->read->accept=1
+			c->read->handler=ngx_event_accept
+			ngx_add_event()
+/*}}}*/
 	ngx_kqueue_module
 		ngx_core_module_ctx:ngx_core_module_t*
 		ngx_core_commands:ngx_command_t[]
 	ngx_regex_module
 		ngx_core_module_ctx:ngx_core_module_t*
 		ngx_core_commands:ngx_command_t[]
-	ngx_http_module
-		ngx_core_module_ctx:ngx_core_module_t*
-		ngx_core_commands:ngx_command_t[]
+	ngx_http_module:ngx_module_t
+		ngx_http_module_ctx:ngx_core_module_t*
+			ngx_string("http")
+		ngx_http_commands:ngx_command_t[]
+			ngx_string("http") ngx_http_block()
+				ngx_pcalloc()
+				ctx:ngx_http_conf_ctx_t*
+				ngx_http_max_module++
+				ctx->main_conf=ngx_pcalloc()
+				ctx->srv_conf=ngx_pcalloc()
+				ctx->loc_conf=ngx_pcalloc()
+				ngx_modules[i]->ctx->create_main_conf()
+				ngx_modules[i]->ctx->create_srv_conf()
+				ngx_modules[i]->ctx->create_loc_conf()
+				ngx_modules[i]->ctx->preconfiguration()
+				cf->ctx=ctx
+				cf->module_type=NGX_HTTP_MODULE
+				cf->cmd_type=NGX_HTTP_MAIN_CONF
+				ngx_conf_parse()
+				ngx_modules[i]->ctx->init_main_conf()
+				ngx_http_merge_servers()
+					ngx_modules[i]->ctx->merge_srv_conf()
+					ngx_modules[i]->ctx->merge_loc_conf()
+					ngx_http_merge_locations()
+						ngx_modules[i]->ctx->merge_loc_conf()
+						ngx_http_merge_locations()
+				ngx_http_init_locations()
+					ngx_queue_sort()
+					cscf->named_locations=
+					cscf->regex_locations=
+				ngx_http_init_static_location_trees()
+					ngx_http_init_static_location_trees()
+					ngx_http_join_exact_locations()
+					ngx_http_create_locations_list()
+					ngx_http_create_locations_tree()
+				ngx_http_init_phases()
+					ngx_array_init(cmcf->phases[].handlers)
+				ngx_http_init_headers_in_hash()
+					ngx_hash_init(cmcf->headers_in_hash)
+				ngx_modules[i]->ctx->postconfiguration()
+				ngx_http_variables_init_vars()
+				ngx_http_init_phase_handlers()
+					cmcf->phase_engine.server_rewrite_index=
+					cmcf->phase_engine.location_rewrite_index=
+					cmcf->phase_engine.handlers[i].checker=
+					cmcf->phase_engine.handlers[i].handler=
+					cmcf->phase_engine.handlers[i].next=
+					NGX_HTTP_POST_READ_PHASE
+					ngx_http_core_generic_phase()
+					NGX_HTTP_SERVER_REWRITE_PHASE
+					ngx_http_core_rewrite_phase()
+
+					NGX_HTTP_FIND_CONFIG_PHASE
+					ngx_http_core_find_config_phase()
+					NGX_HTTP_REWRITE_PHASE
+					ngx_http_core_rewrite_phase()
+					NGX_HTTP_POST_REWRITE_PHASE
+					ngx_http_core_post_rewrite_phase()
+
+					NGX_HTTP_PREACCESS_PHASE
+					ngx_http_core_generic_phase()
+					NGX_HTTP_ACCESS_PHASE
+					ngx_http_core_access_phase()
+					NGX_HTTP_POST_ACCESS_PHASE
+					ngx_http_core_post_access_phase()
+
+					NGX_HTTP_TRY_FILES_PHASE
+					ngx_http_core_try_files_phase()
+					NGX_HTTP_CONTENT_PHASE
+					ngx_http_core_content_phase()
+					NGX_HTTP_LOG_PHASE
+					ngx_http_core_generic_phase()
+				ngx_http_optimize_servers()
+					ngx_sort()
+					ngx_http_server_names()
+						ngx_hash_init()
+						ngx_hash_wildcard_init()
+					ngx_http_init_listening()
+						ngx_http_add_listening()
+							ngx_create_listening()
+							ls:ngx_listening_t*
+							ls->handler=ngx_http_init_connection
+							ls->log.handler
+							ls->back_log
+							ls->rcvbuf
+							ls->sndbuf
+							ls->keepalive
+							ls->keepidle
+							ls->keepintvl
+							ls->keepcnt
+							ls->accept_filter
+							ls->deferred_accept
+							ls->setfib
+						ngx_http_add_addrs()
+
 	ngx_http_core_module
 		ngx_core_module_ctx:ngx_core_module_t*
 		ngx_core_commands:ngx_command_t[]
@@ -5029,6 +5194,7 @@ fork() ngx_worker_process_cycle()/*{{{*/
 	}
 /*}}}*/
 
+@ngx_timer_signal_handler()
 @ngx_event_accept()/*{{{*/
 	ngx_enable_accept_events()
 		ngx_add_event(cycle->listening.elts[i].connection->read)
