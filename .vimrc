@@ -10,9 +10,87 @@ Bundle 'gmarik/vundle'
 "BundleInstall
 "BundleClean
 
+Bundle 'fatih/vim-go'
 Bundle 'matrix.vim--Yang'
-"Matrix
+Bundle 'scrooloose/syntastic'
+Bundle 'ShowTrailingWhitespace'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'evanmiller/nginx-vim-syntax'
+Bundle 'jelera/vim-javascript-syntax'
 
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'easymotion/vim-easymotion'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'jlanzarotta/bufexplorer'
+Bundle 'tpope/vim-surround'
+Bundle 'godlygeek/tabular'
+Bundle 'kien/ctrlp.vim'
+Bundle 'snipMate'
+Bundle 'mru.vim'
+Bundle 'mark'
+Bundle 'vim-scripts/grep.vim'
+Bundle 'vim-scripts/vim-misc'
+Bundle 'vim-scripts/vim-compile'
+Bundle 'vim-scripts/notes.vim'
+
+Bundle 'a.vim'
+Bundle 'genutils'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'vim-scripts/easygrep'
+Bundle 'vim-scripts/tComment'
+Bundle 'mbbill/echofunc'
+"Bundle 'bufexplorer.zip'
+"Bundle 'snipMate.zip'
+"Bundle 'majutsushi/tagbar'
+"Bundle 'lookupfile'
+"let g:LookupFile_MinPatLength = 2
+"let g:LookupFile_TagExpr='"./tags.filename"'
+
+Bundle 'OmniCppComplete'
+let g:OmniCpp_DefaultNamespaces=["std"]
+let g:OmniCpp_MayCompleteScope=1
+let g:OmniCpp_SelectFirstItem=2
+
+Bundle 'The-NERD-tree'
+let g:NERDTreeWinPos="right"
+let g:NERDTreeWinSize=35
+let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeQuitOnOpen=1
+
+Bundle 'Lokaltog/vim-powerline.git'
+set t_Co=256
+set laststatus=2
+let g:Powerline_symbols='unicode'
+
+" Bundle 'tagbar'
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',  
+    \ 'kind2scope' : {  
+        \ 't' : 'ctype',  
+        \ 'n' : 'ntype'  
+    \ },  
+    \ 'scope2kind' : {  
+        \ 'ctype' : 't',  
+        \ 'ntype' : 'n'  
+    \ },  
+    \ 'ctagsbin'  : 'gotags',  
+    \ 'ctagsargs' : '-sort -silent'  
+\ }  
 
 "sudo apt-get install linux-source
 "sudo apt-get install exuberant-ctags
@@ -31,71 +109,6 @@ else
 	let g:Tlist_Auto_Highlight_Tag=1
 
 endif
-"Bundle 'majutsushi/tagbar'
-Bundle 'Lokaltog/vim-powerline.git'
-set t_Co=256
-set laststatus=2
-let g:Powerline_symbols='unicode'
-
-Bundle 'OmniCppComplete'
-let g:OmniCpp_DefaultNamespaces=["std"]
-let g:OmniCpp_MayCompleteScope=1
-let g:OmniCpp_SelectFirstItem=2
-
-"Bundle 'mbbill/echofunc'
-
-"Bundle 'snipMate.zip'
-
-Bundle 'snipMate'
-
-Bundle 'genutils'
-
-Bundle 'lookupfile'
-let g:LookupFile_MinPatLength = 2
-let g:LookupFile_TagExpr='"./tags.filename"'
-
-Bundle 'The-NERD-tree'
-let g:NERDTreeWinPos="right"
-let g:NERDTreeWinSize=35
-let g:NERDTreeShowLineNumbers=1
-let g:NERDTreeQuitOnOpen=1
-
-Bundle 'mru.vim'
-
-Bundle 'bufexplorer.zip'
-
-Bundle 'mark'
-
-Bundle 'fatih/vim-go'
-Bundle 'tagbar'
-let g:tagbar_type_go = {  
-    \ 'ctagstype' : 'go',  
-    \ 'kinds'     : [  
-        \ 'p:package',  
-        \ 'i:imports:1',  
-        \ 'c:constants',  
-        \ 'v:variables',  
-        \ 't:types',  
-        \ 'n:interfaces',  
-        \ 'w:fields',  
-        \ 'e:embedded',  
-        \ 'm:methods',  
-        \ 'r:constructor',  
-        \ 'f:functions'  
-    \ ],  
-    \ 'sro' : '.',  
-    \ 'kind2scope' : {  
-        \ 't' : 'ctype',  
-        \ 'n' : 'ntype'  
-    \ },  
-    \ 'scope2kind' : {  
-        \ 'ctype' : 't',  
-        \ 'ntype' : 'n'  
-    \ },  
-    \ 'ctagsbin'  : 'gotags',  
-    \ 'ctagsargs' : '-sort -silent'  
-\ }  
-Bundle 'a.vim'
 "}}}
 
 "sudo apt-get install cscope"{{{
@@ -301,6 +314,7 @@ endfunction
 nnoremap <F2> :TlistToggle<CR>
 nnoremap <F3> :MRU<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
+nnoremap <F5> :CtrlP .<CR>
 
 nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.js **/*.html **/*.go **/*.h **/*.sh **/*.vim **/*.php <cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
