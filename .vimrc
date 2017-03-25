@@ -20,9 +20,6 @@ Bundle 'ShowTrailingWhitespace'
 Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'jelera/vim-javascript-syntax'
 
-" Bundle 'Valloric/YouCompleteMe.vim'
-Bundle 'Valloric/YouCompleteMe'
-
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'scrooloose/nerdcommenter'
@@ -32,44 +29,41 @@ Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/vim-misc'
 Bundle 'tpope/vim-surround'
 Bundle 'godlygeek/tabular'
+Bundle 'mbbill/echofunc'
 Bundle 'kien/ctrlp.vim'
+Bundle 'genutils'
 Bundle 'snipMate'
 Bundle 'mru.vim'
 Bundle 'a.vim'
 Bundle 'mark'
 
-Bundle 'genutils'
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-scripts/easygrep'
 Bundle 'vim-scripts/tComment'
-Bundle 'mbbill/echofunc'
-"Bundle 'bufexplorer.zip'
-"Bundle 'snipMate.zip'
-"Bundle 'majutsushi/tagbar'
+
 "Bundle 'lookupfile'
 "let g:LookupFile_MinPatLength = 2
 "let g:LookupFile_TagExpr='"./tags.filename"'
 
-" Bundle 'OmniCppComplete'
-" let g:OmniCpp_DefaultNamespaces=["std"]
-" let g:OmniCpp_MayCompleteScope=1
-" let g:OmniCpp_SelectFirstItem=2
-"
-let g:ycm_server_python_interpreter='/usr/bin/python'
-let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+" Bundle 'Valloric/YouCompleteMe'
+" let g:ycm_server_python_interpreter='/usr/bin/python'
+" let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+
+Bundle 'OmniCppComplete'
+let g:OmniCpp_DefaultNamespaces=["std"]
+let g:OmniCpp_MayCompleteScope=1
+let g:OmniCpp_SelectFirstItem=2
 
 Bundle 'The-NERD-tree'
 let g:NERDTreeWinPos="right"
 let g:NERDTreeWinSize=35
-let g:NERDTreeShowLineNumbers=1
-let g:NERDTreeQuitOnOpen=1
 
 Bundle 'Lokaltog/vim-powerline.git'
 set t_Co=256
 set laststatus=2
 let g:Powerline_symbols='unicode'
 
-" Bundle 'tagbar'
+Bundle 'majutsushi/tagbar'
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
