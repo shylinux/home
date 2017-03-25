@@ -20,8 +20,10 @@ Bundle 'ShowTrailingWhitespace'
 Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'jelera/vim-javascript-syntax'
 
+" Bundle 'Valloric/YouCompleteMe.vim'
+Bundle 'Valloric/YouCompleteMe'
+
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'Valloric/YouCompleteMe.vim'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/vim-compile'
@@ -48,10 +50,13 @@ Bundle 'mbbill/echofunc'
 "let g:LookupFile_MinPatLength = 2
 "let g:LookupFile_TagExpr='"./tags.filename"'
 
-Bundle 'OmniCppComplete'
-let g:OmniCpp_DefaultNamespaces=["std"]
-let g:OmniCpp_MayCompleteScope=1
-let g:OmniCpp_SelectFirstItem=2
+" Bundle 'OmniCppComplete'
+" let g:OmniCpp_DefaultNamespaces=["std"]
+" let g:OmniCpp_MayCompleteScope=1
+" let g:OmniCpp_SelectFirstItem=2
+"
+let g:ycm_server_python_interpreter='/usr/bin/python'
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
 
 Bundle 'The-NERD-tree'
 let g:NERDTreeWinPos="right"
