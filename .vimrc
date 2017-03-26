@@ -10,32 +10,31 @@ Bundle 'gmarik/vundle'
 "BundleInstall
 "BundleClean
 
-Bundle 'fatih/vim-go'
-Bundle 'matrix.vim--Yang'
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/notes.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'ShowTrailingWhitespace'
-Bundle 'evanmiller/nginx-vim-syntax'
-Bundle 'jelera/vim-javascript-syntax'
-
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'vim-scripts/vim-compile'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'vim-scripts/grep.vim'
-Bundle 'vim-scripts/vim-misc'
-Bundle 'tpope/vim-surround'
-Bundle 'godlygeek/tabular'
-Bundle 'mbbill/echofunc'
-Bundle 'kien/ctrlp.vim'
-Bundle 'genutils'
-Bundle 'snipMate'
-Bundle 'mru.vim'
-Bundle 'a.vim'
 Bundle 'mark'
+Bundle 'a.vim'
+Bundle 'mru.vim'
+Bundle 'snipMate'
+Bundle 'genutils'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mbbill/echofunc'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/vim-misc'
+Bundle 'vim-scripts/grep.vim'
+Bundle 'jlanzarotta/bufexplorer'
+Bundle 'vim-scripts/vim-compile'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'easymotion/vim-easymotion'
+Bundle 'terryma/vim-multiple-cursors'
+
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'evanmiller/nginx-vim-syntax'
+Bundle 'ShowTrailingWhitespace'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'vim-scripts/notes.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
+Bundle 'matrix.vim--Yang'
+Bundle 'fatih/vim-go'
 
 Bundle 'tpope/vim-endwise'
 Bundle 'vim-scripts/easygrep'
@@ -260,11 +259,10 @@ inoremap jk <Esc>"{{{
 cnoremap jk <CR>
 inoremap df <CR>
 inoremap kl _
+cnoremap kl _
+inoremap KL _
 inoremap sd ->
 inoremap ;; :
-inoremap -- ->
-inoremap - _
-inoremap _ -
 inoremap 7 &
 inoremap & 7
 inoremap 8 *
