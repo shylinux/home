@@ -16,12 +16,12 @@ Bundle 'mru.vim'
 Bundle 'snipMate'
 Bundle 'genutils'
 Bundle 'kien/ctrlp.vim'
-Bundle 'mbbill/echofunc'
+" Bundle 'mbbill/echofunc'
 Bundle 'goodlygeek/tabular'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/vim-misc'
 Bundle 'vim-scripts/grep.vim'
-Bundle 'jlanzarotta/bufexplorer'
+" Bundle 'jlanzarotta/bufexplorer'
 Bundle 'vim-scripts/vim-compile'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'easymotion/vim-easymotion'
@@ -79,18 +79,18 @@ let g:tagbar_type_go = {
         \ 'r:constructor',
         \ 'f:functions'
     \ ],
-    \ 'sro' : '.',  
-    \ 'kind2scope' : {  
-        \ 't' : 'ctype',  
-        \ 'n' : 'ntype'  
-    \ },  
-    \ 'scope2kind' : {  
-        \ 'ctype' : 't',  
-        \ 'ntype' : 'n'  
-    \ },  
-    \ 'ctagsbin'  : 'gotags',  
-    \ 'ctagsargs' : '-sort -silent'  
-\ }  
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 "sudo apt-get install linux-source
 "sudo apt-get install exuberant-ctags
@@ -125,10 +125,11 @@ endif
 "}}}
 
 filetype on
-filetype plugin on 
+filetype plugin on
 filetype indent on
 syntax on
 colorscheme mycolor
+let mapleader=";"
 
 source ~/.vim_local
 
@@ -200,7 +201,7 @@ autocmd BufReadPost *
 
 "}}}
 
-fun SetOperationMode() "{{{
+fun! SetOperationMode() "{{{
 	if exists("w:OperationMode") && w:OperationMode == 1
 		nnoremap <Space> <C-F>
 		nnoremap f <C-F>
@@ -244,7 +245,7 @@ fun SetOperationMode() "{{{
 	endif
 endfun
 
-fun ChangeOperationMode()
+fun! ChangeOperationMode()
 	if !exists("w:OperationMode") || w:OperationMode == 0
 		let w:OperationMode = 1
 	else
@@ -259,11 +260,6 @@ autocmd WinEnter * call SetOperationMode()
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
 inoremap df <CR>
-nmap w ;;w
-nmap b ;;b
-nmap e ;;e
-nmap f ;;f
-nmap F ;;F
 inoremap kl _
 cnoremap kl _
 inoremap KL _
@@ -289,7 +285,6 @@ nnoremap k gk
 "nnoremap <C-M> <C-W>\|<C-W>_
 "nnoremap <C-N> <C-W>=
 "nnoremap <C-P> <C-W>p
-let mapleader=";"
 "nnoremap <Leader>b <Leader>be
 
 cnoremap w!! w !sudo tee %<CR>
@@ -299,6 +294,17 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <Space> :
+
+nmap w <Leader><Leader>w
+nmap W <Leader><Leader>W
+nmap e <Leader><Leader>e
+nmap E <Leader><Leader>E
+nmap b <Leader><Leader>b
+nmap B <Leader><Leader>B
+nmap f <Leader><Leader>f
+nmap F <Leader><Leader>F
+nmap t <Leader><Leader>t
+nmap T <Leader><Leader>T
 
 function! RunShell(Msg, Shell)
 	echo a:Msg . '...'
@@ -316,19 +322,19 @@ function! GenarateTags()
 endfunction
 
 nnoremap <F2> :TlistToggle<CR>
+autocmd BufNewFile,BufReadPost  *.go nnoremap <F2> :TagbarToggle<CR>
 nnoremap <F3> :MRU<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
-nnoremap <F5> :CtrlP .<CR>
 
+nnoremap <F5> :CtrlP .<CR>
 nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.js **/*.html **/*.go **/*.h **/*.sh **/*.vim **/*.php <cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <F10> :call GenarateTags()<cr>
+
 "nnoremap <F9> :call RunShell("Generate cscope", "cscope -Rbq")<cr>:cs add cscope.out<cr>
 "nnoremap <F10> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
 "nnoremap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
 "nnoremap <F12> :call HLUDSync()<cr>
+nnoremap <F10> :call GenarateTags()<cr>
 nnoremap <F12> :call GenarateTags()<cr>
-
-autocmd BufNewFile,BufReadPost  *.go nnoremap <F2> :TagbarToggle<CR>
 "}}}
