@@ -17,6 +17,7 @@ Bundle 'snipMate'
 Bundle 'genutils'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mbbill/echofunc'
+Bundle 'goodlygeek/tabular'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/vim-misc'
 Bundle 'vim-scripts/grep.vim'
@@ -258,6 +259,11 @@ autocmd WinEnter * call SetOperationMode()
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
 inoremap df <CR>
+nmap w ;;w
+nmap b ;;b
+nmap e ;;e
+nmap f ;;f
+nmap F ;;F
 inoremap kl _
 cnoremap kl _
 inoremap KL _
