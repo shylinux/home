@@ -16,12 +16,10 @@ Bundle 'mru.vim'
 Bundle 'snipMate'
 Bundle 'genutils'
 Bundle 'kien/ctrlp.vim'
-" Bundle 'mbbill/echofunc'
 Bundle 'goodlygeek/tabular'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/vim-misc'
 Bundle 'vim-scripts/grep.vim'
-" Bundle 'jlanzarotta/bufexplorer'
 Bundle 'vim-scripts/vim-compile'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'easymotion/vim-easymotion'
@@ -34,10 +32,14 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'vim-scripts/notes.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-endwise'
 Bundle 'matrix.vim--Yang'
 Bundle 'fatih/vim-go'
 
-Bundle 'tpope/vim-endwise'
+if version > 703
+	Bundle 'jlanzarotta/bufexplorer'
+	Bundle 'mbbill/echofunc'
+endif
 Bundle 'vim-scripts/easygrep'
 Bundle 'vim-scripts/tComment'
 
@@ -109,9 +111,8 @@ else
 	let g:Tlist_Auto_Highlight_Tag=1
 
 endif
-"}}}
 
-"sudo apt-get install cscope"{{{
+"sudo apt-get install cscope
 "sudo cscope -Rbq
 if has("cscope")
 	set csto=1
@@ -124,7 +125,7 @@ if has("cscope")
 endif
 "}}}
 
-filetype on
+filetype on "{{{
 filetype plugin on
 filetype indent on
 syntax on
@@ -132,6 +133,10 @@ colorscheme mycolor
 let mapleader=";"
 
 source ~/.vim_local
+command Mat execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx"
+command Proxy execute "!curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
+
+command MP execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src
@@ -149,7 +154,7 @@ set path+=~/vpn/nginx-1.4.1/src/os
 set path+=~/vpn/nginx-1.4.1/src/os/unix
 set path+=~/vpn/nginx-1.4.1/src/http/modules
 set path+=~/vpn/nginx-1.4.1/src/event/modules
-
+"}}}
 set number"{{{
 set nowrap
 "set relativenumber
@@ -256,7 +261,6 @@ endfun
 nnoremap -- :call ChangeOperationMode()<CR>
 autocmd WinEnter * call SetOperationMode()
 "}}}
-
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
 inoremap df <CR>
