@@ -133,10 +133,13 @@ colorscheme mycolor
 let mapleader=";"
 
 source ~/.vim_local
-command Mat execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx"
-command Proxy execute "!curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
+command! SL source ~/.vim_local
+command! SV source ~/.vimrc
 
-command MP execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
+command! Mat execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx"
+command! Proxy execute "!curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
+command! MP execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
+command! ME execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/shylinux.com/80/he.html"
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src
@@ -263,10 +266,13 @@ autocmd WinEnter * call SetOperationMode()
 "}}}
 inoremap jk <Esc>"{{{
 cnoremap jk <CR>
+inoremap JK <Esc>
+cnoremap JK <CR>
 inoremap df <CR>
 inoremap kl _
 cnoremap kl _
 inoremap KL _
+cnoremap KL _
 inoremap sd ->
 inoremap ;; :
 inoremap 7 &
