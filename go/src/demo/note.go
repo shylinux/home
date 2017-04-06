@@ -1,911 +1,470 @@
-     c
-   sh go
-  vi py js
+c
+sh go
+vi py js
+
 ARM Linux HTTP
 
-$GOROOT $GOPATH $GOBIN $GOARCH $GOOS// {{{
-help version env run tool
-get list doc fmt fix vet
-build test install clean
-// }}}
-help version init// {{{
-add commit rm mv checkout
-log status grep diff reset
-tag branch merge rebase show
-clone remote fetch pull push
-// }}}
-// /* */
-package import type var const func
-func init() {}
-func main() {}
-'' "" ``// {{{
-nil true false iota
+version help env run
+list get doc fmt fix vet
+tool build test clean install
+
+diff patch
+
+version help
+config clone init
+status diff add mv rm
+commit reset checkout
+branch merge tag log
+remote fetch pull push
+bisect blame grep show
+rebase stash mergetool
+reflog prune fsck
+git svn clone
+git svn fetch
+git svn rebase
+git svn dcommit
+
+ls-files
+ls-tree
+ls-remote
+cat-file
+
+
+package import type const var func
+'' "" ``
+nil iota true false
 int int8 int16 int32 int64
 uint uint8 uint16 uint32 uint64
 float32 float64 complex64 complex128
-uintptr byte string rune bool error
+uintptr byte string rune error bool
 * [...] ... [] map[] chan
-struct{} interface{} func(){}
-// }}}
-_, := , <-// {{{
+struct{} interface{} func() {}
+
+_, := , <-
 {:,:} [:] () . ->
-& * + - ! ^
-* / % + -
-<< >> & | ^
-> >= < <= != ==
-&& ||
-...
 complex() real() imag()
 new() make() delete() close()
 len() cap() append() copy()
 print() println()
-// }}}
-if exp {} else {}// {{{
-if exp; exp {} else {}
+
+if exp; exp {}
+if exp {} else {}
 for {break}
 for exp {continue}
 for exp; exp; exp {}
-for k, v := range l {}
+for k, v := range a {}
 switch {case exp: fallthrough}
-switch exp {case exp: default:}
-switch t := x.(type) {case int:}
+switch exp {case exp: default}
+switch t := v.(type) {case int:}
 return goto defer recover() panic()
 go select {case <-:}
-// }}}
-os time path flag log runtime sync expvar
-io bytes bufio fmt net mime text html image
-math sort container hash crypto database index
+
+os flag log path time runtime sync expvar
+io fmt bytes bufio net mime text html image
+math container sort hash crypto database index
 unicode strings strconv regexp encoding archive compress
-go internal syscall unsafe errors testing debug reflect
-os// {{{// {{{// {{{
-	Getenv() Setenv() Unsetenv() LookupEnv()
-	Environ() Clearenv() ExpandEnv() Expand()
-	Getwd() Chdir() TempDir() Hostname() Getpagesize()
-	Getuid() Geteuid() Getgid() Getegid() Getgroups()
-	Getpid() Getppid() Args[] Exit() Stdin Stdout Stderr
-	Process{} StartProcess() FindProcess()
-		ProcessState{} Wait() Kill() Signal() Release()
-			Exited() Success() Pid() String()
-			Sys() SysUsage() SystemTime() UserTime()
+go internal syscall unsafe errors debug testing reflect
+
+os// {{{
+	O_RDONLY O_WRONLY O_RDWR
+	O_APPEND O_TRUNCATE
+	O_CREATE O_EXCL O_SYNC
+
+	SEEK_SET SEEK_CUR SEEK_END
+
+	PathSeparator PathListSeparator DevNull
+
+	ModeAppend ModeExclusive ModeTemporary
+	ModeDir ModeSymlink
+	ModeNamedPipe ModeSocket
+	ModeSetuid ModeSetgid ModeSticky
+	ModeDevice ModeCharDevice
+	ModeType ModePerm
 
 	ErrInvalid ErrPermission ErrExist ErrNotExist
-	SyscallError{} LinkError{} PathError{} NewSyscallError()
-	ProcAttr{} Signal{} Interrupt Kill
 
-	O_RDONLY O_WRONLY O_RDWR O_SYNC
-	O_APPEND O_TRUNC O_CREATE O_EXCL
-	SEEK_SET SEEK_CUR SEEK_END
-	PathSeparator PathListSeparator
-	DevNull ModeDir
+	TempDir() Mkdir() MkdirAll() Remove() RemoveAll()
+	File{} Open() OpenFile() Create() Pipe() NewFile()
+	FileInfo{} Lstat() Stat() SameFile() Chown() Chmod() Chtimes()
+	Link() Rename() Truncate() Symlink() Readlink() Lchown()
 
-	IsExist() IsNotExist() IsPathSeparator() IsPermission()
-	Create() Mkdir() MkdirAll() Remove() RemoveAll()
-	Chown() Lchown() Chmod() Chtimes() Truncate()
-	Rename() Link() Symlink() Readlink()
-	FileInfo{} Stat() Lstat() SameFile()
-		Name() Size() ModTime() IsDir()
-		Mode() FileMode{}
-			IsDir() IsRegular() Perm() String()
-	File{} Open() Pipe() NewFile() OpenFile()
-		Chown() Chmod() Chdir() Truncate()
-		Name() Fd() Stat() Seek() Sync() Close()
-		Read() ReadAt() Readdir() Readdirnames()
-		Write() WriteAt() WriteString()
-// }}}
-os/exec// {{{
-	LookPath()
-	Command() Cmd{}
-		Output() CombinedOutput()
-		StderrPipe() StdinPipe() StdoutPipe()
-		Run() Start() Wait()
-// }}}
-os/signal// {{{
-	Ignore() Reset() Notify() Stop()
-// }}}
-os/user// {{{
-	User{} Current() Lookup() LookupId()
-		Uid Gid Username Name HomeDir
-// }}}
-// }}}
-time// {{{
-	ANSIC RFC1124 Local UTC ParseError{}
-	Month{} January February March April May June July August September October November December
-	Weekday{} Sunday Monday Tuesday Wednesday Thursday Friday Saturday
-	Duration{} Nanosecond Microsecond Millsecond Second Minute Hour
+	LinkError{} PathError{}
+	IsExist() IsNotExist() Ispermission() IsPathSeparator()
 
-	Time{} Now() Unix() Date() Parse() ParseInLocation()
-		Unix() UnixNano() Date() Clock() String()
-		Year() Month() Day() YearDay() Weekday()
-		Hour() Minute() Second() Nanosecond()
-		Location() In() Zone() Local() UTC()
+	Expand() ExpandEnv()
+	Getwd() Chdir() Getpagesize() Hostname()
+	Environ() Clearenv() Getenv() Setenv() UnsetEnv() LookupEnv()
+	SyscallError{} NewSyscallError()
 
-		Add() AddDate() Sub() Round() Truncate()
-		After() Before() Equal() IsZero()
-		AppendFormat() Format() ISOWeek()
-		GobDecode() GobEncode()
-		MarshalBinary() MarshalJSON() MarshalText()
-		UnMarshalBinary() UnMarshalJSON() UnMarshalText()
-	Duration{} Since() ParseDuration()
-		String() Hours() Minutes() Seconds() NanoSeconds()
-	Location{} FixedZone() LoadLocation()
-	Ticker{} NewTicker()
-		Stop()
-	Timer{} NewTimer()
-		Stop() Reset()
-	Sleep() Tick() After() AfterFunc()
-// }}}
-path// {{{// {{{
-	Clean() Base() Dir() Ext()
-	IsAbs() Match() Join() Split()
-// }}}
-path/filepath// {{{
-	Walk()
-	FromSlash() ToSlash() Rel() HasPrefix()
-	VolumeName() Glob() SplitList() EvalSymlinks()
-// }}}
+	Args[] Stdin Stdout Stderr Exit()
+	Getpid() Getppid() Getuid() Geteuid() Getgid() Getegid() Getgroups()
+	Process{} FindProcess() StartProcess() ProcAttr{} Signal{} ProcessState{}
 // }}}
 flag// {{{
-	PrintDefaults() Var() NewFlagSet()
-	Parse() Parsed() NFlag() NArg() Arg() Args()
-	Set() Lookup() UnquoteUsage() Visit() VisitAll()
-	String() Bool() Int() Uint() Duration() Int64() Uint64() Float64()
-	IntVar() BoolVar() DurationVar() Float64Var() Int64Var() StringVar() UintVar() Uint64Var()
+	Parse() Parsed() Arg() Args() NArg() NFlag() Set() NewFlagSet()
+	Visit() VisitAll() PrintDefaults() Lookup() UnquoteUsage()
+	Var() Int() Uint() Int64() Uint64() Float64() String() Bool() Duration()
+	IntVar() UintVar() Int64Var() Uint64Var() Float64Var() StringVar() BoolVar() DurationVar()
 // }}}
-log// {{{// {{{
+log// {{{
 	Print() Println() Printf()
 	Fatal() Fatalln() Fatalf()
 	Panic() Panicln() Panicf()
-	SetOutput() SetPrefix() SetFlags()
-	Output() Prefix() Flags()
-	New()
+	Flags() Output() Prefix()
+	SetFlags() SetOutput() SetPrefix()
+	Logger{} New()
+	Ldate Ltime LstdFlags
+	Lmicroseconds LUTC
+	Llongfile Lshortfile
 // }}}
-log/syslog// {{{
-	New() NewLogger() Dial()
-	// }}}
+path// {{{
+	Dir() Base() Ext()
+	Join() Split()
+	IsAbs() Match() Clean()
+// }}}
+time// {{{
+	ANSIC
+	Duration{} Nanosecond Microsecond Millisecond Second Minute Hour
+	Month{} January February March April May June July August September October November December
+	Weekday{} Sunday Monday Tuesday Wednesday Tursday Friday Saturday
+
+	Time{} Now() Date() Unix() Parse() ParseInLocation()
+	Duration{} Since() ParseDuration()
+		Hours() Minutes() Seconds() Nanoseconds() String()
+	Timer{} NewTimer() AfterFunc()
+		C Reset() Stop()
+	Ticker{} NewTicker()
+		C Stop()
+	Local UTC Location{} LoadLocation() FixedZone()
+	Sleep() After() Tick()
+	ParseError{}
 // }}}
 runtime// {{{
-	GOROOT() Version() Compiler NumCgoCall()
-	GOARCH GOOS NumCPU() NumGoroutine()
-	Stack() Caller() Callers() FuncForPC()
-	Breakpoint() GC() Gosched() Goexit()
-	GOMAXPROCS() LockOSThread() UnLockOSThread()
-	MemStats{} ReadMemStats()
+	Compiler GOARCH GOOS GOROOT()
+	Version() NumCPU() NumGoroutine()
+	Gosched() Goexit()
+	Func{} FuncForPC()
+	Caller() Callers()
+	Stack()
+	GOMAXPROCS()
 
-
-	SetBlockProfileRate()
-	SetCPUProfileRate()
-	CPUProfile()
+	MemProfileRate
+	ReadMemStats()
 	MemProfile()
-	BlockProfile()
-	GoroutineProfile()
-	ThreadCreateProfile()
+	MemProfileRecord()
+	MemStats()
+
+	ReadTrace()
 	StartTrace()
 	StopTrace()
-	ReadTrace()
-	SetFinalizer()
-	BlockProfileRecord{}
-	MemProfileRecord{}
-	StackRecord{}
 
-runtime/cgo
-runtime/debug
-runtime/internal/atomic
-runtime/internal/sys
-runtime/pprof
-runtime/race
-runtime/trace
+	LockOSThread()
+	UnlockOSThread()
+
+	CPUProfile()
+	GC()
+	BlockProfile()
+	Breakpoint()
+	GoroutineProfile()
+	NumCgoCall()
+	SetBlockProfileRate()
+	SetCPUProfileRate()
+	SetFinalizer()
+	ThreadCreateProfile()
+	BlockProfileRecord{}
+	Error{}
+	StackRecord{}
+	TypeAssertionError{}
 // }}}
 sync// {{{
+	Locker{}
+		Lock() Unlock()
 	Mutex{}
 		Lock() Unlock()
 	RWMutex{}
-		Lock() UnLock()
+		Lock() Unlock()
 		RLock() RUnlock()
-
-	Once{}
-		Do()
-	Pool{}
-		New Get() Put()
-
 	Cond{} NewCond()
 		Wait() Signal() Broadcast()
 	WaitGroup{}
 		Add() Wait() Done()
-
-sync/atomic
+	Once{}
+		Do()
+	Pool{}
+		Get() Put()
 // }}}
 expvar// {{{
-	NewInt() NewFloat() NewString() NewMap()
-	Var{} Publish() Get()
+	Do()
+	Float{} NewFloat()
+	Int{} NewInt()
+	Map{} NewMap()
+	String{} NewString()
+	Var{} Get() Publish()
 // }}}
-// }}}
-io// {{{// {{{// {{{
+
+io// {{{
 	EOF
 	Copy() CopyN() CopyBuffer()
 	ReadAtLeast() ReadFull()
 	WriteString()
-	Pipe()
-	LimitReader() MultiReader() TeeReader() NewSectionReader()
+	PipeReader{} Pipe()
+	PipeWriter{} Pipe()
+	LimitedReader{} LimitReader()
 	MultiWriter()
+	MultiReader()
+	TeeReader()
+	NewSectionReader()
 // }}}
-io/ioutil// {{{
-	Discard
-	ReadFile() WriteFile()
-	ReadDir() ReadAll()
-	TempDir() TempFile()
-// }}}
-// }}}
-bytes// {{{
-	Buffer{} NewBuffer()
-		Bytes() String() Next() UnreadByte() UnreadRune()
-		Len() Cap() Grow() Truncate() Reset() ReadFrom() WriteTo()
-		Read() ReadByte() ReadBytes() ReadRune() ReadString()
-		Write() WriteByte() WriteRune() WriteString()
-		
-// }}}
-bufio// {{{
-	ScanBytes() ScanRunes() Scanwords() ScanLines()
-	Scanner{} NewScanner()
-		Buffer() Split()
-		Scan() Err()
-		Bytes() Text()
-	Reader{} NewReader() NewReaderSize()
-		Buffered() Discard() Peek()
-		Read() ReadByte() ReadBytes()
-		ReadLine() ReadSlice()
-		ReadRune() ReadString()
-		Reset() WriteTo()
-		UnreadByte() UnreadRune()
-	Writer{} NewWriter() NewWriterSize()
-		Available() Buffered() Flush()
-		Write() WriteByte() WriteRune() WriteString()
-		ReadFrom() Reset()
-	ReadWriter{}NewReadWrtier()
+net// {{{
+	IPv4len
+	FlagUp
+	IPv4bcast
+	IPv6zero
+	ErrWriteToConnected
 
-// }}}
-fmt// {{{
-	Errorf()
-	Print() Println() Printf()
-	Fprint() Fprintln() Fprintf()
-	Sprint() Sprintln() Sprintf()
-	Scan() Scanln() Scanf()
-	Fscan() Fscanln() Fscanf()
-	Sscan() Sscanln() Sscanf()
-// }}}
-net// {{{// {{{
-	Interface{} InterfaceByName() InterfaceByIndex() Interfaces()
-		Index MTU Name HardwareAddr HardwareAddr{} ParseMAC()
-		Flags Flags{} FlagUp FlagBroadcast FlagLookback FlagPointToPoint FlagMuticast
-		Addrs() MulticastAddrs()
-	Addr{} InterfaceAddrs()
-
-	LookupHost() LookupAddr() LookupIP() LookupPort()
-	SRV{} LookupSRV() LookupTXT() LookupCNAME()
-	MX{} LookupMX()
-	NS{} LookupNS()
-
-	JoinHostPort() SplitHostPort()
-	IPNet{} ParseCIDR()
-	IP{} IPv4() ParseIP()
-	IPMask{} IPv4Mask() CIDRMask()
-	IPv4len IPv4bcast IPv4allsys IPv4allrouter IPv4zero
-	IPv6len IPv6zero
-
-	Listener{} Listen() FileListener()
+	Listener{} Listen()
 		Accept() Addr() Close()
-	Conn{} Dial() DialTimeout() FileConn()
-		Read() Write() Close()
+	Conn{} Dial() DialTimeout()
+		Close() Read() Write()
 		LocalAddr() RemoteAddr()
 		SetDeadline() SetReadDeadline() SetWriteDeadline()
-	PacketConn{} ListenPacket() FilePacketConn()
-	Dialer{}
-	Pipe()
-
-	IPAddr{} ResolveIPAddr()
-	IPConn{} ListenIP() DialIP()
 
 	TCPAddr{} ResolveTCPAddr()
 	TCPListener{} ListenTCP()
-		Accept() AcceptTCP()
-		Addr() File() Close() SetDeadline()
+		Accept() Addr() Close()
+		AcceptTCP() File() SetDeadline()
 	TCPConn{} DialTCP()
-		LocalAddr() RemoteAddr() File() Close() CloseRead() CloseWrite()
-		SetLinger() SetNoDelay() SetKeepAlive() SetKeepAlivePeriod()
+		Close() Read() Write()
+		LocalAddr() RemoteAddr()
 		SetDeadline() SetReadDeadline() SetWriteDeadline()
-		Read() Write() SetReadBuffer() SetWriteBuffer()
+		File() CloseRead() CloseWrite()
 		ReadFrom()
-
-	UDPAddr{} ResolveUDPAddr()
-	UDPConn{} ListenUDP() ListenMulticatUDP() DialUDP()
-		LocalAddr() RemoteAddr() File() Close()
-		SetDeadline() SetReadDeadline() SetWriteDeadline()
-		Read() ReadFrom() ReadFromUDP() ReadMsgUDP()
-		Write() WriteTo() WriteToUDP() WriteMsgUDP()
+		SetKeepAlive() SetKeepAlivePeriod()
+		SetLinger() SetNoDelay()
 		SetReadBuffer() SetWriteBuffer()
 
-	UnixAddr{} ResolveUnixAddr()
-	UnixListener{} ListenUnix()
-	UnixConn{} DialUnix() ListenUnixgram()
+	UDPAddr{} ResolveUDPAddr()
+	UDPConn{} DialUDP() ListenUDP() ListenMulticastUDP()
+		Close() Read() Write()
+		LocalAddr() RemoteAddr()
+		SetDeadline() SetReadDeadline() SetWriteDeadline()
+		SetReadBuffer() SetWriteBuffer()
+		File()
+		ReadFrom() ReadFromUDP()
+		WriteTo() WriteToUDP()
+		ReadMsgUDP() WriteMsgUDP()
 
-	ErrWriteToConnected
-	AddrError{} DNSConfigError{} DNSError{} Error{}
-	InvalidAddrError{} OpError{} ParseError{}
-// }}}
-net/url// {{{
-	QueryEscape() QueryUnescape()
-	Values{} ParseQuery()
-		Add() Del() Get() Set() Encode()
-	Userinfo{} User() UserPassword()
-		Username() Password()
-	URL{} Parse() ParseRequestURI()
-		Scheme User Host Path
-		RawPath RawQuery Fragment
+	Interface{} Interfaces() InterfaceByIdex() InterfaceByName()
+		Index Name MTU
+		HardwareAddr HardwareAddr{}
+		Flags Flags{}
+		Addrs() MulticastAddrs()
+	Addr{} InterfaceAddrs()
+		Network() String()
+
+	LookupAddr() LookupCNAME() LookupHost()
+	LookupIP() LookupMX() LookupNS() LookupPort()
+	LookupSRV() LookupTXT()
+	JoinHostPort() SplitHostPort()
+
+	IP[] ParseIP()
+	IPNet{} ParseCIDR()
+	IPMask{} CIDRMask() IPv4Mask()
+	HardwareAddr{} ParseMAC()
+
+	Pipe()
+	IPv4()
+
+	IPAddr{} ResolveIPAddr()
+	IPConn{} DialIP()
+	ListenIP()
+
+	FileListener() ListenPacket()
+	PacketConn{} FileConn() FilePacketConn()
+
+	UnixAddr{} ResolveUnixAddr()
+	UnixListener{} ListenUnixgram() ListenUnix()
+	UnixConn{} DialUnix()
+
+	AddrError{}
+	DNSConfigError{}
+	DNSError{}
+	Dialer{}
+	Error{}
+	InvalidAddrError{}
+	MX{}
+	NS{}
+	OpError{}
+	ParseError{}
+	SRV{}
+	UnknownNetworkError
 // }}}
 net/http// {{{
-	Handle() Handler{}
-		TimeoutHandler() NotFoundHandler() RedirectHanlder()
-		StripPrefix() FileServer() FileSystem{} Dir{}
-	HandleFunc() HandlerFunc{}
-		ResponseWriter{}
-			Header() Write() WriteHeader()
-		Request{}
-			Method URL Proto ProtoMajor ProtoMinor ProtoAtLeast()
-			Header Body Trailer RemoteAddr RequestURI TLS Close Cancel
-			Host ContentLength TransferEncoding Referer() UserAgent()
-			BasicAuth() Cookie() Cookies()
-			FormValue() PostFormValue() FormFile() MultipartReader()
-			ParseForm() Form PostForm ParseMultipartForm() MultipartForm
-			Write() WriteProxy()
-		Error() NotFound() Redirect()
-		ServeFile() ServeContent() MaxBytesReader()
-		SetCookie()
-	ListenAndServe() ListenAndServerTLS() Serve()
-	DefaultMaxHeaderBytes DefaultMaxIdleConnsPerHost
-	DefaultServerMux ServeMux{} NewServeMux()
-		Handle() HandleFunc() Handler() ServeHTTP()
-	Server{}
-		Addr Handler ReadTimeout WriteTimeout MaxHeaderBytes
-		TLSConfig TLSNextProto ConnState ErrorLog
-		ListenAndServe() ListenAndServerTLS() Serve() SetKeepAlivesEnabled()
+	MethodGet
+	MethodHead
+	MethodPost
+	MethodPut
+	MethodPatch
+	MethodDelete
+	MethodConnect
+	MethodOptions
+	MethodTrace
 
-	MethodGet MethodHead MethodPost MethodPut MethodPatch MethodDelete MethodConnect MethodOptions MethodTrace
-	StatusContinue StatusOK
-crypto/tls
-	StatusMovedPermanently StatusNotModified
-	StatusBadRequest StatusForbidden StatusNotFound
-	StatusInternalServerError StatusBadGateway StatusNotImplemented
-	Header{}
-		Add() Del() Get() Set()
-		Write() WriteSubset()
-	Cookie{}
-		Name Value Path Domain Expires RawExpires
-		MaxAge Secure HttpOnly Raw Unparsed
+	StatusContinue
+	StatusOK
+	StatusSeeOther
+	StatusNotModified
+	StatusForbidden
+	StatusNotFound
+	StatusInternalServeError
 
-	Response{} Get() Post() PostForm() Head()
-		Status StatusCode Proto ProtoMajor ProtoMinor ProtoAtLeast()
-		Header Body Trailer TLS Close Request
-		ContentLength TransferEncoding Cookies() Location()
-		Write()
-	DefaultClient Client{}
-		Transport RoundTripper{} DefaultTransport Transport{}
-		CheckRedirect
-		Jar CookieJar{}
-		Get() Head() Post() PostFrom()
-		Do() Request{} NewRequest()
-			SetBasicAuth()
-			AddCookie()
-
+	DefaultMaxHeaderBytes
+	DefaultMaxIdleConnsPerHost
 	TimeFormat
 	StateNew
 	ErrHeaderTooLong
+	ErrWriteAfterFlush
+	ErrBodyReadAfterClose
+	ErrHandlerTimeout
+	ErrLineTooLong
+	ErrMissingFile
+	ErrNoCookie
+	ErrSkipAltProtocol
 
-	ParseTime()
-	StatusText()
-	ParseHTTPVersion()
+	DefaultServerMux ServeMux{} NewServeMux()
+	Handle() Handler{}
+	FileServer()
+	StripPrefix()
+	TimeoutHandler()
+	NotFoundHandler()
+	RedirectHandler()
+	HandleFunc() HandlerFunc{}
+		ResponseWriter{}
+			Header{} Header() WriteHeader() Write()
+				Add() Del() Get() Set()
+				Write() WriteSubset()
+		Request{}
+			Method RequestURI URL Proto ProtoMajor ProtoMinor
+			Header Body Trailer
 
-	ReadRequest()
-	ReadResponse()
-	CanonicalHeaderKey()
+			ContentLength TransferEncoding
+			ProtoAtLeast() Host BasicAuth() Referer() Useragent()
+			Cookie() Cookies()
+
+			Form PostForm MultipartForm ParseForm() ParseMultipartForm()
+			FormValue() PostFormValue() FormFile() MultipartReader()
+
+			Close RemoteAddr TLS Cancel
+			Write() WriteProxy()
+		Error()
+		NotFound()
+		Redirect()
+		SetCookie()
+		ServeFile()
+		ServeContent()
+		MaxBytesReader()
+	Server{} ListenAndServe() ListenAndServeTLS() Serve()
+
+	DefaultClient Client{}
+	DefaultTransport Transport{} NewFileTransport()
+	Response{} Get() Head() Post() PostForm()
+		Status StatusCode Proto ProtoMajor ProtoMinor
+		Header Body Trailer
+		ContentLength TransferEncoding
+		Close TLS
+		Request
+	Request{} NewRequest()
+		AddCookie()
+		SetBasicAuth()
+
 	DetectContentType()
-
+	CononicalHeaderKey()
+	ParseHTTPVersion()
+	ParseTime()
 	ProxyFromEnvironment()
 	ProxyURL()
-	NewFileTransport()
+	ReadRequest()
+	ReadResponse()
+	StatusText()
+
 	CloseNotifier{}
-	ConnState()
+	ConnState{}
+	Cookie{}
+	CookieJar{}
+	Dir{}
 	File{}
-	Flusher{}
+	FileSystem{}
+	Flushed{}
 	Hijacker{}
 	ProtocolError{}
-// }}}
-net/http/cgi
-net/http/cookiejar
-net/http/fcgi
-net/http/httptest
-net/http/httputil
-net/http/internal
-net/http/pprof
-net/internal/socktest
-net/mail
-net/rpc
-net/rpc/jsonrpc
-net/smtp
-net/textproto
-// }}}
-mime// {{{
-mime/multipart
-mime/quotedprintable
-// }}}
-text/template // {{{
-	{{/* */}}
-	{{$var := p}} {{p}}
-	{{if p}} {{else}} {{end}}
-	{{with p}} {{else}} {{end}}
-	{{range p}} {{else}} {{end}}
-	{{block b p}} {{end}} {{template t p}}
-
-	Template{} Must() New() ParseFiles() ParseGlob()
-
-		Parse() ParseFiles() ParseGlob()
-		Name()
-		Execute()
-		New()
-		Lookup()
-		ExecuteTemplate()
-
-		Option()
-		Funcs()
-		Delims()
-		DefinedTemplates()
-		Clone()
-		AddParseTree()
-		Templates()
-	ExecError{}
-	FuncMap{}
-
-	HTMLEscape()
-	HTMLEscapeString()
-	HTMLEscaper()
-	IsTrue()
-	JSEscape()
-	JSEscapeString()
-	JSEscaper()
-	URLQueryEscaper()
-text/scanner
-text/tabwriter
-text/template/parse
-// }}}
-html// {{{// {{{
-	EscapeString() UnescapeString()
-// }}}
-html/template// {{{
-	Template{} Must() New() ParseFiles() ParseGlob()
-		Execute() ExecuteTemplate()
-// }}}
-// }}}
-image// {{{// {{{
-	Config{} DecodeConfig()
-	Image{} Decode()
-
-	Paletted{} NewPaletted()
-	Gray{} NewGray()
-	Gray16{} NewGray16()
-	Alpha{} NewAlpha()
-	Alpha16{} NewAlpha16()
-	RGBA{} NewRGBA()
-	RGBA64{} NewRGBA64()
-	NRGBA{} NewNRGBA()
-	NRGBA64{} NewNRGBA64()
-	CMYK{} NewCMYK()
-	YCbCr{} NewYCbCr()
-	NYCbCrA{} NewNYCbCrA()
-
-	ZP Point{} Pt()
-	ZR Rectangle{} Rect()
-	Uniform{} NewUniform()
-
-	Black White Transparent Opaque
-	ErrFormat RegisterFormat()
-// }}}
-image/color// {{{// {{{
-	Palette[]
-	Color{}
-	Model{}
-
-	Gray{} Gray16{}
-	Alpha{} Alpha16{}
-	RGBA{} RGBA64{}
-	NRGBA{} NRGBA64{}
-	CMYK{}
-	YCbCr{}
-	NYCbCrA{}
-
-	Black White
-	RGBAModel
-	CMYKModel
-	NYCbCrAModel
-	YCbCrModel
-	CMYKToRGB()
-	RGBToCMYK()
-	RGBToYCbCr()
-	YCbCrToRGB()
-// }}}
-image/color/palette
-// }}}
-image/draw// {{{// {{{
-	Draw()
-	DrawMask()
-// }}}
-image/internal/imageutil
-// }}}
-image/png// {{{
-	DecodeConfig() Decode() Encode()
-// }}}
-image/gif// {{{
-	DecodeConfig() Decode() Encode()
-	EncodeAll() DecodeAll()
-// }}}
-image/jpeg// {{{
-	DecodeConfig() Decode() Encode()
-// }}}
-// }}}
-// }}}
-math// {{{// {{{// {{{
-	E Pi Phi
-	Sqrt2 SqrtE SqrtPi SqrtPhi
-	Ln2 Log2E Ln10 Log10E
-	MaxFloat32 MaxFloat64
-	MaxUint8 MaxUint16 MaxUint32 MaxUint64
-	MaxInt8 MaxInt16 MaxInt32 MaxInt64
-	MinInt8 MinInt16 MinInt32 MinInt64
-	Sin() Asin() Sinh() Asinh() Sincos()
-	Cos() Acos() Cosh() Acosh()
-	Tan() Atan() Tanh() Atanh() Atan2()
-	Pow() Pow10() Cbrt() Sqrt()
-	Log() Log2() Log1p() Log10() Logb()
-	Exp() Exp2() Expm1()
-	Max() Min() Mod() Modf() NaN() IsNaN() Inf() IsInf()
-	Gamma() Hypot() Lgamma() J0() J1() Jn() Y0() Y1() Yn()
-	Ceil() Floor() Trunc() Abs() Signbit() Frexp() Ldexp() CopySign()
-	Float32bits() Float32frombites() Float64bits() Float64frombits()
-	Dim() Erf() Erfc() Ilogb() Nextafter() Nextafter32() Remainder()
-// }}}
-math/big
-math/cmplx
-math/rand
-// }}}
-sort// {{{
-// }}}
-container/heap// {{{
-container/list
-container/ring
-// }}}
-hash// {{{
-hash/adler32
-hash/crc32
-hash/crc64
-hash/fnv
+	RoundTripper{}
 // }}}
 crypto// {{{
-crypto/md5// {{{// {{{
-	Sum() BlockSize Size
-	New()
-		BlockSize() Size()
-		Write() Reset() Sum()
-// }}}
-crypto/hmac// {{{
-	New() Equal()
-// }}}
+crypto/md5
+	BlockSize Size New() Sum()
 crypto/sha1
+	BlockSize Size New() Sum()
 crypto/sha256
+	BlockSize Size New() Sum()
 crypto/sha512
-// }}}
-crypto/rand// {{{
-	Reader
-	Int() Prime() Read()
-// }}}
-crypto/cipher// {{{// {{{
-	Block{}
-		BlockSize()
-		Encrypt()
-		Decrypt()
+	BlockSize Size New() Sum()
+
+crypto/rand
+	Int() Prime() Read() Reader
+
+crypto/cipher
 	BlockMode{} NewCBCDecrypter() NewCBCEncrypter()
 		BlockSize() CryptBlocks()
-// }}}
-crypto/aes// {{{
-	BlockSize
-	NewCipher()
-// }}}
-crypto/des// {{{
-	BlockSize
-	NewCipher()
-	NewTripleDESCihper()
-// }}}
-crypto/rc4
-// }}}
-crypto/rsa// {{{
-	PrivateKey{} GenerateKey()
-		Public() PublicKey{}
-		decrypt() Sign()
-		Precompute() validate()
-	EncryptPKCS1v15() DecryptPKCS1v15()
-	SignPKCS1v15() VerifyPKCS1v15()
+crypto/aes
+	BlockSize NewCipher()
+crypto/des
+	BlockSize NewCipher()
 
-	PSSSaltLengthAuto
-	DecryptOAEP()
-	EncryptOAEP()
-	SignPSS()
-	VerifyPSS()
-	DecryptPKCS1v15SessionKey()
-	GenerateMultiPrimeKey()
-
-// }}}
+crypto/rsa
+	DecryptOAEP() DecryptPKCS1v15() DecryptPKCS1v15SessionKey()
+	EncryptOAEP() EncryptPKCS1v15()
+	SignPSS() SignPKCS1v15()
+	VerifyPSS() VerifyPKCS1v15()
+	PrivateKey{} GernerateKey() GenerateMutliPrimeKey()
+		Precompute() Validate()
+		Decrypt() Sign()
+		PublicKey{} Public()
 crypto/dsa
 crypto/ecdsa
-crypto/subtle
 crypto/elliptic
-crypto/x509// {{{// {{{
-	IsEncryptedPEMBlock() EncryptPEMBlock() DecryptPEMBlock()
+crypto/hmac
+crypto/rc4
+crypto/subtle
+
+crypto/tls
+crypto/x509
 	MarshalPKCS1PrivateKey() ParsePKCS1PrivateKey()
 	MarshalPKIXPublicKey() ParsePKIXPublicKey()
 
-	MarshalECPrivateKey()
-	ParseECPrivateKey()
-
+	DecryptPEMBlock()
+	EncryptPEMBlock()
+	IsEncryptedPEMBlock()
+	ExtKeyUsageAny
+	NotAuthorizedToSign
+	KeyUsageDigitalSignature
+	PEMCipherDES
 	CreateCertificate()
-	ParseCertificate()
 	CreateCertificateRequest()
-	ParseCertificateRequest()
-
+	MarshalECPrivateKey()
 	ParseCRL()
 	ParseCertificates()
 	ParseDERCRL()
+	ParseECPrivateKey()
 	ParsePKCS8PrivateKey()
-	NewCertPool()
-// }}}
+	NewCertPool
+	ParseCertificate()
+	ParseCertificateRequest()
+	CertPool{}
 crypto/x509/pkix
 // }}}
-crypto/tls// {{{
-	Config{}
-		Certificate:[]Certificate{} LoadX509KeyPair()
-	Listen()
-	Dial()
-// }}}
-// }}}
-database/sql// {{{
-	DB{} Open()
-	Register()
-database/sql/driver
-	Driver{}
-	Conn{}
-		Prepare()
-		Begin() Close()
-	
-// }}}
-index/suffixarray// {{{
-// }}}
-// }}}
-unicode// {{{// {{{
-unicode/utf16
-unicode/utf8
-// }}}
-strings// {{{
-	Compare() EqualFold() Repeat() Join() Map()
-	Count() Contains() ContainsAny() ContainsRune() HasPrefix() HasSuffix()
-	Index() IndexAny() IndexByte() IndexFunc() IndexRune()
-	LastIndex() LastIndexAny() LastIndexByte() LastIndexFunc()
-	Fields() FieldsFunc() Split() SplitAfter() SplitAfterN() SplitN()
-	Replace() Title() ToLower() ToTitle() ToUpper()
-	Trim() TrimLeft() TrimRight() TrimSpace() TrimPrefix() TrimSuffix()
-	TrimFunc() TrimLeftFunc() TrimRightFunc()
-	NewReader() NewReplacer()
-// }}}
-strconv// {{{
-	Atoi() Itoa()
-	AppendUint() AppendInt() AppendFloat() AppendBool()
-	AppendQuote() AppendQuoteToASCII() AppendQuoteToGraphic()
-	AppendQuoteRune() AppendQuoteRuneToASCII() AppendQuoteRuneToGraphic()
-	IsGraphic() IsPrint() CanBackquote()
-	FormatInt() FormatUInt() FormatFloat() FormatBool()
-	ParseInt() ParseUint() ParseFloat() ParseBool()
-	Quote() QuoteToASCII() QuoteToGraphic()
-	QuoteRune() QuoteRuneToASCII() QuoteRuneToGraphic()
-	Unquote() UnquoteChar()
-// }}}
-regexp// {{{
-	Match() MatchReader() MatchString() QuoteMeta()
-	Regexp{} Compile() CompilePOSIX() MustCompile() MustCompilePOSIX()
-		Find()
-		FindString()
-		FindSubmatch()
-		FindIndex()
-
-		FindAll()
-		FindAllIndex()
-		FindAllString()
-		FindAllStringIndex()
-		FindAllStringSubmatch()
-		FindAllStringSubmatchIndex()
-		FindAllSubmatch()
-		FindAllSubmatchIndex()
-		FindReadIndex()
-		FindReadSubmatchIndex()
-		FindStringIndex()
-		FindStringSubmatch()
-		findStringSubmatchIndex()
-		FindSubmatchIndex()
-		LiteralPrefix()
-		Longest()
-		Split()
-		Match() MatchRead() MatchString()
-		NumSubexp() SubexpNames()
-		ReplaceAll() ReplaceAllFunc()
-		ReplaceAllLiteral()
-		ReplaceAllLiteralString()
-		ReplaceAllString()
-		ReplaceAllStringFunc()
-		String()
-
-
-regexp/syntax
-// }}}
 encoding// {{{
-encoding/hex// {{{
-	DecondeLen() Decode() DecodeString()
-	EncodedLen() Encode() EncodeToString()
-	Dump() Dumper()
-// }}}
-encoding/base64// {{{
-	StdPadding NoPadding
-	StdEncoding NewEncoding()
-		DecodeLen() Decode() DecodeString()
-		EncodeLen() Encode() EncodeToString()
-		WithPadding()
-// }}}
-encoding/pem// {{{
-	Decode()
-	Block{} Encode() EncodeToMemory()
-// }}}
-encoding/json// {{{
-	Marshal() MarshalIndent() Unmarshal()
-	Decoder{} NewDecoder()
-		Decode()
-	Encoder{} NewEncoder()
-		Encode()
-// }}}
-encoding/xml// {{{
-	Header
-	Marshal() MarshalIndent() Unmarshal()
-	NewDecoder() NewEncoder()
-// }}}
-encoding/asn1
-	Marshal()
-	Unmarshal()
-encoding/ascii85
-encoding/base32
-encoding/binary
-encoding/csv
-encoding/gob
-// }}}
-archive/tar// {{{
-	Header{} FileInfoHeader()
-	Writer{} NewWriter()
-		WriteHeader() Write() Close() Flush()
-	Reader{} NewReader()
-		Next() Read()
-archive/zip
-// }}}
-compress/gzip// {{{// {{{
-	Reader{} NewReader()
-		Read() Reset() Close() Multistream()
-	Writer{} NewWriter() NewWriterLevel()
-		Close() Flush() Reset() Write()
-// }}}
-compress/bzip2
-compress/flate
-compress/lzw
-compress/zlib
-// }}}
-// }}}
-go/ast// {{{// {{{
-go/build
-go/constant
-go/doc
-go/format
-go/importer
-go/internal/gccgoimporter
-go/internal/gcimporter
-go/parser
-go/printer
-go/scanner
-go/token
-go/types
-// }}}
-internal/golang.org/x/net/http2/hpack// {{{
-internal/race
-internal/singleflight
-internal/syscall/windows/sysdll
-internal/testenv
-internal/trace
-// }}}
-syscall// {{{
-// }}}
-unsafe// {{{
-	AlignOf() Offsetof() Sizeof()
-// }}}
-errors// {{{
-	New()
-// }}}
-testing// {{{
-testing/iotest
-testing/quick
-// }}}
-debug/dwarf// {{{
-debug/elf
-debug/gosym
-debug/macho
-debug/pe
-debug/plan9obj
-// }}}
-reflect// {{{
-	Type{} TypeOf()
-		PkgPath() Name() Size() Align() FieldAlign()
-		Method() MethodByName() NumMethod()
-		Field() FiledByIndex() FieldByName() FieldByNameFunc() NumField()
-		Kind() Elem() Key() Len() Bits() NumOut() NumIn() In() Out()
-		Implements() AssignableTo() ConvertibleTo() Comparable()
-
-	Value{} ValueOf()
-		Kind() Type() Addr() Elem() IsNil() IsValid() String()
-		Convert()
-		Int() Uint() Float() Complex() Bool() Pointer() UnsafeAddr()
-		Bytes() Index() Len() Cap() Slice() Slice3()
-		Call() CallSlice() MapIndex() MapKeys() Interface() InterfaceData()
-		NumFiled() Field() FieldByIndex() FieldByName() FieldByNameFunc()
-		NumMethod() Method() MethodByName()
-		Close() Recv() Send() TryRecv() TrySend()
-		Set() CanSet() CanAddr() CanInterface()
-		SetInt() SetUint() SetFloat() SetComplex() SetPointer()
-		SetString() SetBool() SetBytes() SetLen() SetCap() SetMapIndex()
-		OverflowComplex() OverflowFloat() OverflowInt() OverflowUnit()
-
-	ArrayOf()
-	SliceOf()
-	MapOf()
-	ChanOf()
-	FuncOf()
-	PtrOf()
-
-	MakeChan()
-	MakeFunc()
-	MakeMap()
-	MakeSlice()
-	New()
-	NewAt()
-	Zero()
-
-	RecvDir
-	Invalid
-	SelectSend
-	Copy()
-	DeepEqal()
-	Select()
-
-	PrtTo()
-	Append()
-	AppendSlic()
-	Indirect()
-	ChanDir{}
-	Kind{}
-	Method{}
-	SelectCase{}
-	SelectDir{}
-	SliceHeader{}
-	StringHeader{}
-	StructField{}
-	StructTag{}
-	ValueError{}
-
-// }}}
+encoding/pem
+	Block{} Encode() Decode()
+		Type Headers Bytes
 // }}}
 
