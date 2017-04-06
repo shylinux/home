@@ -19,3 +19,5 @@
 	denyCurrentBranch = ignore
 [core]
 	editor = vim
+[merge]
+	tool = vimdiff

@@ -191,6 +191,7 @@ set showmatch
 set matchtime=2
 set hlsearch
 set incsearch
+set nowrapscan
 set ignorecase
 set smartcase
 
