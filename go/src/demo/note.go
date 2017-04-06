@@ -21,10 +21,45 @@ rebase stash mergetool
 reflog prune fsck gc
 cherry clean describe
 difftool mergetool
+git svn init
 git svn clone
 git svn fetch
 git svn rebase
 git svn dcommit
+
+add
+blame
+cat
+changelist
+checkout
+cleanup
+commit
+copy
+delete
+diff
+export
+help
+import
+info
+list
+lock
+log
+merge
+mergeinfo
+mkdir
+move
+propdel
+propedit
+propget
+proplist
+propset
+resolve
+resolved
+revert
+status
+switch
+unlock
+update
 
 ls-tree
 ls-files
