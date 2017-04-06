@@ -18,14 +18,16 @@ branch merge tag log
 remote fetch pull push
 bisect blame grep show
 rebase stash mergetool
-reflog prune fsck
+reflog prune fsck gc
+cherry clean describe
+difftool mergetool
 git svn clone
 git svn fetch
 git svn rebase
 git svn dcommit
 
-ls-files
 ls-tree
+ls-files
 ls-remote
 cat-file
 
