@@ -1,25 +1,14 @@
 .*
-7988
-trunk
 go/bin
 go/pkg
 go/src/github.com/
 go/src/golang.org/
 
+Desktop
 Documents
 Downloads
 Library
 Movies
 Music
 Pictures
-
-
-.vim/bundle/*
-!.vim/bundle/bundle.tar.gz
-!.vimrc
-!.vim
-!.gitignore
-!.zshrc
-
-
 

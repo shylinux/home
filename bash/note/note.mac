@@ -1,0 +1,122 @@
+telnet ftp ssh sftp
+halt reboot shutdown
+man info apropos which whereis
+* ? [^]
+# > >> | << < ``
+. [^-]
+? + * {,}
+^$
+\
+
+/etc/passwd /etc/shadow /etc/group
+useradd usermod userdel passwd chsh
+groupadd groupmod groupdel groups
+su sudo who w id write wall mesg mail
+chown chgrp chmod
+
+cd pwd umask ulimit
+ls mv rm mkdir rmdir
+cp cat tee head tail more less
+df du fsck mount umount mkfs
+find grep sort sed awk tr wc
+file touch ln 
+date
+uptime
+script
+logger
+ps
+top
+/etc/hosts
+/etc/services
+/etc/resolv.conf
+netstat
+ifconfig
+route
+nslookup
+ping
+
+&
+
+jobs
+fg
+bg
+crontab
+at
+sudo
+visudo
+sudoers
+
+
+
+$PS1
+$PATH
+$$
+alias 
+
+set 
+exit
+kill
+sleep
+pgrep
+pkill
+killall
+
+$OPTIND $OPTARG
+getopts
+read
+echo
+export 
+local 
+set 
+unset 
+var=val $var
+var=(v1 v2) var[1]=one ${var[1]}
+${#var}
+
+function name() {}
+source return
+trap "" HUP INT QUIT
+wait
+
+
+$0 $$ $_ $?
+$# $* $@ $1
+
+test
+[ = != < > ]
+[ -e -s -d -f -r -w -x -O -G -nt -ot ]
+[ -a -o ]
+
+
+if cmd; then cmd; elif cmd; then cmd; else cmd; fi
+case exp in pat|pat) cmd;; *) cmd esac
+while cmd; do cmd done
+until cmd; do cmd done
+
+
+
+
+grep tr wc
+open
+df
+tar gzip gunzip
+who passwd chsh
+ps top
+
+
+root etc prot dev
+sbin lib bin usr
+root var home mnt
+
+Applications Library System Network Volumes
+Users
+	Downloads Library Desktop Public
+	Documents Pictures Movies Music
+
+cores
+sbin bin usr
+
+dev net home
+
+private
+etc var tmp
