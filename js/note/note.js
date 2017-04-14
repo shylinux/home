@@ -329,6 +329,72 @@ window//{{{
 //}}}
 jQuery
 
+$(",")
+
+$(">")
+$(" ")
+$("+")
+$("~")
+
+$("#")
+$("div")
+$(".")
+$(":not")
+$(":has")
+$(":contains")
+$(":lang")
+$(":target")
+$(":root")
+$(":empty")
+$(":parent")
+$(":header")
+
+$(":focus")
+$(":input")
+$(":button")
+$(":enabled")
+$(":disabled")
+$(":checked")
+$(":selected")
+
+$(":text")
+
+$(":first")
+$(":last")
+$(":lt")
+$(":gt")
+$(":eq")
+$(":odd")
+$(":even")
+$(":nth-child")
+
+$("[]")
+$("[=]")
+$("[!=]")
+$("[^=]")
+$("[$=]")
+$("[*=]")
+$("[|=]")
+$("[~=]")
+
+$().filter().find().not().is()
+.parent().next().prev().children()
+.end()
+
+$(function(){}).ready()
+$().on("", function(){}).off().one().trigger()
+.load().focus().blur().click().hover()
+event target stopPropagation() preventDefault() return false;
+$().addClass().removeClass().toggleClass().hasClass()
+$().css().show().hide().toggle()
+	.fadeIn().fadeOut().fadeToggle()
+	.slideDown().slideUp().slideToggle()
+	.animate()
+$().text()
+
+
+
+
 global
 
 
@@ -336,18 +402,18 @@ global
 1991  ARM   Linux  HTTP
 1994                        linux 1.0
 1995  IE1   win95           linux 1.2
-1995  IE2  
+1995  IE2
 1996  IE3                   linux 2.0
-1997  IE4  
+1997  IE4
 1998        win98
 1999  IE5          HTML4    linux 2.2
 2001  IE6   winXP  MacOSX   linux 2.4
 2003               Safari   linux 2.6
 2004               FireFox
-2006  IE7  
+2006  IE7		   jQuery
 2007               HTML5
 2008               Chrome
-2009  IE8   win7   
+2009  IE8   win7
 2011  IE9          wechat   linux 3.0
 2012  IE10  win8   go1.0
 2013  IE11  win81

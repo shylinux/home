@@ -19,5 +19,6 @@
 	denyCurrentBranch = ignore
 [core]
 	editor = vim
+	ignorecase = true
 [merge]
 	tool = vimdiff

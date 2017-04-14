@@ -137,9 +137,9 @@ command! SL source ~/.vim_local
 command! SV source ~/.vimrc
 
 command! Mat execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx"
-command! Proxy execute "!curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
-command! MP execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/shylinux.com/80/hi.html"
-command! ME execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/shylinux.com/80/he.html"
+command! Proxy execute "!curl localhost/100837cb/0/1/http/127.0.0.1/80/hi.html"
+command! MP execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/127.0.0.1/80/hi.html"
+command! ME execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/127.0.0.1/80/he.html"
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src

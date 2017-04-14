@@ -3,6 +3,170 @@ sh go
 vi py js
 ARM Linux HTTP
 
+linux gun ubuntu
+
+-h
+--help
+man
+info
+
+"" '' ``
+* ? [^-] / . .. ~ -
+# < << | >> >
+; \
+()
+${} =
+
+
+! !! !$ !!:gs// ^^^
+$HISTFILE $HISTFILESIZE $HISTSIZE history fc script
+
+% & 
+jobs bg fg kill wait nohup
+
+exit 
+
+alias unalis
+
+set -o vi
+set -o emacs
+ 
+ 
+
+$PATH
+which whereis whatis apropos
+
+/boot /dev
+/proc /etc
+
+/sbin /lib
+/bin /usr
+
+/root /var
+/home /mnt
+
+/usr/include
+/usr/lib
+/usr/src
+/usr/bin
+/usr/sbin
+/usr/share
+/usr/local
+
+/dev
+null zero stdin stdout stderr fd/
+
+/etc
+hosts
+networks
+
+bashrc
+defaults
+ftpd.conf
+group
+localtime
+locate.rc
+man.conf
+manpaths
+nfs.conf
+notify.conf
+ntp.conf
+passwd
+profile
+resolv.conf
+shells
+ssh
+sudoers
+syslog.conf
+zshrc
+
+/bin
+sh csh ksh tcsh bash zsh
+ls ln mv rm rmdir mkdir
+ps kill
+df
+cp cat dd ed
+chmod
+
+link unlink
+
+expr test # [
+echo
+pwd
+date sleep
+stty sync
+hostname domainname
+
+/sbin
+dmesg md5
+ifconfig ping route
+shutdown reboot halt
+mount umount mknod
+
+uname
+sort
+who
+wc
+find
+/dev/null
+uname
+tee
+
+file
+od
+
+$HOME
+pwd cd
+ls ln mv rm rmdir mkdir
+cat tee more less head tail
+diff patch
+cp dd
+od
+ed
+find
+grep
+
+vim
+ioa hjkl web gnft cdy rsx qup zvm
+
+shell
+#! /bin/bash
+$0 $$ $_ $?
+$- $1 $# $@ $* shift
+$REPLY read; echo; exit
+until cmd; do cmd; done
+for var in val; do cmd; done
+if cmd; then cmd; else cmd; fi
+${!}
+
+var=val
+${var}
+export 
+$LINENO
+
+$OPTARG
+$OPTIND
+getopts
+$PPID
+$PWD
+$RANDOM
+$SECONDS
+
+$COLUMNS
+$EDITOR
+
+
+mknod
+sync
+ps kill
+df
+chmod
+/dev/null
+/dev/zero
+chmod
+umask
+touch
+
 boot etc#{{{
 proc dev
 root var
