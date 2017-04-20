@@ -284,10 +284,10 @@ inoremap 9 (
 inoremap ( 9
 inoremap 0 )
 inoremap ) 0
-"inoremap [ {
-"inoremap { [
-"inoremap ] }
-"inoremap } ]
+inoremap [ {
+inoremap { [
+inoremap ] }
+inoremap } ]
 inoremap " '
 inoremap ' "
 nnoremap j gj

@@ -5,6 +5,207 @@ ARM Linux HTTP
 
 linux gun ubuntu
 
+tmux #{{{
+set-option show-options #{{{
+	prefix
+	prefix2
+
+	default-terminal
+	default-command
+	default-shell
+
+	mode-keys
+	history-limit
+
+	base-index
+	renumber-windows
+
+	display-panes-time
+	display-time
+
+	mouse-utf8
+	mouse
+
+	status
+	status-utf8
+	status-keys
+	status-interval
+	status-position
+
+	status-justify
+	status-style
+	status-left-length
+	status-left-style
+	status-left
+	status-right-length
+	status-right-style
+	status-right
+
+	message-style
+	message-command-style
+
+	lock-after-time
+	lock-command
+
+	display-panes-active-colour
+	display-panes-colour
+
+	buffer-limit
+	message-limit
+	escape-time
+	repeat-time
+	assume-paste-time
+	bell-action
+	bell-on-alert
+	visual-activity
+	visual-bell
+	visual-silence
+	word-separators
+
+	exit-unattatched
+	focus-events
+	destroy-unattached
+	detach-on-destroy
+	set-remain-on-exit
+	set-titles
+	set-titles-string
+
+	set-clipboard
+	terminal-overrider
+	update-environment
+	history-file
+#}}}
+set-window-option show-window-options #{{{
+	pane-base-index
+	utf8
+
+	window-status-style
+	window-status-format
+	window-status-separator
+	window-status-bell-style
+	window-status-last-style
+	window-status-current-style
+	window-status-current-format
+
+
+	window-active-style
+	aggressive-resize
+	allow-rename
+	alternate-screen
+	automatic-rename
+	automatic-rename-format
+	clock-mode-colour
+	clock-mode-style
+	force-height
+	force-width
+	main-pane-height
+	main-pane-width
+	mode-style
+	monitor-activity
+	monitor-silence
+	other-pane-height
+	other-pane-width
+	pane-active-border-style
+	pane-border-style
+	remain-on-exit
+	synchronize-panes
+	window-active-style
+	window-style
+	xterm-keys
+	wrap-search
+#}}}
+
+client server session #{{{
+	clock-mode
+	has-session
+	new-session
+	lock-session
+	kill-session
+	list-sessions
+	attach-session
+	rename-session
+
+	lock-client
+	list-clients
+	detach-client
+	switch-client
+	suspend-client
+	refresh-client
+
+	lock-server
+	kill-server
+	start-server
+	list-commands
+	show-message
+	source-file
+#}}}
+window pane #{{{
+	choose-tree
+	choose-client
+	choose-session
+	choose-window
+
+	new-window
+	kill-window
+	move-window
+	link-window
+	swap-window
+	list-windows
+	find-windows
+	last-window
+	next-window
+	previous-window
+	select-window
+	rotate-window
+	rename-window
+	respawn-window
+	split-window
+
+	next-layout
+	select-layout
+	previous-layout
+
+	kill-pane
+	move-pane
+	swap-pane
+	join-pane
+	break-pane
+	pipe-pane
+	list-panes
+	last-pane
+	select-pane
+	capture-pane
+	display-panes
+	resize-pane
+	respawn-pane
+#}}}
+buffer #{{{
+	clear-history
+	delete-buffer
+	choose-buffer
+	paste-buffer
+	list-buffers
+	load-buffer
+	save-buffer
+	set-buffer
+	show-buffer
+#}}}
+
+vi-edit vi-copy vi-choice #{{{
+	bind-key unbind-key list-keys
+		Up Down Left Right
+		Tab Enter Space Escape
+#}}}
+display-message
+confirm-before
+command-prompt
+run-shell
+if-shell
+wait-for
+send-keys
+send-prefix
+#}}}
+
 -h
 --help
 man
