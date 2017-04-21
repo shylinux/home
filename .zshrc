@@ -95,4 +95,5 @@ export PATH=$PATH:$GOBIN
 export EDITOR=vim
 
 source ~/.zsh_local
+source ~/bash/tool/tmux/power.sh
 

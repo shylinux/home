@@ -138,6 +138,7 @@ client server session #{{{
 	list-commands
 	show-message
 	source-file
+	wait-for
 #}}}
 window pane #{{{
 	choose-tree
@@ -199,11 +200,10 @@ vi-edit vi-copy vi-choice #{{{
 display-message
 confirm-before
 command-prompt
+send-prefix
+send-keys
 run-shell
 if-shell
-wait-for
-send-keys
-send-prefix
 #}}}
 
 -h
