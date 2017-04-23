@@ -266,32 +266,37 @@ nnoremap -- :call ChangeOperationMode()<CR>
 autocmd WinEnter * call SetOperationMode()
 "}}}
 inoremap jk <Esc>"{{{
-cnoremap jk <CR>
 inoremap JK <Esc>
-cnoremap JK <CR>
-inoremap df <CR>
-inoremap kl _
-cnoremap kl _
-inoremap KL _
-cnoremap KL _
+cnoremap jk <Esc>
+cnoremap JK <Esc>
+inoremap kl <CR>
+inoremap KL <CR>
+cnoremap kl <CR>
+cnoremap KL <CR>
 inoremap sd ->
+inoremap df _
+inoremap DF _
+cnoremap df _
+cnoremap DF _
+
 inoremap ;; :
-inoremap 7 &
-inoremap & 7
-inoremap 8 *
-inoremap * 8
-inoremap 9 (
-inoremap ( 9
-inoremap 0 )
-inoremap ) 0
+nnoremap j gj
+nnoremap k gk
+
+inoremap " '
+inoremap ' "
 inoremap [ {
 inoremap { [
 inoremap ] }
 inoremap } ]
-inoremap " '
-inoremap ' "
-nnoremap j gj
-nnoremap k gk
+inoremap 9 (
+inoremap ( 9
+inoremap 0 )
+inoremap ) 0
+inoremap 8 *
+inoremap * 8
+inoremap 7 &
+inoremap & 7
 
 "nnoremap <C-M> <C-W>\|<C-W>_
 "nnoremap <C-N> <C-W>=

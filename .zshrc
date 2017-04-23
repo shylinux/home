@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh# {{{
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -83,17 +83,50 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# }}}
 
-PROMPT='%![%T]%c$ '
-
-alias t='tmux'
-alias vps='ssh shy@shylinux.com'
-
+export PROMPT='%![%*]%c$ '
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
 export EDITOR=vim
 
+alias t='tmux'
+alias vps='ssh shy@shylinux.com'
+
 source ~/.zsh_local
 source ~/bash/tool/tmux/power.sh
 
+HISTORY=~/bash/history # {{{
+zle-line-finish() { # {{{
+	echo $BUFFER|awk '{print $1}' >>$HISTORY/cmd
+	sort $HISTORY/cmd|uniq -c|sort -rn|head -20 >$HISTORY/cmd_tmp
+
+	echo $BUFFER|awk '{for (i=2;i<=NF;i++){print $i}}' >>$HISTORY/arg
+	sort $HISTORY/arg|uniq -c|sort -rn|head -20 >$HISTORY/arg_tmp
+}
+# }}}
+complete_history() { # {{{
+	local hi=$HISTORY/cmd_tmp
+	if [ $CURRENT -gt 1 ]; then
+		hi=$HISTORY/arg_tmp
+	fi
+
+	while read cnt cmd; do
+		compadd -- $cmd
+	done < $hi
+}
+# }}}
+zle -C complete_history expand-or-complete complete_history
+bindkey "^M" complete_history
+# }}}
+bindkey -e # {{{
+bindkey -s df _
+bindkey -s DF _
+bindkey kl accept-line
+bindkey jk vi-cmd-mode
+bindkey "^N" down-line-or-beginning-search
+bindkey "^P" up-line-or-beginning-search
+bindkey -M vicmd j down-line-or-beginning-search
+bindkey -M vicmd k up-line-or-beginning-search
+# }}}

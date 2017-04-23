@@ -205,6 +205,336 @@ send-keys
 run-shell
 if-shell
 #}}}
+zsh #{{{
+# ! | && || & ; \
+
+set;setopt;shift getopts $OPTIND $OPTARG unsetopt
+typeset declare interge float local export;readonly unset
+read;echo;print;printf eval test let
+
+. : true false
+break continue return exit exec source trap suspend logout bye
+disalbe enable builtin command hash rehash unhash
+ulimit umask times limit unlimit log noglob ttyctl
+
+if cmd; then cmd; elif cmd; then cmd; fi
+for var in val; do cmd; done
+for ((exp; exp; exp)) do cmd; done
+case val in pat) cmd;; esac
+select var in val; do cmd; done
+while cmd; do cmd; done
+until cmd; do cmd; done
+function fun() {}
+() (())
+[] [[ ]]
+{}
+'' "" ``
+
+alias unalias fc history
+pwd cd dirs popd pushd
+jobs bg fg wait kill disown
+whence where which
+
+bindkey#{{{
+bindkey -e
+bindkey -v
+bindkey -a
+bindkey -M
+
+bindkey -l
+bindkey -d
+bindkey -D
+bindkey -N
+bindkey -A
+
+bindkey
+bindkey -s
+bindkey -r
+bindkey -L
+#}}}
+zle#{{{
+zle -l
+zle -D
+zle -A
+zle -N
+zle -C
+
+zle -R
+zle -M
+zle -U
+zle -K
+#}}}
+
+
+vared
+bindkey #{{{
+bindkey -N
+bindkey -D
+bindkey -d
+bindkey -A
+bindkey -l
+
+bindkey -e
+bindkey -v
+bindkey -a
+bindkey -M
+
+bindkey
+bindkey -s
+bindkey -r
+bindkey -L
+#}}}
+zle #{{{
+zle -l
+zle -D
+zle -A
+zle -N
+zle -C
+
+zle -R
+zle -M
+zle -U
+#}}}
+widget #{{{
+$BUFFERLINES $BUFFER $CURSOR $LBUFFER $RBUFFER
+$HISTNO $CONTEXT $CUTBUFFER $killring[] $MARK
+$MUMBER $PREDISPLAY $POSTDISPLAY
+
+$PROMPT $ZLE_STATE $KEYMAP $KEYS
+$WIDGET $WIDGETFUNC $WIDGETSTYLE
+
+zle-line-init()
+zle-line-finish()
+zle-keymap-select()
+zle-history-line-set()
+zle-line-pre-redraw()
+zle-isearch-update()
+zle-isearch-exit()
+
+movement #{{{
+down-line
+up-line
+forward-char
+backward-char
+forward-word
+backward-word
+emacs-forward-word
+emacs-backward-word
+beginning-of-line
+end-of-line
+
+vi-goto-column
+vi-goto-mark
+vi-goto-mark-line
+vi-repeat-find
+vi-rev-repeat-find
+vi-find-next-char
+vi-find-prev-char
+vi-find-next-char-skip
+vi-find-prev-char-skip
+vi-forward-char
+vi-backward-char
+vi-forward-word
+vi-backward-word
+vi-forward-word-end
+vi-backward-word-end
+vi-forward-blank-word
+vi-backward-blank-word
+vi-forward-blank-word-end
+vi-backward-blank-word-end
+vi-beginning-of-line
+vi-first-non-blank
+vi-end-of-line
+#}}}
+history#{{{
+
+up-history
+down-history
+history-search-backward
+history-search-forward
+
+vi-up-line-or-history
+vi-down-line-or-history
+vi-history-search-backward
+vi-history-search-forward
+vi-repeat-search
+vi-rev-repeat-search
+vi-fetch-history
+
+begnning-of-buffer-or-history
+beginning-of-line-hist
+begnning-of-history
+down-line-or-history
+down-line-or-search
+history-beginning-search-backward
+end-of-buffer-or-history
+end-of-line-hist
+end-of-history
+history-incremental-search-backward#{{{
+	accept-and-hold
+	accept-and-infer-next-history
+	accept-line
+	accept-line-and-down-history
+	backward-delete-char
+	vi-backward-delete-char
+	accept-search
+	backward-delete-word
+	backward-kill-word
+	vi-backward-kill-word
+	clear-screen
+	history-incremental-search-backward
+	history-incremental-search-forward
+	magic-space
+	quoted-insert
+	vi-quoted-insert
+	redisplay
+	vi-cmd-mode
+	vi-repeat-search
+	vi-rev-repeat-search
+#}}}
+history-incremental-search-forward
+history-incremental-pattern-search-backward
+history-incremental-pattern-search-forward
+infer-next-history
+insert-last-word
+up-line-or-history
+up-line-or-search
+histroy-beginning-search-forward
+set-local-history
+#}}}
+modify#{{{
+vi-add-eol
+vi-add-next
+vi-insert
+vi-insert-bol
+vi-quoted-insert
+vi-open-line-above
+vi-open-line-below
+vi-put-before
+vi-put-after
+
+vi-yank
+vi-yank-whole-line
+vi-yank-eol
+vi-delete
+vi-delete-char
+vi-kill-line
+vi-kill-eol
+vi-backward-delete-char
+vi-backward-kill-word
+
+vi-down-case
+vi-up-case
+vi-replace
+vi-replace-chars
+vi-change
+vi-change-eol
+vi-change-whole-line
+vi-swap-case
+vi-repeat-change
+vi-indent
+vi-unindent
+vi-join
+vi-oper-swap-case
+vi-substitute
+vi-match-bracket
+
+backward-delete-char
+backward-delete-word
+backward-kill-line
+backward-kill-word
+capitalize-word
+copy-region-as-kill
+copy-prev-word
+copy-prev-shell-word
+delete-char
+delete-word
+down-case-word
+kill-word
+gosmacs-transpose-chars
+kill-line
+kill-region
+kill-buffer
+kill-whole-line
+overwrite-mode
+put-replace-selection
+quoted-insert
+quote-line
+quote-region
+self-insert
+self-insert-unmeta
+transpose-chars
+transpose-words
+up-case-word
+yank
+yank-pop
+#}}}
+completion #{{{
+accept-and-menu-complete
+complete-word
+delete-char-or-list
+expand-cmd-path
+expand-or-complete
+expand-or-complete-prefix
+expand-history
+expand-word
+list-choices
+list-expand
+magic-space
+menu-complete
+menu-expand-or-complete
+reverse-menu-complete
+end-of-list
+#}}}
+#}}}
+completion widget
+
+
+bindkey
+vared
+zle
+bindkey
+unfunction
+functions
+type
+pushln
+getln
+autoload
+compile
+zformat
+zftp
+zle
+zmodload
+zpareseopts
+zprof
+zpty
+zregexparse
+zsocket
+zstyle
+ztcp
+vared
+stat
+sched
+cap
+getcap
+setcap
+echotc echoti
+emulate
+clone
+comparguments
+compcall
+compctl
+compdescribe
+compfiles
+compgroups
+compquote
+comptags
+comptry
+compvalues
+
+#}}}
+
+
 
 -h
 --help

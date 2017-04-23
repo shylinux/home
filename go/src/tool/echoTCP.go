@@ -25,13 +25,16 @@ func main() {
 		go func() {
 			for {
 				b = b[:1024]
-				n, e := c.Read(b)
-				b = b[:n]
-				if e != nil {
-					break
-				}
+				n := 0
+				// n, e := c.Read(b)
+				// b = b[:n]
+				// if e != nil {
+				// 	break
+				// }
 				fmt.Printf("[%02d:%02d:%02d] %s (size:%d) %s\n", time.Now().Hour(), time.Now().Minute(), time.Now().Second(), c.RemoteAddr(), n, b)
-				c.Write([]byte(string(b[:n]) + "\n" + time.Now().String()))
+				// c.Write([]byte(string(b[:n]) + "\n" + time.Now().String()))
+				c.Write([]byte(time.Now().String()))
+				break
 			}
 			c.Close()
 		}()
