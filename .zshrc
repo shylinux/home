@@ -99,14 +99,26 @@ alias vps='ssh shy@shylinux.com'
 # }}}
 HISTORY=~/bash/history # {{{
 [ -e $HISTORY ] || mkdir $HISTORY
-zle-line-finish() { # {{{
-	echo $BUFFER|awk '{print $1}' >>$HISTORY/cmd
-	sort $HISTORY/cmd|uniq -c|sort -rn|head -20 >$HISTORY/cmd_tmp
 
-	echo $BUFFER|awk '{for (i=2;i<=NF;i++){print $i}}' >>$HISTORY/arg
-	sort $HISTORY/arg|uniq -c|sort -rn|head -20 >$HISTORY/arg_tmp
+LIST_MODE=1
+
+zle-line-finish() { # {{{
+	now=$(date +%s)
+
+	echo $BUFFER|awk "{printf \"%d %s\n\", $now, \$1}" >>$HISTORY/cmd
+	echo $BUFFER|awk "{for (i=2;i<=NF;i++){printf \"%d %s\n\", $now, \$i}}" >>$HISTORY/arg
+
+	case $LIST_MODE in
+		1)	cat $HISTORY/cmd|cut -d' ' -f2|sort|uniq -c|sort -rn|head -20 >$HISTORY/cmd_tmp
+			cat $HISTORY/arg|cut -d' ' -f2|sort|uniq -c|sort -rn|head -20 >$HISTORY/arg_tmp
+			;;
+		2)	cat $HISTORY/cmd|sort -rn|head -20 >$HISTORY/cmd_tmp
+			cat $HISTORY/arg|sort -rn|head -20 >$HISTORY/arg_tmp
+			;;
+	esac
 }
 # }}}
+
 complete_history() { # {{{
 	local hi=$HISTORY/cmd_tmp
 	if [ $CURRENT -gt 1 ]; then
@@ -118,6 +130,7 @@ complete_history() { # {{{
 	done < $hi
 }
 # }}}
+
 zle -C complete_history expand-or-complete complete_history
 bindkey "^M" complete_history
 # }}}
