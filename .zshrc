@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # }}}
 
-export PROMPT='%![%*]%c$ '
+export PROMPT='%![%*]%c$ ' # {{{
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
@@ -96,8 +96,9 @@ source ~/bash/tool/tmux/power.sh
 
 alias t='tmux'
 alias vps='ssh shy@shylinux.com'
-
+# }}}
 HISTORY=~/bash/history # {{{
+[ -e $HISTORY ] || mkdir $HISTORY
 zle-line-finish() { # {{{
 	echo $BUFFER|awk '{print $1}' >>$HISTORY/cmd
 	sort $HISTORY/cmd|uniq -c|sort -rn|head -20 >$HISTORY/cmd_tmp
@@ -123,8 +124,8 @@ bindkey "^M" complete_history
 bindkey -e # {{{
 bindkey -s df _
 bindkey -s DF _
-bindkey kl accept-line
-bindkey jk vi-cmd-mode
+bindkey jk accept-line
+bindkey kl vi-cmd-mode
 bindkey "^N" down-line-or-beginning-search
 bindkey "^P" up-line-or-beginning-search
 bindkey -M vicmd j down-line-or-beginning-search
