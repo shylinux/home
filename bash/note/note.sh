@@ -533,7 +533,52 @@ comptry
 compvalues
 
 #}}}
+qemu #{{{
+/etc/networks
+/etc/resolv.conf
+/etc/hosts
+ifconfig
+netstat
+route
+arp
 
+sudo apt-get install uml-utilities
+tunctl -t
+tunctl -d
+
+sudo apt-get install bridge-utils
+brctl addbr
+brctl delbr
+brctl addif
+brctl delif
+brctl show
+
+sudo apt-get install qemu-kvm
+qemu-img create
+qemu-img snapshot
+qemu-img check
+qemu-img commit
+qemu-img compare
+qemu-img convert
+qemu-img info
+qemu-img map
+
+qemu-system-x86_64
+	-smp 2
+	-m 2000
+	-localtime
+	-nographic
+	-vga none
+	-boot c
+	-drive file=power.img
+	-net nic,vlan=0,model=e1000
+	-net tap,vlan=0,ifname=tap0,script=no
+
+	-device
+	-hda
+	-cdrom
+
+#}}}
 
 
 -h
