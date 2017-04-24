@@ -93,6 +93,7 @@ export EDITOR=vim
 
 source ~/.zsh_local
 source ~/bash/tool/tmux/power.sh
+source ~/bash/tool/tmux/local.sh
 
 alias t='tmux'
 alias vps='ssh shy@shylinux.com'
@@ -135,8 +136,8 @@ zle -C complete_history expand-or-complete complete_history
 bindkey "^M" complete_history
 # }}}
 bindkey -e # {{{
-bindkey -s df _
-bindkey -s DF _
+bindkey -s sd _
+bindkey -s SD _
 bindkey jk accept-line
 bindkey kl vi-cmd-mode
 bindkey "^N" down-line-or-beginning-search

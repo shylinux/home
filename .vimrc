@@ -273,11 +273,11 @@ inoremap kl <CR>
 inoremap KL <CR>
 cnoremap kl <CR>
 cnoremap KL <CR>
-inoremap sd ->
-inoremap df _
-inoremap DF _
-cnoremap df _
-cnoremap DF _
+inoremap df ->
+inoremap sd _
+inoremap SD _
+cnoremap sd _
+cnoremap SD _
 
 inoremap ;; :
 nnoremap j gj
