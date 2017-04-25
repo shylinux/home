@@ -39,6 +39,7 @@ power() {
 }
 
 p() {
+	sleep 0.2
 	power C-U
 	power "$*"
 	power C-J
