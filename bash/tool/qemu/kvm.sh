@@ -15,7 +15,8 @@ for ((i=1,j=0; j<=20; j++)) do
 done
 ((i < NUM)) && echo "there are too many kvmif" && exit 1
 
-sudo qemu-system-x86_64 -smp $CPU -m $MEM -localtime -enable-kvm \
+sudo qemu-system-x86_64 -smp $CPU -m $MEM \
+	-rtc clock=host -enable-kvm \
 	-drive file=$IMG \
 	-nographic \
 	$NET
