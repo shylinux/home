@@ -102,6 +102,7 @@ HISTORY=~/bash/history # {{{
 [ -e $HISTORY ] || mkdir $HISTORY
 
 LIST_MODE=1
+LIST_NUM=60
 
 zle-line-finish() { # {{{
 	now=$(date +%s)
@@ -110,11 +111,11 @@ zle-line-finish() { # {{{
 	echo $BUFFER|awk "{for (i=2;i<=NF;i++){printf \"%d %s\n\", $now, \$i}}" >>$HISTORY/arg
 
 	case $LIST_MODE in
-		1)	cat $HISTORY/cmd|cut -d' ' -f2|sort|uniq -c|sort -rn|head -20 >$HISTORY/cmd_tmp
-			cat $HISTORY/arg|cut -d' ' -f2|sort|uniq -c|sort -rn|head -20 >$HISTORY/arg_tmp
+		1)	cat $HISTORY/cmd|cut -d' ' -f2|sort|uniq -c|sort -rn|head -$LIST_NUM >$HISTORY/cmd_tmp
+			cat $HISTORY/arg|cut -d' ' -f2|sort|uniq -c|sort -rn|head -$LIST_NUM >$HISTORY/arg_tmp
 			;;
-		2)	cat $HISTORY/cmd|sort -rn|head -20 >$HISTORY/cmd_tmp
-			cat $HISTORY/arg|sort -rn|head -20 >$HISTORY/arg_tmp
+		2)	cat $HISTORY/cmd|sort -rn|head -$LIST_NUM >$HISTORY/cmd_tmp
+			cat $HISTORY/arg|sort -rn|head -$LIST_NUM >$HISTORY/arg_tmp
 			;;
 	esac
 }
