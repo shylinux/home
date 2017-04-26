@@ -108,6 +108,7 @@ zle-line-finish() { # {{{
 	now=$(date +%s)
 
 	echo $BUFFER|awk "{printf \"%d %s\n\", $now, \$1}" >>$HISTORY/cmd
+	echo $BUFFER|awk "{if (\$1==\"sudo\")printf \"%d %s\n\", $now, \$2}" >>$HISTORY/cmd
 	echo $BUFFER|awk "{for (i=2;i<=NF;i++){printf \"%d %s\n\", $now, \$i}}" >>$HISTORY/arg
 
 	case $LIST_MODE in
