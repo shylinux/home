@@ -16,8 +16,5 @@ done
 ((i < NUM)) && echo "there are too many kvmif" && exit 1
 
 	#-rtc clock=host -enable-kvm \
-sudo qemu-system-x86_64 -smp $CPU -m $MEM \
-	-rtc clock=host \
-	-drive file=$IMG \
-	-nographic \
-	$NET
+sudo qemu-system-x86_64 -rtc clock=host -nographic -enable-kvm \
+	-smp $CPU -m $MEM -drive file=$IMG $NET

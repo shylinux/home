@@ -18,14 +18,19 @@ p4() {
 	TARGET_PANE=4
 }
 
-psp() {
-	tmux select-pane -t $TARGET_PANE
-	tmux split-window
+pt() {
+	TARGET_PANE=${1:-1}
+	echo select:$TARGET_PANE
+}
+
+pu() {
+	tmux split-window -t .$TARGET_PANE
+	tmux last-pane
 }
 
 pv() {
-	tmux select-pane -t $TARGET_PANE
-	tmux split-window -h
+	tmux split-window -h -t .$TARGET_PANE
+	tmux last-pane
 }
 
 pq() {
@@ -39,14 +44,13 @@ power() {
 }
 
 p() {
-	sleep 0.2
 	power C-U
 	power "$*"
 	power C-J
 }
 
 pr() {
-	power C-L
+	pp clear
 }
 
 pn() {
@@ -57,15 +61,7 @@ pi() {
 	power C-C
 }
 
-pvm() {
-	p ~/bash/tool/qemu/kvm.sh $@
-}
-
-pquit() {
-	power C-A c q C-J
-}
-
-pend() {
+phas() {
 	local buffer=~/bash/tool/tmux/tmux_save_buffer
 	local end=${1:-'10038[11:16:44]~$'}
 	local finish="false"
@@ -77,11 +73,19 @@ pend() {
 	while read; do
 		[ -z "$REPLY" ] && continue
 		finish="false"
-		echo $REPLY|grep $end &>/dev/null && finish="true"
-	done < $buffer
+		echo "$REPLY" |grep "$end" &>/dev/null && finish="true"
+		[ $finish = "true" -a -n "$2" ] && break
+	done < "$buffer"
 
 	[ "$finish" = "true" ] && return 0
 	[ "$finish" = "false" ] && return 1
+}
+
+puntil() {
+	sleep 0.002
+	until phas $*; do
+		sleep 0.002
+	done
 }
 
 pwait() {
@@ -89,9 +93,24 @@ pwait() {
 	read
 }
 
-puntil() {
-	sleep 0.1
-	until pend $1; do
-		sleep 0.1
-	done
+pe() {
+	sleep 0.01
+	puntil $1
+	shift
+	p $*
 }
+
+pp() {
+	sleep 0.01
+	puntil "$TARGET_PS1"
+	p $*
+}
+
+pvm() {
+	p ~/bash/tool/qemu/kvm.sh $@
+}
+
+pquit() {
+	power C-A c q C-J
+}
+
