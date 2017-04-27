@@ -1,5 +1,8 @@
 #!/bin/bash
 
+LOCAL_BUFFER=/tmp/tmux_save_buffer
+LOCAL_KVM=~/bash/tool/qemu/kvm.sh
+
 pconsole() {
 	tmux split-window -l 10
 }
@@ -62,12 +65,11 @@ pi() {
 }
 
 phas() {
-	local buffer=~/bash/tool/tmux/tmux_save_buffer
 	local end=${1:-'10038[11:16:44]~$'}
 	local finish="false"
 
 	tmux capture-pane -t .$TARGET_PANE
-	tmux save-buffer $buffer
+	tmux save-buffer $LOCAL_BUFFER
 	tmux delete-buffer
 
 	while read; do
@@ -75,7 +77,7 @@ phas() {
 		finish="false"
 		echo "$REPLY" |grep "$end" &>/dev/null && finish="true"
 		[ $finish = "true" -a -n "$2" ] && break
-	done < "$buffer"
+	done < "$LOCAL_BUFFER"
 
 	[ "$finish" = "true" ] && return 0
 	[ "$finish" = "false" ] && return 1
@@ -107,7 +109,8 @@ pp() {
 }
 
 pvm() {
-	p ~/bash/tool/qemu/kvm.sh $@
+	$LOCAL_KVM $*
+
 }
 
 pquit() {
