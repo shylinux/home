@@ -98,7 +98,7 @@ source ~/bash/tool/tmux/local.sh
 alias t='tmux'
 alias vps='ssh shy@shylinux.com'
 # }}}
-HISTORY=~/bash/history # {{{
+HISTORY=~/temp/bash/history # {{{
 [ -e $HISTORY ] || mkdir $HISTORY
 
 LIST_MODE=1

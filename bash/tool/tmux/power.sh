@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOCAL_BUFFER=/tmp/tmux_save_buffer
+LOCAL_BUFFER=~/temp/tmux_save_buffer
 LOCAL_KVM=~/bash/tool/qemu/kvm.sh
 
 pconsole() {
@@ -110,7 +110,6 @@ pp() {
 
 pvm() {
 	$LOCAL_KVM $*
-
 }
 
 pquit() {
