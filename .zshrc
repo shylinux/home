@@ -99,7 +99,7 @@ alias t='tmux'
 alias vps='ssh shy@shylinux.com'
 # }}}
 HISTORY=~/temp/bash/history # {{{
-[ -e $HISTORY ] || mkdir $HISTORY
+[ -e $HISTORY ] || mkdir -p $HISTORY
 
 LIST_MODE=1
 LIST_NUM=60
