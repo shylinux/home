@@ -5,6 +5,24 @@ ARM Linux HTTP
 
 linux gun ubuntu
 
+ubuntu#{{{
+	sudo apt-get install vim git
+	sudo apt-get install tmux zsh
+	sudo apt-get install cscope ctags
+	sudo apt-get install openssh-server
+	sudo apt-apt install cmake
+
+	sudo usermod -aG vboxsf shy
+	ln -s /media/sf_share share
+
+	mount -t vboxsf share share
+
+	sudo apt-get install libpcre3-dev
+	sudo apt-get install zlib1g-dev
+	iisudo apt-get install libssl-dev
+
+	sudo apt-get install tree
+#}}}
 tmux #{{{
 set-option show-options #{{{
 	prefix
