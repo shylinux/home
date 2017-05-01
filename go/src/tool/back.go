@@ -42,6 +42,18 @@ type Meta struct { // {{{
 }
 
 // }}}
+func confirm(format string, msg ...string) bool { // {{{
+	fmt.Printf(format, msg)
+
+	var a string
+	fmt.Scanf("%s\n", &a)
+	if len(a) > 0 && a[0] == 'n' {
+		return false
+	}
+	return true
+}
+
+// }}}
 func sizes(s int64) string { // {{{
 	if s > 10000000000 {
 		return fmt.Sprintf("%dG", s/1000000000)
@@ -181,6 +193,23 @@ func back(srcmeta []*Meta, dstmeta []*Meta, action bool) error { // {{{
 			if *issave || *isbackup || *issame {
 				needcopy = true
 			}
+			if *issame && !*istime {
+				for _, ff := range dstmeta {
+					if ff.flag != '-' {
+						continue
+					}
+					if f.hash == ff.hash {
+						if confirm("rename %s to %s y(yes/no):", ff.name, f.name) {
+							if err := os.Rename(path.Join(dst, ff.name), path.Join(dst, f.name)); err != nil {
+								return err
+							}
+							ff.name = f.name
+							ff.flag = '='
+							needcopy = false
+						}
+					}
+				}
+			}
 		}
 
 		if needcopy {
@@ -196,14 +225,7 @@ func back(srcmeta []*Meta, dstmeta []*Meta, action bool) error { // {{{
 		}
 
 		if action {
-			if *issame {
-				fmt.Printf("remove %s from %s y(yes/no):", f.name, dst)
-
-				var a string
-				fmt.Scanf("%s\n", &a)
-				if len(a) > 0 && a[0] == 'n' {
-					continue
-				}
+			if *issame && confirm("remove %s from %s y(yes/no):", f.name, dst) {
 				if err := os.Remove(path.Join(dst, f.name)); err != nil {
 					return err
 				}
@@ -314,11 +336,21 @@ func main() { // {{{
 		os.Exit(1)
 	}
 
-	src = path.Clean(flag.Arg(0))
-	_, err := os.Stat(src)
+	cwd, err := os.Getwd()
+	err_exit(err, "%s", err)
+	if path.IsAbs(flag.Arg(0)) {
+		src = path.Clean(flag.Arg(0))
+	} else {
+		src = path.Clean(path.Join(cwd, flag.Arg(0)))
+	}
+	_, err = os.Stat(src)
 	err_exit(err, "src path %s doesn't exist\n", src)
 
-	dst = path.Clean(flag.Arg(1))
+	if path.IsAbs(flag.Arg(1)) {
+		dst = path.Clean(flag.Arg(1))
+	} else {
+		dst = path.Clean(path.Join(cwd, flag.Arg(1)))
+	}
 	if _, err := os.Stat(dst); err != nil {
 		fmt.Printf("dst path %s doesn't exist\n", dst)
 		err = os.MkdirAll(dst, os.ModePerm)
@@ -344,8 +376,10 @@ func main() { // {{{
 	}
 
 	allsize = 0
-	back(srcmeta, dstmeta, false)
-	back(srcmeta, dstmeta, true)
+	err = back(srcmeta, dstmeta, false)
+	err_exit(err, "%s", err)
+	err = back(srcmeta, dstmeta, true)
+	err_exit(err, "%s", err)
 }
 
 // }}}
