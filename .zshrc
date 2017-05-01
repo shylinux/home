@@ -135,7 +135,7 @@ complete_history() { # {{{
 # }}}
 
 zle -C complete_history expand-or-complete complete_history
-bindkey "^M" complete_history
+bindkey "^G" complete_history
 # }}}
 bindkey -e # {{{
 bindkey -s sd _
