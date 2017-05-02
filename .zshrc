@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(tmux)
+plugins=(tmux go)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,7 +93,6 @@ export EDITOR=vim
 
 source ~/.zsh_local
 source ~/bash/tool/tmux/power.sh
-source ~/bash/tool/tmux/local.sh
 
 alias t='tmux'
 alias vps='ssh shy@shylinux.com'

@@ -74,11 +74,11 @@ func save(size int64, src string, dst string) (err error) { // {{{
 		if err = os.MkdirAll(dir, os.ModePerm); err != nil {
 			return err
 		}
-		fmt.Printf("create dst path %s\n", dir)
+		fmt.Printf("%s create dst path %s\n", time.Now().Format("15:04:05"), dir)
 	}
 repeat:
 	if !*isforce {
-		fmt.Printf("copy %s from %s to %s y(yes/no/quit/delete/compare):", sizes(size), src, dst)
+		fmt.Printf("%s copy %s from %s to %s y(yes/no/quit/delete/compare):", time.Now().Format("15:04:05"), sizes(size), src, dst)
 
 		var a string
 		fmt.Scanf("%s\n", &a)
@@ -115,7 +115,7 @@ repeat:
 	}
 	defer srcf.Close()
 
-	fmt.Printf("copy %s to %s ... ", sizes(size), dst)
+	fmt.Printf("%s copy %s to %s ... ", time.Now().Format("15:04:05"), sizes(size), dst)
 	size, err = io.Copy(dstf, srcf)
 	sumsize += size
 	fmt.Printf("done %%%d\n", sumsize*100/allsize)
@@ -353,20 +353,20 @@ func main() { // {{{
 		dst = path.Clean(path.Join(cwd, flag.Arg(1)))
 	}
 	if _, err := os.Stat(dst); err != nil {
-		fmt.Printf("dst path %s doesn't exist\n", dst)
+		fmt.Printf("%s dst path %s doesn't exist\n", time.Now().Format("15:04:05"), dst)
 		err = os.MkdirAll(dst, os.ModePerm)
 		err_exit(err, "%s", err)
-		fmt.Printf("create dst path %s\n", dst)
+		fmt.Printf("%s create dst path %s\n", time.Now().Format("15:04:05"), dst)
 	}
 
 	allsize = 0
-	fmt.Printf("sum src: ")
+	fmt.Printf("%s sum src: ", time.Now().Format("15:04:05"))
 	srcmeta, err := show(make([]*Meta, 0), src, "")
 	err_exit(err, "%s", err)
 	fmt.Printf(" %d files %s bytes\n", len(srcmeta), sizes(allsize))
 
 	allsize = 0
-	fmt.Printf("sum dst: ")
+	fmt.Printf("%s sum dst: ", time.Now().Format("15:04:05"))
 	dstmeta, err := show(make([]*Meta, 0), dst, "")
 	err_exit(err, "%s", err)
 	fmt.Printf(" %d files %s bytes\n", len(dstmeta), sizes(allsize))

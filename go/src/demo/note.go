@@ -252,6 +252,9 @@ io// {{{
 	TeeReader()
 	NewSectionReader()
 // }}}
+io/ioutil// {{{
+
+// }}}
 net// {{{
 	IPv4len
 	FlagUp

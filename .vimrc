@@ -15,7 +15,6 @@ Bundle 'a.vim'
 Bundle 'mru.vim'
 Bundle 'snipMate'
 Bundle 'genutils'
-Bundle 'kien/ctrlp.vim'
 Bundle 'goodlygeek/tabular'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/vim-misc'
@@ -50,6 +49,9 @@ Bundle 'vim-scripts/tComment'
 " Bundle 'Valloric/YouCompleteMe'
 " let g:ycm_server_python_interpreter='/usr/bin/python'
 " let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+
+Bundle 'kien/ctrlp.vim'
+let g:ctrlp_cmd='CtrlPBuffer'
 
 Bundle 'OmniCppComplete'
 let g:OmniCpp_DefaultNamespaces=["std"]
