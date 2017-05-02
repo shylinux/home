@@ -115,9 +115,10 @@ repeat:
 	}
 	defer srcf.Close()
 
+	fmt.Printf("copy %s to %s ... ", sizes(size), dst)
 	size, err = io.Copy(dstf, srcf)
 	sumsize += size
-	fmt.Printf("copy %s to %s ... done %%%d\n", sizes(size), dst, sumsize*100/allsize)
+	fmt.Printf("done %%%d\n", sumsize*100/allsize)
 	return nil
 }
 
