@@ -42,8 +42,8 @@ type Meta struct { // {{{
 }
 
 // }}}
-func confirm(format string, msg ...string) bool { // {{{
-	fmt.Printf(format, msg)
+func confirm(format string, msg ...interface{}) bool { // {{{
+	fmt.Printf(format, msg...)
 
 	var a string
 	fmt.Scanf("%s\n", &a)
