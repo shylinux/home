@@ -281,25 +281,24 @@ inoremap SD _
 cnoremap sd _
 cnoremap SD _
 
-inoremap ;; :
 nnoremap j gj
 nnoremap k gk
-
-inoremap " '
-inoremap ' "
-inoremap [ {
-inoremap { [
-inoremap ] }
-inoremap } ]
-inoremap 9 (
-inoremap ( 9
-inoremap 0 )
-inoremap ) 0
-inoremap 8 *
-inoremap * 8
-inoremap 7 &
-inoremap & 7
-
+" inoremap ;; :
+" inoremap " '
+" inoremap ' "
+" inoremap [ {
+" inoremap { [
+" inoremap ] }
+" inoremap } ]
+" inoremap 9 (
+" inoremap ( 9
+" inoremap 0 )
+" inoremap ) 0
+" inoremap 8 *
+" inoremap * 8
+" inoremap 7 &
+" inoremap & 7
+"
 "nnoremap <C-M> <C-W>\|<C-W>_
 "nnoremap <C-N> <C-W>=
 "nnoremap <C-P> <C-W>p
