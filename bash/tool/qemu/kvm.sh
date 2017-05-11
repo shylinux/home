@@ -12,3 +12,10 @@ done
 
 sudo qemu-system-x86_64 -rtc clock=host -nographic \
 	-smp $CPU -m $MEM -drive file=$IMG $NET
+
+#sudo ifconfig bridge1 create
+#sudo ifconfig bridge1 addm tap0
+
+#-net nic,model=e1000 -net tap,script=no,downscript=no
+
+#-netdev tap,id=kvmbr0,script=no,downscript=no -device e1000,netdev=kvmbr0
