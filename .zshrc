@@ -91,8 +91,9 @@ export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
 export EDITOR=vim
 
-source ~/.zsh_local
 source ~/bash/tool/tmux/power.sh
+source ~/.zsh_local
+source ~/work/tool/now.sh
 
 alias t='tmux'
 alias vps='ssh shy@shylinux.com'
@@ -104,7 +105,7 @@ LIST_MODE=1
 LIST_NUM=60
 
 zle-line-finish() { # {{{
-	now=$(date +%s)
+	local now=$(date +%s)
 
 	echo $BUFFER|awk "{printf \"%d %s\n\", $now, \$1}" >>$HISTORY/cmd
 	echo $BUFFER|awk "{if (\$1==\"sudo\")printf \"%d %s\n\", $now, \$2}" >>$HISTORY/cmd

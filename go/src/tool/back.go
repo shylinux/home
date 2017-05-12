@@ -276,6 +276,10 @@ func show(meta []*Meta, file string, base string) ([]*Meta, error) { // {{{
 	}
 
 	for _, v := range list {
+		if v.Name()[0] == '.' {
+			continue
+		}
+
 		if v.IsDir() {
 			if v.Name() != "." && v.Name() != ".." {
 				if meta, err = show(meta, v.Name(), base); err != nil {
