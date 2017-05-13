@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # }}}
 
-export PROMPT='%![%*]%c$ ' # {{{
+export PROMPT=$LOCAL_PROMPT'%![%*]%c$ ' # {{{
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
@@ -93,6 +93,7 @@ export EDITOR=vim
 
 source ~/bash/tool/tmux/power.sh
 source ~/.zsh_local
+source ~/work/tool/vpm.sh
 source ~/work/tool/now.sh
 
 alias t='tmux'
