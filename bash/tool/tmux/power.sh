@@ -45,16 +45,26 @@ pconsole() {
 	echo -n "IP0(1.0.0.$TARGET_WINDOW): " && read ip0 && ip0=${ip0:-"1.0.0.$TARGET_WINDOW"}
 	echo -n "IP1: " && read ip1
 
-	tmux split-window -d -l 10 -t $TARGET_SESSION:$TARGET_WINDOW.1
-	tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- "pimg $img $manu $ip0 $ip1"
-	tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
+	if [ -z "$2" ]
+	then
+		tmux split-window -d -l 10 -t $TARGET_SESSION:$TARGET_WINDOW.1
+		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- "pimg $img $manu $ip0 $ip1"
+		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
 
-	tmux split-window -d -h -t $TARGET_SESSION:$TARGET_WINDOW.1
-	tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- 'tail -f $TARGET_LOG'
-	tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
+		tmux split-window -d -h -t $TARGET_SESSION:$TARGET_WINDOW.1
+		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- 'tail -f $TARGET_LOG'
+		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
 
-	tmux set-environment -u -t $TARGET_SESSION TARGET_WINDOW
-	tmux attach-session -t $TARGET_SESSION \; select-pane -t 3
+		tmux set-environment -u -t $TARGET_SESSION TARGET_WINDOW
+		tmux attach-session -t $TARGET_SESSION \; select-pane -t 3
+	else
+		tmux split-window -d -l 10 -t $TARGET_SESSION:$TARGET_WINDOW.1
+		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- "pconnect $img $manu $ip0"
+		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
+
+		tmux set-environment -u -t $TARGET_SESSION TARGET_WINDOW
+		tmux attach-session -t $TARGET_SESSION \; select-pane -t 2
+	fi
 }
 
 p1() {

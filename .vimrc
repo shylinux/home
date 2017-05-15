@@ -17,6 +17,7 @@ Bundle 'snipMate'
 Bundle 'genutils'
 Bundle 'goodlygeek/tabular'
 Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/easygrep'
 Bundle 'vim-scripts/vim-misc'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/vim-compile'
@@ -39,7 +40,6 @@ if version > 703
 	Bundle 'jlanzarotta/bufexplorer'
 	Bundle 'mbbill/echofunc'
 endif
-Bundle 'vim-scripts/easygrep'
 Bundle 'vim-scripts/tComment'
 
 "Bundle 'lookupfile'

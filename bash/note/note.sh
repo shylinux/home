@@ -5,6 +5,78 @@ ARM Linux HTTP
 
 linux gun ubuntu
 
+bash
+/etc/profile
+~/.bash_profile
+~/.bashrc
+~/.bash_history
+~/.bash_logout
+| & ; ( ) < >
+|| & && ; ;; ( ) |
+
+
+time ! cmd|cmd&&cmd& cmd||cmd; cmd
+"" '' \ \a \b \c \f \n \r \t \v \\ \' \nnn \xnn
+declare
+unset 
+local
+readonly
+export
+typeset
+alias
+=
++=
+${}
+$! $? $- $_
+$$ $# $0 $1 $* $@
+getopts $OPTARG $OPTIND
+$UID $EUID $GROUPS
+
+$COLUMNS
+$LINES
+$PS1
+$IFS
+$REPLY
+
+$SHELL
+$SHELLOPTS
+$SHLVL
+$FUNCNAME
+$LINENO
+$SECONDS
+
+$HOSTNAME
+$RANDOM
+
+$PWD
+$OLDPWD
+$HOME
+$PATH
+$CDPATH
+$DIRSTACK
+
+$PPID
+$FCEDIT
+$HISTCONTROL
+$HISTFILE
+$HISTFILESIZE
+$HISTSIZE
+
+
+set
+#
+() {}
+(()) [[]]
+function name() {}
+while cmd; do cmd; done
+until cmd; do cmd; done
+for var in val; do cmd; done
+select var in val; do cmd; done
+for ((exp;exp;exp;)) do cmd; done
+case val in val) cmd;; *) cmd;; esac
+if cmd; then cmd; elif cmd; else cmd; fi
+
+
 ubuntu#{{{
 	sudo apt-get install vim git
 	sudo apt-get install tmux zsh
