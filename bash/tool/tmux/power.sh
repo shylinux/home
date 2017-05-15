@@ -4,6 +4,7 @@
 
 TARGET_KVM=~/bash/tool/qemu/kvm.sh
 TARGET_LOG=~/temp/tmux/log_${TARGET_SESSION}_${TARGET_WINDOW}
+TARGET_DEBUG=1
 TARGET_BUFFER=~/temp/tmux/buffer_${TARGET_SESSION}_${TARGET_WINDOW}
 [ -e ~/temp/tmux ] || mkdir -p ~/temp/tmux
 
@@ -97,6 +98,7 @@ pv() {
 
 pq() {
 	tmux kill-pane -t $TARGET_SESSION:$TARGET_WINDOW.$TARGET_PANE
+	TARGET_PANE=1
 }
 
 power() {
@@ -148,12 +150,12 @@ puntil() {
 	local begin=`date +%s`
 	local eslipe=`date +%s`
 	((eslipe=eslipe-begin))
-	echo -n "\r\e[K \e[1mwait\e[0m \e[1;32;5;7m$1\e[0m \e[4m${eslipe}\e[0ms"
+	[ "$TARGET_DEBUG" = 1 ] && echo -n "\r\e[K \e[1mwait\e[0m \e[1;32;5;7m$1\e[0m \e[4m${eslipe}\e[0ms"
 	sleep 0.002
 	until phas $*; do
 		eslipe=`date +%s`
 		((eslipe=eslipe-begin))
-		echo -n "\r\e[K \e[1mwait\e[0m \e[1;32;5;7m$1\e[0m \e[4m${eslipe}\e[0ms"
+		[ "$TARGET_DEBUG" = 1 ] && echo -n "\r\e[K \e[1mwait\e[0m \e[1;32;5;7m$1\e[0m \e[4m${eslipe}\e[0ms"
 		sleep 0.002
 	done
 }
@@ -165,13 +167,12 @@ pwait() {
 
 pe() {
 	sleep 0.01 && puntil $1 && shift && p $*
-	shift
-	echo " "$*
+	[ "$TARGET_DEBUG" = 1 ] && shift && echo " "$*
 }
 
 pp() {
 	sleep 0.01 && puntil "$TARGET_PS1" && p $*
-	echo " "$*
+	[ "$TARGET_DEBUG" = 1 ] && echo " "$*
 }
 
 pvm() {
