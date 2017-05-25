@@ -212,6 +212,8 @@ autocmd BufReadPost *
 
 "}}}
 
+autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
+
 fun! SetOperationMode() "{{{
 	if exists("w:OperationMode") && w:OperationMode == 1
 		nnoremap <Space> <C-F>
