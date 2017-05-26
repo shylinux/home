@@ -81,7 +81,6 @@
 <?  ?>
 <?  ?>
 <?  ?>
-<?  ?>
 <? mktime() time() getdate() checkdate() strftime() date()?>
 <script>
 	Number String Boolean
@@ -95,6 +94,23 @@
 	switch () {case: default:}
 	while () {}
 	for (;;) {}
+</script>
+<script>
+	var xhr = new XMLHttpRequest();
+	var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+	var xhr = new XMLHttpRequest("Microsoft.XMLHTTP");
+	xhr.open("GET", "/", false);
+	xhr.setRequestHeader();
+	xhr.send(body);
+	xhr.abort();
+	xhr.getAllResponseHeaders();
+	xhr.onreadystatechange
+	xhr.readyState
+	xhr.status
+	xhr.statusText
+	xhr.responseText
+	xhr.responseXML
+
 </script>
 <form method="POST" action="/" target="_blank" enctype="mutlipart/form-data">
 <input type="text" name="" value="" size="" maxlength="">
