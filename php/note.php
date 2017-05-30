@@ -11,7 +11,8 @@ ARM Linux HTTP
 <? var_dump() ?>
 
 <? $a=array(=>,) $a[] ?>
-<? unset() isset() gettype() settype() empty() echo ?>
+<? echo var_dump() ?>
+<? unset() isset() empty() settype() gettype() ?>
 <? is_bool() is_string() is_integer() is_int() is_float() is_double() ?>
 <? is_null() is_array() is_object() is_numeric() ?>
 <? define() constant() defined() ?>
@@ -42,22 +43,18 @@ ARM Linux HTTP
 <? rand() ?>
 <?
 	strlen() trim() ltrim() rtrim()
-	strtolower() strtoupper() ucfirst() ucwords()
-	chr() ord()
-	htmlspecialchars() htmlentities() nl2br()
-	addslashes() stripslashes()
+	strtolower() strtoupper() ucfirst() ucwords() chr() ord()
+	htmlspecialchars() htmlentities() nl2br() addslashes() stripslashes()
 	strcmp() strncmp() strcasecmp() strncasecmp() strnatcmp() strnatcasecmp()
 	substr() substr_replace() substr_count()
 	strpos() strrpos()
-
 	sprintf()
 	parse_url()
 	strstr()
 	str_replace()
 	str_ireplace()
 	number_format()
-	strcasecmp()
-	strnatcmp() ?>
+?>
 <?
 	explode() implode()
 ?>
@@ -88,12 +85,9 @@ ARM Linux HTTP
 <? /^\b\B\d\D\s\S\w\W.[^-](|)?*+{,}$/ ?>
 <? /(?P<name>)(?P=name)\1/ ?>
 <?
-   	preg_grep()
 	preg_match() preg_match_all()
-	preg_quote()
-	preg_replace()
-	preg_replace_callback()
-	preg_split()
+   	preg_grep() preg_split() preg_quote()
+	preg_replace() preg_replace_callback()
 ?>
 <?  ?>
 <?  ?>
@@ -161,6 +155,7 @@ ARM Linux HTTP
 <? $_SESSION[] session_save_path() session_start() session_name() session_id() session_destroy() ?>
 <? $_REQUEST[] ?>
 <? $_FILES[] move_uploaded_file() ?>
+<? $_REQUEST[] ?>
 <? $_SERVER[] ?>
 <? $_ENV[] ?>
 <? $GLOBALS[] ?>
@@ -182,7 +177,6 @@ ARM Linux HTTP
 <?
 	basename() dirname() realpath() pathinfo()
 
-
    	fopen() fclose() flock()
 	feof() fseek() ftell() rewind()
 	fgetc() fgets() fread() fwrite()
@@ -203,10 +197,10 @@ ARM Linux HTTP
 <?
 	interface class
 	extends implements
-	final abstract
+	abstract final
 	public protected private
-	static
 	const
+	static
 	self parent
 	new clone instanceof serialize() unserialize()
 	function __autoload($name) {}
