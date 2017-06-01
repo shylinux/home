@@ -243,10 +243,13 @@ ARM Linux HTTP
 	sha1()
 ?>
 <?
-	wget "https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.18-macos10.12-x86_64.dmg"
+	wget "https://cdn.mysql.com/Downloads/MySQL-5.7/mysql-5.7.18-macos10.12-x86_64.dmg"
 	cd /usr/local/mysql/bin && sudo su && ./mysqld_safe --skip-grant-tables
 	mysql; use mysql; flush privileges; set password for 'root'@'localhost'=password(';');
 	mysql -uroot -h127.0.0.1 -proot
+
+	SELECT VERSION();
+	SELECT CURRENT_DATE;
 
 	create user shy@localhost identified by 1;
 	drop user shy@localhost;
@@ -258,6 +261,11 @@ ARM Linux HTTP
 	create database db;
 	drop database db;
 	use db;
+
+	date
+	integer
+	char
+	varchar
 
 	show tables from db;
 	create table tb(id type default val primary key not null auto_increment);
@@ -276,6 +284,17 @@ ARM Linux HTTP
 	select * from tb where name=1 group by name order by age having age=1 limit 10;
 	update tb set name=2 where age=1;
 	delete from tb where age=1;
+	< <= > >= = != and or is null is not null like not like regexp
+	count()
+	bool
+
+	tinyint smallint mediumint int bigint
+	decimal float double
+	date datetime time
+	char varchar enum() set()
+	tinyblob blob mediumblob longblob
+	tinytext text mediumtext longtext
+
 
 	mysql_connect('host', 'name', 'pwd')
 	mysql_select_db('db')
