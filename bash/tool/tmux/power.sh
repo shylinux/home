@@ -42,7 +42,7 @@ pconsole() {
 
 	echo "" > ~/temp/tmux/log_${TARGET_SESSION}_${TARGET_WINDOW}
 	select img in ~/work/image/*.img; do break; done
-	select manu in ~/work/image/*.leadsec; do break; done
+	select manu in ~/work/image/*.leadsec ~/work/image/*.TBSG; do break; done
 	echo -n "IP0(1.0.0.$TARGET_WINDOW): " && read ip0 && ip0=${ip0:-"1.0.0.$TARGET_WINDOW"}
 	echo -n "IP1: " && read ip1
 
@@ -53,8 +53,8 @@ pconsole() {
 		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
 
 		tmux split-window -d -h -t $TARGET_SESSION:$TARGET_WINDOW.1
-		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- 'tail -f $TARGET_LOG'
-		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
+		# tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- 'tail -f $TARGET_LOG'
+		# tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
 
 		tmux set-environment -u -t $TARGET_SESSION TARGET_WINDOW
 		tmux attach-session -t $TARGET_SESSION \; select-pane -t 3
@@ -115,7 +115,7 @@ p() {
 	power C-J
 }
 
-pr() {
+ph() {
 	pp clear
 }
 
