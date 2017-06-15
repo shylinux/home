@@ -353,7 +353,7 @@ nnoremap <F3> :MRU<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
 
 nnoremap <F5> :CtrlP .<CR>
-nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.js **/*.html **/*.go **/*.h **/*.sh **/*.vim **/*.php <cr><C-o>:cw<cr>
+nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.go **/*.vim **/*.php **/*.js **/*.html **/*.tpl <cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
 
