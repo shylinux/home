@@ -36,30 +36,6 @@ var ( // {{{
 
 // }}}
 
-func filemd(file string) string { // {{{
-	f, e := os.Open(file)
-	if e != nil {
-		return ""
-	}
-
-	h := md5.New()
-	size, _ := io.Copy(h, f)
-	md := hex.EncodeToString(h.Sum(nil))
-
-	os.MkdirAll(path.Join(arg("trash"), md[0:2]), 0700)
-
-	fm, e := os.Create(path.Join(arg("trash"), md[0:2], md))
-	f.Seek(0, os.SEEK_SET)
-	io.Copy(fm, f)
-
-	_, e = db.Exec(fmt.Sprintf("insert into hash values(%d, '%s', %d)", time.Now().Unix(), md, size))
-	println(fmt.Sprintf("insert into hash values(%d, '%s', %d)", time.Now().Unix(), md, size))
-	fmt.Printf("%s\n", e)
-	return md
-}
-
-// }}}
-
 func index(w http.ResponseWriter, r *http.Request) { // {{{
 
 	if r.Method == "GET" {
@@ -173,10 +149,30 @@ func listen() int { // {{{
 
 // }}}
 
+func filemd(file string) (string, int64) { // {{{
+	f, e := os.Open(file)
+	if e != nil {
+		return "", 0
+	}
+
+	h := md5.New()
+	io.Copy(h, f)
+	md := hex.EncodeToString(h.Sum(nil))
+
+	os.MkdirAll(path.Join(arg("trash"), md[0:2]), 0700)
+
+	fm, e := os.Create(path.Join(arg("trash"), md[0:2], md))
+	f.Seek(0, os.SEEK_SET)
+	size, _ := io.Copy(fm, f)
+
+	return md, size
+}
+
+// }}}
 func trace() int { // {{{
 	fp := arg("srcfile")
 	action := arg("action")
-	md := filemd(fp)
+	md, size := filemd(fp)
 
 	if !path.IsAbs(fp) {
 		pwd, _ := os.Getwd()
@@ -196,6 +192,15 @@ func trace() int { // {{{
 
 				if action != done || name != fp || md != hash {
 					db.Exec(fmt.Sprintf("insert into %s values(?, ?, ?, ?, ?)", list), time.Now().Unix(), action, fp, md, arg("remote"))
+
+					r, e := db.Exec(fmt.Sprintf("update hash set count=count+1 where hash = ?"), md)
+					n, e := r.RowsAffected()
+
+					if n == 0 {
+						db.Exec(fmt.Sprintf("insert into hash values(%d, '%s', %d, 1)", time.Now().Unix(), md, size))
+					}
+
+					fmt.Printf("%s\n", e)
 				}
 			}
 		} else {
@@ -208,8 +213,17 @@ func trace() int { // {{{
 			}
 
 			db.Exec(fmt.Sprintf("insert into name values(%d, '%s', 'file%d')", time.Now().Unix(), fp, count))
-			db.Exec(fmt.Sprintf("create table if not exists file%d(time int, done char(8), name text, hash char(32), user char(32))", count))
+			db.Exec(fmt.Sprintf("create table if not exists file%d(time int, done char(8), name text, hash char(32), mark text)", count))
 			db.Exec(fmt.Sprintf("insert into file%d values(?, ?, ?, ?, ?)", count), time.Now().Unix(), action, fp, md, arg("remote"))
+
+			r, e := db.Exec(fmt.Sprintf("update hash set count=count+1 where hash = ?"), md)
+			n, e := r.RowsAffected()
+
+			if n == 0 {
+				db.Exec(fmt.Sprintf("insert into hash values(%d, '%s', %d, 1)", time.Now().Unix(), md, size))
+			}
+
+			fmt.Printf("%d %s\n", n, e)
 		}
 	}
 	log.Printf("[%s] %s %s %s", arg("remote"), action, fp, md)
@@ -283,19 +297,112 @@ func trash() int { // {{{
 
 // }}}
 
-func show() int {
-	fmt.Printf("show file log\n")
+func drop() int { // {{{
+	if rows, e := db.Query(fmt.Sprintf("select list from name where name = ?"), arg("srcfile")); e == nil && rows.Next() {
+		defer rows.Close()
+
+		var list string
+		rows.Scan(&list)
+
+		if rows, e := db.Query(fmt.Sprintf("select hash from %s", list)); e == nil {
+			defer rows.Close()
+
+			var hash string
+			for rows.Next() {
+				rows.Scan(&hash)
+				db.Exec(fmt.Sprintf("update hash set count=count-1 where hash=?"), hash)
+				db.Exec(fmt.Sprintf("delete from name where name = ?"), arg("srcfile"))
+				db.Exec(fmt.Sprintf("drop table %s", list))
+			}
+		}
+	}
+
+	if rows, e := db.Query(fmt.Sprintf("select hash from hash where count=0")); e == nil {
+		defer rows.Close()
+
+		var hash string
+		for rows.Next() {
+			rows.Scan(&hash)
+			os.Remove(path.Join(arg("trash"), hash[0:2], hash))
+		}
+
+		db.Exec(fmt.Sprintf("delete from hash where count = 0"))
+	}
+
 	return 1
 }
+
+// }}}
+func show() int { // {{{
+
+	if rows, e := db.Query(fmt.Sprintf("select list from name where name = ?"), arg("srcfile")); e == nil && rows.Next() {
+		defer rows.Close()
+
+		var list string
+		rows.Scan(&list)
+
+		if rows, e := db.Query(fmt.Sprintf("select * from %s where hash like '%s%%'", list, arg("hash"))); e == nil {
+			defer rows.Close()
+
+			var i, t int64
+			var done, name, hash, user string
+
+			for i = 0; rows.Next(); i++ {
+				rows.Scan(&t, &done, &name, &hash, &user)
+
+				fmt.Printf("%s %s %s %s %s\n", time.Unix(t, 0).Format("2006/01/02 15:04:05"), done, name, hash, user)
+			}
+
+			if i == 1 {
+				f, _ := os.Open(path.Join(arg("trash"), hash[0:2], hash))
+				fmt.Printf("why\n")
+				fmt.Printf("%s\n", arg("dstfile"))
+				if arg("dstfile") == "" {
+					io.Copy(os.Stdout, f)
+				} else {
+					df, _ := os.Create(arg("dstfile"))
+					io.Copy(df, f)
+					df.Close()
+				}
+				f.Close()
+			}
+		}
+	}
+	return 1
+}
+
+// }}}
+func mark() int { // {{{
+	if rows, e := db.Query(fmt.Sprintf("select list from name where name = ?"), arg("srcfile")); e == nil && rows.Next() {
+		defer rows.Close()
+
+		var list string
+		rows.Scan(&list)
+
+		println(list)
+		if _, e := db.Exec(fmt.Sprintf("update %s set mark=? where hash like '%s%%'", list, arg("hash")), arg("mark")); e == nil {
+			println(fmt.Sprintf("update %s set mark=? where hash like '%s%%'", list, arg("hash")), arg("mark"))
+			println(list)
+		}
+	}
+
+	return 1
+}
+
+// }}}
 
 var cmds = map[string]command{ // {{{
 	"help":   command{"show share usage help", nil, []string{"cmd"}},
 	"listen": command{"socket listen address", listen, []string{"addr", "share", "log"}},
-	"trace":  command{"begin to trace file", trace, []string{"srcfile"}},
-	"fork":   command{"copy file ", fork, []string{"srcfile", "dstfile"}},
-	"move":   command{"move file ", move, []string{"srcfile", "dstfile"}},
-	"trash":  command{"move file to trash", trash, []string{"srcfile"}},
-	"show":   command{"show file log", show, []string{"srcfile"}},
+
+	"trace": command{"begin to trace file", trace, []string{"srcfile"}},
+	"fork":  command{"copy file ", fork, []string{"srcfile", "dstfile"}},
+	"move":  command{"move file ", move, []string{"srcfile", "dstfile"}},
+	"trash": command{"move file to trash", trash, []string{"srcfile"}},
+
+	"drop": command{"stop trace file", drop, []string{"srcfile"}},
+	"show": command{"show file log", show, []string{"srcfile", "hash", "dstfile"}},
+	"mark": command{"mark file log", mark, []string{"srcfile", "hash", "mark"}},
 }
 
 // }}}
@@ -306,6 +413,8 @@ var args = map[string]*argument{ // {{{
 	"srcfile": &argument{"source file name", ""},
 	"dstfile": &argument{"destination file name", ""},
 	"remote":  &argument{"socket remote addr", "127.0.0.1:9090"},
+	"hash":    &argument{"the hash value of file", ""},
+	"mark":    &argument{"mark the file log", ""},
 
 	"addr":  &argument{"socket listen address", ":9090"},
 	"share": &argument{"share dirent path", "./temp"},
@@ -319,16 +428,25 @@ var args = map[string]*argument{ // {{{
 
 // }}}
 func arg(arg ...string) string { // {{{
-	if len(arg) == 1 {
-		a := args[arg[0]]
-		return a.val
+	var a *argument
+
+	if len(arg) > 0 {
+		a = args[arg[0]]
 	}
-	if len(arg) == 2 {
-		a := args[arg[0]]
+
+	if len(arg) > 1 {
 		a.val = arg[1]
-		return a.val
 	}
-	return ""
+
+	switch arg[0] {
+	case "srcfile", "dstfile":
+		if a.val != "" && !path.IsAbs(a.val) {
+			pwd, _ := os.Getwd()
+			a.val = path.Join(pwd, a.val)
+		}
+	}
+
+	return a.val
 }
 
 // }}}
@@ -388,7 +506,7 @@ func main() { // {{{
 
 	if cmd.hand != nil {
 		db, _ = sql.Open("mysql", fmt.Sprintf("%s:%s@/%s", arg("dbuser"), arg("dbword"), arg("dbname")))
-		db.Exec("create table if not exists hash(time int, hash char(32) primary key, size int)")
+		db.Exec("create table if not exists hash(time int, hash char(32) primary key, size int, count int)")
 		db.Exec("create table if not exists name(time int, name char(255) primary key, list char(8))")
 		db.Exec("create table if not exists config(name char(32) primary key, value text)")
 		db.Exec("insert into config values('count', 0)")
