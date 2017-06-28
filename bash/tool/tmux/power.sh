@@ -44,7 +44,7 @@ pconsole() {
 	select img in ~/work/image/*.img; do break; done
 	select manu in ~/work/image/*.leadsec ~/work/image/*.TBSG; do break; done
 	echo -n "IP0(1.0.0.$TARGET_WINDOW): " && read ip0 && ip0=${ip0:-"1.0.0.$TARGET_WINDOW"}
-	echo -n "IP1: " && read ip1
+	echo -n "IP1(1.0.1.$TARGET_WINDOW): " && read ip1 && ip1=${ip1:-"1.0.1.$TARGET_WINDOW"}
 
 	if [ -z "$2" ]
 	then
