@@ -4,21 +4,21 @@
 ARM Linux HTTP
 
 ubuntu #{{{
+	sudo apt-get install ibus-table-wubi
 	sudo apt-get install chromium-browser
 	sudo apt-get install git vim ctags cscope
 	sudo apt-get install tmux zsh openssh-server
 	ssh -fCNR 10000:localhost:22 shy@shylinux.com
 	ssh -fCNL *:10001:localhost:10000 shy@localhost
-	sudo apt-get install ibus-table-wubi
 	chsh -s /usr/bin/zsh
 
+	sudo apt-get install tree
 	sudo apt-apt install cmake
 
 	sudo usermod -aG vboxsf shy
 	ln -s /media/sf_share share
 	mount -t vboxsf share share
 
-	sudo apt-get install tree
 #}}}
 zsh #{{{
 # ! | && || & ; \
