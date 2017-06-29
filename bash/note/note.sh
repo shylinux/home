@@ -1,299 +1,24 @@
-c
-sh go
-vi py js
+      c
+    sh go
+  vi php js
 ARM Linux HTTP
 
-linux gun ubuntu
+ubuntu #{{{
+	sudo apt-get install chromium-browser
+	sudo apt-get install git vim ctags cscope
+	sudo apt-get install tmux zsh openssh-server
+	ssh -fCNR 10000:localhost:22 shy@shylinux.com
+	ssh -fCNL *:10001:localhost:10000 shy@localhost
+	sudo apt-get install ibus-table-wubi
+	chsh -s /usr/bin/zsh
 
-bash
-/etc/profile
-~/.bash_profile
-~/.bashrc
-~/.bash_history
-~/.bash_logout
-| & ; ( ) < >
-|| & && ; ;; ( ) |
-
-
-time ! cmd|cmd&&cmd& cmd||cmd; cmd
-"" '' \ \a \b \c \f \n \r \t \v \\ \' \nnn \xnn
-declare
-unset 
-local
-readonly
-export
-typeset
-alias
-=
-+=
-${}
-$! $? $- $_
-$$ $# $0 $1 $* $@
-getopts $OPTARG $OPTIND
-$UID $EUID $GROUPS
-
-$COLUMNS
-$LINES
-$PS1
-$IFS
-$REPLY
-
-$SHELL
-$SHELLOPTS
-$SHLVL
-$FUNCNAME
-$LINENO
-$SECONDS
-
-$HOSTNAME
-$RANDOM
-
-$PWD
-$OLDPWD
-$HOME
-$PATH
-$CDPATH
-$DIRSTACK
-
-$PPID
-$FCEDIT
-$HISTCONTROL
-$HISTFILE
-$HISTFILESIZE
-$HISTSIZE
-
-
-set
-#
-() {}
-(()) [[]]
-function name() {}
-while cmd; do cmd; done
-until cmd; do cmd; done
-for var in val; do cmd; done
-select var in val; do cmd; done
-for ((exp;exp;exp;)) do cmd; done
-case val in val) cmd;; *) cmd;; esac
-if cmd; then cmd; elif cmd; else cmd; fi
-
-
-ubuntu#{{{
-	sudo apt-get install vim git
-	sudo apt-get install tmux zsh
-	sudo apt-get install cscope ctags
-	sudo apt-get install openssh-server
 	sudo apt-apt install cmake
 
 	sudo usermod -aG vboxsf shy
 	ln -s /media/sf_share share
-
 	mount -t vboxsf share share
 
-	sudo apt-get install libpcre3-dev
-	sudo apt-get install zlib1g-dev
-	iisudo apt-get install libssl-dev
-
 	sudo apt-get install tree
-#}}}
-tmux #{{{
-set-option show-options #{{{
-	prefix
-	prefix2
-
-	default-terminal
-	default-command
-	default-shell
-
-	mode-keys
-	history-limit
-
-	base-index
-	renumber-windows
-
-	display-panes-time
-	display-time
-
-	mouse-utf8
-	mouse
-
-	status
-	status-utf8
-	status-keys
-	status-interval
-	status-position
-
-	status-justify
-	status-style
-	status-left-length
-	status-left-style
-	status-left
-	status-right-length
-	status-right-style
-	status-right
-
-	message-style
-	message-command-style
-
-	lock-after-time
-	lock-command
-
-	display-panes-active-colour
-	display-panes-colour
-
-	buffer-limit
-	message-limit
-	escape-time
-	repeat-time
-	assume-paste-time
-	bell-action
-	bell-on-alert
-	visual-activity
-	visual-bell
-	visual-silence
-	word-separators
-
-	exit-unattatched
-	focus-events
-	destroy-unattached
-	detach-on-destroy
-	set-remain-on-exit
-	set-titles
-	set-titles-string
-
-	set-clipboard
-	terminal-overrider
-	update-environment
-	history-file
-#}}}
-set-window-option show-window-options #{{{
-	pane-base-index
-	utf8
-
-	window-status-style
-	window-status-format
-	window-status-separator
-	window-status-bell-style
-	window-status-last-style
-	window-status-current-style
-	window-status-current-format
-
-
-	window-active-style
-	aggressive-resize
-	allow-rename
-	alternate-screen
-	automatic-rename
-	automatic-rename-format
-	clock-mode-colour
-	clock-mode-style
-	force-height
-	force-width
-	main-pane-height
-	main-pane-width
-	mode-style
-	monitor-activity
-	monitor-silence
-	other-pane-height
-	other-pane-width
-	pane-active-border-style
-	pane-border-style
-	remain-on-exit
-	synchronize-panes
-	window-active-style
-	window-style
-	xterm-keys
-	wrap-search
-#}}}
-
-client server session #{{{
-	clock-mode
-	has-session
-	new-session
-	lock-session
-	kill-session
-	list-sessions
-	attach-session
-	rename-session
-
-	lock-client
-	list-clients
-	detach-client
-	switch-client
-	suspend-client
-	refresh-client
-
-	lock-server
-	kill-server
-	start-server
-	list-commands
-	show-message
-	source-file
-	wait-for
-#}}}
-window pane #{{{
-	choose-tree
-	choose-client
-	choose-session
-	choose-window
-
-	new-window
-	kill-window
-	move-window
-	link-window
-	swap-window
-	list-windows
-	find-windows
-	last-window
-	next-window
-	previous-window
-	select-window
-	rotate-window
-	rename-window
-	respawn-window
-	split-window
-
-	next-layout
-	select-layout
-	previous-layout
-
-	kill-pane
-	move-pane
-	swap-pane
-	join-pane
-	break-pane
-	pipe-pane
-	list-panes
-	last-pane
-	select-pane
-	capture-pane
-	display-panes
-	resize-pane
-	respawn-pane
-#}}}
-buffer #{{{
-	clear-history
-	delete-buffer
-	choose-buffer
-	paste-buffer
-	list-buffers
-	load-buffer
-	save-buffer
-	set-buffer
-	show-buffer
-#}}}
-
-vi-edit vi-copy vi-choice #{{{
-	bind-key unbind-key list-keys
-		Up Down Left Right
-		Tab Enter Space Escape
-#}}}
-display-message
-confirm-before
-command-prompt
-send-prefix
-send-keys
-run-shell
-if-shell
 #}}}
 zsh #{{{
 # ! | && || & ; \
@@ -623,6 +348,206 @@ comptry
 compvalues
 
 #}}}
+tmux #{{{
+set-option show-options #{{{
+	prefix
+	prefix2
+
+	default-terminal
+	default-command
+	default-shell
+
+	mode-keys
+	history-limit
+
+	base-index
+	renumber-windows
+
+	display-panes-time
+	display-time
+
+	mouse-utf8
+	mouse
+
+	status
+	status-utf8
+	status-keys
+	status-interval
+	status-position
+
+	status-justify
+	status-style
+	status-left-length
+	status-left-style
+	status-left
+	status-right-length
+	status-right-style
+	status-right
+
+	message-style
+	message-command-style
+
+	lock-after-time
+	lock-command
+
+	display-panes-active-colour
+	display-panes-colour
+
+	buffer-limit
+	message-limit
+	escape-time
+	repeat-time
+	assume-paste-time
+	bell-action
+	bell-on-alert
+	visual-activity
+	visual-bell
+	visual-silence
+	word-separators
+
+	exit-unattatched
+	focus-events
+	destroy-unattached
+	detach-on-destroy
+	set-remain-on-exit
+	set-titles
+	set-titles-string
+
+	set-clipboard
+	terminal-overrider
+	update-environment
+	history-file
+#}}}
+set-window-option show-window-options #{{{
+	pane-base-index
+	utf8
+
+	window-status-style
+	window-status-format
+	window-status-separator
+	window-status-bell-style
+	window-status-last-style
+	window-status-current-style
+	window-status-current-format
+
+
+	window-active-style
+	aggressive-resize
+	allow-rename
+	alternate-screen
+	automatic-rename
+	automatic-rename-format
+	clock-mode-colour
+	clock-mode-style
+	force-height
+	force-width
+	main-pane-height
+	main-pane-width
+	mode-style
+	monitor-activity
+	monitor-silence
+	other-pane-height
+	other-pane-width
+	pane-active-border-style
+	pane-border-style
+	remain-on-exit
+	synchronize-panes
+	window-active-style
+	window-style
+	xterm-keys
+	wrap-search
+#}}}
+
+client server session #{{{
+	clock-mode
+	has-session
+	new-session
+	lock-session
+	kill-session
+	list-sessions
+	attach-session
+	rename-session
+
+	lock-client
+	list-clients
+	detach-client
+	switch-client
+	suspend-client
+	refresh-client
+
+	lock-server
+	kill-server
+	start-server
+	list-commands
+	show-message
+	source-file
+	wait-for
+#}}}
+window pane #{{{
+	choose-tree
+	choose-client
+	choose-session
+	choose-window
+
+	new-window
+	kill-window
+	move-window
+	link-window
+	swap-window
+	list-windows
+	find-windows
+	last-window
+	next-window
+	previous-window
+	select-window
+	rotate-window
+	rename-window
+	respawn-window
+	split-window
+
+	next-layout
+	select-layout
+	previous-layout
+
+	kill-pane
+	move-pane
+	swap-pane
+	join-pane
+	break-pane
+	pipe-pane
+	list-panes
+	last-pane
+	select-pane
+	capture-pane
+	display-panes
+	resize-pane
+	respawn-pane
+#}}}
+buffer #{{{
+	clear-history
+	delete-buffer
+	choose-buffer
+	paste-buffer
+	list-buffers
+	load-buffer
+	save-buffer
+	set-buffer
+	show-buffer
+#}}}
+
+vi-edit vi-copy vi-choice #{{{
+	bind-key unbind-key list-keys
+		Up Down Left Right
+		Tab Enter Space Escape
+#}}}
+display-message
+confirm-before
+command-prompt
+send-prefix
+send-keys
+run-shell
+if-shell
+#}}}
 qemu #{{{
 /etc/networks
 /etc/resolv.conf
@@ -669,6 +594,82 @@ qemu-system-x86_64
 	-cdrom
 
 #}}}
+lamp #{{{
+	sudo apt-get install libpcre3-dev zlib1g-dev libssl-dev
+	./configure && make && sudo make install && sudo nginx
+	sudo apt-get install php mysql-server curl
+#}}}
+
+bash
+/etc/profile
+~/.bash_profile
+~/.bashrc
+~/.bash_history
+~/.bash_logout
+| & ; ( ) < >
+|| & && ; ;; ( ) |
+
+
+time ! cmd|cmd&&cmd& cmd||cmd; cmd
+"" '' \ \a \b \c \f \n \r \t \v \\ \' \nnn \xnn
+declare
+unset 
+local
+readonly
+export
+typeset
+alias
+=
++=
+${}
+$! $? $- $_
+$$ $# $0 $1 $* $@
+getopts $OPTARG $OPTIND
+$UID $EUID $GROUPS
+
+$COLUMNS
+$LINES
+$PS1
+$IFS
+$REPLY
+
+$SHELL
+$SHELLOPTS
+$SHLVL
+$FUNCNAME
+$LINENO
+$SECONDS
+
+$HOSTNAME
+$RANDOM
+
+$PWD
+$OLDPWD
+$HOME
+$PATH
+$CDPATH
+$DIRSTACK
+
+$PPID
+$FCEDIT
+$HISTCONTROL
+$HISTFILE
+$HISTFILESIZE
+$HISTSIZE
+
+
+set
+#
+() {}
+(()) [[]]
+function name() {}
+while cmd; do cmd; done
+until cmd; do cmd; done
+for var in val; do cmd; done
+select var in val; do cmd; done
+for ((exp;exp;exp;)) do cmd; done
+case val in val) cmd;; *) cmd;; esac
+if cmd; then cmd; elif cmd; else cmd; fi
 
 
 -h
