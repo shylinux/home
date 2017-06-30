@@ -2,6 +2,14 @@
     sh go
   vi php js
 ARM Linux HTTP
+   hub mac
+   vps vpn
+   usb win
+git share back
+   add del
+   mod fix
+   pro opt
+
 
 ubuntu #{{{
 	sudo apt-get install ibus-table-wubi
