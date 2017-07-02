@@ -143,7 +143,7 @@ bindkey -M vicmd j down-line-or-beginning-search
 bindkey -M vicmd k up-line-or-beginning-search
 # }}}
 
-source ~/.zsh_local# {{{
+source ~/.zsh_local # {{{
 source ~/bash/tool/tmux/power.sh
 source ~/work/tool/vpm.sh
 # }}}
