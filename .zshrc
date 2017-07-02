@@ -91,13 +91,7 @@ export GOBIN=~/go/bin
 export PATH=$PATH:$GOBIN
 export EDITOR=vim
 
-source ~/bash/tool/tmux/power.sh
-source ~/.zsh_local
-source ~/work/tool/vpm.sh
-source ~/work/tool/now.sh
-
 alias t='tmux'
-alias vps='ssh shy@shylinux.com'
 # }}}
 HISTORY=~/temp/bash/history # {{{
 [ -e $HISTORY ] || mkdir -p $HISTORY
@@ -147,4 +141,9 @@ bindkey "^N" down-line-or-beginning-search
 bindkey "^P" up-line-or-beginning-search
 bindkey -M vicmd j down-line-or-beginning-search
 bindkey -M vicmd k up-line-or-beginning-search
+# }}}
+
+source ~/.zsh_local# {{{
+source ~/bash/tool/tmux/power.sh
+source ~/work/tool/vpm.sh
 # }}}

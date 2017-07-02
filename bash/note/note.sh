@@ -607,6 +607,12 @@ lamp #{{{
 	./configure && make && sudo make install && sudo nginx
 	sudo apt-get install php mysql-server curl
 #}}}
+board #{{{
+	sudo apt-get install minicom
+	minicom -s
+	tq2440 arm9 linux-2.6.30
+	tq210 CA8 linux-2.6.35
+#}}}
 
 bash
 /etc/profile
