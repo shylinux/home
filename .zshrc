@@ -164,6 +164,8 @@ check() { # {{{
 	for n o in $list; do
 		if [ -n "$1" ]; then
 			clear && back -save $o $n
+			echo -n "enter to continue: "
+			read
 			continue
 		fi
 
