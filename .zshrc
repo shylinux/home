@@ -133,10 +133,18 @@ zle -C complete_history expand-or-complete complete_history
 bindkey "^G" complete_history
 # }}}
 
-check() {# {{{
+check() { # {{{
 	list=(~ ~/go/src/share ~/go/src/back ~/work ~/vpn/nginx-1.4.1/src/ngx_grammar)
 
 	for l in $list; do
+		if [ -n "$1" ]; then
+			if ! git pull; then
+				echo -n "enter to continue: "
+				read
+			fi
+			continue
+		fi
+
 		cd $l && clear && git s
 		echo && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
 		if [ -n "$REPLY" ]; then
@@ -154,6 +162,11 @@ check() {# {{{
 
 	list=(~/vpn/back $usb/vpn/back ~/bash/back $usb/bash/back)
 	for n o in $list; do
+		if [ -n "$1" ]; then
+			clear && back -save $o $n
+			continue
+		fi
+
 		if ! [ -d $o ]; then
 			echo $o "not exist"
 			continue
@@ -165,6 +178,9 @@ check() {# {{{
 	done
 }
 # }}}
+hello() {
+	check 1
+}
 bindkey -e # {{{
 bindkey -s sd _
 bindkey -s SD _
