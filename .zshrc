@@ -137,53 +137,46 @@ check() { # {{{
 	list=(~ ~/go/src/share ~/go/src/back ~/work ~/vpn/nginx-1.4.1/src/ngx_grammar)
 
 	for l in $list; do
+		cd $l && echo $l
+
 		if [ -n "$1" ]; then
-			cd $l && echo $l
-			if ! git pull; then
-				echo -n "enter to continue: "
-				read
+			git pull || { echo -n "enter to continue: " && read }
+		else
+			git s && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
+			if [ -n "$REPLY" ]; then
+				{ git commit -am "$REPLY" && git push } || { echo -n "enter to continue: " && read }
 			fi
-			continue
 		fi
 
-		cd $l && clear && git s
-		echo && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
-		if [ -n "$REPLY" ]; then
-			git commit -am "$REPLY"
-			if ! git push; then
-				echo -n "enter to continue: "
-				read
-			fi
-		fi
+		echo && echo
 	done
 
 	if [ `uname` = 'Linux' ]; then
 		usb='/media/SHY/home'
+	else
+		usb='/Volumes/SHY/home'
 	fi
 
 	list=(~/vpn/back $usb/vpn/back ~/bash/back $usb/bash/back)
 	for n o in $list; do
-		if [ -n "$1" ]; then
-			clear && back -save $o $n
-			echo -n "enter to continue: "
-			read
-			continue
-		fi
-
 		if ! [ -d $o ]; then
-			echo $o "not exist"
+			echo $o "not exist" && echo
 			continue
 		fi
 
-		clear && back -save $n $o
-		echo -n "enter to continue: "
-		read
+		if [ -n "$1" ]; then
+			back -save $o $n
+		else
+			back -save $n $o
+		fi
+
+		echo && echo
 	done
 }
-# }}}
 hello() {
 	check 1
 }
+# }}}
 bindkey -e # {{{
 bindkey -s sd _
 bindkey -s SD _
