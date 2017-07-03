@@ -133,7 +133,7 @@ zle -C complete_history expand-or-complete complete_history
 bindkey "^G" complete_history
 # }}}
 
-check() {
+check() {# {{{
 	list=(~ ~/go/src/share ~/go/src/back ~/work ~/vpn/nginx-1.4.1/src/ngx_grammar)
 
 	for l in $list; do
@@ -164,6 +164,7 @@ check() {
 		read
 	done
 }
+# }}}
 bindkey -e # {{{
 bindkey -s sd _
 bindkey -s SD _
