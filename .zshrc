@@ -141,7 +141,10 @@ check() {
 		echo && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
 		if [ -n "$REPLY" ]; then
 			git commit -am "$REPLY"
-			git push
+			if ! git push; then
+				echo -n "enter to continue: "
+				read
+			fi
 		fi
 	done
 
