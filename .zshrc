@@ -160,6 +160,8 @@ check() {
 		fi
 
 		clear && back -save $n $o
+		echo -n "enter to continue: "
+		read
 	done
 }
 bindkey -e # {{{
