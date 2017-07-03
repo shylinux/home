@@ -141,7 +141,7 @@ check() {
 		echo && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
 		if [ -n "$REPLY" ]; then
 			git commit -am "$REPLY"
-			git push usb
+			git push
 		fi
 	done
 
