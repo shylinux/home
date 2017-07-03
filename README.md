@@ -15,5 +15,5 @@
 
 **the sub dir:**
 
-back note tool conf
+back note code tool conf
 
