@@ -138,7 +138,7 @@ check() { # {{{
 
 	for l in $list; do
 		if [ -n "$1" ]; then
-			cd $l && clear && echo $l
+			cd $l && echo $l
 			if ! git pull; then
 				echo -n "enter to continue: "
 				read
