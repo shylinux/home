@@ -132,6 +132,32 @@ complete_history() { # {{{
 zle -C complete_history expand-or-complete complete_history
 bindkey "^G" complete_history
 # }}}
+
+check() {
+	list=(~ ~/go/src/share ~/go/src/back ~/work ~/vpn/nginx-1.4.1/src/ngx_grammar)
+
+	for l in $list; do
+		cd $l && clear && git s
+		echo && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
+		if [ -n "$REPLY" ]; then
+			git commit -am "$REPLY"
+		fi
+	done
+
+	if [ `uname` = 'Linux' ]; then
+		usb='/media/SHY/home'
+	fi
+
+	list=(~/vpn/back $usb/vpn/back ~/bash/back $usb/bash/back)
+	for n o in $list; do
+		if ! [ -d $o ]; then
+			echo $o "not exist"
+			continue
+		fi
+
+		clear && back -save $n $o
+	done
+}
 bindkey -e # {{{
 bindkey -s sd _
 bindkey -s SD _
