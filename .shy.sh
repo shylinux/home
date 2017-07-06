@@ -10,7 +10,7 @@ check() { # {{{
 		else
 			git s && echo $l "(input blank to skip commit)"&& echo -n "git commit -am " && read
 			[ -n "$REPLY" ] && git commit -am "$REPLY"
-			git push &&  echo -n "enter to continue: " && read
+			git push || { echo -n "enter to continue: " && read }
 		fi
 
 		echo && echo
