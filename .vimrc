@@ -214,6 +214,9 @@ autocmd BufReadPost *
 
 autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
 
+autocmd BufNewFile,BufReadPost *.wxml set filetype=xml
+autocmd BufNewFile,BufReadPost *.wxss set filetype=css
+
 fun! SetOperationMode() "{{{
 	if exists("w:OperationMode") && w:OperationMode == 1
 		nnoremap <Space> <C-F>
