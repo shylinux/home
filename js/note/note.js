@@ -327,7 +327,152 @@ window//{{{
 		cloneNode()
 //}}}
 //}}}
+
+wechat
+app.wxss
+app.json//{{{
+{
+	"pages":["pages/index/index"],
+	"window":{},
+	"tabBar":{},
+	"network":{},
+	"debug":true,
+}
+//}}}
+app.js//{{{
+	App({onLaunch({path,query,scene,shareTicket,referrerInfo}),onShow({}),onHide,onError})
+	getApp()
+
+	wx.getSystemInfo()
+	wx.getSystemInfoSync()
+//}}}
+pages/index/index.wxml//{{{
+	<scroll-view></scroll-view>
+	<swiper> <swiper-item> </swiper-item> </swiper>
+	<movable-area> <movable-view> <movable-view> </movable-area>
+	<icon/>
+	<text></text>
+	<progress/>
+	<button></button>
+	<checkbox/>
+	<radio/>
+	<slider/>
+	<switch/>
+	<textarea>
+	<navigator> </navigator>
+	<picker> </picker>
+	<picker-view> </picker-view>
+	<form> </form>
+	<input/>
+	<label> </label>
+
+	<audio> </audio>
+	<image> </image>
+	<video> </video>
+	<map> </map>
+	<canvas></canvas>
+
+	<view hover-class="" hover-start-time="" hover-stay-time=""></view>
+
+	<view bindtap=""></view>
+	<view catchtap=""></view>
+
+	<view wx:for="{{}}" wx:for-index="" wx:for-item="" wx:key="*this">{{}}</view>
+
+	<view wx:if="{{}}">{{}}</view>
+	<view wx:elif="{{}}">{{}}</view>
+	<view wx:else="{{}}">{{}}</view>
+
+	<block></block>
+
+	<template name=""></template>
+	<template is="" data="{{...}}"></template>
+	<import src="">
+	<include src="">
+//}}}
+pages/index/index.wxss//{{{
+{
+	flex-direction:row;
+	flex-direction:column;
+}//}}}
+pages/index/index.json//{{{
+{
+	"navigationBarTitleText":""
+}
+//}}}
+pages/index/index.js//{{{
+	Page({data,viewTap({}),onLoad(),onShow(),onReady,onHide,onUnload,onPullDownRefresh,onReachBottom,onShareAppMessage,route})
+	getCurrentPages().setData()
+
+	wx.navigateTo()
+	wx.redirectTo()
+	wx.navigateBack()
+	wx.switchTab()
+	wx.reLaunch()
+
+	wx.request({url,data,header,method,dataType,success({data,statusCode,header}),fail,complete})
+	wx.uploadFile({url,filePath,name,header,formData,success({data,statusCode}),fail,complete})
+	wx.downloadFile({url,header,success({tempFilePath}),fail,complete})
+	wx.connectSocket({url,data,header,method,success,fail,complete})
+	wx.onSocketOpen(function(){})
+	wx.onSocketError(function(){})
+	wx.sendSocketMessage({data,success,fail,complete})
+	wx.onSocketMessage(({data}))
+	wx.closeSocket()
+	wx.onSocketClose()
+
+	wx.chooseImage({count,sizeType,sourceType,success({tempFilePaths,tempFiles}),fail,complete})
+	wx.previewImage({count,urls,success({tempFilePaths,tempFiles}),fail,complete})
+	wx.getImageInfo({src,success({width,height,path}),fail,complete})
+	wx.saveImageToPhotoAlbum({filePath,success({errMsg}),fail,complete})
+
+	wx.startRecord({success({tempFilePath}),fail,complete})
+	wx.stopRecord()
+	wx.playVoice({filePath,success,fail,complete})
+	wx.stopVoice()
+	wx.pauseVoice()
+
+	wx.saveFile({tempFilePath,success({savedFilePath}),fail,complete})
+	wx.getSavedFileList({success({errMsg,fileList:[{filePath,createTime,size}]}),fail,complete})
+	wx.getSavedFileInfo({filePath,success({filePath,createTime,size}),fail,complete})
+	wx.removeSavedFileInfo({filePath,success,fail,complete})
+	wx.openDocument({filePath,success,fail,complete})
+
+	wx.setStorage({key,data,success,fail,complete})
+	wx.setStorageSync({key,data})
+	wx.getStorage({key,success({data}),fail,complete})
+	wx.getStorageSync({key})
+	wx.getStorageInfo({success({keys,currentSize,limitSize}),fail,complete})
+	wx.getStorageInfoSync()
+	wx.removeStorage({key,success({data}),fail,complete})
+	wx.removeStorageSync({key})
+	wx.clearStorage()
+	wx.clearStorageSync()
+
+	wx.getLocation({type,success({latitude,longitude,speed,accuracy,altitude,verticalAccuracy,horizontalAccuracy}),fail,complete})
+	wx.chooseLocation({success({name,address,latitude,longitude}),cancelfail,complete})
+	wx.openLocation({latitude,longitude,scale,name,address,success,cancelfail,complete})
+
+//}}}
+utils/utils.js//{{{
+	module.exports
+	require("")
+//}}}
+
+wxml
+wxss
+json
+	pages[]
+	window{}
+	tabBar{}
+	networkTimeout
+	debug
+js
+	getApp()
+	Page({})
+
 jQuery
+
 
 $(",")
 
