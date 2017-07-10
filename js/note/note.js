@@ -327,8 +327,7 @@ window//{{{
 		cloneNode()
 //}}}
 //}}}
-
-wechat
+wechat//{{{
 app.wxss
 app.json//{{{
 {
@@ -401,14 +400,14 @@ pages/index/index.json//{{{
 }
 //}}}
 pages/index/index.js//{{{
-	Page({data,viewTap({}),onLoad(),onShow(),onReady,onHide,onUnload,onPullDownRefresh,onReachBottom,onShareAppMessage,route})
+	Page({data,viewTap({}),onLoad(),onShow(),onReady,onHide,onUnload,onPullDownRefresh,onReachBottom,onShareAppMessage({from,target}){title,path,success({errMsg,shareTickets}),fail({errMsg}),complete},route})
 	getCurrentPages().setData()
 
-	wx.navigateTo()
-	wx.redirectTo()
-	wx.navigateBack()
-	wx.switchTab()
-	wx.reLaunch()
+	wx.navigateTo({url,success,fail,complete})
+	wx.redirectTo({url,success,fail,complete})
+	wx.navigateBack({delta})
+	wx.switchTab({url,success,fail,complete})
+	wx.reLaunch({url,success,fail,complete})
 
 	wx.request({url,data,header,method,dataType,success({data,statusCode,header}),fail,complete})
 	wx.uploadFile({url,filePath,name,header,formData,success({data,statusCode}),fail,complete})
@@ -453,25 +452,67 @@ pages/index/index.js//{{{
 	wx.chooseLocation({success({name,address,latitude,longitude}),cancelfail,complete})
 	wx.openLocation({latitude,longitude,scale,name,address,success,cancelfail,complete})
 
+	wx.getSystemInfo({success({model,pixelRadio,screenWidth,screenHeight,windowWidth,windowHeight,language,version,system,platform,SDKVersion}),fail,complete})
+	wx.getSystemInfoSync()
+	wx.canIUse()
+	wx.getNetworkType({success({networkType}),fail,complete})
+	wx.onNetworkStatusChange(function({isConnected,networkType}))
+	wx.startAccelerometer({success,fail,complete})
+	wx.onAccelerometerChange(function({x,y,z}))
+	wx.stopAccelerometer({success,fail,complete})
+	wx.startCompass({success,fail,complete})
+	wx.onCompassChange(function({direction}))
+	wx.stopCompass({success,fail,complete})
+	wx.makePhoneCall({phoneNumber,success,fail,complete})
+	wx.scanCode({onlyFromCamera,success({result,scanType,charSet,path}),fail,complete})
+	wx.setClipboardData({data,success,fail,complete})
+	wx.getClipboardData({success({data}),fail,complete})
+	wx.setScreenBrightness({value,success,fail,complete})
+	wx.getScreenBrightness({success({value}),fail,complete})
+	wx.vibrateLong({success,fail,complete})
+	wx.vibrateShort({success,fail,complete})
+	wx.addPhoneContact({photoFilePath,nickName,lastName,MiddleName,firstName,remark,mobilePhoneNumber,wechatNumber,success({errMsg}),fail({errMsg}),complete})
+
+	wx.showToast({title,icon,image,duration,mask,success,fail,complete})
+	wx.showLoading({title,mask,success,fail,complete})
+	wx.hideToast()
+	wx.hideLoading()
+	wx.showModal({title,content,showCancel,cancelText,cancelColor,confirmText,confirmColor,success({confirm,cancel}),fail,complete})
+	wx.showActionSheet({itemList,itemColor,success({tapIndex}),fail,complete})
+	wx.setNavigationBarTitle({title,success,fail,complete})
+	wx.showNavigationBarLoading()
+	wx.hideNavigationBarLoading()
+
+	wx.createAnimation({duration,timingFunction,delay,transformOrigin}).rotate().scale().translate().skew().matrix().step().export()
+	wx.createCanvasContext()
+	wx.canvasToTempFilePath()
+
+	wx.checkSession({success,fail,complete})
+	wx.login({success({errMsg,code}),fail,complete})
+	file_get_content("https://api.weixin.qq.com/sns/jscode2session?appid=&secret=&js_code=&grant_type=authorization_code")
+	{openid,session_key,expires_in}
+	wx.authorize()
+	wx.openSetting()
+	wx.getSetting()
+	wx.getUserInfo({withCredenttials,success({userInfo:{nickName,avatarUrl,gender,province,city,county},rawData,signature,encryptedData,iv}),fail,complete})
+
+	wx.showShareMenu({withShareTicket,success,fail,complete})
+	wx.updateShareMenu({withShareTicket,success,fail,complete})
+	wx.hideShareMenu({success,fail,complete})
+	wx.getShareInfo({ShareTicket,success({errMsg,encryptedData,iv}),fail,complete})
+	wx.chooseAddress({success({errMsg,userName,postalCode,provinceName,cityName,countyName,detailInfo,nationalCode,telNumber}),fail,complete})
+	wx.addCard()
+	wx.openCard()
+	wx.getWeRunData()
+	wx.navigateToMiniProgram()
+	wx.navigateBackMiniProgram()
 //}}}
 utils/utils.js//{{{
 	module.exports
 	require("")
 //}}}
-
-wxml
-wxss
-json
-	pages[]
-	window{}
-	tabBar{}
-	networkTimeout
-	debug
-js
-	getApp()
-	Page({})
-
-jQuery
+//}}}
+jQuery//{{{
 
 
 $(",")
@@ -536,12 +577,9 @@ $().css().show().hide().toggle()
 	.slideDown().slideUp().slideToggle()
 	.animate()
 $().text()
-
-
-
-
-global
-
+//}}}
+nodejs//{{{
+//}}}
 
 1990
 1991  ARM   Linux  HTTP
