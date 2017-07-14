@@ -594,8 +594,8 @@ nodejs//{{{
 2003               Safari   linux 2.6
 2004               FireFox
 2006  IE7		   jQuery
-2007               HTML5
-2008               Chrome
+2007               HTML5    iOS
+2008               Chrome   Android
 2009  IE8   win7
 2011  IE9          wechat   linux 3.0
 2012  IE10  win8   go1.0
