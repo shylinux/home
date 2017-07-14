@@ -25,6 +25,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'chemzqm/wxapp.vim'
+
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'evanmiller/nginx-vim-syntax'
 Bundle 'ShowTrailingWhitespace'
@@ -199,6 +201,8 @@ set smartcase
 
 set foldenable
 set foldmethod=marker
+set splitbelow
+set splitright
 
 set guioptions-=T
 set guioptions-=m
@@ -214,8 +218,8 @@ autocmd BufReadPost *
 
 autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
 
-autocmd BufNewFile,BufReadPost *.wxml set filetype=xml
-autocmd BufNewFile,BufReadPost *.wxss set filetype=css
+" autocmd BufNewFile,BufReadPost *.wxml set filetype=xml
+" autocmd BufNewFile,BufReadPost *.wxss set filetype=css
 
 fun! SetOperationMode() "{{{
 	if exists("w:OperationMode") && w:OperationMode == 1
