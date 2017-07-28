@@ -514,6 +514,7 @@ utils/utils.js//{{{
 //}}}
 jQuery//{{{
 
+$.cookie()
 
 $(",")
 
