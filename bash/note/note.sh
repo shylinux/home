@@ -1,14 +1,21 @@
-      c
-    sh go
-  vi php js
-ARM Linux HTTP
-   hub mac
-   vps vpn
-   usb win
-git share back
-   add del
-   mod fix
-   pro opt
+        c
+      sh go
+    vi php js
+  ARM Linux HTTP
+     hub mac
+     vps vpn
+     usb win
+  git share back
+     add del
+     mod fix
+     pro opt
+  SSLVPN ETCVPN
+userinfo userinfo
+userrole usership
+template protocol
+ service message
+ product product
+ / / /     \ \ \
 
 
 ubuntu #{{{
@@ -613,7 +620,21 @@ board #{{{
 	tq2440 arm9 linux-2.6.30
 	tq210 CA8 linux-2.6.35
 #}}}
+git #{{{
+	version help
+	config init clone
+	status add mv rm
+	commit reset
+	branch merge checkout
+	remote fetch pull push
 
+	log
+	show
+	merge
+	add
+	
+
+#}}}
 bash
 /etc/profile
 ~/.bash_profile

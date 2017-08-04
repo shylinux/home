@@ -439,7 +439,7 @@ net/http// {{{
 	ProtocolError{}
 	RoundTripper{}
 // }}}
-text/template
+text/template// {{{
 	{{/**/}}
 	{{exp}}
 	{{$var:=exp}}
@@ -454,7 +454,7 @@ text/template
 		Option() Funcs() Delims() AddParseTree()
 		Name() Templates() Lookup() DefinedTemplates() Clone()
 		Execute() ExecuteTemplate()
-
+// }}}
 crypto// {{{
 crypto/md5
 	BlockSize Size New() Sum()
