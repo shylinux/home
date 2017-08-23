@@ -439,6 +439,22 @@ net/http// {{{
 	ProtocolError{}
 	RoundTripper{}
 // }}}
+text/template// {{{
+	{{/**/}}
+	{{exp}}
+	{{$var:=exp}}
+	{{if exp}}{{else}}{{end}}
+	{{with exp}}{{else}}{{end}}
+	{{range $i,$v := exp}}{{else}}{{end}}
+	{{define "name"}}{{end}}
+	{{template "name" exp}}
+	{{block "name" exp}}{{end}}
+	Template{} New() Must() ParseFiles() ParseGlob()
+		Parse() ParseFiles() ParseGlob() New()
+		Option() Funcs() Delims() AddParseTree()
+		Name() Templates() Lookup() DefinedTemplates() Clone()
+		Execute() ExecuteTemplate()
+// }}}
 crypto// {{{
 crypto/md5
 	BlockSize Size New() Sum()
