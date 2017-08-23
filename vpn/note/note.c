@@ -1,13 +1,14 @@
-hub mac win
-vps vpm vpn
-
-add mod pro
-del fix opt
-
-ARM UNIX HTTP
-    c
-  sh  go
-vi  py  js
+      c
+    sh go
+  vi php js
+ARM Linux HTTP
+   mac hub
+   vpn vps
+   win usb
+git share back
+   add del
+   mod fix
+   pro opt
 
 库文件 头文件 源文件 /*{{{*/
 类型 变量 函数
@@ -701,6 +702,714 @@ show databases;
 wget http://nginx.org/download/nginx-1.4.1.tar.gz /*{{{*/
 sudo apt-get install libpcre3-dev zlib1g-dev
 ./configure && make && sudo make install && sudo nginx
+
+src/os/unix/*{{{*/
+ngx_errno.c
+ngx_errno.h
+ngx_alloc.c
+ngx_alloc.h
+ngx_files.c
+ngx_files.h
+ngx_readv_chain.c
+ngx_recv.c
+ngx_send.c
+ngx_writev_chain.c
+ngx_file_aio_read.c
+ngx_aio_read.c
+ngx_aio_write.c
+ngx_aio_read_chain.c
+ngx_aio_write_chain.c
+ngx_process.c
+ngx_process.h
+ngx_process_cycle.c
+ngx_process_cycle.h
+ngx_shmem.c
+ngx_shmem.h
+ngx_socket.c
+ngx_socket.h
+ngx_time.c
+ngx_time.h
+ngx_setaffinity.c
+ngx_setaffinity.h
+ngx_setproctitle.c
+ngx_setproctitle.h
+ngx_daemon.c
+ngx_user.c
+ngx_user.h
+ngx_os.h
+ngx_atomic.h
+ngx_channel.c
+ngx_channel.h
+ngx_thread.h
+ngx_udp_recv.c
+rfork_thread.S
+ngx_pthread_thread.c
+
+ngx_darwin.h
+ngx_darwin_config.h
+ngx_darwin_init.c
+ngx_darwin_sendfile_chain.c
+ngx_freebsd.h
+ngx_freebsd_config.h
+ngx_freebsd_init.c
+ngx_freebsd_rfork_thread.c
+ngx_freebsd_rfork_thread.h
+ngx_freebsd_sendfile_chain.c
+ngx_gcc_atomic_amd64.h
+ngx_gcc_atomic_ppc.h
+ngx_gcc_atomic_sparc64.h
+ngx_gcc_atomic_x86.h
+ngx_linux.h
+ngx_linux_aio_read.c
+ngx_linux_config.h
+ngx_linux_init.c
+ngx_linux_sendfile_chain.c
+ngx_posix_config.h
+ngx_posix_init.c
+ngx_solaris.h
+ngx_solaris_config.h
+ngx_solaris_init.c
+ngx_solaris_sendfilev_chain.c
+ngx_sunpro_amd64.il
+ngx_sunpro_atomic_sparc64.h
+ngx_sunpro_sparc64.il
+ngx_sunpro_x86.il
+/*}}}*/
+src/core/*{{{*/
+ngx_config.h/*{{{*/
+	#include<ngx_linux_config.h>/*{{{*/
+		#include<sys/types.h>
+		#include<sys/time.h>
+		#include<unistd.h>
+		#include<stdarg.h>
+		#include<stddef.h>
+		#include<stdio.h>
+		#include<stdlib.h>
+		#include<errno.h>
+		#include<string.h>
+		#include<signal.h>
+		#include<pwd.h>
+		#include<grp.h>
+		#include<dirent.h>
+		#include<glob.h>
+		#include<sys/vfs.h>
+		#include<sys/uio.h>
+		#include<sys/stat.h>
+		#include<fcntl.h>
+		#include<sys/wait.h>
+		#include<sys/mman.h>
+		#include<sys/resource.h>
+		#include<sched.h>
+		#include<sys/socket.h>
+		#include<netinet/in.h>
+		#include<netinet/tcp.h>
+		#include<arpa/inet.h>
+		#include<netdb.h>
+		#include<sys/un.h>
+		#include<time.h>
+		#include<malloc.h>
+		#include<limits.h>
+		#include<sys/ioctl.h>
+		#include<sys/sysctl.h>
+		#include<crypt.h>
+		#include<sys/utsname.h>
+		#include<ngx_auto_config.h>
+		#include<semaphore.h>
+		#include<sys/prctl.h>
+		#include<sys/sendfile.h>
+		#include<poll.h>
+		#include<sys/epoll.h>
+		#include<sys/syscall.h>
+		#include<linux/aio_abi.h>
+	/*}}}*/
+	intptr_t
+	uintptr_t
+	intptr_t
+/*}}}*/
+ngx_core.h/*{{{*/
+	ngx_module_t
+	ngx_conf_t
+	ngx_cycle_t
+	ngx_pool_t
+	ngx_chain_t
+	ngx_log_t
+	ngx_open_file_t
+	ngx_command_t
+	ngx_file_t
+	ngx_event_t
+	ngx_event_aio_t
+	ngx_connection_t
+	ngx_event_handler_pt
+	ngx_connection_handler_pt
+
+	NGX_OK
+	NGX_ERROR
+	NGX_AGAIN
+	NGX_BUSY
+	NGX_DONE
+	NGX_DECLINED
+	NGX_ABORT
+
+	LF
+	CR
+	CRLF
+	ngx_abs
+	ngx_max
+	ngx_min
+
+	#include <ngx_errno.h>
+	#include <ngx_atomic.h>
+	#include <ngx_thread.h>
+	#include <ngx_rbtree.h>
+	#include <ngx_time.h>
+	#include <ngx_socket.h>
+	#include <ngx_string.h>
+	#include <ngx_files.h>
+	#include <ngx_shmem.h>
+	#include <ngx_process.h>
+	#include <ngx_user.h>
+	#include <ngx_parse.h>
+	#include <ngx_log.h>
+	#include <ngx_alloc.h>
+	#include <ngx_palloc.h>
+	#include <ngx_buf.h>
+	#include <ngx_queue.h>
+	#include <ngx_array.h>
+	#include <ngx_list.h>
+	#include <ngx_hash.h>
+	#include <ngx_file.h>
+	#include <ngx_crc.h>
+	#include <ngx_crc32.h>
+	#include <ngx_murmurhash.h>
+	#include <ngx_regex.h>
+	#include <ngx_radix_tree.h>
+	#include <ngx_times.h>
+	#include <ngx_shmtx.h>
+	#include <ngx_slab.h>
+	#include <ngx_inet.h>
+	#include <ngx_cycle.h>
+	#include <ngx_resolver.h>
+	#include <ngx_event_openssl.h>
+	#include <ngx_process_cycle.h>
+	#include <ngx_conf_file.h>
+	#include <ngx_open_file_cache.h>
+	#include <ngx_os.h>
+	#include <ngx_connection.h>
+/*}}}*/
+
+ngx_log.h/*{{{*/
+	NGX_LOG_STDERR
+	NGX_LOG_EMERG
+	NGX_LOG_ALERT
+	NGX_LOG_CRIT
+	NGX_LOG_ERR
+	NGX_LOG_WARN
+	NGX_LOG_NOTICE
+	NGX_LOG_INFO
+	NGX_LOG_DEBUG
+
+	NGX_LOG_DEBUG_CORE
+	NGX_LOG_DEBUG_ALLOC
+	NGX_LOG_DEBUG_MUTEX
+	NGX_LOG_DEBUG_EVENT
+	NGX_LOG_DEBUG_HTTP
+	NGX_LOG_DEBUG_MAIL
+	NGX_LOG_DEBUG_MYSQL
+	NGX_LOG_DEBUG_ALL
+
+	ngx_log_t
+		log_level:ngx_uint_t
+		file:*ngx_open_file_t
+		connection:ngx_atomic_uint_t
+		handler:ngx_log_handler_pt
+		data:*void
+		action:*char
+
+	ngx_log_error()
+	ngx_log_error_core()
+	ngx_log_debug()
+	ngx_log_debug0()
+
+	ngx_log_init()
+	ngx_log_create()
+	ngx_log_set_levels()
+	ngx_log_abort()
+	ngx_log_stderr()
+	ngx_log_errno()
+	ngx_write_stderr()
+	ngx_errlog_module:ngx_module_t
+/*}}}*/
+ngx_log.c/*{{{*/
+	ngx_errlog_module:ngx_module_t
+		ngx_errlog_module_ctx:ngx_core_module_t
+			ngx_string("errlog")
+		ngx_errlog_commands:[]ngx_command_t
+			ngx_string("error_log") ngx_error_log(cf)
+				cf->cycle->new_log.file=ngx_conf_open_file()
+				cf->cycle->new_log.log_level=ngx_log_set_levels()
+		NGX_CORE_MODULE
+	ngx_log:ngx_log_t
+	ngx_log_file:ngx_open_file_t
+	ngx_use_stderr:ngx_uint_t
+	err_levels:[]ngx_str_t
+		ngx_string("emerg")
+		ngx_string("alert")
+		ngx_string("crit")
+		ngx_string("error")
+		ngx_string("warn")
+		ngx_string("notice")
+		ngx_string("info")
+		ngx_string("debug")
+	debug_levels:[]*char
+		"debug_core"
+		"debug_alloc"
+		"debug_mutex"
+		"debug_event"
+		"debug_http"
+		"debug_mail"
+		"debug_mysql"
+	ngx_log_error_core()
+	ngx_log_error()
+	ngx_log_debug_core()
+	ngx_log_abort()
+	ngx_log_stderr()
+	ngx_log_errno()
+		ngx_strerror()
+	ngx_log_init()
+		ngx_open_file()
+	ngx_log_create()
+		ngx_pcalloc()
+		ngx_conf_open_file()
+/*}}}*/
+
+ngx_palloc.h/*{{{*/
+	ngx_pool_t
+		d:ngx_pool_data_t
+			last:*u_char
+			end:*u_char
+			next:*ngx_pool_t
+			failed:ngx_uint_t
+		max:size_t
+		current:*ngx_pool_t
+		chain:*ngx_chain_t
+		large:*ngx_pool_large_t
+			next:*ngx_pool_large_t
+			alloc:*void
+		cleanup:*ngx_pool_cleanup_t
+			handler:ngx_pool_cleanup_pt
+			data:*void/ngx_pool_cleanup_file_t
+				fd:ngx_fd_t
+				name:*u_char
+				log:*ngx_log_t
+			next:ngx_pool_cleanup_t
+		log:*ngx_log_t
+	ngx_alloc()
+	ngx_calloc()
+	ngx_create_pool()
+	ngx_destroy_pool()
+	ngx_reset_pool()
+
+	ngx_palloc()
+	ngx_pnalloc()
+	ngx_pcalloc()
+	ngx_pmemalign()
+	ngx_pfree()
+
+	ngx_pool_cleanup_add()
+	ngx_pool_run_cleanup_file()
+	ngx_pool_cleanup_file()
+	ngx_pool_delete_file()
+/*}}}*/
+ngx_palloc.c/*{{{*/
+	ngx_create_pool()
+		p:*ngx_pool_t=ngx_memalign()
+	ngx_destroy_pool()
+		p->cleanup->handler()
+		ngx_free(p->large->alloc)
+		ngx_free(p->d.next)
+	ngx_reset_pool()
+		ngx_free(p->large->alloc)
+		p->d.last=p+sizeof(ngx_pool_t)
+
+	ngx_palloc()/ngx_pnalloc()/ngx_pcalloc()
+		p->d.last
+		ngx_palloc_block()
+			p->d.next:*ngx_pool_t=ngx_memalign()
+		ngx_palloc_large()
+			large:*ngx_pool_large_t=ngx_palloc()
+			large->alloc=ngx_alloc()
+			large->next = p->large
+			p->large=large
+	ngx_pmemalign()
+		large:*ngx_pool_large_t=ngx_palloc()
+		large->alloc=ngx_memalign()
+		large->next = p->large
+		p->large=large
+	ngx_pfree()
+		ngx_free(p->large->alloc)
+
+	ngx_pool_cleanup_add()
+		c:*ngx_pool_cleanup_t=ngx_palloc()
+		c->data=ngx_palloc()
+		c->next = p->cleanup
+		p->cleanup = c
+	ngx_pool_run_cleanup_file(p:*ngx_pool_t)
+		p->cleanup->handler()
+	ngx_pool_cleanup_file()
+		ngx_close_file()
+	ngx_pool_delete_file()
+		ngx_delete_file()
+		ngx_close_file()
+/*}}}*/
+
+ngx_buf.h/*{{{*/
+	ngx_buf_t
+		pos:*u_char
+		last:*u_char
+		file_pos:off_t
+		file_last:off_t
+
+		start:*u_char
+		end:*u_char
+		tag:ngx_buf_tag_t
+		file:*ngx_file_t
+		shadow:*ngx_buf_t
+
+		temporary:unsigned
+		memory:unsigned
+		mmap:unsigned
+		recycled:unsigned
+		in_file:unsigned
+		flush:unsigned
+		sync:unsigned
+		last_buf:unsigned
+		last_in_chain:unsigned
+		last_shadow:unsigned
+		temp_file:unsigned
+		num:int
+	ngx_chain_t
+		buf:*ngx_buf_t
+		next:*ngx_chain_t
+	ngx_bufs_t
+		num:ngx_int_t
+		size:size_t
+	ngx_output_chain_ctx_t
+		buf:*ngx_buf_t
+		in:*ngx_chain_t
+		free:*ngx_chain_t
+		busy:*ngx_chain_t
+
+		sendfile:unsigned
+		directio:unsigned
+		unaligned:unsigned
+		need_in_memory:unsigned
+		need_in_temp:unsigned
+		aio:unsigned
+		aio_handler:ngx_output_chain_aio_pt
+		alignment:off_t
+		pool:*ngx_pool_t
+		allocated:ngx_int_t
+		bufs:ngx_bufs_t
+		tag:ngx_buf_tag_t
+		output_filter:ngx_output_chain_filter_pt
+		filter_ctx:*void
+	ngx_chain_writer_ctx_t
+		out:*ngx_chain_t
+		last:**ngx_chain_t
+		connection:*ngx_connection_t
+		pool:*ngx_pool_t
+		limit:off_t
+	ngx_buf_in_memory()
+	ngx_buf_in_memory_only()
+	ngx_buf_special()
+	ngx_buf_sync_only()
+	ngx_buf_size()
+
+	ngx_create_temp_buf()
+	ngx_create_chain_of_bufs()
+	ngx_alloc_buf()
+	ngx_calloc_buf()
+	ngx_alloc_chain_link()
+	ngx_free_chain()
+
+	ngx_output_chain()
+	ngx_chain_writer()
+	ngx_chain_add_copy()
+	ngx_chain_get_free_buf()
+	ngx_chain_update_chains()
+/*}}}*/
+ngx_buf.c/*{{{*/
+	ngx_create_temp_buf()
+		b:*ngx_buf_t=ngx_calloc_buf()
+		b->start=ngx_palloc()
+		b->temporary=1
+	ngx_alloc_chain_link()
+		c:*ngx_chain_t=ngx_palloc()
+	ngx_create_chain_of_bufs()
+		c:*ngx_chain_t=ngx_alloc_chain_link()
+		c->buf=ngx_calloc_buf()
+		c->buf->start=ngx_palloc()
+	ngx_chain_add_copy()
+		c:*ngx_chain_t=ngx_alloc_chain_link()
+	ngx_chain_get_free_buf()
+		c:*ngx_chain_t=ngx_alloc_chain_link()
+		c->buf=ngx_calloc_buf()
+	ngx_chain_update_chains()
+		busy->next=out
+		ngx_free_chain(busy)
+		free->next=busy
+/*}}}*/
+ngx_output_chain.c/*{{{*/
+	ngx_output_chain(ctx,in)
+		ngx_output_chain_as_is()
+		ctx->output_filter(in)
+
+		ngx_output_chain_add_copy(ctx->in,in)
+			c:*ngx_chain_t=ngx_alloc_chain_link()
+
+		ngx_output_chain_as_is()
+		ngx_output_chain_align_file_buf()
+			ctx->buf=ngx_create_temp_buf()
+		ngx_output_chain_get_buf()
+			ctx->buf=ngx_alloc_buf()
+			ctx->buf->start=ngx_palloc()
+		ngx_output_chain_copy_buf()
+			ngx_memcpy()
+			ngx_read_file()
+		ngx_alloc_chain_link()
+		ctx->output_filter(out)
+		ngx_chain_update_chains()
+	ngx_chain_writer()
+		c:*ngx_chain_t=ngx_alloc_chain_link()
+		ctx->data->connection->send_chain()
+/*}}}*/
+ngx_slab.c
+ngx_slab.h
+ngx_shmtx.c
+ngx_shmtx.h
+
+ngx_array.c
+ngx_array.h
+ngx_list.c
+ngx_list.h
+ngx_queue.c
+ngx_queue.h
+ngx_rbtree.c
+ngx_rbtree.h
+ngx_radix_tree.c
+ngx_radix_tree.h
+ngx_string.c
+ngx_string.h
+ngx_parse.c
+ngx_parse.h
+ngx_regex.c
+ngx_regex.h
+
+ngx_crc32.c
+ngx_crc32.h
+ngx_crypt.c
+ngx_crypt.h
+ngx_md5.c
+ngx_md5.h
+ngx_hash.c
+ngx_hash.h
+ngx_crc.h
+ngx_sha1.h
+ngx_murmurhash.c
+ngx_murmurhash.h
+
+ngx_file.c
+ngx_file.h
+ngx_conf_file.c
+ngx_conf_file.h
+ngx_open_file_cache.c
+ngx_open_file_cache.h
+
+ngx_inet.c
+ngx_inet.h
+ngx_resolver.c
+ngx_resolver.h
+ngx_connection.c
+ngx_connection.h
+
+ngx_times.h
+ngx_times.c
+ngx_cpuinfo.c
+ngx_spinlock.c
+
+ngx_cycle.c
+ngx_cycle.h
+nginx.c
+nginx.h
+
+/*}}}*/
+src/event/*{{{*/
+ngx_event.c
+ngx_event.h
+ngx_event_timer.c
+ngx_event_timer.h
+ngx_event_mutex.c
+ngx_event_accept.c
+ngx_event_connect.c
+ngx_event_connect.h
+ngx_event_openssl.c
+ngx_event_openssl.h
+ngx_event_openssl_stapling.c
+ngx_event_posted.c
+ngx_event_posted.h
+ngx_event_pipe.c
+ngx_event_pipe.h
+ngx_event_busy_lock.c
+ngx_event_busy_lock.h
+modules/*{{{*/
+ngx_aio_module.c
+ngx_poll_module.c
+ngx_epoll_module.c
+ngx_select_module.c
+ngx_kqueue_module.c
+ngx_devpoll_module.c
+ngx_eventport_module.c
+ngx_win32_select_module.c
+ngx_rtsig_module.c
+/*}}}*/
+/*}}}*/
+src/http/*{{{*/
+ngx_http.c
+ngx_http.h
+ngx_http_request.c
+ngx_http_request.h
+ngx_http_request_body.c
+ngx_http_special_response.c
+ngx_http_upstream.c
+ngx_http_upstream.h
+ngx_http_upstream_round_robin.c
+ngx_http_upstream_round_robin.h
+ngx_http_script.c
+ngx_http_script.h
+ngx_http_variables.c
+ngx_http_variables.h
+ngx_http_core_module.c
+ngx_http_core_module.h
+
+ngx_http_copy_filter_module.c/*{{{*/
+	ngx_http_copy_filter_conf_t
+		bufs:ngx_bufs_t
+	ngx_http_copy_filter_module:ngx_module_t
+		ngx_http_copy_filter_module_ctx:ngx_http_module_t
+			ngx_http_copy_filter_init()
+				ngx_http_top_body_filter=ngx_http_copy_filter
+			ngx_http_copy_filter_create_conf()
+			ngx_http_copy_filter_merge_conf()
+		ngx_http_copy_filter_commands:[]ngx_command_t
+			ngx_string("output_buffers") ngx_conf_set_bufs_slot()
+	ngx_http_copy_filter()
+		ngx_output_chain()
+/*}}}*/
+ngx_http_header_filter_module.c
+ngx_http_postpone_filter_module.c
+ngx_http_write_filter_module.c/*{{{*/
+	ntx_http_write_filter_module:ngx_module_t
+		ngx_http_write_filter_module_ctx:ngx_http_module_t
+			ngx_http_write_filter_init()
+				ngx_http_top_body_filter=ngx_http_write_filter
+	ngx_http_write_filter()
+		c:*ngx_chain_t=ngx_alloc_chain_link()
+		r->connection->send_chain()
+/*}}}*/
+ngx_http_busy_lock.c
+ngx_http_busy_lock.h
+ngx_http_cache.h
+ngx_http_config.h
+ngx_http_file_cache.c
+ngx_http_parse.c
+ngx_http_parse_time.c
+ngx_http_spdy.c
+ngx_http_spdy.h
+ngx_http_spdy_filter_module.c
+ngx_http_spdy_module.c
+ngx_http_spdy_module.h
+
+modules/*{{{*/
+ngx_http_log_module.c
+ngx_http_static_module.c
+ngx_http_index_module.c
+ngx_http_proxy_module.c
+ngx_http_rewrite_module.c
+ngx_http_fastcgi_module.c
+ngx_http_ssl_module.c
+ngx_http_ssl_module.h
+ngx_http_autoindex_module.c
+
+ngx_http_not_modified_filter_module.c
+ngx_http_range_filter_module.c
+ngx_http_chunked_filter_module.c
+ngx_http_gunzip_filter_module.c
+ngx_http_gzip_filter_module.c
+ngx_http_referer_module.c
+ngx_http_browser_module.c
+ngx_http_auth_basic_module.c
+ngx_http_charset_filter_module.c
+
+ngx_http_access_module.c
+ngx_http_addition_filter_module.c
+ngx_http_dav_module.c
+ngx_http_degradation_module.c
+ngx_http_empty_gif_module.c
+ngx_http_flv_module.c
+ngx_http_geo_module.c
+ngx_http_geoip_module.c
+ngx_http_gzip_static_module.c
+ngx_http_headers_filter_module.c
+ngx_http_image_filter_module.c
+ngx_http_limit_conn_module.c
+ngx_http_limit_req_module.c
+ngx_http_map_module.c
+ngx_http_memcached_module.c
+ngx_http_mp4_module.c
+ngx_http_random_index_module.c
+ngx_http_realip_module.c
+ngx_http_scgi_module.c
+ngx_http_secure_link_module.c
+ngx_http_split_clients_module.c
+ngx_http_ssi_filter_module.c
+ngx_http_ssi_filter_module.h
+ngx_http_stub_status_module.c
+ngx_http_sub_filter_module.c
+ngx_http_upstream_ip_hash_module.c
+ngx_http_upstream_keepalive_module.c
+ngx_http_upstream_least_conn_module.c
+ngx_http_userid_filter_module.c
+ngx_http_uwsgi_module.c
+ngx_http_xslt_filter_module.c
+perl
+/*}}}*/
+/*}}}*/
+src/mail/*{{{*/
+ngx_mail.c
+ngx_mail.h
+ngx_mail_parse.c
+ngx_mail_handler.c
+ngx_mail_core_module.c
+ngx_mail_ssl_module.c
+ngx_mail_ssl_module.h
+ngx_mail_imap_handler.c
+ngx_mail_imap_module.c
+ngx_mail_imap_module.h
+ngx_mail_pop3_handler.c
+ngx_mail_pop3_module.c
+ngx_mail_pop3_module.h
+ngx_mail_smtp_handler.c
+ngx_mail_smtp_module.c
+ngx_mail_smtp_module.h
+ngx_mail_auth_http_module.c
+ngx_mail_proxy_module.c
+/*}}}*/
+src/misc/*{{{*/
+ngx_cpp_test_module.cpp
+ngx_google_perftools_module.c
+/*}}}*/
+hello
+ngx_grammar
 
 src/core/*{{{*/
 ngx_palloc.h/*{{{*/
