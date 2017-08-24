@@ -1246,21 +1246,26 @@ nginx.h
 src/event/*{{{*/
 ngx_event.c
 ngx_event.h
+	ngx_event_accept()
+	ngx_trylock_accept_mutex()
+	ngx_accept_log_error()
+	ngx_process
+
 ngx_event_timer.c
 ngx_event_timer.h
+ngx_event_posted.c
+ngx_event_posted.h
 ngx_event_mutex.c
 ngx_event_accept.c
+ngx_event_busy_lock.c
+ngx_event_busy_lock.h
 ngx_event_connect.c
 ngx_event_connect.h
 ngx_event_openssl.c
 ngx_event_openssl.h
 ngx_event_openssl_stapling.c
-ngx_event_posted.c
-ngx_event_posted.h
 ngx_event_pipe.c
 ngx_event_pipe.h
-ngx_event_busy_lock.c
-ngx_event_busy_lock.h
 modules/*{{{*/
 ngx_aio_module.c
 ngx_poll_module.c
@@ -1276,20 +1281,204 @@ ngx_rtsig_module.c
 src/http/*{{{*/
 ngx_http.c
 ngx_http.h
+ngx_http_core_module.c
+ngx_http_core_module.h
 ngx_http_request.c
 ngx_http_request.h
 ngx_http_request_body.c
 ngx_http_special_response.c
 ngx_http_upstream.c
-ngx_http_upstream.h
+	ngx_http_upstream_headers_in:[]ngx_http_upstream_header_t
+		ngx_string("Status")
+ngx_http_upstream.h/*{{{*/
+	ngx_http_upstream_state_t
+		bl_time:ngx_msec_t
+		bl_state:ngx_uint_t
+		status:ngx_uint_t
+		response_sec:time_t
+		response_msec:ngx_uint_t
+		response_length:off_t
+		peer:*ngx_str_t
+	ngx_http_upstream_main_conf_t
+		headers_in_hash:ngx_hash_t
+		upstreams:ngx_array_t
+	ngx_http_upstream_srv_conf_t
+		peer:ngx_http_upstream_peer_t
+			init_upstream:ngx_http_upstream_init_pt
+			init:ngx_http_upstream_init_peer_pt
+			data:*void
+		srv_conf:**void
+		servers:*ngx_array_t/ngx_http_upstream_server_t
+			addrs:*ngx_addr_t
+			naddrs:ngx_uint_t
+			weight:ngx_uint_t
+			max_fails:ngx_uint_t
+			fail_timeout:time_t
+			down:unsigned
+			backup:unsigned
+			flags:ngx_uint_t
+		host:ngx_str_t
+		file_name:*u_char
+		line:ngx_uint_t
+		port:in_port_t
+		default_port:in_port_t
+		no_port:ngx_uint_t
+	ngx_http_upstream_local_t
+		addr:*ngx_addr_t
+		value:*ngx_http_complex_value_t
+	ngx_http_upstream_conf_t
+		upstream:*ngx_http_upstream_srv_conf_t
+		connection_timeout:ngx_msec_t
+		send_timeout:ngx_msec_t
+		read_timeout:ngx_msec_t
+		timeout:ngx_msec_t
+		send_lowat:size_t
+		buffer_size:size_t
+		busy_buffers_size:size_t
+		max_temp_file_size:size_t
+		temp_file_write_size:size_t
+		busy_buffers_size_conf:size_t
+		max_temp_file_size_conf:size_t
+		temp_file_write_size_conf:size_t
+		bufs:ngx_bufs_t
+
+		ignore_headers:ngx_uint_t
+		next_upstream:ngx_uint_t
+		store_access:ngx_uint_t
+		buffering:ngx_flag_t
+		pass_request_headers:ngx_flag_t
+		pass_request_body:ngx_flag_t
+		ignore_client_abort:ngx_flag_t
+		intercept_errors:ngx_flag_t
+		cyclic_temp_file:ngx_flag_t
+		temp_path:*ngx_path_t
+		hide_headers_hash:ngx_hash_t
+		hide_headers:*ngx_array_t
+		pass_headers:*ngx_array_t
+		local:*ngx_http_upstream_local_t
+		cache:*ngx_shm_zone_t
+		cache_min_uses:ngx_uint_t
+		cache_use_stale:ngx_uint_t
+		cache_methods:ngx_uint_t
+		cache_lock:ngx_flag_t
+		cache_lock_timeout:ngx_msec_t
+		cache_valid:*ngx_array_t
+		cache_bypass:*ngx_array_t
+		no_cache:*ngx_array_t
+		store_lengths:*ngx_array_t
+		store_values:*ngx_array_t
+		store:signed
+		intercept_404:unsigned
+		change_buffering:unsigned
+		ssl:*ngx_ssl_t
+		ssl_session_reuse:ngx_flag_t
+		module:ngx_str_t
+	ngx_http_upstream_header_t
+		name:ngx_str_t
+		handler:ngx_http_header_handler_pt
+		offset:ngx_uint_t
+		copy_handler:ngx_http_header_handler_pt
+		conf:ngx_uint_t
+		redirect:ngx_uint_t
+	ngx_http_upstream_headers_in_t
+		headers:ngx_list_t
+		status_n:ngx_uint_t
+		status_line:ngx_str_t
+		status:*ngx_table_elt_t
+		date:*ngx_table_elt_t
+		server:*ngx_table_elt_t
+		connection:*ngx_table_elt_t
+		expires:*ngx_table_elt_t
+		etag:*ngx_table_elt_t
+		x_accel_expires:*ngx_table_elt_t
+		x_accel_redirect:*ngx_table_elt_t
+		x_accel_limit_rate:*ngx_table_elt_t
+		content_type:*ngx_table_elt_t
+		content_length:*ngx_table_elt_t
+		last_modified:*ngx_table_elt_t
+		location:*ngx_table_elt_t
+		accept_ranges:*ngx_table_elt_t
+		www_authenticate:*ngx_table_elt_t
+		transfer_encoding:*ngx_table_elt_t
+		content_encoding:*ngx_table_elt_t
+		content_length_n:off_t
+		cache_control:ngx_array_t
+		connection_close:unsigned
+		chunked:unsigned
+	ngx_http_upstream_resolved_t
+		host:ngx_str_t
+		port:in_port_t
+		no_port:ngx_uint_t
+		naddrs:ngx_uint_t
+		addrs:*in_addr_t
+		sockaddr:*struct sockaddr
+		socklen:socklen_t
+		ctx:*ngx_resolver_ctx_t
+	ngx_http_upstream_t
+		read_event_handler:ngx_http_upstream_handler_pt
+		write_event_handler:ngx_http_upstream_handler_pt
+		peer:ngx_peer_connection_t
+		pipe:*ngx_event_pipe_t
+		request_bufs:*ngx_chain_t
+		output:ngx_output_chain_ctx_t
+		writer:ngx_chain_writer_ctx_t
+		conf:*ngx_http_upstream_conf_t
+		headers_in:ngx_http_upstream_headers_in_t
+		resolved:*ngx_http_upstream_resolved_t
+		from_client:ngx_buf_t
+		buffer:ngx_buf_t
+		length:off_t
+		out_bufs:*ngx_chain_t
+		busy_bufs:*ngx_chain_t
+		free_bufs:*ngx_chain_t
+		input_filter_init:
+		input_filter:
+		input_filter_ctx:*void
+		create_key:
+		create_request:
+		reinit_request:
+		process_header:
+		abort_request:
+		finalize_request:
+		rewrite_redirect:
+		rewrite_cookie:
+		timeout:ngx_msec_t
+		state:*ngx_http_upstream_state_t
+		method:ngx_str_t
+		schema:ngx_str_t
+		uri:ngx_str_t
+		cleanup:ngx_http_cleanup_pt
+		store:unsigned
+		cacheable:unsigned
+		accel:unsigned
+		ssl:unsigned
+		cache_status:unsigned
+		buffering:unsigned
+		keepalive:unsigned
+		upgrade:unsigned
+		request_sent:unsigned
+		header_sent:unsigned
+	ngx_http_upstream_next_t
+		status:ngx_uint_t
+		mask:ngx_uint_t
+	ngx_http_upstream_param_t
+		key:ngx_str_t
+		value:ngx_str_t
+		skip_empty:ngx_uint_t
+	ngx_http_upstream_header_variable()
+	ngx_http_upstream_create()
+	ngx_http_upstream_init()
+	ngx_http_upstream_add()
+	ngx_http_upstream_bind_set_slot()
+	ngx_http_upstream_param_set_slot()
+	ngx_http_upstream_hide_headers_hash()
+/*}}}*/
 ngx_http_upstream_round_robin.c
 ngx_http_upstream_round_robin.h
 ngx_http_script.c
 ngx_http_script.h
 ngx_http_variables.c
 ngx_http_variables.h
-ngx_http_core_module.c
-ngx_http_core_module.h
 
 ngx_http_copy_filter_module.c/*{{{*/
 	ngx_http_copy_filter_conf_t
