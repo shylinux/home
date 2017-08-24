@@ -315,8 +315,8 @@ nnoremap k gk
 " inoremap 7 &
 " inoremap & 7
 "
-nnoremap <C-M> <C-W>\|<C-W>_
-nnoremap <C-N> <C-W>=
+" nnoremap <C-M> <C-W>\|<C-W>_
+" nnoremap <C-N> <C-W>=
 "nnoremap <C-P> <C-W>p
 "nnoremap <Leader>b <Leader>be
 
