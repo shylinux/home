@@ -455,7 +455,14 @@ text/template// {{{
 		Name() Templates() Lookup() DefinedTemplates() Clone()
 		Execute() ExecuteTemplate()
 // }}}
+
 crypto// {{{
+
+crypto/rand
+	Int() Prime() Read() Reader
+crypto/subtle
+crypto/elliptic
+
 crypto/md5
 	BlockSize Size New() Sum()
 crypto/sha1
@@ -465,62 +472,94 @@ crypto/sha256
 crypto/sha512
 	BlockSize Size New() Sum()
 
-crypto/rand
-	Int() Prime() Read() Reader
-
-crypto/cipher
-	BlockMode{} NewCBCDecrypter() NewCBCEncrypter()
-		BlockSize() CryptBlocks()
 crypto/aes
 	BlockSize NewCipher()
 crypto/des
-	BlockSize NewCipher()
+	BlockSize NewCipher() NewTripleDESCipher()
+crypto/cipher
+	AEAD{} NewGCM() NewGCMWithNonceSize()
+		NonceSize() OverHead()
+		Seal() Open()
+	BlockMode{} NewCBCDecrypter() NewCBCEncrypter()
+		BlockSize() CryptBlocks()
+	Stream{} NewCFBEncrypter() NewCFBDecrypter() NewCTR() NewOFB()
+		XORKeyStream()
 
 crypto/rsa
-	DecryptOAEP() DecryptPKCS1v15() DecryptPKCS1v15SessionKey()
-	EncryptOAEP() EncryptPKCS1v15()
-	SignPSS() SignPKCS1v15()
-	VerifyPSS() VerifyPKCS1v15()
-	PrivateKey{} GernerateKey() GenerateMutliPrimeKey()
-		Precompute() Validate()
-		Decrypt() Sign()
-		PublicKey{} Public()
+	SignPSS() VerfiyPSS()
+	EncryptOAEP() DecryptOAEP()
+	EncryptPKCS1v15() DecryptPKCS1v15() DecryptPKCS1v15SessionKey()
+	SignPKCS1v15() VerifyPKCS1v15()
+	PrivateKey{} GernerateKey() GernerateKeyMultiPrimeKey()
 crypto/dsa
+	GenerateParameters() GenerateKey()
+	Sign() Verify()
 crypto/ecdsa
-crypto/elliptic
+	GenerateKey()
+	Sign() Verify()
 crypto/hmac
+
 crypto/rc4
-crypto/subtle
+crypto/x509
+	Certificate{} CreateCertificate() ParseCertificate() ParseCertificates()
+	CertificateRequest{} CreateCertificateRequest() ParseCertificateRequest()
+	MarshalPKCS1PrivateKey() ParsePKCS1PrivateKey() ParsePKCS8PrivateKey()
+	MarshalECPrivateKey() ParseECPrivateKey()
+	MarshalPKIXPublicKey() ParsePKIXPublicKey()
+	DecryptPEMBlock() EncryptPEMBlock() IsEncryptedPEMBlock()
+	CertPool{} NewCertPool()
+	ParseCRL() ParseDERCRL()
+
+crypto/x509/pkix
+	Name{}
+	Extension{}
 
 crypto/tls
-crypto/x509
-	MarshalPKCS1PrivateKey() ParsePKCS1PrivateKey()
-	MarshalPKIXPublicKey() ParsePKIXPublicKey()
+	Certificate{} LoadX509KeyPair() X509KeyPair()
+	NewLRUClientSessionCache()
+	Config{}
+		Rand Time Certificates
+		NameToCertificate GetCertificate
+		RootCAs NextProtos ServerName InsecureSkipVerify
+		ClientAuth ClientCAs
+		CipherSuites PreferServerCipherSuites
+		SessionTicketsDisabled SessionTicketKey ClientSessionCache
+		MinVersion MaxVersion CurvePreferences
+	Listen() NewListener()
+	Dial() DialWithDialer()
+	Client() Server()
 
-	DecryptPEMBlock()
-	EncryptPEMBlock()
-	IsEncryptedPEMBlock()
-	ExtKeyUsageAny
-	NotAuthorizedToSign
-	KeyUsageDigitalSignature
-	PEMCipherDES
-	CreateCertificate()
-	CreateCertificateRequest()
-	MarshalECPrivateKey()
-	ParseCRL()
-	ParseCertificates()
-	ParseDERCRL()
-	ParseECPrivateKey()
-	ParsePKCS8PrivateKey()
-	NewCertPool
-	ParseCertificate()
-	ParseCertificateRequest()
-	CertPool{}
-crypto/x509/pkix
 // }}}
 encoding// {{{
+encoding/csv
+encoding/god
+encoding/xml
+encoding/json
+	Marshal() MarshalIndent()
+	Unmarshal()
+	Decoder{} NewDecoder()
+		Decode()
+		More() Token()
+		Buffered() useNumber()
+	Encoder{} NewEncoder()
+		Encode()
+encoding/ascii85
+encoding/asn1
+	Marshal() UnMarshal() UnMarshalWithParams()
 encoding/pem
-	Block{} Encode() Decode()
+	Block{} Encode() EncodeToMemory() Decode()
 		Type Headers Bytes
+encoding/hex
+	Decode() DecodeString() DecodedLen()
+	Encode() EncodeToString() EncodedLen()
+	Dump() Dumper()
+encoding/binary
+encoding/base32
+encoding/base64
+	NewDecoder() NewEncoder()
+	StdEncoding URLEncoding Encoding{} NewEncoding()
+		Decode() DecodeString() DecodeLen()
+		Encode() EncodeToString() EncodeLen()
+		WithPadding()
 // }}}
 

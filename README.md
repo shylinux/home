@@ -5,9 +5,9 @@
 	    sh go
 	  vi php js
 	ARM Linux HTTP
-	   hub mac
-	   vps vpn
-	   usb win
+	   mac hub
+	   vpn vps
+	   win usb
 	git share back
 	   add del
 	   mod fix
@@ -16,5 +16,6 @@
 
 **the sub dir:**
 
-back note code tool conf
+    back note work
+    conf tool data
 
