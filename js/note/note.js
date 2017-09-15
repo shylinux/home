@@ -582,6 +582,228 @@ $().text()
 nodejs//{{{
 //}}}
 
+HTML
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>hello HTML world</title>
+	<link rel="stylesheet" href="" type="text/css">
+</head>
+<body>
+	<h1></h1> <h2></h2> <h3></h3> <h4></h4> <h5></h5> <h6></h6>
+	<p></p>
+	<em></em> <strong></strong>
+	<i></i><b></b><u></u>
+	<sub></sub> <sup></sup>
+	<a href="mailto:shylinux@163.com?cc=&bcc=&subject=&body=" title="" download=""></a>
+	<img src="" alt="" width="" height="">
+
+	&lt; &gt; &amp; &quot; &apos;
+	<!-- -->
+
+	<ul><li></li></ul>
+	<ol><li></li></ol>
+	<dl><dt></dt><dd></dd></dl>
+
+	<q cite=""></q>
+	<blockquote cite=""></blockquote>
+	<abbr title=""></abbr>
+	<address></address>
+
+	<code></code>
+	<pre></pre>
+	<var></var>
+	<kbd></kbd>
+	<samp></samp>
+	<time datetime="2017-09-15T19:30+08:00"></time>
+
+	<header></header>
+	<nav></nav>
+	<main></main>
+	<aside></aside>
+	<footer></footer>
+
+	<article></article>
+	<section></section>
+
+	<div></div>
+	<span></span>
+
+	<br><hr>
+	<video src="" controls width="" height="" muted></video>
+	<audio controls>
+		<source src="" type="">
+		<source src="" type="">
+		<track kind="subtitles" src=".vtt" srclang="en">
+		WEBVTT
+
+		1
+		00:00:22.230 --> 00:00:24.606
+		hello
+
+		2
+		00:00:22.230 --> 00:00:24.606
+		hello
+
+
+	</audio>
+	<figure><img><figcaption></figcaption></figure>
+
+	<iframe src="" width="" height="" frameborder="" allowfullscreen sandbox></iframe>
+	<form>
+		<input type="text" disabled>
+		<input type="search" name="q" placeholder="">
+		<input type="submit" value="GO">
+	</form>
+
+	<script src=""></script>
+</body>
+</html>
+
+CSS
+#id div.wrap:first[href], a {
+	width: 600px;
+	margin: 0 auto;
+	border: 5px solid black;
+	padding: 0;
+
+	display: block;
+	background-color: #00539F;
+	color: red;
+
+	font-size: 10px;
+	font-family: placeholder;
+	letter-spacing: 1px;
+	line-height: 2;
+	text-align: center;
+	text-shadow: 3px 3px 1px black;
+}
+/**/
+
+JavaScript
+Number String Boolean
+Array Object Function
+/**/
+var
+function
+
+window
+jQuery
+$(document).ready(function(){})
+$().click(function(event){})
+$().addClass()
+$().removeClass()
+$().hide()
+$().show()
+$.get(url,function(){})
+
+$("#id tag.class:pso[name=value], union").length
+$().has().not().find().filter().first().eq().end()
+$().each()
+$().map()
+$().match()
+
+$().parent()
+$().parents()
+$().parentUntil()
+$().closest()
+$().children()
+$().find()
+$().siblings()
+$().prev()
+$().prevAll()
+$().prevUntil()
+$().next()
+$().nextAll()
+$().nextUntil()
+
+$().attr()
+$().html()
+$().text()
+$().width()
+$().height()
+$().position()
+
+$().data()
+
+$().empty()
+$().remove()
+$().detach()
+$().clone()
+$().after()
+$().before()
+$().append()
+$().prepend()
+$().appendTo()
+$().prependTo()
+$().insertAfter()
+$().insertBefore()
+
+$().css()
+$().hasClass()
+$().addClass()
+$().removeClass()
+$().toggleClass()
+
+$.trim()
+$.each()
+$.extend()
+$.proxy()
+$.type()
+$.isArray()
+$.isFunction()
+
+$().on()
+$().off()
+$().one()
+$().ready()
+$().click()
+$().hover()
+$().trigger()
+
+$().hide()
+$().show()
+$().toggle()
+$().slideUp()
+$().slideDown()
+$().slideToggle()
+$().fadeOut()
+$().fadeIn()
+$().fadeToggle()
+$().stop()
+$().delay()
+$().animate()
+$().queue()
+$().dequeue()
+
+$.ajax({method,url,data,headers,dataType}).done().fail().always()
+$.get()
+$.getScript()
+$.getJSON()
+$.post()
+$.ajaxPrefilter()
+$().ajaxStart()
+$().ajaxStop()
+
+$().load()
+$().submit()
+$().serialize()
+$().serializeArray()
+$().val()
+
+event
+	type
+	data
+	which
+	target
+	namespace
+	timeStamp
+	pageX pageY
+	preventDefault()
+	stopPropagation()
+wechat
 1990
 1991  ARM   Linux  HTTP
 1994                        linux 1.0
