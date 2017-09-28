@@ -1,14 +1,11 @@
 #!/bin/bash
-#client server
-#session window pane layout
+#tmux qemu zsh vim
+#
+#server session window pane
+#client
 
-TARGET_KVM=~/bash/tool/qemu/kvm.sh
-TARGET_LOG=~/temp/tmux/log_${TARGET_SESSION}_${TARGET_WINDOW}
-TARGET_DEBUG=1
-TARGET_BUFFER=~/temp/tmux/buffer_${TARGET_SESSION}_${TARGET_WINDOW}
-[ -e ~/temp/tmux ] || mkdir -p ~/temp/tmux
-
-TARGET_PANE=1
+TARGET_PATH=~/temp/tmux
+[ -e $TARGET_PATH ] || mkdir -p $TARGET_PATH
 
 [ -z "$TARGET_WINDOW" ] && TARGET_WINDOW=`tmux list-windows 2>/dev/null |sed -n '/active/p'|cut -d':' -f1`
 [ -n "$TARGET_SESSION" ] && echo tmux: $TARGET_LOG
@@ -20,52 +17,51 @@ pdebug() {
 }
 
 pconsole() {
+	case $# in
+		0)
+			echo "usage: $0 session image manufact ip0 ip1"
+			echo "usage: $0 session image manufact ip0"
+			echo "usage: $0 session machine"
+			echo "usage: $0 session"
+			return
+			;;
+		1)
+			tmux attach-session -t $1
+			return
+			;;
+	esac
+
 	TARGET_SESSION=${1:-vpm}
+	tmux new-session -d -s $TARGET_SESSION || return
+	tmux set-environment -t $TARGET_SESSION TARGET_PANE 1
+	tmux set-environment -t $TARGET_SESSION TARGET_WINDOW 1
+	tmux set-environment -t $TARGET_SESSION TARGET_SESSION $TARGET_SESSION
+	tmux set-environment -t $TARGET_SESSION TARGET_SOURCE ~/work/tool/vpm.sh
+	tmux set-environment -t $TARGET_SESSION TARGET_KVM ~/bash/tool/qemu/kvm.sh
+	tmux set-environment -t $TARGET_SESSION TARGET_LOG $TARGET_PATH/log_${TARGET_SESSION}_1
+	tmux set-environment -t $TARGET_SESSION TARGET_BUFFER $TARGET_PATH/buffer_${TARGET_SESSION}_1
 
-	if tmux has-session -t $TARGET_SESSION &>/dev/null
-	then
-		for ((i=1;i<16;i++)) do
-			tmux list-panes -t $TARGET_SESSION:$i &>/dev/null || break;
-		done
-		[ $i -ge 16 ] && echo "too many windows in session $TARGET_SESSION" && return 1
+	source ~/work/tool/vpm.sh $*
 
-		TARGET_WINDOW=$i
-		tmux set-environment -t $TARGET_SESSION TARGET_WINDOW $TARGET_WINDOW
-		tmux new-window -t $TARGET_SESSION
-	else
-		TARGET_WINDOW=1
-		tmux new-session -d -s $TARGET_SESSION
-		tmux set-environment -t $TARGET_SESSION LOCAL_PROMPT '[$TARGET_WINDOW,$TARGET_PANE]'
-		tmux set-environment -t $TARGET_SESSION TARGET_SESSION $TARGET_SESSION
-		tmux set-environment -t $TARGET_SESSION TARGET_WINDOW $TARGET_WINDOW
-	fi
+	tmux split-window -d -l 10 -t $TARGET_SESSION:1.1
+	tmux split-window -d -h -t $TARGET_SESSION:1.1
+	tmux select-pane -t $TARGET_SESSION:1.3
+	tmux split-window -d -h -t $TARGET_SESSION:1.3
+	tmux select-pane -t $TARGET_SESSION:1.4
+
+	case $# in
+		5)
+			tmux send-keys -t $TARGET_SESSION:1.4 -- "pimage"
+			tmux send-keys -t $TARGET_SESSION:1.4 -- C-J
+			;;
+		4|2)
+			tmux send-keys -t $TARGET_SESSION:1.4 -- "pconnect && p2 && pconnect && p3 && pconnect"
+			tmux send-keys -t $TARGET_SESSION:1.4 -- C-J
+			;;
+	esac
 
 	echo "" > ~/temp/tmux/log_${TARGET_SESSION}_${TARGET_WINDOW}
-	select img in ~/work/image/*.img; do break; done
-	select manu in ~/work/image/*.leadsec ~/work/image/*.TBSG; do break; done
-	echo -n "IP0(1.0.0.$TARGET_WINDOW): " && read ip0 && ip0=${ip0:-"1.0.0.$TARGET_WINDOW"}
-	echo -n "IP1(1.0.1.$TARGET_WINDOW): " && read ip1 && ip1=${ip1:-"1.0.1.$TARGET_WINDOW"}
-
-	if [ -z "$2" ]
-	then
-		tmux split-window -d -l 10 -t $TARGET_SESSION:$TARGET_WINDOW.1
-		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- "pimg $img $manu $ip0 $ip1"
-		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
-
-		tmux split-window -d -h -t $TARGET_SESSION:$TARGET_WINDOW.1
-		# tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- 'tail -f $TARGET_LOG'
-		# tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
-
-		tmux set-environment -u -t $TARGET_SESSION TARGET_WINDOW
-		tmux attach-session -t $TARGET_SESSION \; select-pane -t 3
-	else
-		tmux split-window -d -l 10 -t $TARGET_SESSION:$TARGET_WINDOW.1
-		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- "pconnect $img $manu $ip0"
-		tmux send-keys -t $TARGET_SESSION:$TARGET_WINDOW.2 -- C-J
-
-		tmux set-environment -u -t $TARGET_SESSION TARGET_WINDOW
-		tmux attach-session -t $TARGET_SESSION \; select-pane -t 2
-	fi
+	tmux attach-session -t $TARGET_SESSION
 }
 
 p1() {
@@ -161,8 +157,9 @@ puntil() {
 }
 
 pwait() {
-	echo -n $1"...<Enter>"
-	read
+	echo -n $1"(Yes/No)...<Enter>" && read -t 3
+	case $REPLY in n|N|no|No) return 1;; esac
+	return 0
 }
 
 pe() {
@@ -173,10 +170,6 @@ pe() {
 pp() {
 	sleep 0.01 && puntil "$TARGET_PS1" && p $*
 	[ "$TARGET_DEBUG" = 1 ] && echo " "$*
-}
-
-pvm() {
-	$TARGET_KVM $*
 }
 
 pquit() {
