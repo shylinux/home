@@ -364,6 +364,183 @@ compvalues
 
 #}}}
 tmux #{{{
+clients sessions windows panes #{{{
+attach-session
+detach-client
+has-session
+kill-server
+kill-session
+list-clients
+list-commands
+list-sessions
+lock-client
+lock-session
+new-session
+refresh-client
+rename-session
+show-messages
+source-file
+start-server
+suspend-client
+
+show-options
+show-window-options
+#}}}
+clients sessions windows panes #{{{
+break-pane
+capture-pane
+choose-client
+choose-session
+choose-window
+display-panes
+find-window
+join-pane
+kill-pane
+kill-window
+last-pane
+last-window
+link-window
+list-panes
+list-windows
+move-window
+new-window
+next-layout
+next-window
+pipe-pane
+previous-layout
+previous-window
+rename-window
+resize-pane
+respawn-pane
+respawn-window
+rotate-window
+select-layout
+select-pane
+select-window
+split-window
+swap-pane
+swap-window
+unlink-window
+
+bind-key
+list-keys
+send-keys
+send-prefix
+unbind-key
+#}}}
+set-option #{{{
+	buffer-limit
+	escape-time
+	exit-unattached
+	quiet
+
+	base-index
+	bell-action
+	bell-on-alert
+	default-command
+	default-path
+	default-shell
+	default-terminal
+	destroy-unattatched
+	detach-on-destroy
+	display-panes-active-colour
+	display-panes-colour
+	display-panes-time
+	display-time
+	history-limit
+	lock-after-time
+	lock-command
+	lock-server
+	message-attr
+	message-bg
+	message-command-attr
+	message-command-bg
+	message-command-fg
+	message-limit
+	mouse-resize-pane
+	mouse-select-pane
+	mouse-select-window
+	mouse-utf8
+	pane-active-border-bg
+	pane-active-border-fg
+	pane-border-fg
+	pane-border-bg
+	prefix
+	prefix2
+	repeat-time
+	set-remain-on-exit
+	set-titles
+	set-titles-string
+	status
+	status-attr
+	status-bg
+	status-fg
+	status-interval
+	status-justify
+	status-keys
+	status-left
+	status-left-attr
+	status-left-bg
+	status-left-fg
+	status-left-length
+	status-right
+	status-right-attr
+	status-right-bg
+	status-right-fg
+	status-right-length
+	status-utf8
+	terminal-overrides
+	update-environment
+	visual-activity
+	visual-bell
+	visual-content
+	visual-silence
+	word-separators
+#}}}
+set-window-option #{{{
+	aggressive-resize
+	allow-rename
+	alternate-screen
+	automatic-rename
+	clock-mode-colour
+	clock-mode-style
+	force-height
+	force-width
+	main-pane-height
+	main-pane-width
+	mode-attr
+	mode-fg
+	mode-fg
+	mode-keys
+	mode-mouse
+	other-pane-height
+	other-pane-width
+	pane-base-index
+	remain-on-exit
+	synchronize-panes
+	utf8
+
+	set-environment
+	show-environment
+	command-prompt
+	confirm-before
+	display-message
+	choose-buffer
+	clear-history
+	delete-buffer
+	list-buffers
+	load-buffer
+	paste-buffer
+	save-buffer
+	set-buffer
+	show-buffer
+	clock-mode
+	if-shell
+	run-shell
+	lock-server
+#}}}
+
+
 set-option show-options #{{{
 	prefix
 	prefix2
