@@ -162,6 +162,181 @@ JSON//{{{
 Error//{{{
 //}}}
 
+jQuery//{{{
+
+$.cookie()
+
+$(",")
+
+$(">")
+$(" ")
+$("+")
+$("~")
+
+$("#")
+$("div")
+$(".")
+$(":not")
+$(":has")
+$(":contains")
+$(":lang")
+$(":target")
+$(":root")
+$(":empty")
+$(":parent")
+$(":header")
+
+$(":focus")
+$(":input")
+$(":button")
+$(":enabled")
+$(":disabled")
+$(":checked")
+$(":selected")
+
+$(":text")
+
+$(":first")
+$(":last")
+$(":lt")
+$(":gt")
+$(":eq")
+$(":odd")
+$(":even")
+$(":nth-child")
+
+$("[]")
+$("[=]")
+$("[!=]")
+$("[^=]")
+$("[$=]")
+$("[*=]")
+$("[|=]")
+$("[~=]")
+
+$().filter().find().not().is()
+.parent().next().prev().children()
+.end()
+
+$(function(){}).ready()
+$().on("", function(){}).off().one().trigger()
+.load().focus().blur().click().hover()
+event target stopPropagation() preventDefault() return false;
+$().addClass().removeClass().toggleClass().hasClass()
+$().css().show().hide().toggle()
+	.fadeIn().fadeOut().fadeToggle()
+	.slideDown().slideUp().slideToggle()
+	.animate()
+$().text()
+//}}}
+nodejs//{{{
+//}}}
+
+HTML//{{{
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>hello HTML world</title>
+	<link rel="stylesheet" href="" type="text/css">
+</head>
+<body>
+	<h1></h1> <h2></h2> <h3></h3> <h4></h4> <h5></h5> <h6></h6>
+	<p></p>
+	<em></em> <strong></strong>
+	<i></i><b></b><u></u>
+	<sub></sub> <sup></sup>
+	<a href="mailto:shylinux@163.com?cc=&bcc=&subject=&body=" title="" download=""></a>
+	<img src="" alt="" width="" height="">
+
+	&lt; &gt; &amp; &quot; &apos;
+	<!-- -->
+
+	<ul><li></li></ul>
+	<ol><li></li></ol>
+	<dl><dt></dt><dd></dd></dl>
+
+	<q cite=""></q>
+	<blockquote cite=""></blockquote>
+	<abbr title=""></abbr>
+	<address></address>
+
+	<code></code>
+	<pre></pre>
+	<var></var>
+	<kbd></kbd>
+	<samp></samp>
+	<time datetime="2017-09-15T19:30+08:00"></time>
+
+	<header></header>
+	<nav></nav>
+	<main></main>
+	<aside></aside>
+	<footer></footer>
+
+	<article></article>
+	<section></section>
+
+	<div></div>
+	<span></span>
+
+	<br><hr>
+	<video src="" controls width="" height="" muted></video>
+	<audio controls>
+		<source src="" type="">
+		<source src="" type="">
+		<track kind="subtitles" src=".vtt" srclang="en">
+		WEBVTT
+
+		1
+		00:00:22.230 --> 00:00:24.606
+		hello
+
+		2
+		00:00:22.230 --> 00:00:24.606
+		hello
+
+
+	</audio>
+	<figure><img><figcaption></figcaption></figure>
+
+	<iframe src="" width="" height="" frameborder="" allowfullscreen sandbox></iframe>
+	<form>
+		<input type="text" disabled>
+		<input type="search" name="q" placeholder="">
+		<input type="submit" value="GO">
+	</form>
+
+	<script src=""></script>
+</body>
+</html>
+//}}}
+CSS//{{{
+#id div.wrap:first[href], a {
+	width: 600px;
+	margin: 0 auto;
+	border: 5px solid black;
+	padding: 0;
+
+	display: block;
+	background-color: #00539F;
+	color: red;
+
+	font-size: 10px;
+	font-family: placeholder;
+	letter-spacing: 1px;
+	line-height: 2;
+	text-align: center;
+	text-shadow: 3px 3px 1px black;
+}
+//}}}
+JavaScript//{{{
+Number String Boolean
+Array Object Function
+var function
+//}}}
+
 window//{{{
 	top parent self
 	open() close() opener
@@ -333,7 +508,113 @@ window//{{{
 		cloneNode()
 //}}}
 //}}}
+jQuery//{{{
+$("#id tag.class:pso[name=value], union").length//{{{
+$().has().not().find().filter().first().eq().end()
+$().each()
+$().map()
+$().match()
 
+$().parent()
+$().parents()
+$().parentUntil()
+$().closest()
+$().children()
+$().find()
+$().siblings()
+$().prev()
+$().prevAll()
+$().prevUntil()
+$().next()
+$().nextAll()
+$().nextUntil()
+//}}}
+$().attr()//{{{
+$().html()
+$().text()
+$().width()
+$().height()
+$().position()
+//}}}
+$().css()//{{{
+$().hasClass()
+$().addClass()
+$().removeClass()
+$().toggleClass()
+//}}}
+$().on()//{{{
+$().off()
+$().one()
+$().ready()
+$().click()
+$().hover()
+$().trigger()
+$().data()
+event
+	type
+	data
+	which
+	target
+	namespace
+	timeStamp
+	pageX pageY
+	preventDefault()
+	stopPropagation()
+//}}}
+$().hide()//{{{
+$().show()
+$().toggle()
+$().slideUp()
+$().slideDown()
+$().slideToggle()
+$().fadeOut()
+$().fadeIn()
+$().fadeToggle()
+$().stop()
+$().delay()
+$().animate()
+$().queue()
+$().dequeue()
+//}}}
+$().empty()//{{{
+$().remove()
+$().detach()
+$().clone()
+$().after()
+$().before()
+$().append()
+$().prepend()
+$().appendTo()
+$().prependTo()
+$().insertAfter()
+$().insertBefore()
+//}}}
+$.each()//{{{
+$.trim()
+$.extend()
+$.proxy()
+$.type()
+$.isArray()
+$.isFunction()
+//}}}
+$.ajax({method,url,data,headers,dataType}).done().fail().always()//{{{
+$.get()
+$.getScript()
+$.getJSON()
+$.post()
+$.ajaxPrefilter()
+$().ajaxStart()
+$().ajaxStop()
+//}}}
+$().submit()//{{{
+$().load()
+$().serialize()
+$().serializeArray()
+$().val()
+//}}}
+//}}}
+nodejs//{{{
+//}}}
 wechat//{{{
 App({onLaunch(path,query,scene,shareTicket,referrerInfo),onShow,onHide,onError}) getApp()
 Page({data,setData,onLoad,onShow,onReady,onHide,onUnload,onPageScroll,onPullDownRefresh,onReachBottom,onShareAppMessage({from,target}){title,path,imageUrl,success(shareTickets),fail,complete}})
@@ -660,7 +941,7 @@ $().text()
 nodejs//{{{
 //}}}
 
-1990
+1990  shy
 1991  ARM   Linux  HTTP
 1994                        linux 1.0
 1995  IE1   win95           linux 1.2
@@ -675,9 +956,9 @@ nodejs//{{{
 2006  IE7		   jQuery
 2007               HTML5    iOS
 2008               Chrome   Android
-2009  IE8   win7
+2009  IE8   win7   aliyun
 2011  IE9          wechat   linux 3.0
-2012  IE10  win8   go1.0
+2012  IE10  win8   go1.0    RasPi
 2013  IE11  win81
 2015        win10           linux 4.0
 2017               mp
