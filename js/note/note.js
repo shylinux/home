@@ -1,3 +1,9 @@
+      c
+    sh go
+  vi php js
+ARM Linux HTTP
+SSLVPN ETCVPN
+
 /* */ //
 undefined null//{{{
 Number String Boolean
@@ -327,7 +333,78 @@ window//{{{
 		cloneNode()
 //}}}
 //}}}
+
 wechat//{{{
+App({onLaunch(path,query,scene,shareTicket,referrerInfo),onShow,onHide,onError}) getApp()
+Page({data,setData,onLoad,onShow,onReady,onHide,onUnload,onPageScroll,onPullDownRefresh,onReachBottom,onShareAppMessage({from,target}){title,path,imageUrl,success(shareTickets),fail,complete}})
+module.exports require()
+
+wx.request({url,data,header,method,dataType,success(data,statusCode,header,errMsg),fail,complete})
+wx.scanCode({onlyFromCamera,success(result,scanType,charSet,path),fail,complete})
+
+wx.showToast({title,icon,image,duration,mask,success,fail,complete}) wx.hideToast()
+wx.showLoading({title,mask,success,fail,complete}) wx.hideLoading()
+wx.showModal({title,content,showCancel,cancelText,cancelColor,confirmText,confirmColor,success(confirm,cancel),fail,complete})
+wx.showActionSheet({itemList,itemColor,success(tapIndex),fail,complete})
+wx.setNavigationBarTitle({title,success,fail,complete})
+wx.setNavigationBarColor({frontColor,backgroundColor,animation,success,fail,complete})
+wx.showNavigationBarLoading() wx.hideNavigationBarLoading()
+wx.setTopBarText({text,success,fail,complete})
+
+wx.navigateTo({url,success,fail,complete}) wx.navigateBack({delta})
+wx.redirectTo({url,success,fail,complete})
+wx.reLaunch({url,success,fail,complete})
+wx.switchTab({url,success,fail,complete})
+wx.pageScrollTo({scrollTo})
+
+wx.startPullDownRefresh({success,fail,complete}) wx.stopPullDownRefresh()
+
+wx.login({success({errMsg,code}),fail,complete})
+wx.checkSession({success,fail,complete})
+wx.getUserInfo({withCredentials,lang,success(userInfo,rawData,signature,encryptedData,iv),fail,complete})
+
+wx.showShareMenu({withShareTicket,success,fail,complete})
+wx.updateShareMenu({withShareTicket,success,fail,complete})
+wx.hideShareMenu({success,fail,complete})
+wx.getShareInfo({shareTicket,success(encryptedData),fail,complete})
+
+wx.openSetting({success({}),fail,complete})
+wx.getSetting({success({}),fail,complete})
+wx.checkIsSupportSoterAuthentication({success(supportMode),fail,complete})
+wx.startSorterAuthtication({requestAuthModes,challenge,authContent,success({errCode,authMode,resultJSON,resultJSONSignature}),fail,complete})
+
+wx.setStorage({key,data,success,fail,complete}) wx.setStorageSync({key,data})
+wx.getStorage({key,success(data),fail,complete}) wx.getStorageSync({key})
+wx.removeStorage({key,success(data),fail,complete}) wx.removeStorageSync({key})
+wx.getStorageInfo({success(keys,currentSize,limitSize),fail,complete}) wx.getStorageInfoSync()
+wx.clearStorage() wx.clearStorageSync()
+
+wx.saveFile({tempFilePath,success(savedFilePath),fail,complete})
+wx.getSavedFileList({success({fileList}),fail,complete})
+wx.getSavedFileInfo({filePath,success({size,createTime}),fail,complete})
+wx.removeSavedFile({filePath,success,createTime}),fail,complete})
+
+wx.uploadFile({url,filePath,name,header,formData,,success(data,statusCode),fail,complete}){onProgressUpdate((progress,totalBytesSent,totalBytesExpectedSent)),abort}
+wx.downloadFile({url,header,success,fail,complete}){onProgressUpdate((progress,totalBytesWritten,totalBytesExpectedToWrite)),abort}
+wx.openDocument({filePath,fileType,success,fail,complete})
+
+wx.chooseImage({count,sizeType,sourceType,success({tempFilePaths,tempFiles}),fail,complete})
+wx.previewImage({current,urls,success,fail,complete})
+wx.getImageInfo({src,success({width,height,path}),fail,complete})
+wx.saveImageToPhotosAlbum({filePath,success,fail,complete})
+
+wx.getLocation({type,success(latitude,longitude,speed,accuracy,altitude,),fail,complete})
+wx.chooseLocation({cancel,success(name,address,latitude,longitude),fail,complete})
+wx.openLocation({latitude,longitude,scale,name,address,,success,fail,complete})
+
+wx.getSystemInfo({success({brand,model,pixelRadio,screenWidth,screenHeight,windowWidth,windowHeight,language,version,system,platform,fontSizeSetting,SDKVersion}),fail,complete})
+wx.getSystemInfoSync()
+wx.setEnableDebug({enableDebug,success,fail,complete})
+wx.canIUse()
+
+wx.setNavigationBarTitle({set})
+wx.login({})
+
 app.wxss
 app.json//{{{
 {
@@ -512,6 +589,7 @@ utils/utils.js//{{{
 	require("")
 //}}}
 //}}}
+
 jQuery//{{{
 
 $.cookie()
@@ -602,6 +680,7 @@ nodejs//{{{
 2012  IE10  win8   go1.0
 2013  IE11  win81
 2015        win10           linux 4.0
+2017               mp
 
 2007               iOS1
 2008  Andorid1.0   iOS2
