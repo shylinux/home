@@ -2,15 +2,23 @@
     sh go
   vi php js
 ARM Linux HTTP
-   mac hub
-   vpn vps
-   win usb
+   mac vps
+   win vpn
+   usb hub
 git share back
    add del
-   mod fix
    pro opt
+   mod fix
+SSLVPN ETCVPN
+
+流程 协议
+框架 接口
+语句 表达式
 
 库文件 头文件 源文件 /*{{{*/
+
+代码区 常量区 变量区 扩展区 堆区 栈区
+
 类型 变量 函数
 语句 表达式
 常量 变量 运算符 函数
@@ -700,7 +708,7 @@ show databases;
 	mysql_close()
 /*}}}*/
 wget http://nginx.org/download/nginx-1.4.1.tar.gz /*{{{*/
-sudo apt-get install libpcre3-dev zlib1g-dev
+sudo apt-get install libpcre3-dev zlib1g-dev libssl-dev
 ./configure && make && sudo make install && sudo nginx
 
 src/os/unix/*{{{*/

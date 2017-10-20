@@ -363,6 +363,22 @@ comptry
 compvalues
 
 #}}}
+ssh #{{{
+	ssh-keygen && ssh-copy-id
+
+	ssh-keygen -F 172.100.0.90
+	ssh-keygen -R 172.100.0.90
+
+	/etc/ssh/sshd_config
+	/etc/init.d/ssh restart
+
+	last
+	lastb
+
+	ssh -fNL 9099:shylinux.com:9099 shy@172.100.0.90
+	ssh -fNR 9099:shylinux.com:9099 shy@172.100.0.63
+
+#}}}
 tmux #{{{
 clients sessions windows panes #{{{
 attach-session
