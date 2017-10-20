@@ -17,7 +17,28 @@ template protocol
  product product
  / / /     \ \ \
 
+man console_codes
+raspberrypi#{{{
+	sudo raspi-config
+	sudo adduser shy
+	sudo visudo
 
+	/etc/network/interfaces
+	/etc/wpa_supplicant/wpa_supplicant.conf
+	/etc/hostname
+	/etc/hosts
+
+	sudo apt-get install vim zsh tmux
+	sudo apt-get install ctags cscope
+
+	vi /boot/config.txt
+	lsb_release -a
+	ifconfig
+	hostname
+
+	ssh
+	sftp
+#}}}
 ubuntu #{{{
 	sudo apt-get install ibus-table-wubi
 	sudo apt-get install chromium-browser
