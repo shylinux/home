@@ -86,9 +86,9 @@ source $ZSH/oh-my-zsh.sh
 # }}}
 
 export PROMPT=$LOCAL_PROMPT'%![%*]%c$ ' # {{{
-export GOBIN=~/go/bin
-# export GOPATH=~/go
-# export PATH=$PATH:$GOBIN
+export GOBIN=~/context/bin
+export GOPATH=~/context:~/go
+export PATH=~/context/bin:~/go/bin:$PATH
 export EDITOR=vim
 
 # }}}

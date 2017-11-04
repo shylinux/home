@@ -1,3 +1,64 @@
+        c
+      sh go
+    vi php js
+  ARM Linux HTTP
+     mac vps
+     win vpn
+     usb hub
+  git share back
+     add del
+     mod fix
+     pro opt
+  SSLVPN ETCVPN
+    协议 流程
+    框架 接口
+    语句 表达式
+数据结构 算法分析
+
+version help env run
+fmt fix vet get list doc
+tool build test install clean
+
+config init clone version help
+status show diff grep reset
+commit add mv rm checkout
+branch merge rebase tag log
+remote fetch pull push
+
+package import type func const var
+struct{} interface{} func() {}
+if exp {} else {}
+if exp; exp {} else {}
+for {break}
+for exp {continue}
+for exp; exp; exp {}
+for k, v := range m {}
+switch {case exp: fallthrough}
+switch exp {case exp: default}
+switch t : v.(type) {case int:}
+return goto defer recover() panic()
+go select {case <-:}
+
+0 0.0 "" '' ``
+true false nil iota
+int int8 int16 int32 int64
+uint uint8 uint16 uint32 uint64
+float32 float64 complex64 complex128
+rune string bool error byte uintptr
+* [...] ... [] map[] chan
+
+complex() real() imag()
+new() make() delete() close()
+cap() len() append() copy()
+panic() recover()
+print() println()
+
+io fmt log net bufio bytes
+os flag path time runtime expvar sync
+go unsafe syscall internal testing errors debug reflect
+unicode strings strconv regexp encoding mime image text html
+math sort container hash crypto index database archive compress
+
 c
 sh go
 vi py js

@@ -1,6 +1,6 @@
 
 check() { # {{{
-	list=(~ ~/go/src/share ~/go/src/back ~/work ~/vpn/nginx-1.4.1/src/ngx_grammar)
+	list=(~ ~/go/src/share ~/go/src/back ~/work)
 
 	for l in $list; do
 		cd $l && echo $l
