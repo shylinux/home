@@ -92,49 +92,6 @@ export PATH=~/context/bin:~/go/bin:$PATH
 export EDITOR=vim
 
 # }}}
-source ~/bash/tool/tmux/power.sh # {{{
-source ~/work/tool/vpm.sh
-source ~/.shy.sh
-source ~/.shy_local.sh
-# }}}
-HISTORY=~/temp/bash/history # {{{
-[ -e $HISTORY ] || mkdir -p $HISTORY
-
-LIST_MODE=1
-LIST_NUM=60
-
-zle-line-finish() { # {{{
-	local now=$(date +%s)
-
-	echo $BUFFER|awk "{printf \"%d %s\n\", $now, \$1}" >>$HISTORY/cmd
-	echo $BUFFER|awk "{if (\$1==\"sudo\")printf \"%d %s\n\", $now, \$2}" >>$HISTORY/cmd
-	echo $BUFFER|awk "{for (i=2;i<=NF;i++){printf \"%d %s\n\", $now, \$i}}" >>$HISTORY/arg
-
-	case $LIST_MODE in
-		1)	cat $HISTORY/cmd|cut -d' ' -f2|sort|uniq -c|sort -rn|head -$LIST_NUM >$HISTORY/cmd_tmp
-			cat $HISTORY/arg|cut -d' ' -f2|sort|uniq -c|sort -rn|head -$LIST_NUM >$HISTORY/arg_tmp
-			;;
-		2)	cat $HISTORY/cmd|sort -rn|head -$LIST_NUM >$HISTORY/cmd_tmp
-			cat $HISTORY/arg|sort -rn|head -$LIST_NUM >$HISTORY/arg_tmp
-			;;
-	esac
-}
-# }}}
-complete_history() { # {{{
-	local hi=$HISTORY/cmd_tmp
-	if [ $CURRENT -gt 1 ]; then
-		hi=$HISTORY/arg_tmp
-	fi
-
-	while read cnt cmd; do
-		compadd -- $cmd
-	done < $hi
-}
-# }}}
-
-zle -C complete_history expand-or-complete complete_history
-bindkey "^G" complete_history
-# }}}
 
 bindkey -e # {{{
 bindkey -s sd _
