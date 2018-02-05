@@ -960,7 +960,7 @@ nodejs//{{{
 2011  IE9          wechat   linux 3.0
 2012  IE10  win8   go1.0    RasPi
 2013  IE11  win81
-2015        win10           linux 4.0
+2015  Edge  win10           linux 4.0
 2017               mp
 
 2007               iOS1
