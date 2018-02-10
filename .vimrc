@@ -147,6 +147,7 @@ command! ME execute "w |!make && sudo make install && sudo nginx -s stop && sudo
 
 set keywordprg=man\ -a
 set path+=/usr/local/go/src
+set path+=~/context/src
 
 set path+=/usr/local/include
 set path+=/usr/include/x86_64-linux-gnu

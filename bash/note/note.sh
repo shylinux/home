@@ -2,14 +2,21 @@
       sh go
     vi php js
   ARM Linux HTTP
-     hub mac
-     vps vpn
-     usb win
+     mac vps
+	 win vpn
+	 usb hub
   git share back
      add del
      mod fix
      pro opt
   SSLVPN ETCVPN
+    协议 流程
+	接口 框架
+	语句 表达式
+数据结构 算法分析
+    寻址 指令
+	文件 进程
+	表示 会话
 userinfo userinfo
 userrole usership
 template protocol
@@ -18,6 +25,65 @@ template protocol
  / / /     \ \ \
 
 man console_codes
+make#{{{
+directives variables rules
+target: prerequisites | -lm
+	recipes
+\t \
+$$
+$
+$(wildcard *.c)
+$(patsubst %.c,%.o,hi.c)
+$(subst .c,.o,hi.c)
+include
+VPATH=
+vpath
+$@ @< @^
+.PHONY:
+=
+:=
++=
+?=
+!=
+$(:=)
+ifeq(,)
+else
+endif
+
+$(subst from,to,str)
+$(patsubst pat,req,str)
+$(strip str)
+$(filter pat,str)
+$(filter-out pat,str)
+$(sort str)
+$(word n,str)
+$(wordlist s,e,str)
+$(words str)
+$(firstword str)
+$(lastword str)
+
+$(dir str)
+$(notdir str)
+$(suffix str)
+$(basename str)
+$(addsuffix suf,str)
+$(addprefix pre,str)
+$(join str,str)
+$(wildcard pat)
+$(realpath str)
+$(abspath str)
+
+$(file op file,text)
+$(eval str)
+
+$(if cond,one,two)
+$(or cond,...) $(and cond,...)
+$(foreach i,str,str)
+$(shell cmd) $(call fun,arg...)
+$(value str) $(flavor str) $(origin str)
+$(info str) $(warning str) $(error str)
+
+#}}}
 raspberrypi#{{{
 	sudo raspi-config
 	sudo adduser shy
