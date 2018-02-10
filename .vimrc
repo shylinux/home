@@ -1,4 +1,5 @@
-"sudo apt-get install vim"{{{
+"插件的安装与配置 "{{{
+"sudo apt-get install vim
 "sudo apt-get install git
 "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 filetype off
@@ -22,7 +23,7 @@ Bundle 'vim-scripts/vim-misc'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/vim-compile'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'easymotion/vim-easymotion'
+" Bundle 'easymotion/vim-easymotion'
 Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'chemzqm/wxapp.vim'
@@ -129,41 +130,8 @@ if has("cscope")
 endif
 "}}}
 
-filetype on "{{{
-filetype plugin on
-filetype indent on
-syntax on
-colorscheme mycolor
-let mapleader=";"
-
-source ~/.vim_local
-command! SL source ~/.vim_local
-command! SV source ~/.vimrc
-
-command! Mat execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx"
-command! Proxy execute "!curl localhost/100837cb/0/1/http/127.0.0.1/80/hi.html"
-command! MP execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/127.0.0.1/80/hi.html"
-command! ME execute "w |!make && sudo make install && sudo nginx -s stop && sudo nginx && curl localhost/100837cb/0/1/http/127.0.0.1/80/he.html"
-
-set keywordprg=man\ -a
-set path+=/usr/local/go/src
-set path+=~/context/src
-
-set path+=/usr/local/include
-set path+=/usr/include/x86_64-linux-gnu
-
-set path+=~/vpn/nginx-1.4.1/objs
-set path+=~/vpn/nginx-1.4.1/src/core
-set path+=~/vpn/nginx-1.4.1/src/event
-set path+=~/vpn/nginx-1.4.1/src/http
-set path+=~/vpn/nginx-1.4.1/src/mail
-set path+=~/vpn/nginx-1.4.1/src/misc
-set path+=~/vpn/nginx-1.4.1/src/os
-set path+=~/vpn/nginx-1.4.1/src/os/unix
-set path+=~/vpn/nginx-1.4.1/src/http/modules
-set path+=~/vpn/nginx-1.4.1/src/event/modules
-"}}}
-set number"{{{
+"基本配置 "{{{
+set number
 set nowrap
 "set relativenumber
 set cursorline
@@ -210,18 +178,80 @@ set guioptions-=m
 set guioptions-=r
 set guioptions-=l
 
+"}}}
+"编程配置 "{{{
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+colorscheme mycolor
+let mapleader=";"
+
+set keywordprg=man\ -a
+set path+=/usr/local/include
+set path+=/usr/include/x86_64-linux-gnu
+
+set path+=/usr/local/go/src
+set path+=~/context/src
+
 autocmd BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
 	\	exe "normal g'\"" |
 	\ endif
 
-"}}}
-
+autocmd BufNewFile,BufReadPost *.shy set filetype=shy
 autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
-
 " autocmd BufNewFile,BufReadPost *.wxml set filetype=xml
 " autocmd BufNewFile,BufReadPost *.wxss set filetype=css
 
+source ~/.vim_shy
+"}}}
+
+"基本快捷键"{{{
+function! RunShell(Msg, Shell)"{{{
+	echo a:Msg . '...'
+	call system(a:Shell)
+	echon 'done'
+endfunction
+
+function! GenarateTags()
+	call RunShell("Delete old tags&cscope file", "rm cscope.* tags*")
+	call RunShell("Generate cscope", "cscope -Rbq")
+	cs add cscope.out
+	call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")
+	call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")
+	call HLUDSync()
+endfunction
+"}}}
+nnoremap <F2> :TlistToggle<CR>
+autocmd BufNewFile,BufReadPost  *.go nnoremap <F2> :TagbarToggle<CR>
+nnoremap <F3> :MRU<CR>
+nnoremap <F4> :NERDTreeToggle<CR>
+
+nnoremap <F5> :CtrlP .<CR>
+nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.go **/*.vim **/*.php **/*.js **/*.html **/*.tpl <cr><C-o>:cw<cr>
+nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
+
+"nnoremap <F9> :call RunShell("Generate cscope", "cscope -Rbq")<cr>:cs add cscope.out<cr>
+"nnoremap <F10> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
+"nnoremap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
+"nnoremap <F12> :call HLUDSync()<cr>
+nnoremap <F10> :call GenarateTags()<cr>
+nnoremap <F12> :call GenarateTags()<cr>
+
+cnoremap w!! w !sudo tee %<CR>
+
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <Space> :
+
+nnoremap j gj
+nnoremap k gk
+"}}}
+"高级快捷键 "{{{
 fun! SetOperationMode() "{{{
 	if exists("w:OperationMode") && w:OperationMode == 1
 		nnoremap <Space> <C-F>
@@ -277,7 +307,7 @@ endfun
 nnoremap -- :call ChangeOperationMode()<CR>
 autocmd WinEnter * call SetOperationMode()
 "}}}
-inoremap jk <Esc>"{{{
+inoremap jk <Esc>
 inoremap JK <Esc>
 cnoremap jk <Esc>
 cnoremap JK <Esc>
@@ -296,9 +326,6 @@ inoremap sd ->
 inoremap SD ->
 cnoremap sd ->
 cnoremap SD ->
-
-nnoremap j gj
-nnoremap k gk
 
 " inoremap ;; :
 " inoremap " '
@@ -321,54 +348,15 @@ nnoremap k gk
 "nnoremap <C-P> <C-W>p
 "nnoremap <Leader>b <Leader>be
 
-cnoremap w!! w !sudo tee %<CR>
-
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
-nnoremap <Space> :
-
-nmap w <Leader><Leader>w
-nmap W <Leader><Leader>W
-nmap e <Leader><Leader>e
-nmap E <Leader><Leader>E
-nmap b <Leader><Leader>b
-nmap B <Leader><Leader>B
-nmap f <Leader><Leader>f
-nmap F <Leader><Leader>F
-nmap t <Leader><Leader>t
-nmap T <Leader><Leader>T
-
-function! RunShell(Msg, Shell)
-	echo a:Msg . '...'
-	call system(a:Shell)
-	echon 'done'
-endfunction
-
-function! GenarateTags()
-	call RunShell("Delete old tags&cscope file", "rm cscope.* tags*")
-	call RunShell("Generate cscope", "cscope -Rbq")
-	cs add cscope.out
-	call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")
-	call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")
-	call HLUDSync()
-endfunction
-
-nnoremap <F2> :TlistToggle<CR>
-autocmd BufNewFile,BufReadPost  *.go nnoremap <F2> :TagbarToggle<CR>
-nnoremap <F3> :MRU<CR>
-nnoremap <F4> :NERDTreeToggle<CR>
-
-nnoremap <F5> :CtrlP .<CR>
-nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.go **/*.vim **/*.php **/*.js **/*.html **/*.tpl <cr><C-o>:cw<cr>
-nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
-
-"nnoremap <F9> :call RunShell("Generate cscope", "cscope -Rbq")<cr>:cs add cscope.out<cr>
-"nnoremap <F10> :call RunShell("Generate tags", "ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .")<cr>
-"nnoremap <F11> :call RunShell("Generate filename tags", "~/.vim/shell/genfiletags.sh")<cr>
-"nnoremap <F12> :call HLUDSync()<cr>
-nnoremap <F10> :call GenarateTags()<cr>
-nnoremap <F12> :call GenarateTags()<cr>
+" nmap w <Leader><Leader>w
+" nmap W <Leader><Leader>W
+" nmap e <Leader><Leader>e
+" nmap E <Leader><Leader>E
+" nmap b <Leader><Leader>b
+" nmap B <Leader><Leader>B
+" nmap f <Leader><Leader>f
+" nmap F <Leader><Leader>F
+" nmap t <Leader><Leader>t
+" nmap T <Leader><Leader>T
+"
 "}}}
