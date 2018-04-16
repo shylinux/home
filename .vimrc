@@ -194,17 +194,52 @@ set path+=/usr/include/x86_64-linux-gnu
 set path+=/usr/local/go/src
 set path+=~/context/src
 
+function! LocalComplete(start, base)
+	if a:start
+		let pos = col(".")
+		return pos
+	else
+		let back = col(".")
+		let pos = col(".")-1
+		let line = getline(".")
+        if line[pos-1] == "."
+            let pos -= 1
+        endif
+		while pos > 0 && line[pos-1] =~ "[a-zA-Z0-9_]"
+			let pos -= 1
+		endwhile
+		let word = line[ pos : back ]
+
+		for k in b:table
+			if word == k[0]
+				return k[1:]
+			endif
+		endfor
+
+		let list = []
+		for v in b:table[0]
+			if v =~ "^" . word
+				let list += [v[len(word):]]
+			endif
+		endfor
+
+		return list
+	endif
+endfunction
+
 autocmd BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
 	\	exe "normal g'\"" |
 	\ endif
 
+autocmd BufNewFile,BufReadPost *.py set expandtab
 autocmd BufNewFile,BufReadPost *.shy set filetype=shy
 autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
 " autocmd BufNewFile,BufReadPost *.wxml set filetype=xml
 " autocmd BufNewFile,BufReadPost *.wxss set filetype=css
 
-source ~/.vim_shy
+autocmd BufNewFile,BufReadPost .vim_local set filetype=vim
+source ~/.vim_local
 "}}}
 
 "基本快捷键"{{{
@@ -229,7 +264,7 @@ nnoremap <F3> :MRU<CR>
 nnoremap <F4> :NERDTreeToggle<CR>
 
 nnoremap <F5> :CtrlP .<CR>
-nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.go **/*.vim **/*.php **/*.js **/*.html **/*.tpl <cr><C-o>:cw<cr>
+nnoremap <F6> :vimgrep /<C-R>=expand("<cword>")<cr>/ **/*.c **/*.h **/*.sh **/*.go **/*.vim **/*.py **/*.php **/*.js **/*.html **/*.tpl <cr><C-o>:cw<cr>
 nnoremap <F7> :cs find g <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F8> :cs find c <C-R>=expand("<cword>")<CR><CR>
 
