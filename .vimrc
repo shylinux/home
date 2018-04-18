@@ -194,36 +194,46 @@ set path+=/usr/include/x86_64-linux-gnu
 set path+=/usr/local/go/src
 set path+=~/context/src
 
+let b:pos = 3
+function! DebugLog(msg)
+	let b:pos += 1
+	call setline(b:pos, a:msg)
+endfunction
+
 function! LocalComplete(start, base)
 	if a:start
-		let pos = col(".")
-		return pos
-	else
-		let back = col(".")
-		let pos = col(".")-1
 		let line = getline(".")
-        if line[pos-1] == "."
-            let pos -= 1
-        endif
-		while pos > 0 && line[pos-1] =~ "[a-zA-Z0-9_]"
-			let pos -= 1
+		let head = col(".")-1
+		let pos = col(".")-1
+
+		while head > 0 && line[head-1] =~ "[a-zA-Z0-9_]"
+			let head -= 1
 		endwhile
-		let word = line[ pos : back ]
+		let b:complete_key = line[head : pos-1]
 
-		for k in b:table
-			if word == k[0]
-				return k[1:]
+		let head -= 1
+		let pos = head
+		let b:complete_obj = ""
+		if line[head] == "."
+			while head > 0 && line[head-1] =~ "[a-zA-Z0-9_]"
+				let head -= 1
+			endwhile
+			let b:complete_obj = line[head : pos-1]
+			return head+len(b:complete_obj)+1
+		endif
+		return head+1
+	else
+		let complete_list = []
+		for k in b:complete_table
+			if b:complete_obj == k[0]
+				for v in k[1:]
+					if v =~ b:complete_key
+						let complete_list += [v]
+					endif
+				endfor
 			endif
 		endfor
-
-		let list = []
-		for v in b:table[0]
-			if v =~ "^" . word
-				let list += [v[len(word):]]
-			endif
-		endfor
-
-		return list
+		return complete_list + [ b:complete_key ]
 	endif
 endfunction
 
@@ -240,6 +250,7 @@ autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
 
 autocmd BufNewFile,BufReadPost .vim_local set filetype=vim
 source ~/.vim_local
+command! RR wa | source ~/.vimrc |e
 "}}}
 
 "基本快捷键"{{{
