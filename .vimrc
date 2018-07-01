@@ -244,6 +244,7 @@ autocmd BufReadPost *
 
 autocmd BufNewFile,BufReadPost *.py set expandtab
 autocmd BufNewFile,BufReadPost *.shy set filetype=shy
+autocmd BufNewFile,BufReadPost *.shy set commentstring=#%s
 autocmd BufNewFile,BufReadPost *.conf set filetype=nginx
 " autocmd BufNewFile,BufReadPost *.wxml set filetype=xml
 " autocmd BufNewFile,BufReadPost *.wxss set filetype=css
