@@ -1,3 +1,11 @@
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install tmux tree
+
+ssh-keygen && ssh-copy-id -i ~/.ssh/id_rsa.pub 10.3.23.40
+
+sudo easy_install pip
+
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 
 telnet ftp ssh sftp
@@ -21,7 +29,7 @@ ls mv rm mkdir rmdir
 cp cat tee head tail more less
 df du fsck mount umount mkfs
 find grep sort sed awk tr wc
-file touch ln 
+file touch ln
 date
 uptime
 script

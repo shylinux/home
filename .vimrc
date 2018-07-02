@@ -223,17 +223,24 @@ function! LocalComplete(start, base)
 		endif
 		return head+1
 	else
+		let key = b:complete_key
 		let complete_list = []
 		for k in b:complete_table
 			if b:complete_obj == k[0]
 				for v in k[1:]
-					if v =~ b:complete_key
+					if key == "" || key == v[ : len(key)-1]
 						let complete_list += [v]
 					endif
 				endfor
 			endif
+			if b:complete_obj == ""
+				if key == "" || key == k[0][ : len(key)-1]
+					let complete_list += [k[0]]
+				endif
+			endif
 		endfor
-		return complete_list + [ b:complete_key ]
+		return complete_list
+		" return complete_list + [ b:complete_key ]
 	endif
 endfunction
 
